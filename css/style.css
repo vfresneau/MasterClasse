@@ -1,0 +1,143 @@
+
+#titreAvantHeader{
+height: 116px;
+width: 100%;
+left: 0px;
+top: 9px;
+border-radius: 0px;
+background-color: #62C9F5;
+}
+
+h1{
+font-family: Roboto;
+font-size: 64px;
+font-style: normal;
+font-weight: 700;
+line-height: 75px;
+letter-spacing: 0em;
+text-align: center;
+color: rgba(254, 253, 254, 1);
+}
+
+/* MASTER logo */
+#logo{
+position: absolute;
+width: 125px;
+height: 116px;
+left: 6.18%;
+right: 84.42%;
+top: 0%;
+bottom: 23.31%;
+}
+
+/*couleur des bouttons */
+.btn-primary{
+background: blueviolet;
+border-color: blueviolet;
+}
+
+.bg-primary{
+background: blueviolet !important;
+border-color: blueviolet !important;
+}
+.text-primary{
+color:blueviolet !important;
+}
+
+/* décoration Polygone droite*/
+#Polygon_connexion{
+position: absolute;
+width: 592.81px;
+height: 383.38px;
+left: 1238.18px;
+top: -239px;
+background: #A44EB2;
+transform: rotate(41.33deg);
+}
+
+/* décoration Polygone gauche*/
+#Polygon_inscription{
+position: absolute;
+width: 595.81px;
+height: 383.38px;
+left: -229px;
+top: -259.25px;
+background: #A44EB2;
+transform: rotate(-42.4deg);
+}
+
+/*image page inscription*/
+.image_inscription{
+max-height: 750px;
+border :10px solid rgba(164, 78, 178, 1)
+}
+.image_connexion{
+max-height: 750px;
+border :10px solid rgba(164, 78, 178, 1)
+}
+.ligne_connexion{
+height: 750px;
+}
+.ligne_inscription{
+height: 750px;
+}
+
+/*Responsive*/
+/* @media (min-width: 768px){
+
+} */
+
+.navbar{
+margin-bottom: 20px;
+background: #A44EB2;
+}
+
+.navbar a{
+color: aliceblue;
+}
+
+/* Rectangle image de qui somme nous */
+#imageQSN{
+position: absolute;
+width: 348px;
+height: 694px;
+left: 64px;
+top: 234px;
+border: 5px solid #A44EB3;
+box-sizing: border-box;
+border-radius: 5px;
+}
+
+#ligne_blanc_QSN{
+position: absolute;
+width: 925px;
+height: 66px;
+left: 463px;
+top: 230px;
+background: #FFFFFF;
+border-radius: 5px;
+}
+#qui_sommes_nous{
+color: #A44EB2;
+text-align: center;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#cadre_bleu_contenu_QSN{
+position: absolute;
+width: 924px;
+height: 632px;
+left: 463px;
+top: 296px;
+background: #62C9F5;
+border-radius: 5px;
+}
+
+/*Paragraphe de qui sommes nous*/
+p{
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 14px;
+color: #FFFFFF;
+}
