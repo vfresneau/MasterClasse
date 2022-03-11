@@ -8,7 +8,7 @@ border-radius: 0px;
 background-color: #62C9F5;
 }
 
-h1{
+#titre_masterclasse{
 font-family: Roboto;
 font-size: 64px;
 font-style: normal;
@@ -141,6 +141,13 @@ font-size: 12px;
 line-height: 14px;
 color: #FFFFFF;
 }
+
+/*couleur titre nav au survol*/
 .nav-link:hover {
-    color:#62C9F5;
+color:#62C9F5;
   }
+
+body{
+background-image: url("../image/fond_ecran_bureau.svg");
+background-size: cover;
+}
