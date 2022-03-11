@@ -9,14 +9,14 @@ background-color: #62C9F5;
 }
 
 h1{
-font-family: Roboto;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-size: 64px;
 font-style: normal;
 font-weight: 700;
 line-height: 75px;
 letter-spacing: 0em;
 text-align: center;
-color: rgba(254, 253, 254, 1);
+color: rgb(250, 250, 250);
 }
 
 /* MASTER logo */
@@ -98,47 +98,63 @@ color: aliceblue;
 
 /* Rectangle image de qui somme nous */
 #imageQSN{
-position: absolute;
-width: 348px;
-height: 694px;
-left: 64px;
-top: 234px;
-border: 5px solid #A44EB3;
-box-sizing: border-box;
-border-radius: 5px;
+    position: absolute;
+    width: 348px;
+    height: 694px;
+    left: 64px;
+    top: 234px;
+    border: 5px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
 }
 
 #ligne_blanc_QSN{
-position: absolute;
-width: 925px;
-height: 66px;
-left: 463px;
-top: 230px;
-background: #FFFFFF;
-border-radius: 5px;
+    position: absolute;
+    width: 925px;
+    height: 66px;
+    left: 463px;
+    top: 230px;
+    background: #FFFFFF;
+    border-radius: 5px;
 }
 #qui_sommes_nous{
-color: #A44EB2;
-text-align: center;
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #A44EB2;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 #cadre_bleu_contenu_QSN{
-position: absolute;
-width: 924px;
-height: 632px;
-left: 463px;
-top: 296px;
-background: #62C9F5;
-border-radius: 5px;
+    position: absolute;
+    width: 924px;
+    height: 632px;
+    left: 463px;
+    top: 296px;
+    background: #62C9F5;
+    border-radius: 5px;
 }
 
 /*Paragraphe d'explication qui sommes nous*/
 #paragraphe_qsn{
-    top: 25px;
+    /*position: absolute;
+    width: 649px;
+    height: 109px;
+    left: 578px;
+    top: 353px;*/
+    
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    color: #691565;
+    
+    color: #9f39a8;
 }
+/*Fond d'ecran de toutes mes pages*/
+/*Ici je n'arrive pas à trouver comment mettre mon image en fond d'écran*/
+#fond_container{
+    background: url(image\Photo_fond.jpg);
+}
+
+/*Titre h4 Cours en libre acces*/
+/*#titre_cours_libre{
+    color: white;
+}*/
