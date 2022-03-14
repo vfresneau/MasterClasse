@@ -146,15 +146,98 @@ color: aliceblue;
     font-size: 12px;
     line-height: 14px;
     
-    color: #9f39a8;
-}
-/*Fond d'ecran de toutes mes pages*/
-/*Ici je n'arrive pas à trouver comment mettre mon image en fond d'écran*/
-#fond_container{
-    background: url(image\Photo_fond.jpg);
+    color: white;
 }
 
 /*Titre h4 Cours en libre acces*/
-/*#titre_cours_libre{
-    color: white;
-}*/
+#titre_cours_libre{
+    position: absolute;
+    width: 171px;
+    height: 21px;
+    left: 150px;
+    top: 210px;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+    color: black;
+}
+/*Image qui accompagne l'aperçu du cours*/
+#img_apercu_html{
+    margin-top: 20px;
+    background-image: url(image\html-5.png);
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 120px;
+    width: 175px;
+}
+/*Ligne qui contient l'aperçu du cours*/
+#ligne_apercu_cours{
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 1147px;
+    margin-top: 20px;
+}
+/*Développement-Cours*/
+#h5_titre_cours{
+    color: #A44EB3;
+    font-weight: bold;
+}
+/*Position de mon 1er block apercu du cours*/
+#colonne_cours{
+    padding-left: 200px;
+    margin-top: 100px;
+}
+/*Adresses des centres*/
+#adresse{
+  
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #FFFFFF;
+}
+/*Titre liste des centre de formation*/
+#titre_liste_formation{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+/* Image qui va avec l'adresse du centre*/
+#img_campus{
+   
+}
+/*Colonne bleu d ela page formation*/
+#colonne_bleu_formation{
+    position: absolute;
+    width: 574px;
+    height: 730px;
+    left: 110px;
+    top: 205px;
+    
+    background: #62C9F5;
+    border-radius: 5px;
+}
+
+/*Colonne bleu de la page formation*/
+#colonne_violette_formation{
+    position: absolute;
+    width: 574px;
+    height: 336px;
+    left: 770px;
+    top: 206px;
+    background: #A44EB3;
+    border-radius: 5px;
+}
