@@ -8,7 +8,7 @@ border-radius: 0px;
 background-color: #62C9F5;
 }
 
-h1{
+#titre_masterclasse{
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-size: 64px;
 font-style: normal;
@@ -130,16 +130,6 @@ left: 463px;
 top: 296px;
 background: #62C9F5;
 border-radius: 5px;
-}
-
-/*Paragraphe de qui sommes nous*/
-p{
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 12px;
-line-height: 14px;
-color: #FFFFFF;
 }
 
 /*couleur titre nav au survol*/
