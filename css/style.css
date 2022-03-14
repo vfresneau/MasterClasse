@@ -40,6 +40,7 @@ border-color: blueviolet;
 background: blueviolet !important;
 border-color: blueviolet !important;
 }
+
 .text-primary{
 color:blueviolet !important;
 }
@@ -75,23 +76,22 @@ border :10px solid rgba(164, 78, 178, 1)
 max-height: 750px;
 border :10px solid rgba(164, 78, 178, 1)
 }
+
 .ligne_connexion{
 height: 750px;
 }
+
 .ligne_inscription{
 height: 750px;
 }
 
-/*Responsive*/
-/* @media (min-width: 768px){
-
-} */
-
+/*couleur et marge navbar*/
 .navbar{
 margin-bottom: 20px;
 background: #A44EB2;
 }
 
+/*couleur des liens navbar*/
 .navbar a{
 color: aliceblue;
 }
