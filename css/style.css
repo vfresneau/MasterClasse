@@ -8,7 +8,7 @@ border-radius: 0px;
 background-color: #62C9F5;
 }
 
-h1{
+#titre_masterclasse{
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-size: 64px;
 font-style: normal;
@@ -40,6 +40,7 @@ border-color: blueviolet;
 background: blueviolet !important;
 border-color: blueviolet !important;
 }
+
 .text-primary{
 color:blueviolet !important;
 }
@@ -75,25 +76,60 @@ border :10px solid rgba(164, 78, 178, 1)
 max-height: 750px;
 border :10px solid rgba(164, 78, 178, 1)
 }
+
 .ligne_connexion{
 height: 750px;
 }
+
 .ligne_inscription{
 height: 750px;
 }
 
-/*Responsive*/
-/* @media (min-width: 768px){
-
-} */
-
+/*couleur et marge navbar*/
 .navbar{
 margin-bottom: 20px;
 background: #A44EB2;
 }
 
+/*couleur des liens navbar*/
 .navbar a{
 color: aliceblue;
+}
+
+/* Rectangle image de qui somme nous */
+#imageQSN{
+    position: absolute;
+    width: 348px;
+    height: 694px;
+    left: 64px;
+    top: 234px;
+    border: 5px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#ligne_blanc_QSN{
+    position: absolute;
+    width: 925px;
+    height: 66px;
+    left: 463px;
+    top: 230px;
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+#qui_sommes_nous{
+    color: #A44EB2;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#cadre_bleu_contenu_QSN{
+position: absolute;
+width: 924px;
+height: 632px;
+left: 463px;
+top: 296px;
+background: #62C9F5;
+border-radius: 5px;
 }
 
 /*couleur titre nav au survol*/
