@@ -96,6 +96,38 @@ background: #A44EB2;
 color: aliceblue;
 }
 
+#cahier{
+    position: absolute;
+    width: 219px;
+    height: 174px;
+    left: 140px;
+    top: 372px;
+    }
+    
+    #tapeMain{
+    position: absolute;
+    width: 219px;
+    height: 174px;
+    left: 393px;
+    top: 372px;   
+    }
+    
+    #main_ampoule{
+    position: absolute;
+    width: 219px;
+    height: 174px;
+    left: 140px;
+    top: 571px; 
+    }
+    
+    #group_dev{
+    position: absolute;
+    width: 219px;
+    height: 174px;
+    left: 393px;
+    top: 571px;
+    }
+
 /* Rectangle image de qui somme nous */
 #imageQSN{
     position: absolute;
@@ -169,7 +201,7 @@ left: 55px;
 top: 17px;
 }
 
-/* Vignette accueil */
+/* Vignette accueil droite */
 .thumbnail{
   position: absolute;
   width: 339px;
@@ -179,3 +211,61 @@ top: 17px;
   background: #A44EB3;
   border-radius: 5px;
 }
+
+
+.argument1{
+    position: absolute;
+    width: 339px;
+    height: 175px;
+    left: 891px;
+    top: 229px;
+    background: #A44EB3;
+    border-radius: 5px;
+    }
+    /* .elipse1{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 1021px;
+    top: 253px;
+    background: #FEFDFE;
+    } */
+    
+    
+    .argument2{
+    position: absolute;
+    width: 339px;
+    height: 175px;
+    left: 891px;
+    top: 470px;
+    background: #62C9F5;
+    border-radius: 50px;
+    }
+    #elipse2{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 1021px;
+    top: 491px;
+    background: #FEFDFE;
+    }
+    
+    
+    .argument3{
+    position: absolute;
+    width: 339px;
+    height: 175px;
+    left: 891px;
+    top: 710px;
+    background: #A44EB3;
+    border-radius: 5px;
+    }
+    
+    #elipse3{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 1021px;
+    top: 732px;
+    background: #FEFDFE;
+    }
