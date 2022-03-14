@@ -123,13 +123,67 @@ color: aliceblue;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 #cadre_bleu_contenu_QSN{
-    position: absolute;
-    width: 924px;
-    height: 632px;
-    left: 463px;
-    top: 296px;
-    background: #62C9F5;
-    border-radius: 5px;
+position: absolute;
+width: 924px;
+height: 632px;
+left: 463px;
+top: 296px;
+background: #62C9F5;
+border-radius: 5px;
+}
+
+/*Paragraphe de qui sommes nous*/
+p{
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 14px;
+color: #FFFFFF;
+}
+
+/*couleur titre nav au survol*/
+.nav-link:hover {
+color:#62C9F5;
+  }
+
+body{
+background-image: url("../image/fond_ecran_bureau.svg");
+background-size: cover;
+}
+
+.fond_ecran_blanc_accueuil{
+position: absolute;
+width: 532px;
+height: 656px;
+left: 116px;
+top: 229px;
+background: #FFFFFF;
+border-radius: 5px;
+}
+
+.titre_col_gauche{
+font-family: Roboto;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: center;
+color: rgba(164, 78, 178, 1);
+
+}
+
+/* Vignette 1 */
+
+.thumbnail{
+  position: absolute;
+  width: 339px;
+  height: 175px;
+  left: 891px;
+  top: 229px;
+  background: #A44EB3;
+  border-radius: 5px;
 }
 
 /*Paragraphe d'explication qui sommes nous*/
