@@ -1,3 +1,6 @@
+/*TITRE MASTER CLASSE*/
+/*HEADER*/
+/*CORP PAGE*/
 /* Rectangle image de qui somme nous */
 #imageQSN{
     position: absolute;
@@ -108,13 +111,11 @@ color: #FFFFFF;
 }
 /*Adresses des centres*/
 #adresse{
-  
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-
     color: #FFFFFF;
 }
 
@@ -131,8 +132,8 @@ color: #FFFFFF;
 
 /* Image qui va avec l'adresse du centre*/
 #img_campus{
-    width: 20px;
-    height: 10epx;
+    width: 180px;
+    height: 90px;
 }
 /*Colonne bleu d ela page formation*/
 #colonne_bleu_formation{
