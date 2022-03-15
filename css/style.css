@@ -134,8 +134,6 @@
     top: 571px;
 }
 
-
-
 /*couleur titre nav au survol*/
 .nav-link:hover {
     color:#62C9F5;
@@ -144,6 +142,7 @@
 body{
     background-image: url("../image/fond_ecran_bureau.svg");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .bloc_blanc_accueuil{
@@ -187,10 +186,10 @@ body{
 
 .argument1{
     position: absolute;
-    width: 339px;
-    height: 175px;
-    left: 891px;
-    top: 229px;
+    width: 348px;
+    height: 167px;
+    left: -8px;
+    top: 244px;
     background: #A44EB3;
     border-radius: 5px;
 }
@@ -216,9 +215,9 @@ body{
 #elipse2{
     position: absolute;
     width: 80px;
-    height: 80px;
-    left: 1021px;
-    top: 491px;
+    height: 78px;
+    left: 126px;
+    top: 285px;
     background: #FEFDFE;
 }
 
@@ -230,14 +229,18 @@ body{
     left: 891px;
     top: 710px;
     background: #A44EB3;
-    border-radius: 5px;
+    border-radius: 45px;
 }
 
-#elipse3{
+/* #elipse3{
     position: absolute;
     width: 80px;
     height: 80px;
     left: 1021px;
     top: 732px;
     background: #FEFDFE;
+} */
+footer{
+    background: #000;
+    
 }
