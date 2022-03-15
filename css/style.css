@@ -1,5 +1,5 @@
 
-
+/*___________________________________________TITRE AVANT HEADER___________________________________________*/
 #titreAvantHeader{
     height: 116px;
     width: 110%;
@@ -31,14 +31,11 @@
     bottom: 23.31%;
 }
 
-
 /*couleur des bouttons */
 .btn-primary{
     background: blueviolet;
     border-color: blueviolet;
 }
-
-/*HEADER DEBUT */
 
 .bg-primary{
     background: blueviolet !important;
@@ -49,17 +46,13 @@
     color:blueviolet !important;
 }
 
-/* décoration Polygone droite*/
-#Polygon_connexion{
-    position: absolute;
-    width: 592.81px;
-    height: 383.38px;
-    left: 1238.18px;
-    top: -239px;
-    background: #A44EB2;
-    transform: rotate(41.33deg);
-}
 
+/*_____________________________________________INSCRIPTION______________________________________________*/
+/*image page inscription*/
+.image_inscription{
+    max-height: 750px;
+    border :10px solid rgba(164, 78, 178, 1)
+}
 /* décoration Polygone gauche*/
 #Polygon_inscription{
     position: absolute;
@@ -71,17 +64,30 @@
     transform: rotate(-42.4deg);
 }
 
-/*image page inscription*/
-.image_inscription{
-    max-height: 750px;
-    border :10px solid rgba(164, 78, 178, 1)
-}
+/*_____________________________________________CONNEXION______________________________________________*/
+
 /*image page connexion*/
 .image_connexion{
     max-height: 750px;
     border :10px solid rgba(164, 78, 178, 1)
 }
+/* décoration Polygone droite*/
+#Polygon_connexion{
+    position: absolute;
+    width: 592.81px;
+    height: 383.38px;
+    left: 1238.18px;
+    top: -239px;
+    background: #A44EB2;
+    transform: rotate(41.33deg);
+}
 
+
+/*_______________________________________________HEADER______________________________________________*/
+/*couleur titre nav au survol*/
+.nav-link:hover {
+    color:#62C9F5;
+}
 .ligne_connexion{
     height: 750px;
 }
@@ -99,6 +105,17 @@
 /*couleur des liens navbar*/
 .navbar a{
     color: aliceblue;
+}
+/*______________________________________________CORPS PAGES_______________________________________*/
+body{
+    background-image: url("../image/fond_ecran_bureau.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/*________________________________________________ACCUEIL____________________________________________*/
+
+.bloc_violet1_accueil{
+    background-color: #A44EB2;
 }
 
 /*image cahier*/
@@ -132,17 +149,6 @@
     height: 174px;
     left: 393px;
     top: 571px;
-}
-
-/*couleur titre nav au survol*/
-.nav-link:hover {
-    color:#62C9F5;
-}
-
-body{
-    background-image: url("../image/fond_ecran_bureau.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .bloc_blanc_accueuil{
@@ -193,15 +199,15 @@ body{
     background: #A44EB3;
     border-radius: 5px;
 }
-    /* .elipse1{
+
+/* .elipse1{
     position: absolute;
     width: 80px;
     height: 80px;
     left: 1021px;
     top: 253px;
     background: #FEFDFE;
-    } */
-
+} */
 
 .argument2{
     position: absolute;
@@ -221,7 +227,6 @@ body{
     background: #FEFDFE;
 }
 
-
 .argument3{
     position: absolute;
     width: 339px;
@@ -232,14 +237,16 @@ body{
     border-radius: 45px;
 }
 
-/* #elipse3{
+/* 
+#elipse3{
     position: absolute;
     width: 80px;
     height: 80px;
     left: 1021px;
     top: 732px;
     background: #FEFDFE;
-} */
+} 
+*/
 
 /*_______________________________________________FOOTER____________________________________________*/
 /*Couleur de fond du footer*/
