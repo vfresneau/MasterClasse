@@ -48,12 +48,13 @@
 
 
 /*_____________________________________________INSCRIPTION______________________________________________*/
-/*image page inscription*/
+/*Image page inscription*/
 .image_inscription{
     max-height: 750px;
-    border :10px solid rgba(164, 78, 178, 1)
+    border :10px solid rgba(164, 78, 178, 1);
+   
 }
-/* décoration Polygone gauche*/
+/* Décoration Polygone gauche*/
 #Polygon_inscription{
     position: absolute;
     width: 595.81px;
@@ -62,6 +63,110 @@
     top: -259.25px;
     background: #A44EB2;
     transform: rotate(-42.4deg);
+}
+
+/*Bloc avec le formulaire d'inscription*/
+#bloc_inscription{
+    position: absolute;
+    width: 400px;
+    height: 414px;
+    left: 160px;
+    top: 237px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/*Colonne qui contient les labels */
+#colonneLabel{
+    width: 130px;
+}
+
+/*Label prenom*/
+#labelPrenom{
+    margin-top: 40px;
+}
+
+/*Label mdp*/
+#labelMDP{
+    margin-top: 40px;
+}
+
+/*Label email*/
+#labelEmail{
+    margin-top: 30px;
+}
+
+/*Input nom*/
+#inputNom{
+    width: 220px;
+    height: 38px;
+    left: 287px;
+    top: 451px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+/*Input prenom*/
+#inputPrenom{
+    width: 220px;
+    height: 38px;
+    left: 287px;
+    top: 451px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/*Input email*/
+#inputEmail{
+    width: 220px;
+    height: 38px;
+    left: 287px;
+    top: 451px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+/*Input MDP*/
+#inputMDP{
+    margin-top: 20px;
+    width: 220px;
+    height: 38px;
+    left: 287px;
+    top: 451px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+/*Paragraphe bienvenue*/
+#bienvenue{
+    margin-top: 20px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+/*Paragraphe inscrivez-vous*/
+#inscrivez_vous{
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+/*Bouton d'inscription*/
+#bouton_inscription{
+    margin-top: 20px;
+    background-color: #A44EB2;
+    color: white;
+    
 }
 
 /*_____________________________________________CONNEXION______________________________________________*/
@@ -82,19 +187,17 @@
     transform: rotate(41.33deg);
 }
 
-
+.ligne_connexion{
+    height: 750px;
+}
 /*_______________________________________________HEADER______________________________________________*/
 /*couleur titre nav au survol*/
 .nav-link:hover {
     color:#62C9F5;
 }
-.ligne_connexion{
-    height: 750px;
-}
 
-.ligne_inscription{
-    height: 750px;
-}
+
+
 
 /*couleur et marge navbar*/
 .navbar{
@@ -115,7 +218,13 @@ body{
 /*________________________________________________ACCUEIL____________________________________________*/
 
 .bloc_violet1_accueil{
-    background-color: #A44EB2;
+    position: absolute;
+    width: 339px;
+    height: 175px;
+    left: 891px;
+    top: 229px;
+    background: #A44EB3;
+    border-radius: 5px;
 }
 
 /*image cahier*/
@@ -157,8 +266,6 @@ body{
     height: 656px;
     left: 116px;
     top: 229px;
-    background: #FFFFFF;
-    border-radius: 5px;
 }
 
 .titre_col_gauche{
