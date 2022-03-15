@@ -23,6 +23,7 @@
     border-radius: 5px;
 }
 #qui_sommes_nous{
+    margin-top: 10px;
     color: #A44EB2;
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -37,24 +38,11 @@
     border-radius: 5px;
 }
 
-/*Paragraphe de qui sommes nous*/
-p{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
-    color: #FFFFFF;
-}
-
 /*Paragraphe d'explication qui sommes nous*/
 #paragraphe_qsn{
-    /*position: absolute;
-    width: 649px;
-    height: 109px;
-    left: 578px;
-    top: 353px;*/
-    
+    margin-top: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -67,7 +55,6 @@ p{
 
 /*Titre h4 Cours en libre acces*/
 #titre_cours_libre{
-
     position: absolute;
     width: 171px;
     height: 21px;
@@ -79,7 +66,11 @@ p{
     font-size: 18px;
     line-height: 21px;
     /* identical to box height */
-    color: black;
+    color:white;
+}
+/*Paragraphes apercu cours*/
+#p_cours{
+    color: #A44EB3;
 }
 /*Image qui accompagne l'aperçu du cours*/
 #img_apercu_html{
