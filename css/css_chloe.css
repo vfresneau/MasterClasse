@@ -1,6 +1,6 @@
-/*TITRE MASTER CLASSE*/
-/*HEADER*/
-/*CORP PAGE*/
+
+/*_________________________________________________PAGE QUI SOMMES NOUS______________________________________________*/
+
 /* Rectangle image de qui somme nous */
 #imageQSN{
     position: absolute;
@@ -63,6 +63,7 @@ p{
     
     color: white;
 }
+/*_________________________________________________PAGE APERCU______________________________________________*/
 
 /*Titre h4 Cours en libre acces*/
 #titre_cours_libre{
@@ -112,6 +113,8 @@ p{
     padding-left: 200px;
     margin-top: 100px;
 }
+
+/*_________________________________________________PAGE FORMATION______________________________________________*/
 
 /*Adresses des centres*/
 #adresse{
@@ -171,7 +174,7 @@ p{
     color: #FFFFFF;
 }
 
-/* Image qui va avec l'adresse du centre*/
+/*Image qui va avec l'adresse du centre*/
 #img_campus{
     width: 180px;
     height: 90px;
@@ -188,7 +191,7 @@ p{
     border-radius: 5px;
 }
 
-/*Colonne  de la page formation*/
+/*Colonne de la page formation*/
 #colonne_violette_formation{
     position: absolute;
     width: 574px;

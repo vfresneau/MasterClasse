@@ -240,7 +240,19 @@ body{
     top: 732px;
     background: #FEFDFE;
 } */
+
+/*_______________________________________________FOOTER____________________________________________*/
+/*Couleur de fond du footer*/
 footer{
-    background: #000;
-    
+    background:#62C9F5;
+
+}
+#link_contact{
+    text-align: right;
+}
+#link_reglement{
+    text-align: center;
+}
+#link_auteur{
+    text-align: left;
 }
