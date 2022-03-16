@@ -192,3 +192,140 @@
     background: #A44EB3;
     border-radius: 5px;
 }
+
+/*_____________________________________________ESPACE STAGIAIRE_______________________________________*/
+
+/*Ligne qui correspond à ma vignette exercice*/
+#exercice{
+    
+    position: absolute;
+    width: 308px;
+    height: 206px;
+    left: 99px;
+    top: 408px;
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+/*Ligne qui correspond à ma vignette cours*/
+#cours{
+    position: absolute;
+    width: 308px;
+    height: 206px;
+    left: 555px;
+    top: 409px;
+
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+/*Ligne qui correspond à ma vignette examen*/
+#examen{
+    
+    position: absolute;
+    width: 308px;
+    height: 206px;
+    left: 1011px;
+    top: 408px;
+    
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+/*Libellé en paragraphe de mes intitullé*/
+.paragraphe_intitule{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    color: #A44EB3;
+    margin-top: 80px;
+}
+
+/*Logo stylo pour libellé exercice*/
+#logo_stylo{
+
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 213px;
+    top: 653px;
+    
+}
+
+/*Logo examen pour libellé cours*/
+#logo_cours{
+
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 669px;
+    top: 653px;
+}
+
+/*Logo certificat pour libellé examen*/
+#logo_certificat{
+
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 1125px;
+    top: 653px;
+}
+
+/*Image logo deconnection qui est aussi en page espace createur*/
+#logo_deconnecter{
+ 
+    width: 29px;
+    height: 30px;
+}
+
+/*_______________________________________________ESPACE CREATEUR________________________________________*/
+
+/*Ligne qui correspond à ma vignette examen*/
+#examen2{
+    
+    position: absolute;
+    width: 308px;
+    height: 206px;
+    left: 1011px;
+    top: 408px;
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 255px;
+}
+
+/*Ligne qui correspond à ma vignette cours*/
+#cours2{
+    position: absolute;
+    width: 308px;
+    height: 206px;
+    left: 555px;
+    top: 409px;
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 255px;
+}
+
+/*Ligne qui correspond à ma vignette exercice*/
+#exercice2{
+    
+    position: absolute;
+    width: 308px;
+    height: 206px;
+    left: 99px;
+    top: 408px;
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 255px;
+}
