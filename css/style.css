@@ -196,9 +196,6 @@
     color:#62C9F5;
 }
 
-
-
-
 /*couleur et marge navbar*/
 .navbar{
     margin-bottom: 20px;
@@ -217,143 +214,106 @@ body{
 }
 /*________________________________________________ACCUEIL____________________________________________*/
 
-.bloc_violet1_accueil{
-    position: absolute;
-    width: 339px;
-    height: 175px;
-    left: 891px;
-    top: 229px;
-    background: #A44EB3;
-    border-radius: 5px;
-}
-
-/*image cahier*/
-#cahier{
-    position: absolute;
-    width: 219px;
-    height: 174px;
-    left: 140px;
-    top: 372px;
-}
-/*image tapeMain*/
-#tapeMain{
-    position: absolute;
-    width: 219px;
-    height: 174px;
-    left: 393px;
-    top: 372px;   
-}
-/*image ampoule*/
-#main_ampoule{
-    position: absolute;
-    width: 219px;
-    height: 174px;
-    left: 140px;
-    top: 571px; 
-}
-/*image dev*/
-#group_dev{
-    position: absolute;
-    width: 219px;
-    height: 174px;
-    left: 393px;
-    top: 571px;
-}
-
-.bloc_blanc_accueuil{
+/*Block principal blanc*/
+#bloc_blanc_accueuil{
     position: absolute;
     width: 532px;
     height: 656px;
     left: 116px;
     top: 229px;
+
+    background: #FFFFFF;
+    border-radius: 5px;
 }
 
-.titre_col_gauche{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 28px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: rgba(164, 78, 178, 1);
-    box-shadow: 0px 4px 4px 0px #00000040;
-    position: absolute;
-    width: 425px;
-    height: 56px;
-    left: 55px;
-    top: 17px;
+/*Ttre h3*/
+#titre_h3{
+    color: #A44EB2;
+    margin-top: 20px;
 }
 
-/* Vignette accueil droite page accueil*/
-.thumbnail{
+/*Block violet n°1*/
+#bloc_violet1_accueil{
     position: absolute;
     width: 339px;
     height: 175px;
     left: 891px;
     top: 229px;
+
     background: #A44EB3;
     border-radius: 5px;
 }
 
-
-.argument1{
-    position: absolute;
-    width: 348px;
-    height: 167px;
-    left: -8px;
-    top: 244px;
-    background: #A44EB3;
-    border-radius: 5px;
-}
-
-/* .elipse1{
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    left: 1021px;
-    top: 253px;
-    background: #FEFDFE;
-} */
-
-.argument2{
+/*Block bleu n°2*/
+#bloc_bleu2_accueil{
     position: absolute;
     width: 339px;
     height: 175px;
     left: 891px;
     top: 470px;
+    
     background: #62C9F5;
-    border-radius: 50px;
-}
-#elipse2{
-    position: absolute;
-    width: 80px;
-    height: 78px;
-    left: 126px;
-    top: 285px;
-    background: #FEFDFE;
+    border-radius: 5px;
 }
 
-.argument3{
+/*Block violet n°3*/
+#bloc_violet3_accueil{
+    
     position: absolute;
     width: 339px;
     height: 175px;
     left: 891px;
     top: 710px;
     background: #A44EB3;
-    border-radius: 45px;
+    border-radius: 5px;
 }
 
-/* 
-#elipse3{
-    position: absolute;
-    width: 80px;
+/*Image logo 1 2 3*/
+.numero_logo{
+
+    width: 100px;
     height: 80px;
-    left: 1021px;
-    top: 732px;
-    background: #FEFDFE;
-} 
-*/
+    margin-top: 20px;
+    margin: auto;
+}
+
+/*Paragraphe allant avec chaque block*/
+.paragraphe1{
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+/*Image cahier*/
+#cahier{
+    width: 219px;
+    height: 174px;
+  
+}
+/*Image tapeMain*/
+#tapeMain{
+    width: 219px;
+    height: 174px;
+      
+}
+/*Image ampoule*/
+#main_ampoule{
+    width: 219px;
+    height: 174px;
+    
+}
+/*Image dev*/
+#group_dev{
+    width: 219px;
+    height: 174px;
+ 
+}
 
 /*_______________________________________________FOOTER____________________________________________*/
 /*Couleur de fond du footer*/
