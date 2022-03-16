@@ -96,6 +96,7 @@ Class Exercice {
 		$this->_ID_THEME = $_ID_THEME;
 	}
 
+	//Fonction Création exercice //
 	public function createExercice(){
         $user = 'charley'; // Identifiant de bdd
         $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
@@ -121,6 +122,52 @@ Class Exercice {
         }
 	}
 
+	// -->Méthode static pour l'utiliser dans le webservice, pour appeller tous les exercices//
+public static function readAllExercice(){
+	$user = "charley"; // Identifiant
+	$pass = "@JuNiRMdv5GZb"; // Mot de passe
+	$liste_exercice = array(); //tableau vide
+
+	// 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
+	try {
+		// connexion à la base de donnée
+		$dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+		// envoie d'une requete à la base de données --> on récup l'exercice correspondant à l'id
+		$stmt = $dbh->prepare("SELECT * FROM Exercice");
+		$stmt->execute();
+		// pour chaque ligne trouvé--> y en à qu'un ici
+		while ($row = $stmt->fetch()) {
+		   //pour chaque resultat je fabrique un exercice de la classe EXERCICE 
+			$monExercice = new Exercice($row['id'],$row['nom'], $row['correction'], $row['consigne'], $row['reponseAttendu'], $row['valide'], $row['niveau'], $row['lien'], $row['id_theme']);
+			//j'ajoute à mon tableau d'exercice' mon exercice en cours
+			array_push($liste_exercice, $monExercice);
+
+		}
+		//ferme la connexion à la base
+		$dbh = null;
+
+	} catch (PDOException $e) {
+		print "Erreur !: " . $e->getMessage() . "<br/>";
+		die();
+	}
+
+
+	$monTab = array();
+	$i = 0;
+
+	// on transforme l'objet en tableau (récursif sur les objets)
+	foreach($liste_exercice as $Exercice){
+		$array = $Exercice->toArray($Exercice);
+		$monTab[$i] = $array;
+		$i+=1;
+	}
+
+	$monJson = '{"Exercice":'.json_encode($monTab)."}";
+	echo $monJson;
+}
+
+
+//fonction pour Lire un exercice //
 	public function readExercice(){
         $user = 'charley'; // Identifiant de bdd
         $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
@@ -133,7 +180,7 @@ Class Exercice {
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
             $row = $stmt->fetch();
-            $singleExercice = new Exercice($row['nom'], $row['correction'], $row['consigne'], $row['reponseAttendu'], $row['valide'], $row['niveau'], $row['lien'], $row['id_theme']);//ferme la connexion à la base
+            $singleExercice = new Exercice($row['id'],$row['nom'], $row['correction'], $row['consigne'], $row['reponseAttendu'], $row['valide'], $row['niveau'], $row['lien'], $row['id_theme']);//ferme la connexion à la base
             $dbh = null;
         } catch (PDOException $e) {
             print 'Erreur !: ' . $e->getMessage() . '<br/>';
@@ -143,6 +190,8 @@ Class Exercice {
         // Je l'affiche
         return $monjSon;
 		}
+
+
 
 	public function updateExercice(){
         $user = 'charley'; // Identifiant de bdd
@@ -170,6 +219,7 @@ Class Exercice {
         }
 	}
 
+	//Fcontion delete //
 	public function deleteExercice(){
         $user = 'charley'; // Identifiant de bdd
         $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
