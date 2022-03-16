@@ -73,7 +73,7 @@ Class Individu {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('INSERT INTO Individu (nom, prenom, email, mdp, admin) VALUES (:nom, :prenom, :email, :mdp, :admin)');
 			$stmt->bindParam(':nom', $this->_NOM);
 			$stmt->bindParam(':prenom', $this->_PRENOM);
@@ -95,7 +95,7 @@ Class Individu {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('SELECT * FROM Individu WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
@@ -118,7 +118,7 @@ Class Individu {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('UPDATE Individu SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp, admin = :admin WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->bindParam(':nom', $this->_NOM);
@@ -141,7 +141,7 @@ Class Individu {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('DELETE FROM Individu WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();//ferme la connexion à la base

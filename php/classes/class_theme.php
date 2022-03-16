@@ -33,7 +33,7 @@ Class theme {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('INSERT INTO theme (nom) VALUES (:nom)');
 			$stmt->bindParam(':nom', $this->_NOM);
 			$stmt->execute();//ferme la connexion à la base
@@ -51,7 +51,7 @@ Class theme {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('SELECT * FROM theme WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
@@ -74,7 +74,7 @@ Class theme {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('UPDATE theme SET nom = :nom WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->bindParam(':nom', $this->_NOM);
@@ -93,7 +93,7 @@ Class theme {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('DELETE FROM theme WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();//ferme la connexion à la base

@@ -73,7 +73,7 @@ Class Suivi {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('INSERT INTO Suivi (reussi, id_individu, id_exercice, temps, nombre_essai) VALUES (:reussi, :id_individu, :id_exercice, :temps, :nombre_essai)');
 			$stmt->bindParam(':reussi', $this->_REUSSI);
 			$stmt->bindParam(':id_individu', $this->_ID_INDIVIDU);
@@ -95,7 +95,7 @@ Class Suivi {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('SELECT * FROM Suivi WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
@@ -118,7 +118,7 @@ Class Suivi {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('UPDATE Suivi SET reussi = :reussi, id_individu = :id_individu, id_exercice = :id_exercice, temps = :temps, nombre_essai = :nombre_essai WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->bindParam(':reussi', $this->_REUSSI);
@@ -141,7 +141,7 @@ Class Suivi {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('DELETE FROM Suivi WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();//ferme la connexion à la base

@@ -103,13 +103,13 @@ Class Exercice {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('INSERT INTO Exercice (nom, correction, consigne, reponseAttendu, valide, niveau, lien, id_theme) VALUES (:nom, :correction, :consigne, :reponseAttendu, :valide, :niveau, :lien, :id_theme)');
 			$stmt->bindParam(':nom', $this->_NOM);
 			$stmt->bindParam(':correction', $this->_CORRECTION);
 			$stmt->bindParam(':consigne', $this->_CONSIGNE);
 			$stmt->bindParam(':reponseAttendu', $this->_REPONSEATTENDU);
-			$stmt->bindParam(':valide', $this->_VALIDE);
+			$stmt->bindParam(':valide', $this->_VALIDE, PDO::PARAM_BOOL);
 			$stmt->bindParam(':niveau', $this->_NIVEAU);
 			$stmt->bindParam(':lien', $this->_LIEN);
 			$stmt->bindParam(':id_theme', $this->_ID_THEME);
@@ -128,7 +128,7 @@ Class Exercice {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('SELECT * FROM Exercice WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
@@ -151,7 +151,7 @@ Class Exercice {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('UPDATE Exercice SET nom = :nom, correction = :correction, consigne = :consigne, reponseAttendu = :reponseAttendu, valide = :valide, niveau = :niveau, lien = :lien, id_theme = :id_theme WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->bindParam(':nom', $this->_NOM);
@@ -177,7 +177,7 @@ Class Exercice {
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
 			$stmt = $dbh->prepare('DELETE FROM Exercice WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();//ferme la connexion à la base
