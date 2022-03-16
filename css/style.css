@@ -330,3 +330,20 @@ footer{
 #link_auteur{
     text-align: left;
 }
+
+/*________________________________________________Page Exercice stagiaire____________________________*/
+.TitreStagiaire{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: antiquewhite;
+}
+/*Navbar page exercice stagiaire */
+.navbar-stagiaire {
+    margin-bottom: 36px;
+    background: #9a9a9ac7;
+}
