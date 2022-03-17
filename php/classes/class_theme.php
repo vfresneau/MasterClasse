@@ -44,6 +44,51 @@ Class theme {
         }
 	}
 
+	// -->Méthode static pour l'utiliser dans le webservice, pour appeller tous les themes//
+    public static function readAllTheme(){
+        $user = "charley"; // Identifiant
+        $pass = "@JuNiRMdv5GZb"; // Mot de passe
+        $liste_theme = array(); //tableau vide
+    
+        // 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
+        try {
+            // connexion à la base de donnée
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            // envoie d'une requete à la base de données --> on récup l'exercice correspondant à l'id
+            $stmt = $dbh->prepare("SELECT * FROM theme");
+            $stmt->execute();
+            // pour chaque ligne trouvé--> 
+            while ($row = $stmt->fetch()) {
+               //pour chaque resultat je fabrique un exercice de la classe EXERCICE 
+                $monTheme = new theme ($row['id'],$row['nom']);
+                //j'ajoute à mon tableau d'exercice' mon exercice en cours
+                array_push($liste_theme, $monTheme);
+                }
+            //ferme la connexion à la base
+            $dbh = null;
+    
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    
+        $monTab = array();
+        $i = 0;
+    
+        // on transforme l'objet en tableau (récursif sur les objets)
+        foreach($liste_theme as $theme) {
+            $array = $theme->toArray($theme);
+            $monTab[$i] = $array;
+            $i+=1;
+        }
+    
+        $monJson = '{"theme":'.json_encode($monTab)."}";
+        echo $monJson;
+    }
+
+
+
+
 	public function readtheme(){
         $user = 'charley'; // Identifiant de bdd
         $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
@@ -56,7 +101,7 @@ Class theme {
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
             $row = $stmt->fetch();
-            $singletheme = new theme($row['nom']);//ferme la connexion à la base
+            $singletheme = new theme($row['id'],$row['nom']);//ferme la connexion à la base
             $dbh = null;
         } catch (PDOException $e) {
             print 'Erreur !: ' . $e->getMessage() . '<br/>';
