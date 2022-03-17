@@ -1,4 +1,6 @@
-let exercice = {};
+let mesExercices = {};
+
+
 
 
 
@@ -12,18 +14,63 @@ let exercice = {};
 
 //     //Pour tous les scenarios créer, je fabrique mes cards et jumbotron avec les details //
 //     for (let i = 0; i <.length; i++) {
-
-//je lie l'element html Tbody à ma variable Tableaubody //
-let TableauBody = document.getElementById("Tbody");
-//creation d'une ligne du tableau ....//
-// let LigneDuTableau = ultimateHTMLGenerator("th", "", [""], TableauBody);
-// LigneDuTableau.scope = "row";
-
-
-
 load_Exercice();
 
+//creation container dan sle body//
+let cont = document.createElement("div");
+cont.classList.add("container-fluid");
+document.body.appendChild(cont);
 
+
+function tableau_exercice_stagiaire(){
+
+    //creation d'un element html table dans le container//
+    let tableau = ultimateHTMLGenerator("table","", ["table","table-hover","autorisation","my-5","text-center","table-responsive-md"],cont);
+    //creation de l'element thead dans la variable tableau //
+    let theadTableau = ultimateHTMLGenerator("thead","", [""],tableau);
+    //creation d'un element html "tr" dans la variable TheadTableau // 
+    let trTableau= ultimateHTMLGenerator("tr","", [""],theadTableau);
+    //creation d'un element html "th" dans la variable TrTableau // 
+    let th1Tableau= ultimateHTMLGenerator("th","EXERCICES", [""],trTableau);
+    th1Tableau.scope = "col";
+    //creation d'un element html "th" dans la variable TrTableau // 
+    let th2Tableau= ultimateHTMLGenerator("th","NIVEAU", [""],trTableau);
+    th2Tableau.scope = "col";
+    //creation d'un element html "th" dans la variable TrTableau // 
+    let th3Tableau= ultimateHTMLGenerator("th","THEMES", [""],trTableau);
+    th3Tableau.scope = "col";
+    
+    
+
+
+}    
+
+
+
+// { <table class="">
+//                     <thead>
+//                         <tr>
+//                             <th scope="col">EXERCICES</th>
+//                             <th scope="col">NIVEAU</th>
+//                             <th scope="col">THEMES</th>
+//                         </tr>
+//                     </thead>
+//                     <tbody id="Tbody">
+//                         <tr id="tableauR">
+//                             <th scope="row">1</th>
+//                             <td>Mark</td>
+//                             <td>Otto</td>
+//                         </tr>
+//                     </tbody> }
+
+
+
+
+
+
+
+
+//chemin :mesExercices.Exercice[0]._NOM     //
 
 
 function load_Exercice() {
@@ -34,7 +81,7 @@ function load_Exercice() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             mesExercices = JSON.parse(xhr.responseText);
             console.log(mesExercices);
-            // load_univers();
+            tableau_exercice_stagiaire();
         }
     }
     //ici  l'adresse url du web service
