@@ -1,18 +1,14 @@
 let mesExercices = {};
 let mesThemes = {};
 
-// cont.innerHTML = "";
-
 //creation container dans le body//
 let cont = document.createElement("div");
 cont.classList.add("container-fluid");
 document.body.appendChild(cont);
 
 load_Exercice();
-load_Theme();
 
 function tableau_exercice_stagiaire(){
-
 
     //creation d'un tableau boostraps ! //
 
@@ -31,39 +27,37 @@ function tableau_exercice_stagiaire(){
     //creation d'un element html "th" dans la variable TrThead // 
     let thcol3Tableau= ultimateHTMLGenerator("th","THEMES", ["col-4"],trThead);
     thcol3Tableau.scope = "col";
-
     
-    
-    //Pour tous les exercices je créer une ligne dans le tableau //
-    for (let i = 0; i <mesExercices.Exercice.length; i++) {
-        
-//creation d'un element html "th" dans la variable Tableau // 
     let tbody= ultimateHTMLGenerator("tbody","", [],tableau);
     tbody.scope = "row";
-    
-//creation d'un element html "tr" dans la variable tableau // 
-    let trTbody= ultimateHTMLGenerator("tr","", [],tableau);
+    //Pour tous les exercices je créer une ligne dans le tableau //
+    for (let i = 0; i <mesExercices.Exercice.length; i++) {
+//creation d'un element html "th" dans la variable Tableau // 
 
-    //creation d'un element html "th" dans la variable  trTbody// 
-    let th_row= ultimateHTMLGenerator("th","", [],trTbody);
-    th_row.scope = "col";
+//creation d'un element html "tr" dans la variable tableau // 
+    let trTbody= ultimateHTMLGenerator("tr","", [],tbody);
 
     //creation d'un element html "td" dans la variable th_row et affichage des noms des exercices// 
-    let td_Exercice_tableau= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NOM ,[],th_row);
+    let td_Exercice_tableau= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NOM ,[],trTbody);
     //creation d'un element html "td" dans la variable th_row et affichage des niveau// 
-    let td_Niveau_tableau= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NIVEAU ,[],th_row);
+    let td_Niveau_tableau= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NIVEAU ,[],trTbody);
     //creation d'un element html "td" dans la variable th_row et affichage des themes// 
-    let td_Theme_tableau= ultimateHTMLGenerator("td",mesThemes.theme[i]._NOM ,[],th_row);
-
+    let montheme = findTheme(mesExercices.Exercice[i]._ID_THEME);
+     let td_Theme_tableau= ultimateHTMLGenerator("td", montheme,[],trTbody);
+     //Pour tous les exercices je créer une ligne dans le tableau //
+    
     }
 }
 
+//fonction pour récupérer le nom du themes selon l'ID del'exercice //
+function findTheme(id){
+    for (let y = 0; y <mesThemes.theme.length; y++) { 
+        if(mesThemes.theme[y]._ID == id){ 
+            return mesThemes.theme[y]._NOM;
+        }
+}
 
-
-
-
-//chemin :mesExercices.Exercice[0]._NOM     //
-
+}
 
 function load_Exercice() {
     // on fait un xml httprequest -> envoie une demande à un webservice
@@ -73,7 +67,8 @@ function load_Exercice() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             mesExercices = JSON.parse(xhr.responseText);
             console.log(mesExercices);
-            tableau_exercice_stagiaire();
+            load_Theme();
+            //
         }
     }
     //ici  l'adresse url du web service
@@ -84,6 +79,7 @@ function load_Exercice() {
     xhr.send();
 }
 
+//fonction pour afficher les themes //
 function load_Theme() {
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
@@ -92,7 +88,7 @@ function load_Theme() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             mesThemes = JSON.parse(xhr.responseText);
             console.log(mesThemes);
-        
+            tableau_exercice_stagiaire();
         }
     }
     //ici  l'adresse url du web service
@@ -103,11 +99,7 @@ function load_Theme() {
     xhr.send();
 }
 
-
-
-
-
-
+//fonction globale pour fabriquer un element html,lui appliquer du css et l'afficher //
 function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationElement){
 var ultimateElement = document.createElement(typeElement);
 ultimateElement.textContent = contenu;
@@ -118,40 +110,3 @@ ultimateElement.classList.add(tableauClassCss[i]);
 destinationElement.appendChild(ultimateElement);
 return ultimateElement;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

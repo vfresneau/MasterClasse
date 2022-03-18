@@ -98,13 +98,12 @@ Class Exercice {
 
 	//Fonction Création exercice //
 	public function createExercice(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
+      
 
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('INSERT INTO Exercice (nom, correction, consigne, reponseAttendu, valide, niveau, lien, id_theme) VALUES (:nom, :correction, :consigne, :reponseAttendu, :valide, :niveau, :lien, :id_theme)');
 			$stmt->bindParam(':nom', $this->_NOM);
 			$stmt->bindParam(':correction', $this->_CORRECTION);
@@ -124,14 +123,13 @@ Class Exercice {
 
 	// -->Méthode static pour l'utiliser dans le webservice, pour appeller tous les exercices//
 public static function readAllExercice(){
-	$user = "charley"; // Identifiant
-	$pass = "@JuNiRMdv5GZb"; // Mot de passe
+	
 	$liste_exercice = array(); //tableau vide
 
 	// 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
 	try {
 		// connexion à la base de donnée
-		$dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+		$dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 		// envoie d'une requete à la base de données --> on récup l'exercice correspondant à l'id
 		$stmt = $dbh->prepare("SELECT * FROM Exercice");
 		$stmt->execute();
@@ -169,13 +167,12 @@ public static function readAllExercice(){
 
 //fonction pour Lire un exercice //
 	public function readExercice(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
+        
 
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('SELECT * FROM Exercice WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
@@ -194,13 +191,11 @@ public static function readAllExercice(){
 
 
 	public function updateExercice(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+     
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('UPDATE Exercice SET nom = :nom, correction = :correction, consigne = :consigne, reponseAttendu = :reponseAttendu, valide = :valide, niveau = :niveau, lien = :lien, id_theme = :id_theme WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->bindParam(':nom', $this->_NOM);
@@ -221,13 +216,11 @@ public static function readAllExercice(){
 
 	//Fcontion delete //
 	public function deleteExercice(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+     
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('DELETE FROM Exercice WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();//ferme la connexion à la base

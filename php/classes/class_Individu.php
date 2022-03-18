@@ -67,13 +67,11 @@ Class Individu {
 	}
 
 	public function createIndividu(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+      
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('INSERT INTO Individu (nom, prenom, email, mdp, admin) VALUES (:nom, :prenom, :email, :mdp, :admin)');
 			$stmt->bindParam(':nom', $this->_NOM);
 			$stmt->bindParam(':prenom', $this->_PRENOM);
@@ -89,18 +87,16 @@ Class Individu {
 	}
 
 	public function readIndividu(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+       
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('SELECT * FROM Individu WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
             $row = $stmt->fetch();
-            $singleIndividu = new Individu($row['nom'], $row['prenom'], $row['email'], $row['mdp'], $row['admin']);//ferme la connexion à la base
+            $singleIndividu = new Individu($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['mdp'], $row['admin']);//ferme la connexion à la base
             $dbh = null;
         } catch (PDOException $e) {
             print 'Erreur !: ' . $e->getMessage() . '<br/>';
@@ -112,13 +108,11 @@ Class Individu {
 		}
 
 	public function updateIndividu(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+      
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('UPDATE Individu SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp, admin = :admin WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->bindParam(':nom', $this->_NOM);
@@ -135,13 +129,11 @@ Class Individu {
 	}
 
 	public function deleteIndividu(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+     
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('DELETE FROM Individu WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();//ferme la connexion à la base

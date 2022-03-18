@@ -27,13 +27,11 @@ Class theme {
 	}
 
 	public function createtheme(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+       
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('INSERT INTO theme (nom) VALUES (:nom)');
 			$stmt->bindParam(':nom', $this->_NOM);
 			$stmt->execute();//ferme la connexion à la base
@@ -46,14 +44,13 @@ Class theme {
 
 	// -->Méthode static pour l'utiliser dans le webservice, pour appeller tous les themes//
     public static function readAllTheme(){
-        $user = "charley"; // Identifiant
-        $pass = "@JuNiRMdv5GZb"; // Mot de passe
+       
         $liste_theme = array(); //tableau vide
     
         // 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
             // envoie d'une requete à la base de données --> on récup l'exercice correspondant à l'id
             $stmt = $dbh->prepare("SELECT * FROM theme");
             $stmt->execute();
@@ -90,13 +87,11 @@ Class theme {
 
 
 	public function readtheme(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+       
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('SELECT * FROM theme WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
@@ -113,13 +108,11 @@ Class theme {
 		}
 
 	public function updatetheme(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+     
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('UPDATE theme SET nom = :nom WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->bindParam(':nom', $this->_NOM);
@@ -132,13 +125,11 @@ Class theme {
 	}
 
 	public function deletetheme(){
-        $user = 'charley'; // Identifiant de bdd
-        $pass = '@JuNiRMdv5GZb'; // Mot de passe bdd
-
+        
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', $user, $pass);
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('DELETE FROM theme WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();//ferme la connexion à la base
