@@ -28,14 +28,17 @@ function afficher_Exercice() {
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
-
+//J'utilise une fonction pour afficher mon block contenant l'exercice.
 monBlock();
 function monBlock(){
+    //Je créer une ligne qui contiendra tout mon exercice
     let monBlockBlanc = ultimateHTMLGenerator("div","",["row", "bg-light"],monContainer);
     monBlockBlanc.id="blockBlanc";
+    //Mon block exercice est composé d'un titre de niveau 4
     let titreExercice = ultimateHTMLGenerator("h4","Ici s'affichera le titre de l'exercice en cours",[],monBlockBlanc);
-    titreExercice.id="titreExercice"
-    let colonneExercice=ultimateHTMLGenerator("div","",["col-12"],monBlockBlanc)
+    titreExercice.id="titreExercice";
+    //De colonnes et lignes pour y mettre mes contenus (paragraphe, theme, consigne)
+    let colonneExercice=ultimateHTMLGenerator("div","",["col-12"],monBlockBlanc);
     let maLigneConsigne =ultimateHTMLGenerator("div","",["row"],colonneExercice);
     maLigneConsigne.id="ligneConsigne";
     let monParagraphe =ultimateHTMLGenerator("p","Ici s'affichera QUESTIONNAIRE suivi du theme",["text-light"],maLigneConsigne);
@@ -44,13 +47,15 @@ function monBlock(){
     colonneExo.id="colonneExo";
     let colonneImageGJ=ultimateHTMLGenerator("div","",["col-6"],monBlockBlanc);
     let colonneBouton=ultimateHTMLGenerator("div","",["col-6"],monBlockBlanc);
+    //J'utilise une boucle for pour y faire apparaitre les proposition à mes questions
     for(i=0; i<4;i++){
         let inputGroup =ultimateHTMLGenerator("div","",["input-group"],colonneExo);
         let inputGroupText =ultimateHTMLGenerator("div","",["input-group-text"],inputGroup);
         let monInputCoche =ultimateHTMLGenerator("input","",["form-check-input", "mt-0"],inputGroupText);
         let monInput =ultimateHTMLGenerator("input","",["form-control"],inputGroup);
-        monInput.value="Ici ma proposition"
+        monInput.value="Ici ma proposition";
     }
+    //Je créer un bouton popur passer à l'exercice suivant
     let monBoutonSuivant=ultimateHTMLGenerator("button","Exercice suivant",["btn"],colonneBouton);
     monBoutonSuivant.id="boutonSuivant";
     // c'est ensuite ici que dans le if (si la reponse selectionné est bonne ça affiche GOOD JOB)

@@ -330,6 +330,7 @@
     border-radius: 255px;
 }
 /*______________________________________PAGE AFFICHAGE EXERCICE STAGIAIRE_______________________________*/
+/*Bouton pour aller a l'exercice suivant*/
 #boutonSuivant{
     margin-top: 20px;
     background-color: #62C9F5;
@@ -337,10 +338,12 @@
     margin-bottom: 20px;
 
 }
+/*Block de fond blanc*/
 #blockBlanc{
     width: 600px;
     margin: auto;
 }
+/*lig*/
 #ligneConsigne{
     background: #62C9F5;
     border-radius: 5px;
