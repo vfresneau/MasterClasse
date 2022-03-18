@@ -208,6 +208,7 @@
     border-radius: 25px;
 }
 
+
 /*Ligne qui correspond à ma vignette cours*/
 #cours{
     position: absolute;
@@ -327,4 +328,33 @@
     border: 3px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 255px;
+}
+/*______________________________________PAGE AFFICHAGE EXERCICE STAGIAIRE_______________________________*/
+#boutonSuivant{
+    margin-top: 20px;
+    background-color: #62C9F5;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+
+}
+#blockBlanc{
+    width: 600px;
+    margin: auto;
+}
+#ligneConsigne{
+    background: #62C9F5;
+    border-radius: 5px;
+    width: 380px;
+    margin: auto;
+    margin-top: 20px;
+}
+#colonneExo{
+    margin: auto;
+    margin-top: 10px;
+    width: 400px;
+}
+#titreExercice{
+    text-align: center;
+    margin-top: 20px;
+    color: #62C9F5;
 }
