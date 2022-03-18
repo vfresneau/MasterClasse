@@ -1,4 +1,5 @@
 <?php
+require_once ("class_reponse.php");
 
 Class Exercice {
 	private $_ID;
@@ -11,6 +12,8 @@ Class Exercice {
 	private $_LIEN;
 	private $_ID_THEME;
 
+	private $_REPONSES =[];
+
 	//S'appelle automatiquement à la création d'instance
     function __construct($ID, $NOM, $CORRECTION, $CONSIGNE, $REPONSEATTENDU, $VALIDE, $NIVEAU, $LIEN, $ID_THEME){
 		$this->_ID = $ID;
@@ -22,6 +25,11 @@ Class Exercice {
 		$this->_NIVEAU = $NIVEAU;
 		$this->_LIEN = $LIEN;
 		$this->_ID_THEME = $ID_THEME;
+		// quand je fait une instance de exercice
+		// si on ma passé un id --> je vais récupérer toutes les réponses de l'exercice
+		if($this->_ID != 0){
+			$this->getAllReponses();
+		}
 	}
 
 	public function get_ID(){
@@ -98,8 +106,6 @@ Class Exercice {
 
 	//Fonction Création exercice //
 	public function createExercice(){
-      
-
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
@@ -121,6 +127,31 @@ Class Exercice {
         }
 	}
 
+public function getAllReponses(){
+	// 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
+	try {
+		// connexion à la base de donnée
+		$dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
+		// envoie d'une requete à la base de données --> on récup l'exercice correspondant à l'id
+		$stmt = $dbh->prepare("SELECT * FROM reponse where id_exercice=:id");
+		$stmt->bindParam(':id', $this->_ID);
+		$stmt->execute();
+		// pour chaque ligne trouvé--> y en à qu'un ici
+		while ($row = $stmt->fetch()) {
+		$reponse = new Reponse();
+		$reponse->set_ID($row['id']);
+		$reponse->set_DESCRIPTION($row['description']);
+		$reponse->set_ID_EXERCICE($row['id_exercice']);
+			array_push($this->_REPONSES, $reponse);
+		}
+		//ferme la connexion à la base
+		$dbh = null;
+
+	} catch (PDOException $e) {
+		print "Erreur !: " . $e->getMessage() . "<br/>";
+	}
+}
+
 	// -->Méthode static pour l'utiliser dans le webservice, pour appeller tous les exercices//
 public static function readAllExercice(){
 	
@@ -133,7 +164,7 @@ public static function readAllExercice(){
 		// envoie d'une requete à la base de données --> on récup l'exercice correspondant à l'id
 		$stmt = $dbh->prepare("SELECT * FROM Exercice");
 		$stmt->execute();
-		// pour chaque ligne trouvé--> y en à qu'un ici
+	// pour chaque ligne de la table
 		while ($row = $stmt->fetch()) {
 		   //pour chaque resultat je fabrique un exercice de la classe EXERCICE 
 			$monExercice = new Exercice($row['id'],$row['nom'], $row['correction'], $row['consigne'], $row['reponseAttendu'], $row['valide'], $row['niveau'], $row['lien'], $row['id_theme']);
