@@ -196,27 +196,25 @@
 
 /*Ligne qui correspond à ma vignette exercice*/
 #exercice{
-    
-    position: absolute;
-    width: 308px;
-    height: 206px;
-    left: 99px;
-    top: 408px;
+    /* position: absolute; */
+    width: 204px;
+    height: 135px;
+    /* left: 167px;
+    top: 282px; */
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
-    border-radius: 25px;
+    border-radius: 19px;
 }
 
 
 /*Ligne qui correspond à ma vignette cours*/
 #cours{
-    position: absolute;
-    width: 308px;
-    height: 206px;
-    left: 555px;
-    top: 409px;
-
+    /* position: absolute; */
+    width: 204px;
+    height: 135px;
+    /* left: 611px; */
+    /* top: 282px; */
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
@@ -225,13 +223,11 @@
 
 /*Ligne qui correspond à ma vignette examen*/
 #examen{
-    
-    position: absolute;
-    width: 308px;
-    height: 206px;
-    left: 1011px;
-    top: 408px;
-    
+    /* position: absolute; */
+    width: 204px;
+    height: 135px;
+    /* left: 1076px;
+    top: 282px; */
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
@@ -251,33 +247,31 @@
 
 /*Logo stylo pour libellé exercice*/
 #logo_stylo{
-
     position: absolute;
-    width: 80px;
+    width: 104px;
     height: 80px;
-    left: 213px;
-    top: 653px;
-    
+    left: 44px;
+    top: 209px;
 }
 
 /*Logo examen pour libellé cours*/
 #logo_cours{
 
     position: absolute;
-    width: 80px;
+    width: 104px;
     height: 80px;
-    left: 669px;
-    top: 653px;
+    left: 48px;
+    top: 209px;
 }
 
 /*Logo certificat pour libellé examen*/
 #logo_certificat{
 
     position: absolute;
-    width: 80px;
+    width: 104px;
     height: 80px;
-    left: 1125px;
-    top: 653px;
+    left: 45px;
+    top: 209px;
 }
 
 /*Image logo deconnection qui est aussi en page espace createur*/

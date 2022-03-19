@@ -6,9 +6,11 @@ let cont = document.createElement("div");
 cont.classList.add("container-fluid");
 document.body.appendChild(cont);
 
-load_Exercice();
 
 function tableau_exercice_stagiaire(){
+
+    //efface le container avant d'afficher la page
+    cont.innerHTML = "";
 
     //creation d'un tableau boostraps ! //
 
@@ -59,7 +61,10 @@ function findTheme(id){
 
 }
 
+//fonction qui récupère les exercices et qui passe les autres fonctions de la page //
 function load_Exercice() {
+    cont.innerHTML="";
+    document.getElementById("container_ALPHA").innerHTML="";
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
