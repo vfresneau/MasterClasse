@@ -55,11 +55,8 @@
 
 /*Titre h4 Cours en libre acces*/
 #titre_cours_libre{
-    position: absolute;
-    width: 171px;
-    height: 21px;
-    left: 150px;
-    top: 210px;
+    margin-top: 40px;
+    padding-left: 80px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -108,6 +105,7 @@
 
 /*Adresses des centres*/
 #adresse{
+    margin-top: 20px;
     padding-left: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: normal;
@@ -116,6 +114,7 @@
     line-height: 14px;
     color: #FFFFFF;
 }
+
 #p_horaires{
     margin-top: 20px;
     padding-left: 20px;
@@ -166,28 +165,22 @@
 
 /*Image qui va avec l'adresse du centre*/
 #img_campus{
+    margin-top: 10px;
     width: 180px;
     height: 90px;
 }
 
 /*Colonne bleu d ela page formation*/
 #colonne_bleu_formation{
-    position: absolute;
-    width: 574px;
-    height: 730px;
-    left: 110px;
-    top: 205px;
+   margin: auto;
     background: #62C9F5;
     border-radius: 5px;
 }
 
 /*Colonne de la page formation*/
 #colonne_violette_formation{
-    position: absolute;
-    width: 574px;
-    height: 336px;
-    left: 770px;
-    top: 206px;
+    margin-top: 100px;
+    margin: auto;
     background: #A44EB3;
     border-radius: 5px;
 }
