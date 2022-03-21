@@ -10,6 +10,7 @@
     border: 5px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 5px;
+    
 }
 
 /*Ligne blanche qui contien le titre du paragraphe*/
@@ -20,6 +21,7 @@
     height: 66px;
     background: #FFFFFF;
     border-radius: 5px;
+
 }
 
 /*Titre du paragraphe*/
@@ -28,6 +30,7 @@
     color: #A44EB2;
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
 
 /*Ligne bleu avec le contenu du paragraphe*/
@@ -38,6 +41,7 @@
     height: 532px;
     background: #62C9F5;
     border-radius: 5px;
+
 }
 
 /*Paragraphe d'explication qui sommes nous*/
@@ -50,9 +54,9 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    
     color: white;
 }
+
 /*_________________________________________________PAGE APERCU______________________________________________*/
 
 /*Titre h4 Cours en libre acces*/
@@ -64,13 +68,15 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
-    
     color:white;
 }
+
 /*Paragraphes apercu cours*/
 #p_cours{
     color: #A44EB3;
+
 }
+
 /*Image qui accompagne l'aperçu du cours*/
 #img_apercu{
     margin-top: 20px;
@@ -79,6 +85,7 @@
     border-radius: 5px;
     height: 120px;
     width: 125px;
+
 }
 
 /*Ligne qui contient l'aperçu du cours*/
@@ -89,18 +96,21 @@
     border-radius: 5px;
     width: 1147px;
     margin-top: 20px;
+
 }
 
 /*Développement-Cours*/
 #h5_titre_cours{
     color: #A44EB3;
     font-weight: bold;
+
 }
 
 /*Position de mon 1er block apercu du cours*/
 #colonne_cours{
     padding-left: 200px;
     margin-top: 100px;
+
 }
 
 /*_________________________________________________PAGE FORMATION______________________________________________*/
@@ -115,8 +125,9 @@
     font-size: 12px;
     line-height: 14px;
     color: #FFFFFF;
-}
 
+}
+/*Paragraphe qui indique les horaire*/
 #p_horaires{
     margin-top: 20px;
     padding-left: 20px;
@@ -126,6 +137,7 @@
     font-size: 12px;
     line-height: 14px;
     color: #FFFFFF;
+
 }
 
 /*Titre liste des centre de formation*/
@@ -139,6 +151,7 @@
     line-height: 21px;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
 
 /*Titre dans le block violet formation*/
@@ -152,6 +165,7 @@
     line-height: 21px;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
 /*Paragraphe dans le block violet distanciel*/
 #p_distanciel{
@@ -163,6 +177,7 @@
     font-size: 12px;
     line-height: 14px;
     color: #FFFFFF;
+
 }
 
 /*Image qui va avec l'adresse du centre*/
@@ -170,6 +185,7 @@
     margin-top: 10px;
     width: 180px;
     height: 90px;
+
 }
 
 /*Colonne bleu d ela page formation*/
@@ -177,6 +193,7 @@
    margin: auto;
     background: #62C9F5;
     border-radius: 5px;
+
 }
 
 /*Colonne de la page formation*/
@@ -185,39 +202,52 @@
     margin: auto;
     background: #A44EB3;
     border-radius: 5px;
+
 }
 
 /*_____________________________________________ESPACE STAGIAIRE_______________________________________*/
 
 /*Ligne qui correspond à ma vignette exercice*/
 #exercice{
+    margin-top: 80px;
     width: 204px;
     height: 135px;
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 19px;
+    color: #A44EB3;
+    font-weight: bold;
+
 }
 
 
 /*Ligne qui correspond à ma vignette cours*/
 #cours{
+    margin-top: 80px;
     width: 204px;
     height: 135px;
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 25px;
+    color: #A44EB3;
+    font-weight: bold;
+
 }
 
 /*Ligne qui correspond à ma vignette examen*/
 #examen{
+    margin-top: 80px;
     width: 204px;
     height: 135px;
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 25px;
+    color: #A44EB3;
+    font-weight: bold;
+
 }
 
 /*Libellé en paragraphe de mes intitullé*/
@@ -229,39 +259,38 @@
     line-height: 42px;
     color: #A44EB3;
     margin-top: 80px;
+
 }
 
 /*Logo stylo pour libellé exercice*/
 #logo_stylo{
-    position: absolute;
-    width: 104px;
+    width: 80px;
     height: 80px;
-    left: 44px;
-    top: 209px;
+    margin: 10px 170px 20px;
+
 }
 
 /*Logo examen pour libellé cours*/
 #logo_cours{
-    position: absolute;
-    width: 104px;
+    margin: 10px 170px 20px;
+    width: 80px;
     height: 80px;
-    left: 48px;
-    top: 209px;
+
 }
 
 /*Logo certificat pour libellé examen*/
 #logo_certificat{
-    position: absolute;
-    width: 104px;
+    width: 80px;
     height: 80px;
-    left: 45px;
-    top: 209px;
+    margin: 10px 170px 20px;
+
 }
 
 /*Image logo deconnection qui est aussi en page espace createur*/
 #logo_deconnecter{
     width: 29px;
     height: 30px;
+
 }
 
 /*_______________________________________________ESPACE CREATEUR________________________________________*/
@@ -271,13 +300,13 @@
     margin-top: 200px;
     width: 208px;
     height: 106px;
-   
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 255px;
     color: #A44EB2;
     font-weight: bold;
+
 }
 /*______________________________________PAGE AFFICHAGE EXERCICE STAGIAIRE_______________________________*/
 /*Bouton pour aller a l'exercice suivant*/
@@ -288,11 +317,14 @@
     margin-bottom: 20px;
 
 }
+
 /*Block de fond blanc*/
 #blockBlanc{
     width: 600px;
     margin: auto;
+
 }
+
 /*ligne de consigne*/
 #ligneConsigne{
     background: #62C9F5;
@@ -300,16 +332,21 @@
     width: 380px;
     margin: auto;
     margin-top: 20px;
+
 }
+
 /*colonne exercice*/
 #colonneExo{
     margin: auto;
     margin-top: 10px;
     width: 400px;
+
 }
+
 /*titre colonne exercice*/
 #titreExercice{
     text-align: center;
     margin-top: 20px;
     color: #62C9F5;
+
 }

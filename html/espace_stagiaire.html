@@ -40,50 +40,55 @@
     </nav>
   </header>
   <body>
-<!--Je créer le container qui contient mes lignes avec mes libellés en paragraphe et mes images respectives-->
+    <!--Je créer le container qui contient mes lignes avec mes libellés en paragraphe et mes images respectives-->
     <div class="container-fluid" id="container_ALPHA">
-      <!--colonne 1 : boutton EXERCICE-->
-      <div class="row text-center d-flex justify-content-around">
-        <div class="col-4" id="exercice">
-          <button type="button" onclick="load_Exercice()" class="btn btn-light btn-lg btn-block">EXERCICES</button>
+      <article>
+        <div class="row">
+          <!--colonne 1 : boutton EXERCICE-->
+          <div class="row text-center d-flex justify-content-around">
+            <div class="col-4">
+              <button type="button" id="exercice" onclick="load_Exercice()" class="btn btn-light btn-lg btn-block">EXERCICES</button>
+            </div>
+            <!--colonne 2 : boutton COURS-->
+            <div class="col-4"> <!--fonction load_cours pas définit-->
+              <button type="button" id="cours" onclick="load_cours()" class="btn btn-light btn-lg btn-block">COURS</button>
+            </div>
+            <!--colonne 3 : boutton EXAMENS-->
+            <div class="col-4"><!--fonction load_examens pas définit-->
+              <button type="button"  id="examen" onclick="load_Examens()" class="btn btn-light btn-lg btn-block">EXAMENS</button>
+            </div>
+          </div>
+
+          <!--elements a repositionner !!!!-->
+          <div class="row">
+            <div class="col-4">
+              <img  id="logo_stylo" src="..\image\stylo.png" alt="">
+            </div>
+            <div class="col-4">
+              <img  id="logo_cours" src="..\image\livre_ouvert.png" alt="">
+            </div>
+            <div class="col-4">
+              <img  id="logo_certificat" src="..\image\diplome.png" alt="">
+            </div>
+          </div>
         </div>
-        <!--colonne 2 : boutton COURS-->
-        <div class="col-4" id="cours"> <!--fonction load_cours pas définit-->
-          <button type="button" onclick="load_cours()" class="btn btn-light btn-lg btn-block">COURS</button>
-        </div>
-        <!--colonne 3 : boutton EXAMENS-->
-        <div class="col-4" id="examen"><!--fonction load_examens pas définit-->
-          <button type="button" onclick="load_Examens()" class="btn btn-light btn-lg btn-block">EXAMENS</button>
-        </div>
-      </div>
 
-    <!--elements a repositionner !!!!-->
-    <div class="row">
-      <img  id="logo_stylo" src="..\image\stylo.png" alt="">
-    </div>
-    <div class="row">
-      <img  id="logo_cours" src="..\image\livre_ouvert.png" alt="">
-    </div>
-    <div class="row">
-      <img  id="logo_certificat" src="..\image\diplome.png" alt="">
-    </div>
+        <!--Ici se trouve le footer-->
+        <footer class="footer d-flex fixed-bottom">
+          <div class="col-4">
+            <a href="" class="nav-link text-white" id="link_contact">CONTACT</a>
+          </div>
+          <div class="col-4">
+            <a href="" class="nav-link text-white" id="link_reglement">REGLEMENTS</a>
+          </div>
+          <div class="col-4">
+            <a href="" class="nav-link text-white" id="link_auteur">AUTEURS</a>
+          </div>
+        </footer>
+      </article>
     </div>
 
-
-
-
-    <!--Ici se trouve le footer-->
-    <footer class="footer d-flex fixed-bottom">
-      <div class="col-4">
-        <a href="" class="nav-link text-white" id="link_contact">CONTACT</a>
-      </div>
-      <div class="col-4">
-        <a href="" class="nav-link text-white" id="link_reglement">REGLEMENTS</a>
-      </div>
-      <div class="col-4">
-        <a href="" class="nav-link text-white" id="link_auteur">AUTEURS</a>
-      </div>
-    </footer>
+    
 
     <!-- BootStrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

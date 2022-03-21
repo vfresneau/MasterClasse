@@ -185,7 +185,7 @@ body{
 
 /*Block principal blanc*/
 #bloc_blanc_accueuil{
-    margin: auto;
+    margin: 40px 100px 10px;
     
     width: 532px;
     height: 656px;
@@ -201,7 +201,7 @@ body{
 
 /*Block violet n°1*/
 #bloc_violet1_accueil{
-    margin: auto;
+    margin: 40px 100px 10px;
     width: 339px;
     height: 175px;
     background: #A44EB3;
@@ -210,7 +210,7 @@ body{
 
 /*Block bleu n°2*/
 #bloc_bleu2_accueil{
-    margin: auto;
+    margin: 40px 100px 10px;
     width: 339px;
     height: 175px;
     background: #62C9F5;
@@ -219,7 +219,7 @@ body{
 
 /*Block violet n°3*/
 #bloc_violet3_accueil{
-    margin: auto;
+    margin: 40px 100px 10px;
     width: 339px;
     height: 175px;
     background: #A44EB3;
