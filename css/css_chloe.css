@@ -3,37 +3,39 @@
 
 /* Rectangle image de qui somme nous */
 #imageQSN{
-    position: absolute;
-    width: 405px;
-    height: 649px;
-    left: 30px;
-    top: 234px;
+    margin-top: 40px;
+    margin-left: 80px;
+    width: 400px;
+    height: 594px; 
     border: 5px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 5px;
 }
 
+/*Ligne blanche qui contien le titre du paragraphe*/
 #ligne_blanc_QSN{
-    position: absolute;
-    width: 925px;
+    margin-top: 40px;
+    margin-right: 80px;
+    width: 624px;
     height: 66px;
-    left: 463px;
-    top: 230px;
     background: #FFFFFF;
     border-radius: 5px;
 }
+
+/*Titre du paragraphe*/
 #qui_sommes_nous{
     margin-top: 10px;
     color: #A44EB2;
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+/*Ligne bleu avec le contenu du paragraphe*/
 #cadre_bleu_contenu_QSN{
-    position: absolute;
-    width: 924px;
-    height: 632px;
-    left: 463px;
-    top: 296px;
+ 
+    margin-right: 80px;
+    width: 624px;
+    height: 532px;
     background: #62C9F5;
     border-radius: 5px;
 }
