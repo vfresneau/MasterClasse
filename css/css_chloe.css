@@ -191,11 +191,8 @@
 
 /*Ligne qui correspond à ma vignette exercice*/
 #exercice{
-    /* position: absolute; */
     width: 204px;
     height: 135px;
-    /* left: 167px;
-    top: 282px; */
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
@@ -205,11 +202,8 @@
 
 /*Ligne qui correspond à ma vignette cours*/
 #cours{
-    /* position: absolute; */
     width: 204px;
     height: 135px;
-    /* left: 611px; */
-    /* top: 282px; */
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
@@ -218,11 +212,8 @@
 
 /*Ligne qui correspond à ma vignette examen*/
 #examen{
-    /* position: absolute; */
     width: 204px;
     height: 135px;
-    /* left: 1076px;
-    top: 282px; */
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
@@ -251,7 +242,6 @@
 
 /*Logo examen pour libellé cours*/
 #logo_cours{
-
     position: absolute;
     width: 104px;
     height: 80px;
@@ -261,7 +251,6 @@
 
 /*Logo certificat pour libellé examen*/
 #logo_certificat{
-
     position: absolute;
     width: 104px;
     height: 80px;
@@ -271,52 +260,24 @@
 
 /*Image logo deconnection qui est aussi en page espace createur*/
 #logo_deconnecter{
- 
     width: 29px;
     height: 30px;
 }
 
 /*_______________________________________________ESPACE CREATEUR________________________________________*/
 
-/*Ligne qui correspond à ma vignette examen*/
-#examen2{
-    
-    position: absolute;
-    width: 308px;
-    height: 206px;
-    left: 1011px;
-    top: 408px;
+/*bouton pour examen cours exercice*/
+#bouton{
+    margin-top: 200px;
+    width: 208px;
+    height: 106px;
+   
     background: #FFFFFF;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 255px;
-}
-
-/*Ligne qui correspond à ma vignette cours*/
-#cours2{
-    position: absolute;
-    width: 308px;
-    height: 206px;
-    left: 555px;
-    top: 409px;
-    background: #FFFFFF;
-    border: 3px solid #A44EB3;
-    box-sizing: border-box;
-    border-radius: 255px;
-}
-
-/*Ligne qui correspond à ma vignette exercice*/
-#exercice2{
-    
-    position: absolute;
-    width: 308px;
-    height: 206px;
-    left: 99px;
-    top: 408px;
-    background: #FFFFFF;
-    border: 3px solid #A44EB3;
-    box-sizing: border-box;
-    border-radius: 255px;
+    color: #A44EB2;
+    font-weight: bold;
 }
 /*______________________________________PAGE AFFICHAGE EXERCICE STAGIAIRE_______________________________*/
 /*Bouton pour aller a l'exercice suivant*/
@@ -332,7 +293,7 @@
     width: 600px;
     margin: auto;
 }
-/*lig*/
+/*ligne de consigne*/
 #ligneConsigne{
     background: #62C9F5;
     border-radius: 5px;
@@ -340,11 +301,13 @@
     margin: auto;
     margin-top: 20px;
 }
+/*colonne exercice*/
 #colonneExo{
     margin: auto;
     margin-top: 10px;
     width: 400px;
 }
+/*titre colonne exercice*/
 #titreExercice{
     text-align: center;
     margin-top: 20px;
