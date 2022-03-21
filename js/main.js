@@ -1,3 +1,4 @@
+//DECLARATION DES VARIABLES OBJETS//
 let mesExercices = {};
 let mesThemes = {};
 
@@ -51,29 +52,31 @@ function tableau_exercice_stagiaire(){
      let valueColum3= ultimateHTMLGenerator("td", montheme,[],rowTable);
      valueColum3.classList="table-secondary";
     
-    
     }
 }
 
-//envoi le parametre id  de l'exercice selectionné afin d'afficher le contenu dans la page correspondant //
+//envoi le parametre id  de l'exercice selectionné afin d'afficher son contenu dans la page correspondante //
 function gotoExercice(idExercice){
-    window.location = "http://141.94.223.96/Vincent/MasterClasse/html/affichage_exercice_stagiaire.html";
+    let temp= idExercice;
+    console.log(temp);
+    window.location = "http://141.94.223.96/Vincent/MasterClasse/html/affichage_exercice_stagiaire.html?param1="+temp;
 }
 
 
-//fonction pour récupérer le nom du themes selon l'ID de l'exercice //
+//fonction pour récupérer le nom du themes selon l'ID de l'exercice qui correspond à un theme //
 function findTheme(id){
     for (let y = 0; y <mesThemes.theme.length; y++) { 
         if(mesThemes.theme[y]._ID == id){ 
             return mesThemes.theme[y]._NOM;
         }
 }
-
 }
 
 //fonction qui récupère les exercices et qui passe les autres fonctions de la page //
 function load_Exercice() {
+    //
     cont.innerHTML="";
+    //
     document.getElementById("container_ALPHA").innerHTML="";
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
