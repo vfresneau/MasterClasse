@@ -185,11 +185,10 @@ body{
 
 /*Block principal blanc*/
 #bloc_blanc_accueuil{
-    position: absolute;
+    margin: auto;
+    
     width: 532px;
     height: 656px;
-    left: 116px;
-    top: 229px;
     background: #FFFFFF;
     border-radius: 5px;
 }
@@ -202,35 +201,30 @@ body{
 
 /*Block violet n°1*/
 #bloc_violet1_accueil{
-    position: absolute;
+    margin: auto;
     width: 339px;
     height: 175px;
-    left: 891px;
-    top: 229px;
     background: #A44EB3;
     border-radius: 5px;
 }
 
 /*Block bleu n°2*/
 #bloc_bleu2_accueil{
-    position: absolute;
+    margin: auto;
     width: 339px;
     height: 175px;
-    left: 891px;
-    top: 470px;
-        background: #62C9F5;
+    background: #62C9F5;
     border-radius: 5px;
 }
 
 /*Block violet n°3*/
 #bloc_violet3_accueil{
-    position: absolute;
+    margin: auto;
     width: 339px;
     height: 175px;
-    left: 891px;
-    top: 710px;
     background: #A44EB3;
     border-radius: 5px;
+
 }
 
 /*Image logo 1 2 3*/
@@ -254,21 +248,25 @@ body{
 
 /*Image cahier*/
 #cahier{
+    margin: auto;
     width: 219px;
     height: 174px;
 }
 /*Image tapeMain*/
 #tapeMain{
+    margin: auto;
     width: 219px;
     height: 174px;
 }
 /*Image ampoule*/
 #main_ampoule{
+    margin: auto;
     width: 219px;
     height: 174px;
 }
 /*Image dev*/
 #group_dev{
+    margin: auto;
     width: 219px;
     height: 174px;
 }

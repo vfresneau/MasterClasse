@@ -48,50 +48,62 @@
   <body>
     <!--J'ai créée un container fluid qui contien deux lignes-->
     <div class="container-fluid">
-      <!--Cette ligne blanche contien le titre de niveau 3 et 4 images pour illustrer la page-->
-      <div class="row" id="bloc_blanc_accueuil">
-        <h3 class="text-center fw-bold" id="titre_h3">Pourquoi choisir de s’exercer avec MASTER CLASSE ?</h3>
-        <img src="../image/cahier.jfif" alt="cahier" id="cahier">
-        <img src="../image/tapeMain.jfif" alt="tapeMain" id="tapeMain">
-        <img src="../image/main_ampoule.jfif" alt="main_ampoule" id="main_ampoule">
-        <img src="../image/group_dev.jfif" alt="group_dev" id="group_dev">
-      </div>
-
-      <!--Ci-dessous il s'agit de la 1ere vignette violette où se trouve l'image (logo 1 2 3) et le paragraphe allant avec-->
-      <div class="row" id="bloc_violet1_accueil">
-        <img class="numero_logo" src="../image/numero_un.png" alt="">
-        <p class="paragraphe1">Vous connaissez nos cours gratuits, mais que diriez-vous de travailler sur des projets concrets, imaginés par nos ingénieurs pédagogiques ?</p>
-      </div>
-
-      <!--Ci-dessous il s'agit de la 2eme vignette bleu où se trouve l'image (logo 1 2 3) et le paragraphe allant avec-->
-      <div class="row" id="bloc_bleu2_accueil">
-        <img class="numero_logo" src="../image/numero_2.png" alt="">
-        <p class="paragraphe1">Chaque semaine, un expert du domaine sera là pour vous aider, vous motiver et vous guider en visioconférence.</p>
-      </div>
-
-      <!--Ci-dessous il s'agit de la 3eme vignette violette où se trouve l'image (logo 1 2 3) et le paragraphe allant avec-->
-      <div class="row" id="bloc_violet3_accueil">
-        <img  class="numero_logo" src="../image/numero_3.png" alt="">
-        <p class="paragraphe1">Vous trouvez un emploi dans les 6 mois qui suivent votre diplôme ou nous vous remboursons votre parcours. Tout simplement.</p>
-      </div>
+      <article>
+        <div class="row">
+          <div class="col-6">
+            <!--Cette ligne blanche contien le titre de niveau 3 et 4 images pour illustrer la page-->
+            <div class="row" id="bloc_blanc_accueuil">
+              <h3 class="text-center fw-bold" id="titre_h3">Pourquoi choisir de s’exercer avec MASTER CLASSE ?</h3>
+              <img src="../image/cahier.jfif" alt="cahier" id="cahier">
+              <img src="../image/tapeMain.jfif" alt="tapeMain" id="tapeMain">
+              <img src="../image/main_ampoule.jfif" alt="main_ampoule" id="main_ampoule">
+              <img src="../image/group_dev.jfif" alt="group_dev" id="group_dev">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row"> 
+              <!--Ci-dessous il s'agit de la 1ere vignette violette où se trouve l'image (logo 1 2 3) et le paragraphe allant avec-->
+              <div class="row" id="bloc_violet1_accueil">
+                <img class="numero_logo" src="../image/numero_un.png" alt="">
+                <p class="paragraphe1">Vous connaissez nos cours gratuits, mais que diriez-vous de travailler sur des projets concrets, imaginés par nos ingénieurs pédagogiques ?</p>
+              </div>
+            </div>
+            <div class="row">
+              <!--Ci-dessous il s'agit de la 2eme vignette bleu où se trouve l'image (logo 1 2 3) et le paragraphe allant avec-->
+              <div class="row" id="bloc_bleu2_accueil">
+                <img class="numero_logo" src="../image/numero_2.png" alt="">
+                <p class="paragraphe1">Chaque semaine, un expert du domaine sera là pour vous aider, vous motiver et vous guider en visioconférence.</p>
+              </div>
+            </div>
+            <div class="row">
+              <!--Ci-dessous il s'agit de la 3eme vignette violette où se trouve l'image (logo 1 2 3) et le paragraphe allant avec-->
+              <div class="row" id="bloc_violet3_accueil">
+                <img  class="numero_logo" src="../image/numero_3.png" alt="">
+                <p class="paragraphe1">Vous trouvez un emploi dans les 6 mois qui suivent votre diplôme ou nous vous remboursons votre parcours. Tout simplement.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <footer class="footer d-flex fixed-bottom">
+          <div class="col-4">
+            <a href="" class="nav-link text-white" id="link_contact">CONTACT</a>
+          </div>
+          <div class="col-4">
+            <a href="" class="nav-link text-white" id="link_reglement">REGLEMENTS</a>
+          </div>
+          <div class="col-4">
+            <a href="" class="nav-link text-white" id="link_auteur">AUTEURS</a>
+          </div>
+        </footer>
+      </article>
     </div>
-    
-    <!--Ici se trouve le footer-->
-    <footer class="footer d-flex fixed-bottom">
-        <div class="col-4">
-          <a href="" class="nav-link text-white" id="link_contact">CONTACT</a>
-        </div>
-        <div class="col-4">
-          <a href="" class="nav-link text-white" id="link_reglement">REGLEMENTS</a>
-        </div>
-        <div class="col-4">
-          <a href="" class="nav-link text-white" id="link_auteur">AUTEURS</a>
-        </div>
-    </footer>
 
     <!-- BootStrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- Custom JS -->
     <script src="../js/main.js" async defer></script>
   </body>
+   <!--Ici se trouve le footer-->
+   
 </html>
