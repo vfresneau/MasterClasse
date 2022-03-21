@@ -38,16 +38,6 @@
     border :10px solid rgba(164, 78, 178, 1);
 
 }
-/* Décoration Polygone gauche*/
-/* #Polygon_inscription{
-    position: absolute;
-    width: 595.81px;
-    height: 383.38px;
-    left: -229px;
-    top: -259.25px;
-    background: #A44EB2;
-    transform: rotate(-42.4deg);
-} */
 
 /*Bloc avec le formulaire d'inscription*/
 #bloc_inscription{
@@ -161,16 +151,6 @@
     max-height: 718px;
     border :10px solid rgba(164, 78, 178, 1)
 }
-/* décoration Polygone droite*/
-/* #Polygon_connexion{
-    position: absolute;
-    width: 592.81px;
-    height: 383.38px;
-    left: 1238.18px;
-    top: -239px;
-    background: #A44EB2;
-    transform: rotate(41.33deg);
-} */
 
 .ligne_connexion{
     height: 718px;
@@ -313,26 +293,3 @@ footer{
 }
 
 /*________________________________________________Page Exercice stagiaire____________________________*/
-/*Titre stagiaire*/
-.TitreStagiaire{
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 42px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: antiquewhite;
-}
-/*Navbar page exercice stagiaire */
-.navbar-stagiaire {
-    margin-bottom: 36px;
-    background: #9a9a9ac7;
-}
-/*Tableau d'exercice*/
-.table{
-    background: #272626de;
-    color: lightcyan
-}
-
-/*________________________________________________

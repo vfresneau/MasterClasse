@@ -15,43 +15,53 @@ function tableau_exercice_stagiaire(){
     //creation d'un tableau boostraps ! //
 
     //creation d'un element html table dans le container//
-    let tableau = ultimateHTMLGenerator("table","", ["table","table-hover","autorisation","my-auto","text-center","mx-5","table-responsive-md"],cont);
+    let tableExercice = ultimateHTMLGenerator("table","", ["table","table-hover","autorisation","my-auto","text-center","mx-5","table-responsive-md"],cont);
     //creation de l'element thead dans la variable tableau //
-    let theadTableau = ultimateHTMLGenerator("thead","", [],tableau);
+    let headTable = ultimateHTMLGenerator("thead","", [],tableExercice);
     //creation d'un element html "tr" dans la variable TheadTableau // 
-    let trThead= ultimateHTMLGenerator("tr","", [],theadTableau);
+    let headRow= ultimateHTMLGenerator("tr","", [],headTable);
     //creation d'un element html "th" dans la variable TrThead // 
-    let thcol1Tableau= ultimateHTMLGenerator("th","EXERCICES", ["col-4"],trThead);
-    thcol1Tableau.scope = "col";
+    let columHead1= ultimateHTMLGenerator("th","EXERCICES", ["col-4"],headRow);
+    columHead1.scope = "col";
     //creation d'un element html "th" dans la variable TrThead // 
-    let thcol2Tableau= ultimateHTMLGenerator("th","NIVEAU", ["col-4"],trThead);
-    thcol2Tableau.scope = "col";
+    let columHead2= ultimateHTMLGenerator("th","NIVEAU", ["col-4"],headRow);
+    columHead2.scope = "col";
     //creation d'un element html "th" dans la variable TrThead // 
-    let thcol3Tableau= ultimateHTMLGenerator("th","THEMES", ["col-4"],trThead);
-    thcol3Tableau.scope = "col";
-    
-    let tbody= ultimateHTMLGenerator("tbody","", [],tableau);
-    tbody.scope = "row";
+    let columHead3= ultimateHTMLGenerator("th","THEMES", ["col-4"],headRow);
+    columHead3.scope = "col";
+    //creation d'un element html "tbody" dans la variable Tableau // 
+    let bodyTable= ultimateHTMLGenerator("tbody","", [],tableExercice);
+    bodyTable.scope = "row";
+
     //Pour tous les exercices je créer une ligne dans le tableau //
     for (let i = 0; i <mesExercices.Exercice.length; i++) {
 //creation d'un element html "th" dans la variable Tableau // 
 
 //creation d'un element html "tr" dans la variable tableau // 
-    let trTbody= ultimateHTMLGenerator("tr","", [],tbody);
-
+    let rowTable= ultimateHTMLGenerator("tr","", [],bodyTable);
+    rowTable.addEventListener("click",function(){gotoExercice(mesExercices.Exercice[i]._ID)})
     //creation d'un element html "td" dans la variable th_row et affichage des noms des exercices// 
-    let td_Exercice_tableau= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NOM ,[],trTbody);
+    let valueColum1= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NOM ,[],rowTable);
+    valueColum1.classList = "table-secondary";
     //creation d'un element html "td" dans la variable th_row et affichage des niveau// 
-    let td_Niveau_tableau= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NIVEAU ,[],trTbody);
+    let valueColum2= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NIVEAU ,[],rowTable);
+    valueColum2.classList = "table-dark";
     //creation d'un element html "td" dans la variable th_row et affichage des themes// 
     let montheme = findTheme(mesExercices.Exercice[i]._ID_THEME);
-     let td_Theme_tableau= ultimateHTMLGenerator("td", montheme,[],trTbody);
-     //Pour tous les exercices je créer une ligne dans le tableau //
+     let valueColum3= ultimateHTMLGenerator("td", montheme,[],rowTable);
+     valueColum3.classList="table-secondary";
+    
     
     }
 }
 
-//fonction pour récupérer le nom du themes selon l'ID del'exercice //
+//envoi le parametre id  de l'exercice selectionné afin d'afficher le contenu dans la page correspondant //
+function gotoExercice(idExercice){
+    window.location = "http://141.94.223.96/Vincent/MasterClasse/html/affichage_exercice_stagiaire.html";
+}
+
+
+//fonction pour récupérer le nom du themes selon l'ID de l'exercice //
 function findTheme(id){
     for (let y = 0; y <mesThemes.theme.length; y++) { 
         if(mesThemes.theme[y]._ID == id){ 

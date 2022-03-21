@@ -18,6 +18,7 @@ function afficher_Exercice() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             mesExercices = JSON.parse(xhr.responseText);
             console.log(mesExercices);
+            console.log(idExercice);
             monBlock();
         }
     }
@@ -30,9 +31,10 @@ function afficher_Exercice() {
 }
 //J'utilise une fonction pour afficher mon block contenant l'exercice.
 monBlock();
+
 function monBlock(){
     //Je créer une ligne qui contiendra tout mon exercice
-    let monBlockBlanc = ultimateHTMLGenerator("div","",["row", "bg-light"],monContainer);
+    let monBlockBlanc = ultimateHTMLGenerator("div","",["row","bg-light"],monContainer);
     monBlockBlanc.id="blockBlanc";
     //Mon block exercice est composé d'un titre de niveau 4
     let titreExercice = ultimateHTMLGenerator("h4","Ici s'affichera le titre de l'exercice en cours",[],monBlockBlanc);
