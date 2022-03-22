@@ -1,8 +1,8 @@
 //________________________________________DECLARATION VARIABLES_______________________________________________________
 let mesExercices = {};
 let titreBlockBlanc;
-
-
+let monTableauReponse= [];
+let mesReponses=[];
 //Lors de l'ouverture de cette page, je lui extrait les parametres
 //
 //creation d'une Instance URL avec un parametre dans searchParams ??
@@ -15,23 +15,24 @@ let param1 = params.get("param1");
 function retrieveExercice(idExercice){
     
     for (let y = 0; y <mesExercices.Exercice.length; y++) {
-        
+        //Si l'idExercice transmis est identique à celui d'un exercice du tableau Exercice : //
         if(mesExercices.Exercice[y]._ID == idExercice){ 
+        //je créer une variable pour mettre les elements dont j'ai besoin //
         monTitre = mesExercices.Exercice[y]._NOM;
         mesConsignes = mesExercices.Exercice[y]._CONSIGNE;
         monNiveau = mesExercices.Exercice[y]._NIVEAU;
-        mesReponses = mesExercices.Exercice[y]._REPONSES._DESCRIPTION;
-
-        }
-        else{console.log("non ok")}
+        monTableauReponse = mesExercices.Exercice[y]._REPONSES;
+    }
+}
+//pour tous les elements du tableau REPONSES, je selectionne toutes les descriptions //
+for (let x=0; x <monTableauReponse.length; x++){
+    mesReponses.push(monTableauReponse[x]._DESCRIPTION);
+    //verification visuel de mesReponses //
+    console.log(mesReponses);
 }
 }
-
-
-
 
 afficher_Exercice(); // lance la page //
-
 
 let monContainer = document.createElement("div");
 monContainer.classList.add("container-fluid");
@@ -41,41 +42,36 @@ document.body.appendChild(monContainer);
 
 function monBlock(){
 
-    // console.log(titreBlockBlanc);
-    // console.log(mesExercices);
-    // for(y=0; y<mesExercices.Exercice[y].length;y++)
-
-
-
     //Je créer une ligne qui contiendra tout mon exercice
     let monBlockBlanc = ultimateHTMLGenerator("div","",["row","bg-light"],monContainer);
     monBlockBlanc.id="blockBlanc";
     //Mon block exercice est composé d'un titre de niveau 4
     let titreExercice = ultimateHTMLGenerator("h4",monTitre,[],monBlockBlanc);
     titreExercice.id="titreExercice";
-    //De colonnes et lignes pour y mettre mes contenus (paragraphe, theme, consigne)//
+    //Des colonnes et lignes pour y mettre mes contenus (paragraphe, theme, consigne)//
     let colonneExercice=ultimateHTMLGenerator("div","",["col-12"],monBlockBlanc);
-    let maLigneConsigne =ultimateHTMLGenerator("div","",["row"],colonneExercice);
-    maLigneConsigne.id="ligneConsigne";
-
-    let monParagraphe =ultimateHTMLGenerator("p","themes:"+"NIVEAU:"+ monNiveau,["text-light","d-flex","justify-content-center"],maLigneConsigne);
-    let monTheme =ultimateHTMLGenerator("p",mesConsignes,["text-light"],maLigneConsigne);
+    let LigneConsigne =ultimateHTMLGenerator("div","",["row"],colonneExercice);
+    LigneConsigne.id="ligneConsigne";
+    //creation de paragraphe pour mettre le theme et le niveau de l'exercice //
+    let paragraphe1_theme_niveau =ultimateHTMLGenerator("p","themes: "+"NIVEAU:"+ monNiveau,["text-light","d-flex","justify-content-center"],LigneConsigne);
+    let paragraphe2_consigne =ultimateHTMLGenerator("p",mesConsignes,["text-light"],LigneConsigne);
 
     let colonneExo=ultimateHTMLGenerator("div","",["col-12"],monBlockBlanc);
     colonneExo.id="colonneExo";
     let colonneImageGJ=ultimateHTMLGenerator("div","",["col-6"],monBlockBlanc);
     let colonneBouton=ultimateHTMLGenerator("div","",["col-6"],monBlockBlanc);
-    //J'utilise une boucle for pour y faire apparaitre les proposition à mes questions
 
-    for(i=0; i<mesExercices.Exercice[i]._CONSIGNE.length;i++){
+ //J'utilise une boucle for pour y faire apparaitre les proposition à mes questions
+        for(j=0; j<mesReponses.length;j++){
+
         let inputGroup =ultimateHTMLGenerator("div","",["input-group"],colonneExo);
         let inputGroupText =ultimateHTMLGenerator("div","",["input-group-text"],inputGroup);
         let monInputCoche =ultimateHTMLGenerator("input","",["form-check-input", "mt-0"],inputGroupText);
         // monInputCoche.addEventListener("");
-        let monInput =ultimateHTMLGenerator("input",mesReponses,["form-control"],inputGroup);
-        // monInput.value="Ici ma proposition";
-    }
-    //Je créer un bouton popur passer à l'exercice suivant
+        let paraReponse =ultimateHTMLGenerator("p",mesReponses[j],[],inputGroup);
+        }
+
+    //Je créer un bouton pour passer à l'exercice suivant
     let monBoutonSuivant=ultimateHTMLGenerator("button","Exercice suivant",["btn"],colonneBouton);
     monBoutonSuivant.id="boutonSuivant";
 
@@ -109,8 +105,11 @@ function afficher_Exercice() {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             mesExercices = JSON.parse(xhr.responseText);
+            //verification si je reçois bien mon webService //
             console.log(mesExercices);
+//appelle la fonction "retrieveExercice" et lui passe la variable param1//
             retrieveExercice(param1);
+//appelle la fonction "monBlock" 
             monBlock();
 
         }
