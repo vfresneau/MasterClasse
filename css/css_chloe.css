@@ -350,3 +350,19 @@
     color: #62C9F5;
 
 }
+
+/*________________________________________PAGE CREATION EXERCICE____________________________________*/
+
+#buttonValidate{
+    margin: auto;
+}
+.textarea{
+    background-color: black;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+/*Input blanc de la page de creation d'un exercice*/
+.input{
+    border-radius: 5px;
+    margin-left: 10px;
+}
