@@ -1,8 +1,10 @@
 //________________________________________DECLARATION VARIABLES_______________________________________________________
-let mesExercices = {};
-let titreBlockBlanc;
-let monTableauReponse= [];
-let mesReponses=[];
+let myExercice = {};
+let whiteBlockTitle;
+let tableAnswers = [];
+let myAnswer=[];
+let myThemes;
+let myIdTheme;
 //Lors de l'ouverture de cette page, je lui extrait les parametres
 //
 //creation d'une Instance URL avec un parametre dans searchParams ??
@@ -10,78 +12,117 @@ let params = (new URL(document.location)).searchParams;
 // lie à params l'id Exercice de la page dans une variable param1 (dans l'adresse url)//
 let param1 = params.get("param1"); 
 
-
 //fonction pour retrouver l'Id de l'exercice correspondant, passer en parametre dans la fonction gotoExercice -> "main.js"//
 function retrieveExercice(idExercice){
-    
-    for (let y = 0; y <mesExercices.Exercice.length; y++) {
-        //Si l'idExercice transmis est identique à celui d'un exercice du tableau Exercice : //
-        if(mesExercices.Exercice[y]._ID == idExercice){ 
-        //je créer une variable pour mettre les elements dont j'ai besoin //
-        monTitre = mesExercices.Exercice[y]._NOM;
-        mesConsignes = mesExercices.Exercice[y]._CONSIGNE;
-        monNiveau = mesExercices.Exercice[y]._NIVEAU;
-        monTableauReponse = mesExercices.Exercice[y]._REPONSES;
+
+    for (let y = 0; y <myExercice.Exercice.length; y++) {
+    //Si l'idExercice transmis est identique à celui d'un exercice du tableau Exercice : //
+    if(myExercice.Exercice[y]._ID == idExercice){ 
+    //alors je créer une variable pour mettre les elements dont j'ai besoin //
+    myTitle = myExercice.Exercice[y]._NOM;
+    myIdTheme = myExercice.Exercice[y]._ID_THEME;
+    instructions = myExercice.Exercice[y]._CONSIGNE;
+    myLevel = myExercice.Exercice[y]._NIVEAU;
+    tableAnswers = myExercice.Exercice[y]._REPONSES;
+    correctAnswers = myExercice.Exercice[y]._REPONSEATTENDU;
     }
 }
 //pour tous les elements du tableau REPONSES, je selectionne toutes les descriptions //
-for (let x=0; x <monTableauReponse.length; x++){
-    mesReponses.push(monTableauReponse[x]._DESCRIPTION);
-    //verification visuel de mesReponses //
-    console.log(mesReponses);
+for (let x=0; x <tableAnswers .length; x++){
+    myAnswer.push(tableAnswers [x]._DESCRIPTION);
+}
+
+//Envoie dans le tableau myAnswer le tableau de reponse //
+myAnswer.push(correctAnswers);
+}
+
+//retrouve le theme en fonction de l'exercice en cours //
+function Retrieve_Id_Themes(myIdTheme){
+
+    for (let i=0; i<myThemes.theme.length; i++) {
+    //Si l'idExercice transmis est identique à celui d'un exercice du tableau Exercice : //
+    if(myThemes.theme[i]._ID == myIdTheme){ 
+    //je créer une variable pour mettre les elements dont j'ai besoin //
+    myThemes= myThemes.theme[i]._NOM;
+    break;
+    }
 }
 }
 
-afficher_Exercice(); // lance la page //
+ReadExerciceStagiaire(); //lance la page //
 
-let monContainer = document.createElement("div");
-monContainer.classList.add("container-fluid");
-document.body.appendChild(monContainer);
+let container = document.createElement("div");
+container.classList.add("container-fluid");
+document.body.appendChild(container);
 
 //J'utilise une fonction pour afficher mon block contenant l'exercice.
-
-function monBlock(){
+function myBlock(){
 
     //Je créer une ligne qui contiendra tout mon exercice
-    let monBlockBlanc = ultimateHTMLGenerator("div","",["row","bg-light"],monContainer);
-    monBlockBlanc.id="blockBlanc";
+    let whiteBlock = ultimateHTMLGenerator("div","",["row","bg-light"],container);
+    whiteBlock.id="blockBlanc";
     //Mon block exercice est composé d'un titre de niveau 4
-    let titreExercice = ultimateHTMLGenerator("h4",monTitre,[],monBlockBlanc);
-    titreExercice.id="titreExercice";
+    let TitleExercice = ultimateHTMLGenerator("h4",myTitle,[],whiteBlock);
+    TitleExercice.id="TitleExercice";
     //Des colonnes et lignes pour y mettre mes contenus (paragraphe, theme, consigne)//
-    let colonneExercice=ultimateHTMLGenerator("div","",["col-12"],monBlockBlanc);
-    let LigneConsigne =ultimateHTMLGenerator("div","",["row"],colonneExercice);
-    LigneConsigne.id="ligneConsigne";
+    let columExercice=ultimateHTMLGenerator("div","",["col-12"],whiteBlock);
+    let LineInstructions =ultimateHTMLGenerator("div","",["row"],columExercice);
+    LineInstructions.id="LineInstructions";
     //creation de paragraphe pour mettre le theme et le niveau de l'exercice //
-    let paragraphe1_theme_niveau =ultimateHTMLGenerator("p","themes: "+"NIVEAU:"+ monNiveau,["text-light","d-flex","justify-content-center"],LigneConsigne);
-    let paragraphe2_consigne =ultimateHTMLGenerator("p",mesConsignes,["text-light"],LigneConsigne);
+    let paragraph1_theme_level =ultimateHTMLGenerator("p","THEME:"+myThemes+"NIVEAU:"+ myLevel,["text-light","d-flex","justify-content-center"],LineInstructions);
+    let paragrap2_instructions =ultimateHTMLGenerator("p",instructions,["text-light"],LineInstructions);
 
-    let colonneExo=ultimateHTMLGenerator("div","",["col-12"],monBlockBlanc);
-    colonneExo.id="colonneExo";
-    let colonneImageGJ=ultimateHTMLGenerator("div","",["col-6"],monBlockBlanc);
-    let colonneBouton=ultimateHTMLGenerator("div","",["col-6"],monBlockBlanc);
+    let ColumExercice=ultimateHTMLGenerator("div","",["col-12"],whiteBlock);
+    ColumExercice.id="ColumExercice";
+    // let colonneImageGJ=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
+    let ColumButton=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
 
- //J'utilise une boucle for pour y faire apparaitre les proposition à mes questions
-        for(j=0; j<mesReponses.length;j++){
 
-        let inputGroup =ultimateHTMLGenerator("div","",["input-group"],colonneExo);
-        let inputGroupText =ultimateHTMLGenerator("div","",["input-group-text"],inputGroup);
-        let monInputCoche =ultimateHTMLGenerator("input","",["form-check-input", "mt-0"],inputGroupText);
-        // monInputCoche.addEventListener("");
-        let paraReponse =ultimateHTMLGenerator("p",mesReponses[j],[],inputGroup);
-        }
+ //J'utilise une boucle for pour y faire apparaitre les proposition de réponse
+    for(j=0; j<myAnswer.length;j++){
+    //create a inputGroup 
 
-    //Je créer un bouton pour passer à l'exercice suivant
-    let monBoutonSuivant=ultimateHTMLGenerator("button","Exercice suivant",["btn"],colonneBouton);
-    monBoutonSuivant.id="boutonSuivant";
-
-    // c'est ensuite ici que dans le if (si la reponse selectionné est bonne ça affiche GOOD JOB)
-    // c'est ensuite ici que dans le else (sinon la reponse selectionné est mauvaise ça affiche la correction dans un cadre rouge)
+    let inputGroup =ultimateHTMLGenerator("div","",["form-check"],ColumExercice);
     
+    //Create a input type checkbox //
+    let InputCheckbox =ultimateHTMLGenerator("input","",["form-check-input", "mt-0"],inputGroup);
+    InputCheckbox.type = "checkbox";
+    
+    InputCheckbox.id = j+"checkboxId";
+    InputCheckbox.addEventListener("click", function(){verificator(InputCheckbox.id,LabelCheckbox.id)});
+
+    let LabelCheckbox =ultimateHTMLGenerator("label",myAnswer[j],["form-check-label"],inputGroup);
+    LabelCheckbox.id = j+"LabelId";
+    }
+
+    //I create a button for go to the next exercice //
+    let NextButton=ultimateHTMLGenerator("button","Exercice suivant",["btn"],ColumButton);
+    NextButton.id="NextButton1";
 }
 
 
-//_____________________________________FONCTION ULTIMATE GENERATOR_______________________________________
+//fonction qui verifie si l'on as la bonne réponse ou non // 
+function verificator (checkboxId,LabelId){ //A FINIR !!! //
+    //si cette ligne est cochée //
+    
+if (document.getElementById(checkboxId).checked === true && document.getElementById(LabelId).textContent == correctAnswers)  {
+     //et 
+     console.log(checkboxId,LabelId);
+
+
+    //afficher good-job // 
+   
+
+    //Sinon affiche : myExercice.Exercice[y]._REPONSEATTENDU //
+}
+}
+  // c'est ensuite ici que dans le if (si la reponse selectionné est bonne ça affiche GOOD JOB)
+
+    // c'est ensuite ici que dans le else (sinon la reponse selectionné est mauvaise ça affiche la correction dans un cadre rouge)
+
+    
+
+//_____________________________________HTML Element Generator generic function_______________________________________
 
 function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationElement){  //on créer un élement html donné en paramètre (1er paramètre)                      
     
@@ -98,24 +139,46 @@ function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationEl
 
 //___________________________________________WEBSERVICE POUR LIRE LES EXERCICES_______________________________
 
-function afficher_Exercice() {
+function ReadExerciceStagiaire() {
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            mesExercices = JSON.parse(xhr.responseText);
-            //verification si je reçois bien mon webService //
-            console.log(mesExercices);
-//appelle la fonction "retrieveExercice" et lui passe la variable param1//
-            retrieveExercice(param1);
-//appelle la fonction "monBlock" 
-            monBlock();
-
+        myExercice = JSON.parse(xhr.responseText);
+        //verification si je reçois bien mon webService //
+        console.log(myExercice);
+        //appelle la fonction "retrieveExercice" et lui passe la variable param1//
+        retrieveExercice(param1);
+        //appelle la fonction 
+        ReadTheme();
+        
         }
     }
     //ici  l'adresse url du web service
     xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
+    // toujours la même chose
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+    xhr.send();
+}
+
+function ReadTheme() {
+    // on fait un xml httprequest -> envoie une demande à un webservice
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        // quand on reçois une réponse "fini" du notre requete
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+        myThemes= JSON.parse(xhr.responseText);
+        //verification si je reçois bien mon webService //
+        console.log(myThemes);
+        Retrieve_Id_Themes(myIdTheme);
+        myBlock();
+        
+        }
+    }
+    //ici  l'adresse url du web service
+    xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_theme.php', true);
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json

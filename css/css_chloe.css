@@ -310,7 +310,7 @@
 }
 /*______________________________________PAGE AFFICHAGE EXERCICE STAGIAIRE_______________________________*/
 /*Bouton pour aller a l'exercice suivant*/
-#boutonSuivant{
+#NextButton1{
     margin-top: 20px;
     background-color: #62C9F5;
     color: #FFFFFF;
@@ -326,7 +326,7 @@
 }
 
 /*ligne de consigne*/
-#ligneConsigne{
+#LineInstructions{
     background: #62C9F5;
     border-radius: 5px;
     width: 380px;
@@ -336,7 +336,7 @@
 }
 
 /*colonne exercice*/
-#colonneExo{
+#ColumExercice{
     margin: auto;
     margin-top: 10px;
     width: 400px;
@@ -344,7 +344,7 @@
 }
 
 /*titre colonne exercice*/
-#titreExercice{
+#TitleExercice{
     text-align: center;
     margin-top: 20px;
     color: #62C9F5;
