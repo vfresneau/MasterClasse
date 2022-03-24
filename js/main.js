@@ -1,6 +1,6 @@
 //DECLARATION DES VARIABLES OBJETS//
-let mesExercices = {};
-let mesThemes = {};
+let myExercices = {};
+let myThemes = {};
 
 //creation container dans le body//
 let cont = document.createElement("div");
@@ -16,9 +16,9 @@ function tableau_exercice_stagiaire(){
     //creation d'un tableau boostraps ! //
 
     //creation d'un element html table dans le container//
-    let tableExercice = ultimateHTMLGenerator("table","", ["table","table-hover","autorisation","my-auto","text-center","mx-5","table-responsive-md"],cont);
+    let TableExercice = ultimateHTMLGenerator("table","", ["table","table-hover","autorisation","my-auto","text-center","mx-5","table-responsive-md"],cont);
     //creation de l'element thead dans la variable tableau //
-    let headTable = ultimateHTMLGenerator("thead","", [],tableExercice);
+    let headTable = ultimateHTMLGenerator("thead","", [],TableExercice);
     //creation d'un element html "tr" dans la variable TheadTableau // 
     let headRow= ultimateHTMLGenerator("tr","", [],headTable);
     //creation d'un element html "th" dans la variable TrThead // 
@@ -31,26 +31,26 @@ function tableau_exercice_stagiaire(){
     let columHead3= ultimateHTMLGenerator("th","THEMES", ["col-4"],headRow);
     columHead3.scope = "col";
     //creation d'un element html "tbody" dans la variable Tableau // 
-    let bodyTable= ultimateHTMLGenerator("tbody","", [],tableExercice);
+    let bodyTable= ultimateHTMLGenerator("tbody","", [],TableExercice);
     bodyTable.scope = "row";
 
     //Pour tous les exercices je créer une ligne dans le tableau //
-    for (let i = 0; i <mesExercices.Exercice.length; i++) {
+    for (let i = 0; i <myExercices.Exercice.length; i++) {
 //creation d'un element html "th" dans la variable Tableau // 
 
 //creation d'un element html "tr" dans la variable tableau // 
     let rowTable= ultimateHTMLGenerator("tr","", [],bodyTable);
-    rowTable.addEventListener("click",function(){gotoExercice(mesExercices.Exercice[i]._ID)})
+    rowTable.addEventListener("click",function(){gotoExercice(myExercices.Exercice[i]._ID)})
     //creation d'un element html "td" dans la variable th_row et affichage des noms des exercices// 
-    let valueColum1= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NOM ,[],rowTable);
+    let valueColum1= ultimateHTMLGenerator("td",myExercices.Exercice[i]._NOM ,[],rowTable);
     valueColum1.classList = "table-secondary";
     //creation d'un element html "td" dans la variable th_row et affichage des niveau// 
-    let valueColum2= ultimateHTMLGenerator("td",mesExercices.Exercice[i]._NIVEAU ,[],rowTable);
+    let valueColum2= ultimateHTMLGenerator("td",myExercices.Exercice[i]._NIVEAU ,[],rowTable);
     valueColum2.classList = "table-dark";
     //creation d'un element html "td" dans la variable th_row et affichage des themes// 
-    let montheme = findTheme(mesExercices.Exercice[i]._ID_THEME);
-     let valueColum3= ultimateHTMLGenerator("td", montheme,[],rowTable);
-     valueColum3.classList="table-secondary";
+    let myThemes = findTheme(myExercices.Exercice[i]._ID_THEME);
+    let valueColum3= ultimateHTMLGenerator("td", myThemes,[],rowTable);
+    valueColum3.classList="table-secondary";
     
     }
 }
@@ -65,9 +65,9 @@ function gotoExercice(idExercice){
 
 //fonction pour récupérer le nom du themes selon l'ID de l'exercice qui correspond à un theme //
 function findTheme(id){
-    for (let y = 0; y <mesThemes.theme.length; y++) { 
-        if(mesThemes.theme[y]._ID == id){ 
-            return mesThemes.theme[y]._NOM;
+    for (let y = 0; y <myThemes.theme.length; y++) { 
+        if(myThemes.theme[y]._ID == id){ 
+            return myThemes.theme[y]._NOM;
         }
 }
 }
@@ -83,8 +83,8 @@ function load_Exercice() {
     xhr.onreadystatechange = function() {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            mesExercices = JSON.parse(xhr.responseText);
-            console.log(mesExercices);
+            myExercices = JSON.parse(xhr.responseText);
+            console.log(myExercices);
             load_Theme();
             //
         }
@@ -104,8 +104,8 @@ function load_Theme() {
     xhr.onreadystatechange = function() {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            mesThemes = JSON.parse(xhr.responseText);
-            console.log(mesThemes);
+            myThemes = JSON.parse(xhr.responseText);
+            console.log(myThemes);
             tableau_exercice_stagiaire();
         }
     }
