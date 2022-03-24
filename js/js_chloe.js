@@ -5,6 +5,8 @@ let tableAnswers = [];
 let myAnswer=[];
 let myThemes;
 let myIdTheme;
+let Pics;
+let T=0;
 //Lors de l'ouverture de cette page, je lui extrait les parametres
 //
 //creation d'une Instance URL avec un parametre dans searchParams ??
@@ -69,32 +71,43 @@ function myBlock(){
     let LineInstructions =ultimateHTMLGenerator("div","",["row"],columExercice);
     LineInstructions.id="LineInstructions";
     //creation de paragraphe pour mettre le theme et le niveau de l'exercice //
-    let paragraph1_theme_level =ultimateHTMLGenerator("p","THEME:"+myThemes+"NIVEAU:"+ myLevel,["text-light","d-flex","justify-content-center"],LineInstructions);
+    let paragraph1_theme_level =ultimateHTMLGenerator("p","THEME : " +myThemes+ "NIVEAU : "+ myLevel,["text-light","d-flex","justify-content-center"],LineInstructions);
     let paragrap2_instructions =ultimateHTMLGenerator("p",instructions,["text-light"],LineInstructions);
 
     let ColumExercice=ultimateHTMLGenerator("div","",["col-12"],whiteBlock);
     ColumExercice.id="ColumExercice";
-    // let colonneImageGJ=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
+    //Culum of button //
     let ColumButton=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
+    //Colum of Congratulation //
+    let ColumCongratulation=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
+    ColumCongratulation.id="IdColumPics";
+    //Create a picture for good answer ! //
+    Pics=ultimateHTMLGenerator("img","",[],ColumCongratulation);
+    Pics.src="../image/goodjob.jfif";
+    Pics.id="goodjob";
 
+    let ColumBadAnswer=ultimateHTMLGenerator("div","",["col-8"],whiteBlock);
+    ColumBadAnswer.id="colBadAnswer";
+    //create a paragraph for the bad answer //
+    let BadAnswer=ultimateHTMLGenerator("p","La réponse attendue était :" +correctAnswers,[],whiteBlock);
+    BadAnswer.id="IdBadAnswer";
 
  //J'utilise une boucle for pour y faire apparaitre les proposition de réponse
     for(j=0; j<myAnswer.length;j++){
     //create a inputGroup 
-
     let inputGroup =ultimateHTMLGenerator("div","",["form-check"],ColumExercice);
-    
+
     //Create a input type checkbox //
     let InputCheckbox =ultimateHTMLGenerator("input","",["form-check-input", "mt-0"],inputGroup);
     InputCheckbox.type = "checkbox";
-    
+
+    //create a id for the checkbox //
     InputCheckbox.id = j+"checkboxId";
     InputCheckbox.addEventListener("click", function(){verificator(InputCheckbox.id,LabelCheckbox.id)});
-
+    //create a id for the Label //
     let LabelCheckbox =ultimateHTMLGenerator("label",myAnswer[j],["form-check-label"],inputGroup);
     LabelCheckbox.id = j+"LabelId";
     }
-
     //I create a button for go to the next exercice //
     let NextButton=ultimateHTMLGenerator("button","Exercice suivant",["btn"],ColumButton);
     NextButton.id="NextButton1";
@@ -106,14 +119,15 @@ function verificator (checkboxId,LabelId){ //A FINIR !!! //
     //si cette ligne est cochée //
     
 if (document.getElementById(checkboxId).checked === true && document.getElementById(LabelId).textContent == correctAnswers)  {
-     //et 
-     console.log(checkboxId,LabelId);
-
-
-    //afficher good-job // 
-   
+    //verification dans la console de la recuperation que ce sont bien les memes id //
+    console.log(checkboxId,LabelId);
+   //afficher good-job // 
+   document.getElementById("goodjob").style.visibility = "visible";
 
     //Sinon affiche : myExercice.Exercice[y]._REPONSEATTENDU //
+    // else( ){
+
+    // }
 }
 }
   // c'est ensuite ici que dans le if (si la reponse selectionné est bonne ça affiche GOOD JOB)
