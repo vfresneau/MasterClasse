@@ -86,7 +86,6 @@ function load_Exercice() {
             myExercices = JSON.parse(xhr.responseText);
             console.log(myExercices);
             load_Theme();
-            //
         }
     }
     //ici  l'adresse url du web service

@@ -294,20 +294,22 @@ footer{
 }
 
 /*________________________________________________Page Exercice stagiaire____________________________*/
-/*Pic goodjob */
-#goodjob{
+/*Id "Pic" */
+#Picsgoodjob{
     width: 150px;
     height: 143px;
-}
-
-/*clean space div ColumCongratulation and colBadAnswer */
-#IdColumPics,#colBadAnswer{
     visibility: collapse;
 }
 
-#IdBadAnswer{
-    width: 150px;
-    height: 150px;
+/*colum reponse attendu*/
+#ID_ParaCorrection{
+    width: 294px;
+    height: 102px;
     background-color: crimson;
     color: white;
+    visibility: collapse;
+}
+
+#ColumButton{
+    visibility: collapse;
 }
