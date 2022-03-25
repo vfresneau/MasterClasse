@@ -9,6 +9,10 @@ let Pics;
 let myThemeString;
 let ColumButton;
 
+//Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
+let myLinkContact=document.getElementById("link_contact");
+myLinkContact.onclick = function() { alert("Téléphone : 02.47.39.24.01"+"\n"+"Mail : formation.dev@mail.fr"); };
+
     //Lors de l'ouverture de cette page, je lui extrait les parametres  
     //
     //creation d'une Instance URL avec un parametre dans searchParams ??

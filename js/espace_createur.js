@@ -5,6 +5,10 @@ let myThemes;
 //appel de mon container pour afficher ce qu'il y a dedans grace à la fonction  create_Exercice();
 let myContainer=document.getElementById("myContainerCreateExercice");
 
+//Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
+let myLinkContact=document.getElementById("link_contact");
+myLinkContact.onclick = function() { alert("Téléphone : 02.47.39.24.01"+"\n"+"Mail : formation.dev@mail.fr"); };
+
 ReadTheme();
 
 //_________________________________REQUETE AJAX_____________________________
