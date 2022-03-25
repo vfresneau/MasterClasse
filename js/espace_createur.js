@@ -1,12 +1,33 @@
 //___________________________________________WEBSERVICE POUR CREER LES EXERCICES_______________________________
-let mesExercices={};
+let myExercice={};
+let myThemes;
 
 //appel de mon container pour afficher ce qu'il y a dedans grace à la fonction  create_Exercice();
 let myContainer=document.getElementById("myContainerCreateExercice");
+let myContainer=document.getElementById("myContainerCreateExercice");
 
-//appel de la fonction pour afficher ce que je fais
-create_Exercice();
+ReadTheme();
 
+//_________________________________REQUETE AJAX_____________________________
+function ReadTheme() {
+    // on fait un xml httprequest -> envoie une demande à un webservice
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        // quand on reçois une réponse "fini" du notre requete
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+        myThemes= JSON.parse(xhr.responseText);
+        //verification si je reçois bien mon webService //
+        console.log(myThemes);
+            create_Exercice();
+        }
+    }
+    //ici  l'adresse url du web service
+    xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_theme.php', true);
+    // toujours la même chose
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+    xhr.send();
+}
 //_______________________________________PAGE CREATION EXERCICE_____________________________________
 //fonction pour afficher tout le module de creation avec les champs à remplir 
 function create_Exercice(){ 
@@ -24,10 +45,16 @@ function create_Exercice(){
     let labelTheme=ultimateHTMLGenerator("label","THEME",[],rowSelect);
     // mon select theme ppur pouvoir choisir un theme
     let selectTheme=ultimateHTMLGenerator("select","",[],rowSelect);
-    //les option avec l'id theme pour pouvoir choisir un theme dans le selecteur
-    let optionsTheme=ultimateHTMLGenerator("option","",[],selectTheme);
-    optionsTheme.id="EXERCICE"+"_ID_THEME";
-    //optionsTheme.value=mesExercices.Exercice.id_theme;
+    
+    //attention a value et textcontent!!!!!
+   
+    for(c=0; c<myThemes.theme.length;c++){
+        //les option avec l'id theme pour pouvoir choisir un theme dans le selecteur
+        let optionsTheme=ultimateHTMLGenerator("option",myThemes.theme[c]._NOM,[],selectTheme);
+        //optionsTheme.id=myThemes.theme[c]._ID;
+        optionsTheme.value=myThemes.theme[c]._ID;
+    }
+   
 
     let labelLevel=ultimateHTMLGenerator("label","NIVEAU",[],rowSelect);
     //mon input qui va avec le label niveau
@@ -75,35 +102,43 @@ function create_Exercice(){
     let inputSuggestion2=ultimateHTMLGenerator("input","",["input"],columnInput3);
     let inputSuggestion3=ultimateHTMLGenerator("input","",["input"],columnInput3);
     let inputSuggestion4=ultimateHTMLGenerator("input","",["input"],columnInput3);
-    //FAUT IL BIEN AJOUTER L'ID DE L'EXERCICE ?
-    inputSuggestion1.id="REPONSE"+"_DESCRIPTION"+"_ID_EXERCICE";
-    inputSuggestion2.id="REPONSE"+"_DESCRIPTION"+"_ID_EXERCICE";
-    inputSuggestion3.id="REPONSE"+"_DESCRIPTION"+"_ID_EXERCICE";
-    inputSuggestion4.id="REPONSE"+"_DESCRIPTION"+"_ID_EXERCICE";
 
+    inputSuggestion1.id="REPONSE"+"_DESCRIPTION"+1;
+    inputSuggestion2.id="REPONSE"+"_DESCRIPTION"+2;
+    inputSuggestion3.id="REPONSE"+"_DESCRIPTION"+3;
+    inputSuggestion4.id="REPONSE"+"_DESCRIPTION"+4;
+
+
+    //4 INPUTS reboucler sur les 4  ppour recup les valeurs if guillemet remplis  
     let rowButtonV=ultimateHTMLGenerator("row","",[],myContainer); 
     let buttonValidate= ultimateHTMLGenerator("button","Valider",["col","btn","btn-success"],rowButtonV);
     buttonValidate.id="buttonValidate";
     //je passe en paramettre de ma fonction modifierInput la valeur de mon id 
-    buttonValidate.onclick = function(){creationExercice(0,
+    buttonValidate.onclick = function(){creationExercice(
         document.getElementById("EXERCICE"+"_NOM").value,
         document.getElementById("EXERCICE"+"_CONSIGNE").value,
         document.getElementById("EXERCICE"+"_REPONSEATTENDU").value,
         document.getElementById("EXERCICE"+"_NIVEAU").value,
         document.getElementById("EXERCICE"+"_LIEN").value,
-        document.getElementById("EXERCICE"+"_ID_THEME").value,
-        0);
+        selectTheme.value,
+        document.getElementById("REPONSE"+"_DESCRIPTION"+1),
+        document.getElementById("REPONSE"+"_DESCRIPTION"+2),
+        document.getElementById("REPONSE"+"_DESCRIPTION"+3),
+        document.getElementById("REPONSE"+"_DESCRIPTION"+4));
     };
 }
-//cette fonction doit ajouter les exercice au tableau de vincent dois je reprendre la sienne ou en créer une qui relis a la sienne ?
-function creationExercice(id,nom,consigne,reponseattendu,niveau,lien,id_theme){
+
+//faire attention au "valide" si pas tout les parametre risque que ça ne marche pas 
+function creationExercice(nom,consigne,reponseattendu,niveau,lien,theme,suggestion1,suggestion2,suggestion3,suggestion4){
+    console.log(theme);
     console.log(consigne);
+   
+
     //console.log(); a faire ici
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //ici fonction qui doit afficher les exercices dans le tableau de vincent
-            //tableau_exercice_stagiaire();
+            
         }
     }
     //lien vers mon web service create_exercice sur mon serveur (attention)
@@ -116,5 +151,25 @@ function creationExercice(id,nom,consigne,reponseattendu,niveau,lien,id_theme){
     +"&reponseattendu="+reponseattendu
     +"&niveau="+niveau
     +"&lien="+lien
-    +"&id_theme="+id_theme);
+    +"&theme="+theme
+    +"&suggestion1="+suggestion1
+    +"&suggestion2="+suggestion2
+    +"&suggestion3="+suggestion3
+    +"&suggestion4="+suggestion4
+    +"&valide="+0);
 }
+
+//_____________________________________HTML Element Generator generic function_______________________________________
+
+function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationElement){  //on créer un élement html donné en paramètre (1er paramètre)                      
+    
+    let ultimateElement = document.createElement(typeElement); //on attribut du contenu (paramètre 2) à l'element html précedement fabriqué                                                   
+    ultimateElement.textContent = contenu;                    //on souhaite ajouter plusieurs class CSS à l'element html précedement créé
+    
+    for(let i = 0;i<tableauClassCss.length;i++){             //on ajoute la class css contenu dans le tableau de class css (3ème paramètre)
+        ultimateElement.classList.add(tableauClassCss[i]);  //on ajoute une classList à la variable ultimateElement
+    }
+    
+    destinationElement.appendChild(ultimateElement);      //on fait apparaitre l'élement dans celui passé en 4ème paramètre
+    return ultimateElement;
+} 

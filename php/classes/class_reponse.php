@@ -43,3 +43,9 @@ Class Reponse {
     }
 
 }
+//DANS LE WS PHP DANS LA CLASSE REPONSE creéer une methode create qui me permet d'inserer une ligne dans la bd 
+//dans le ws crreat exerccie verifier chaque variables envoyé suggestion 1234 et voir q'il y a quelque chose dedazns 
+//une fois ok chaque fois qu'il y a quelque chose dedans fabriquer une nouvelle instance de réponse 
+// SET id exercice et le paramettre de cet exercice est get id de l'instance de l'exercice fait au dessus 
+// set description de mon instance de reponse je lui passe le $_poste de suggestion 
+//appeler la fonction create 
