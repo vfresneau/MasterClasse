@@ -4,7 +4,6 @@ let myThemes;
 
 //appel de mon container pour afficher ce qu'il y a dedans grace à la fonction  create_Exercice();
 let myContainer=document.getElementById("myContainerCreateExercice");
-let myContainer=document.getElementById("myContainerCreateExercice");
 
 ReadTheme();
 
