@@ -79,7 +79,6 @@ function myBlock(){
     let ColumExercice=ultimateHTMLGenerator("div","",["col-12"],whiteBlock);
     ColumExercice.id="ColumExercice";
 
-    
     //Culum of button //
     ColumButton=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
     ColumButton.id="ColumButton";
@@ -130,7 +129,7 @@ function myBlock(){
 
 }
     //Sinon affiche la REPONSE ATTENDU //
-    else(document.getElementById("ID_ParaCorrection").style.visibility ="visible")
+    else(document.getElementById("ID_ParaCorrection").style.visibility ="visible");
     document.getElementById("ColumButton").style.visibility ="visible";
 }
 
