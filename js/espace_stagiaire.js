@@ -7,6 +7,7 @@ let myIdTheme;
 let Pics;
 let myThemeString;
 let ColumButton;
+let indexExoEnCours=0;
 
 // container c'est la div qui contient l'exercice
 let container = document.createElement("div");
@@ -61,6 +62,8 @@ function tableau_exercice_stagiaire() {
         //creation d'un element html "tr" dans la variable tableau // 
         let rowTable = ultimateHTMLGenerator("tr", "", [], bodyTable);
         rowTable.addEventListener("click", function() {
+            // je stocke quel index est en cours d'affichage y // TODO COMPRENDRE
+            indexExoEnCours = i;
             // on appel la fonction read exercice qui va charger l'exercice sur la page --> on lui passe l'id à fabriquer
             ReadExerciceStagiaire(myExercices.Exercice[i]._ID);
         })
@@ -240,7 +243,7 @@ function Retrieve_Id_Themes(myIdTheme) {
 
 //J'utilise une fonction pour afficher mon block contenant l'exercice.
 function myBlock(){
-
+    container.innerHTML = "";
     //Je créer une ligne qui contiendra tout mon exercice
     let whiteBlock = ultimateHTMLGenerator("div","",["row","bg-light"],container);
     whiteBlock.id="blockBlanc";
@@ -264,6 +267,18 @@ function myBlock(){
     //I create a button for go to the next exercice //
     let NextButton=ultimateHTMLGenerator("button","Exercice suivant",["btn"],ColumButton);
     NextButton.id="NextButton1";
+    NextButton.onclick = function() {
+ // TODO COMPRENDRE
+        retrieveExercice(myExercice.Exercice[indexExoEnCours+1]._ID);
+        indexExoEnCours++;
+        //--> affiche l'exercice
+        ReadTheme(function(myXHR) {
+            myThemes = JSON.parse(myXHR.responseText);
+            //verification si je reçois bien mon webService //
+            Retrieve_Id_Themes(myIdTheme);
+            myBlock();
+        });
+    }
 
     //Colum of Congratulation //
     let ColumCongratulation=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
