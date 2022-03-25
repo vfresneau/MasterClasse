@@ -34,7 +34,7 @@
 /*_____________________________________________INSCRIPTION______________________________________________*/
 /*Image page inscription*/
 .image_inscription{
-    max-height: 718px;
+    max-height: 636px;
     border :10px solid rgba(164, 78, 178, 1);
 
 }
@@ -148,12 +148,12 @@
 /*image page connexion*/
 .image_connexion{
     width: auto;
-    max-height: 718px;
+    max-height: 636px;
     border :10px solid rgba(164, 78, 178, 1)
 }
 
 .ligne_connexion{
-    height: 718px;
+    height: 639px;
 }
 /*_______________________________________________HEADER______________________________________________*/
 /*couleur titre nav au survol*/
