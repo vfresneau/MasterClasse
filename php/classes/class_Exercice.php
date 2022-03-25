@@ -120,6 +120,8 @@ Class Exercice {
 			$stmt->bindParam(':lien', $this->_LIEN);
 			$stmt->bindParam(':id_theme', $this->_ID_THEME);
 			$stmt->execute();//ferme la connexion à la base
+			//recupere l'id automatique qui a été fabriqué
+			$this->_ID= $dbh->lastInsertId();
             $dbh = null;
         } catch (PDOException $e) {
             print 'Erreur !: ' . $e->getMessage() . '<br/>';
