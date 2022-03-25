@@ -7,6 +7,9 @@ let cont = document.createElement("div");
 cont.classList.add("container-fluid");
 document.body.appendChild(cont);
 
+//Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
+let myLinkContact=document.getElementById("link_contact");
+myLinkContact.onclick = function() { alert("Téléphone : 02.47.39.24.01"+"/n"+"Mail : formation.dev@mail.fr"); };
 
 function tableau_exercice_stagiaire(){
 
