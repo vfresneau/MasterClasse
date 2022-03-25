@@ -1,7 +1,7 @@
 //___________________________________________WEBSERVICE POUR CREER LES EXERCICES_______________________________
 let myExercice={};
 let myThemes;
-
+let compteurInput=1;
 //appel de mon container pour afficher ce qu'il y a dedans grace à la fonction  create_Exercice();
 let myContainer=document.getElementById("myContainerCreateExercice");
 
@@ -63,7 +63,7 @@ function create_Exercice(){
     //mon input qui va avec le label niveau
     let inputLevel=ultimateHTMLGenerator("input","",["input"],rowSelect);
     //possibilité de faire ça ?
-    inputLevel.type="text"+"number";
+    inputLevel.type="number";
     inputLevel.id="EXERCICE"+"_NIVEAU";
 
     let labelLink=ultimateHTMLGenerator("label","LIEN",[],rowSelect);
@@ -101,15 +101,19 @@ function create_Exercice(){
     //3eme colonne qui contient les suggextions en rapport avec le label "propositions reponses"
     let columnInput3=ultimateHTMLGenerator("col-4","",[],rowInputFields);
     //dans php il s'agit de "reponse" lié à l'id d'un exercice
+        let addButton= ultimateHTMLGenerator("button","+",["col","btn","btn-success"],columnInput3);
     let inputSuggestion1=ultimateHTMLGenerator("input","",["input"],columnInput3);
-    let inputSuggestion2=ultimateHTMLGenerator("input","",["input"],columnInput3);
-    let inputSuggestion3=ultimateHTMLGenerator("input","",["input"],columnInput3);
-    let inputSuggestion4=ultimateHTMLGenerator("input","",["input"],columnInput3);
-
+    //ici l'id pouvoir permettre de recuperer la valeur tapé par l'utilisateur
     inputSuggestion1.id="REPONSE"+"_DESCRIPTION"+1;
-    inputSuggestion2.id="REPONSE"+"_DESCRIPTION"+2;
-    inputSuggestion3.id="REPONSE"+"_DESCRIPTION"+3;
-    inputSuggestion4.id="REPONSE"+"_DESCRIPTION"+4;
+
+    addButton.onclick = function(){
+        //sert à créer un id unique lors de chaque creation d'input
+        compteurInput++;
+        let inputSuggestion1=ultimateHTMLGenerator("input","",["input"],columnInput3);
+        inputSuggestion1.id="REPONSE"+"_DESCRIPTION"+compteurInput;
+    }
+
+    
 
 
     //4 INPUTS reboucler sur les 4  ppour recup les valeurs if guillemet remplis  
@@ -123,16 +127,13 @@ function create_Exercice(){
         document.getElementById("EXERCICE"+"_REPONSEATTENDU").value,
         document.getElementById("EXERCICE"+"_NIVEAU").value,
         document.getElementById("EXERCICE"+"_LIEN").value,
-        selectTheme.value,
-        document.getElementById("REPONSE"+"_DESCRIPTION"+1),
-        document.getElementById("REPONSE"+"_DESCRIPTION"+2),
-        document.getElementById("REPONSE"+"_DESCRIPTION"+3),
-        document.getElementById("REPONSE"+"_DESCRIPTION"+4));
+        selectTheme.value
+        );
     };
 }
 
 //faire attention au "valide" si pas tout les parametre risque que ça ne marche pas 
-function creationExercice(nom,consigne,reponseattendu,niveau,lien,theme,suggestion1,suggestion2,suggestion3,suggestion4){
+function creationExercice(nom,consigne,reponseattendu,niveau,lien,theme){
     console.log(theme);
     console.log(consigne);
    
@@ -141,7 +142,19 @@ function creationExercice(nom,consigne,reponseattendu,niveau,lien,theme,suggesti
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            
+            //si la réponse n'est pas un nombre 
+            // si jamais la requette à planté et quelle renvoi erreur404 c'est pas un nombre mais une chaine de caractere
+            if(isNaN(è)){
+                // si pas un nombre on ne fait rien
+             }else{
+                // si c'est un nompbre 
+                for(let i=1; i<=compteurInput;i++){
+                    //recupère la valeur des inputs tapé par l'utilisateur 
+                    let descri = document.getElementById("REPONSE"+"_DESCRIPTION"+i).value;
+                    //on passe en paramettre la variable descri + l'id de l'exercice (ici le xhrresponseText renvois vers le web service create_exercice et donc récupère l'id de l'exercicé créer)
+                    createReponse(descri, xhr.responseText);
+                }
+             }
         }
     }
     //lien vers mon web service create_exercice sur mon serveur (attention)
@@ -151,15 +164,27 @@ function creationExercice(nom,consigne,reponseattendu,niveau,lien,theme,suggesti
     // on envois tout ce qui est passé en parametre
     xhr.send("nom="+nom
     +"&consigne="+consigne
-    +"&reponseattendu="+reponseattendu
+    +"&reponseAttendu="+reponseattendu
     +"&niveau="+niveau
     +"&lien="+lien
-    +"&theme="+theme
-    +"&suggestion1="+suggestion1
-    +"&suggestion2="+suggestion2
-    +"&suggestion3="+suggestion3
-    +"&suggestion4="+suggestion4
+    +"&id_theme="+theme
     +"&valide="+0);
+}
+
+function createReponse(descri, id_exo){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+           
+        }
+    }
+    //lien vers mon web service create_exercice sur mon serveur (attention)
+    xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_create_reponse.php', true);
+    //toujours la même chose
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // on envois tout ce qui est passé en parametre
+    xhr.send("description="+descri
+    +"&id_exercice="+id_exo);
 }
 
 //_____________________________________HTML Element Generator generic function_______________________________________

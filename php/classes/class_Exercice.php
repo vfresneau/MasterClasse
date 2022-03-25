@@ -107,7 +107,7 @@ Class Exercice {
 	//Fonction Création exercice //
 	public function createExercice(){
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
+        
             // connexion à la base de donnée
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('INSERT INTO Exercice (nom, correction, consigne, reponseAttendu, valide, niveau, lien, id_theme) VALUES (:nom, :correction, :consigne, :reponseAttendu, :valide, :niveau, :lien, :id_theme)');
@@ -123,10 +123,7 @@ Class Exercice {
 			//recupere l'id automatique qui a été fabriqué
 			$this->_ID= $dbh->lastInsertId();
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
+        
 	}
 
 public function getAllReponses(){
