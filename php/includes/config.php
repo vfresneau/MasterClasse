@@ -13,7 +13,7 @@ require_once("../classes/class_Exercice.php");
 require_once("../classes/class_Individu.php");
 require_once("../classes/class_Suivi.php");
 require_once("../classes/class_theme.php");
-
+require_once("../classes/class_reponse.php");
 
 
 

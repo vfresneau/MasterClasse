@@ -28,6 +28,21 @@ Class Reponse {
 	public function set_ID_EXERCICE($_ID_EXERCICE){
 		$this->_ID_EXERCICE = $_ID_EXERCICE;
 	}
+	//Fonction Création exercice //
+	public function createReponse(){
+        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
+        
+            // connexion à la base de donnée
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
+			$stmt = $dbh->prepare('INSERT INTO `reponse`( `description`, `id_exercice`) VALUES (:description, :id_exo)');
+			$stmt->bindParam(':description', $this->_DESCRIPTION);
+			$stmt->bindParam(':id_exo', $this->_ID_EXERCICE);
+	
+			$stmt->execute();//ferme la connexion à la base
+			//recupere l'id automatique qui a été fabriqué
+			$this->_ID= $dbh->lastInsertId();
+            $dbh = null;
+	}
 
     
 	// permet de créer un json contenant les objets des objets
@@ -43,9 +58,3 @@ Class Reponse {
     }
 
 }
-//DANS LE WS PHP DANS LA CLASSE REPONSE creéer une methode create qui me permet d'inserer une ligne dans la bd 
-//dans le ws crreat exerccie verifier chaque variables envoyé suggestion 1234 et voir q'il y a quelque chose dedazns 
-//une fois ok chaque fois qu'il y a quelque chose dedans fabriquer une nouvelle instance de réponse 
-// SET id exercice et le paramettre de cet exercice est get id de l'instance de l'exercice fait au dessus 
-// set description de mon instance de reponse je lui passe le $_poste de suggestion 
-//appeler la fonction create 
