@@ -34,7 +34,7 @@
 /*_____________________________________________INSCRIPTION______________________________________________*/
 /*Image page inscription*/
 .image_inscription{
-    max-height: 636px;
+    max-height: 718px;
     border :10px solid rgba(164, 78, 178, 1);
 
 }
@@ -148,7 +148,7 @@
 /*image page connexion*/
 .image_connexion{
     width: auto;
-    max-height: 636px;
+    max-height: 718px;
     border :10px solid rgba(164, 78, 178, 1)
 }
 
@@ -273,7 +273,6 @@ body{
 footer{
     background:#62C9F5;
     box-shadow: 1px 1px 10px 1px black;
-
 }
 
 #link_contact{
