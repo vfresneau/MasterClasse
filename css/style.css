@@ -177,11 +177,6 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     min-height:100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    /*test pour footer*/
-    overflow:scroll;
 }
 /*________________________________________________ACCUEIL____________________________________________*/
 
