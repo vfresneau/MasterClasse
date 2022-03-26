@@ -3,15 +3,15 @@
 
 /* Rectangle image de qui somme nous */
 #imageQSN{
-    margin-top: 40px;
-    margin-left: 80px;
+    margin-top: 32px;
+    margin-left: 124px;
     width: 400px;
-    height: 594px; 
+    height: 591px;
     border: 5px solid #A44EB3;
     box-sizing: border-box;
     border-radius: 5px;
-    
 }
+
 
 /*Ligne blanche qui contien le titre du paragraphe*/
 #ligne_blanc_QSN{

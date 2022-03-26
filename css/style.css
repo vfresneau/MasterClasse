@@ -277,10 +277,8 @@ body{
 /*Couleur de fond du footer*/
 footer{
     background:#62C9F5;
-    -webkit-box-shadow: 1px 1px 10px 1px black; 
-    -moz-box-shadow: 1px 1px 10px 1px black; 
     box-shadow: 1px 1px 10px 1px black;
-    position: relative;
+
 }
 
 #link_contact{
