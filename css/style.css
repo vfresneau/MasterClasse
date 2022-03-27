@@ -2,7 +2,6 @@
 /*___________________________________________TITRE AVANT HEADER___________________________________________*/
 #titreAvantHeader{
     height: 116px;
-    width: 110%;
     left: 0px;
     top: 9px;
     border-radius: 0px;
@@ -176,14 +175,14 @@ body{
     background-image: url("../image/Background1920.png");
     background-size: cover;
     background-repeat: no-repeat;
-    min-height:100%;
+    height:100%;
+    width:auto;
 }
 /*________________________________________________ACCUEIL____________________________________________*/
 
 /*Block principal blanc*/
 #bloc_blanc_accueuil{
     margin: 40px 100px 10px;
-    
     width: 532px;
     height: 656px;
     background: #FFFFFF;
@@ -273,6 +272,8 @@ body{
 footer{
     background:#62C9F5;
     box-shadow: 1px 1px 10px 1px black;
+    width: 100%; height: 50px;
+    bottom: 0; left: 0; right: 0;
 }
 
 #link_contact{
