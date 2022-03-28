@@ -95,7 +95,7 @@ function findTheme(id) {
 function load_Exercice() {
     //
     cont.innerHTML = "";
-    // contaiern alpha c'est la div qui contiens les vignette exercice/cours/examen (viens du html)
+    // container alpha c'est la div qui contiens les vignette exercice/cours/examen (viens du html)
     document.getElementById("container_ALPHA").innerHTML = "";
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
@@ -224,6 +224,11 @@ function retrieveExercice(idExercice) {
 
     //Envoie dans le tableau myAnswer le tableau de reponse //
     myAnswer.push(correctAnswers);
+    //chnage rl'ordre d'apparition des bonnes reponses //
+    const array1= myAnswer
+    const reversed = array1.reverse();
+    console.log(reversed);
+
 }
 
 
