@@ -29,7 +29,8 @@
     <nav class="navbar navbar-expand navbar-dark">
       <div class="container-fluid">
         <ul class="navbar-nav mx-auto">
-          <a class="nav-link px-5" href="./accueil.html">Accueuil</a>
+          <!--Lors du click sur Menu createur celui ci renvoi au 3 bouton (EXERCICES, COURS, EXAMENS)-->
+          <a class="nav-link px-5" href="./espace_createur.html">Menu createur</a>
         </ul>
         <!--Ici je créer le lien dans la barre de navigation pour me deconnecter-->
         <div class="navbar-nav">
@@ -43,11 +44,13 @@
   
   <body>
     <!--Je créer un container fluid qui contien 3 lignes avec leur libellés-->
-    <div class="container-fluid">
+    <div class="container-fluid" id="myContainerCreateExercice">
       <article>
         <div class="row">
             <div class="col-4">
-              <button class="btn" onclick="" id="bouton">EXERCICE</button>
+              <!--Au onclick j'appel la fonction ReadTheme de mon JavaScript qui va vider
+              le contenu de ce container et le remplacer par le contenu de la fonction create_Exercice-->
+              <button class="btn" onclick="ReadTheme()" id="bouton">EXERCICE</button>
             </div>
           
             <div class="col-4">

@@ -2,17 +2,21 @@
 let myExercice={};
 let myThemes;
 let compteurInput=1;
-//appel de mon container pour afficher ce qu'il y a dedans grace à la fonction  create_Exercice();
+
+//myContainer est egale à l'id du container présent en HTML qui au onclick est remplacé par le contenu de la fonction ReadTheme
 let myContainer=document.getElementById("myContainerCreateExercice");
 
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact=document.getElementById("link_contact");
 myLinkContact.onclick = function() { alert("Téléphone : 02.47.39.24.01"+"\n"+"Mail : formation.dev@mail.fr"); };
 
-ReadTheme();
 
 //_________________________________REQUETE AJAX_____________________________
 function ReadTheme() {
+   
+    // on vide le container qui contient les boutons (EXERCICES, COURS et  EXAMEN)
+    //pour y remplacer le contenu par la fonction create_Exercice en appellant la function ReadTheme au onclick
+    document.getElementById("myContainerCreateExercice").innerHTML = "";
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
