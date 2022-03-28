@@ -10,14 +10,14 @@ require_once("../classes/class_cours.php");
 require_once("../classes/class_examen.php");
 require_once("../classes/class_exercice_examen.php");
 require_once("../classes/class_Exercice.php");
-require_once("../classes/class_Individu.php");
-require_once("../classes/class_Suivi.php");
+require_once("../classes/class_individu.php");
+require_once("../classes/class_suivi.php");
 require_once("../classes/class_theme.php");
 require_once("../classes/class_reponse.php");
 
 
 
-const SECRET ='OhLa8311eBroue11e!';
+// const SECRET ='OhLa8311eBroue11e!';
 
 
 
