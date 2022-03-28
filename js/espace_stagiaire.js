@@ -37,19 +37,19 @@ function tableau_exercice_stagiaire() {
     //creation d'un tableau boostraps ! //
 
     //creation d'un element html table dans le container//
-    let TableExercice = ultimateHTMLGenerator("table", "", ["table", "table-hover", "autorisation", "my-auto", "text-center", "mx-5", "table-responsive-md"], cont);
+    let TableExercice = ultimateHTMLGenerator("table", "", ["table", "table-hover", "autorisation", "my-auto", "text-center", "mx-auto", "table-responsive-md"], cont);
     //creation de l'element thead dans la variable tableau //
     let headTable = ultimateHTMLGenerator("thead", "", [], TableExercice);
     //creation d'un element html "tr" dans la variable TheadTableau // 
     let headRow = ultimateHTMLGenerator("tr", "", [], headTable);
     //creation d'un element html "th" dans la variable TrThead // 
-    let columHead1 = ultimateHTMLGenerator("th", "EXERCICES", ["col-4"], headRow);
+    let columHead1 = ultimateHTMLGenerator("th", "EXERCICES", ["col-3"], headRow);
     columHead1.scope = "col";
     //creation d'un element html "th" dans la variable TrThead // 
-    let columHead2 = ultimateHTMLGenerator("th", "NIVEAU", ["col-4"], headRow);
+    let columHead2 = ultimateHTMLGenerator("th", "NIVEAU", ["col-3"], headRow);
     columHead2.scope = "col";
     //creation d'un element html "th" dans la variable TrThead // 
-    let columHead3 = ultimateHTMLGenerator("th", "THEMES", ["col-4"], headRow);
+    let columHead3 = ultimateHTMLGenerator("th", "THEMES", ["col-3"], headRow);
     columHead3.scope = "col";
     //creation d'un element html "tbody" dans la variable Tableau // 
     let bodyTable = ultimateHTMLGenerator("tbody", "", [], TableExercice);
