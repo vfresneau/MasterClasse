@@ -1,17 +1,126 @@
-//___________________________________________WEBSERVICE POUR CREER LES EXERCICES_______________________________
-let myExercice={};
+//__________________________________________DECLARATION DE VARIABLES_______________________________
+let myExercices={};
 let myThemes;
 let compteurInput=1;
 
 //myContainer est egale à l'id du container présent en HTML qui au onclick est remplacé par le contenu de la fonction ReadTheme
 let myContainer=document.getElementById("myContainerCreateExercice");
 
+//_______________________________________________Lien vers contact pour le footer_________________________________
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact=document.getElementById("link_contact");
 myLinkContact.onclick = function() { alert("Téléphone : 02.47.39.24.01"+"\n"+"Mail : formation.dev@mail.fr"); };
 
 
-//_________________________________REQUETE AJAX_____________________________
+//_____________________________________FONCTIONS POUR AFFICHER LE TABLEAU D'EXERCICE____________________________
+
+//fonction qui récupère les exercices et qui passe les autres fonctions de la page //
+function load_Exercice() {
+   
+    // contaiern alpha c'est la div qui contiens les vignette exercice/cours/examen (viens du html)
+    document.getElementById("myContainerCreateExercice").innerHTML = "";
+    let rowButtonCreate=ultimateHTMLGenerator("row","",[],myContainer); 
+    let buttonCreate= ultimateHTMLGenerator("button","Créer",["col","btn","btn-success"],rowButtonCreate);
+    buttonCreate.id="buttonCreate";
+    //je passe en paramettre de ma fonction ReadTheme qui va afficher le contenu pour créer un exercice
+    buttonCreate.onclick =function() { ReadTheme(); };
+
+    // on fait un xml httprequest -> envoie une demande à un webservice
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        // quand on reçois une réponse "fini" du notre requete
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            myExercices = JSON.parse(xhr.responseText);
+            console.log(myExercices);
+            load_Theme();
+        }
+    }
+    //ici  l'adresse url du web service
+    xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_exercice.php', true);
+    // toujours la même chose
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+    xhr.send();
+}
+//fonction pour afficher les themes //
+function load_Theme() {
+    // on fait un xml httprequest -> envoie une demande à un webservice
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        // quand on reçois une réponse "fini" du notre requete
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            myThemes = JSON.parse(xhr.responseText);
+            console.log(myThemes);
+            tableau_exercice_stagiaire();
+        }
+    }
+    //ici  l'adresse url du web service
+    xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_theme.php', true);
+    // toujours la même chose
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+    xhr.send();
+}
+function tableau_exercice_stagiaire() {
+
+    //creation d'un tableau boostraps ! //
+
+    //creation d'un element html table dans le container//
+    let TableExercice = ultimateHTMLGenerator("table", "", ["table", "table-hover", "autorisation", "my-auto", "text-center", "mx-auto", "table-responsive-md"],myContainer);
+    //creation de l'element thead dans la variable tableau //
+    let headTable = ultimateHTMLGenerator("thead", "", [], TableExercice);
+    //creation d'un element html "tr" dans la variable TheadTableau // 
+    let headRow = ultimateHTMLGenerator("tr", "", [], headTable);
+    //creation d'un element html "th" dans la variable TrThead // 
+    let columHead1 = ultimateHTMLGenerator("th", "EXERCICES", ["col-3"], headRow);
+    columHead1.scope = "col";
+    //creation d'un element html "th" dans la variable TrThead // 
+    let columHead2 = ultimateHTMLGenerator("th", "NIVEAU", ["col-3"], headRow);
+    columHead2.scope = "col";
+    //creation d'un element html "th" dans la variable TrThead // 
+    let columHead3 = ultimateHTMLGenerator("th", "THEMES", ["col-3"], headRow);
+    columHead3.scope = "col";
+    //creation d'un element html "tbody" dans la variable Tableau // 
+    let bodyTable = ultimateHTMLGenerator("tbody", "", [], TableExercice);
+    bodyTable.scope = "row";
+
+    //Pour tous les exercices je créer une ligne dans le tableau //
+    for (let i = 0; i < myExercices.Exercice.length; i++) {
+        //creation d'un element html "th" dans la variable Tableau // 
+
+        //creation d'un element html "tr" dans la variable tableau // 
+        let rowTable = ultimateHTMLGenerator("tr", "", [], bodyTable);
+        rowTable.addEventListener("click", function() {
+            //ICI DOIS SE TROUVER LA FONCTION QUI AMENE A UPDATE DELATE
+            // je stocke quel index est en cours d'affichage y // TODO COMPRENDRE
+            indexExoEnCours = i;
+            // on appel la fonction read exercice qui va charger l'exercice sur la page --> on lui passe l'id à fabriquer
+            //ReadExerciceStagiaire(myExercices.Exercice[i]._ID);
+        })
+        //creation d'un element html "td" dans la variable th_row et affichage des noms des exercices// 
+        let valueColum1 = ultimateHTMLGenerator("td", myExercices.Exercice[i]._NOM, [], rowTable);
+        valueColum1.classList = "table-secondary";
+        //creation d'un element html "td" dans la variable th_row et affichage des niveau// 
+        let valueColum2 = ultimateHTMLGenerator("td", myExercices.Exercice[i]._NIVEAU, [], rowTable);
+        valueColum2.classList = "table-dark";
+        //creation d'un element html "td" dans la variable th_row et affichage des themes// 
+        let myThemes = findTheme(myExercices.Exercice[i]._ID_THEME);
+        let valueColum3 = ultimateHTMLGenerator("td", myThemes, [], rowTable);
+        valueColum3.classList = "table-secondary";
+
+    }
+}
+//fonction pour récupérer le nom du themes selon l'ID de l'exercice qui correspond à un theme //
+function findTheme(id) {
+    for (let y = 0; y < myThemes.theme.length; y++) {
+        if (myThemes.theme[y]._ID == id) {
+            return myThemes.theme[y]._NOM;
+        }
+    }
+}
+
+//_____________________________________FONCTION D'AFFICHAGE INPUT___________________________
+//____________________________________________Requete AJAX_____________________________
 function ReadTheme() {
    
     // on vide le container qui contient les boutons (EXERCICES, COURS et  EXAMEN)
@@ -116,10 +225,6 @@ function create_Exercice(){
         let inputSuggestion1=ultimateHTMLGenerator("input","",["input"],columnInput3);
         inputSuggestion1.id="REPONSE"+"_DESCRIPTION"+compteurInput;
     }
-
-    
-
-
     //4 INPUTS reboucler sur les 4  ppour recup les valeurs if guillemet remplis  
     let rowButtonV=ultimateHTMLGenerator("row","",[],myContainer); 
     let buttonValidate= ultimateHTMLGenerator("button","Valider",["col","btn","btn-success"],rowButtonV);
