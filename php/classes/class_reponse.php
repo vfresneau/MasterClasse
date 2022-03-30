@@ -44,6 +44,19 @@ Class Reponse {
             $dbh = null;
 	}
 
+	public function updateReponse(){
+        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
+        
+            // connexion à la base de donnée
+            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
+			$stmt = $dbh->prepare('UPDATE `reponse` SET `description`=:description,`id_exercice`=:id_exo WHERE `id`=:id');
+			$stmt->bindParam(':description', $this->_DESCRIPTION);
+			$stmt->bindParam(':id_exo', $this->_ID_EXERCICE);
+			$stmt->bindParam(':id', $this->_ID);
+			$stmt->execute();//ferme la connexion à la base
+            $dbh = null;
+	}
+
     
 	// permet de créer un json contenant les objets des objets
     public function toArray(){
@@ -56,5 +69,6 @@ Class Reponse {
         });
         return $array;
     }
+
 
 }
