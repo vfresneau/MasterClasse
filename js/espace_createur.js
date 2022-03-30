@@ -417,13 +417,18 @@ function displayFields(){
     //Creation de ma ligne qui va contenir les input, select et label
     let rowSelect=ultimateHTMLGenerator("div","",["row"],myContainer);
 
-    //PAS TOUT ES COMMENTE PUISQUE CA REPREND LA FONCTION create_Exercice
+    //Creation d'un label pour le titre de l'exerccice
     let labelTitle=ultimateHTMLGenerator("label","NOM EXERCICE",[],rowSelect);
+    //Creation d'un input en rapport avec le label du titre de l'exercice
     let inputTitle=ultimateHTMLGenerator("input","",[],rowSelect);
+    //L'input est de type text
     inputTitle.type="text";
+    //La valeur contenu dans l'input est myTtitle
     inputTitle.value=myTitle;
+    //Le créer un id à mon input
     inputTitle.id="EXERCICE"+"_NOM";
 
+    //Creation d'un label pour le theme de l'exercice
     let labelTheme=ultimateHTMLGenerator("label","THEME",[],rowSelect);
     //Creation de mon selecteur de theme pour afficher le theme en cours de l'exercice selectionné
     let selectTheme=ultimateHTMLGenerator("select","",[],rowSelect);
@@ -435,46 +440,69 @@ function displayFields(){
 
     }
     //Ici dans le selecteur s'affiche le theme correspondant à l'exercice selectionné dans le tableau
-    selectTheme.value=myIdTheme; 
+    selectTheme.value=myIdTheme;
+    //J'attribu un id à mon selcteur 
     selectTheme.id="selectTheme";
     
+    //Creation d'un label pour le niveau de l'exercice
     let labelLevel=ultimateHTMLGenerator("label","NIVEAU",[],rowSelect);
+    //Creation d'un input en rapport avec le label du niveau de l'exercice
     let inputLevel=ultimateHTMLGenerator("input","",[],rowSelect);
+    //Linput est de type number
     inputLevel.type="number";
+    //La valeur à l'interieur de mon input est myLevel
     inputLevel.value=myLevel;
+    //J'attribu un id à mon input 
     inputLevel.id="EXERCICE"+"_NIVEAU";
 
+    //Creation d'un label pour le lien de mon exercice
     let labelLink=ultimateHTMLGenerator("label","LIEN",[],rowSelect);
+    //Creation de l'input en rapport avec le label lien de l'exercice
     let inputLink=ultimateHTMLGenerator("input","",[],rowSelect);
+    //L'input est de type url (adresse)
     inputLink.type="url";
+    //La valeur à l'interieur de mon input est myLink
     inputLink.value=myLink;
+    //J'attribu un id à mon input
     inputLink.id="EXERCICE"+"_LIEN";
 
+    //Creation d'une ligne contenant 3 colonnes
     let rowLabel = ultimateHTMLGenerator("div","",["row"],myContainer); 
+    //Colonne dans la ligne contenant le label de consigne de l'exercice
     let columnLabel1=ultimateHTMLGenerator("div","",["col-4"],rowLabel);
     let labelOrder=ultimateHTMLGenerator("label","ENONCE EXERCICE",[],columnLabel1);
  
+    //Colonne dans la ligne contenant le label de la réponse attendu
     let columnLabel2=ultimateHTMLGenerator("div","",["col-4"],rowLabel);
     let labelExpectedResponse=ultimateHTMLGenerator("label","REPONSE ATTENDU",[],columnLabel2);
 
+    //Colonne dans la ligne contenant le label de proposition de réponse
     let columnLabel3=ultimateHTMLGenerator("div","",["col-4"],rowLabel);
     let labelSuggestion=ultimateHTMLGenerator("label","PROPOSITIONS REPONSES",[],columnLabel3);
 
+    //Creation d'une ligne qui va contenir les champs (input/textarea)
     let rowInputFields = ultimateHTMLGenerator("div","",["row"],myContainer);
 
+    //Colonne contenant l'input de la consigne
     let columnInput1=ultimateHTMLGenerator("div","",["col-4"],rowInputFields);
     let inputOrder=ultimateHTMLGenerator("textarea",instructions,[],columnInput1);
+    //J'attribu un id à mon input de consigne
     inputOrder.id="EXERCICE"+"_CONSIGNE";
 
+    //Colonne contenant l'input de la reponse attendu
     let columnInput2=ultimateHTMLGenerator("div","",["col-4"],rowInputFields);
     let inputExpectedResponse=ultimateHTMLGenerator("textarea",correctAnswers,[],columnInput2);
+    //J'attribu un id à mon input de reponse attendu
     inputExpectedResponse.id="EXERCICE"+"_REPONSEATTENDU";
 
+    //Colonne contenant le bouton d'ajout et l'input de propositions de réponses
     let columnInput3=ultimateHTMLGenerator("div","",["col-4"],rowInputFields);
     let addButton=ultimateHTMLGenerator("button","+",["btn", "btn-success","d-none"],columnInput3);
     addButton.onclick=function(){
         let inputSuggestion1=ultimateHTMLGenerator("input","",[],columnInput3);
+        //J'attribu un id à mon input de proposition
         inputSuggestion1.id="inputPropoRep_Create"+compteurInputReponse_Create;
+        //J'agremente mon compteurInputReponse_Create de 1 en 1
         compteurInputReponse_Create++;
     };
 
@@ -484,13 +512,15 @@ function displayFields(){
         let inputSuggestion1=ultimateHTMLGenerator("input","",[],columnInput3);
         //Il a pour id unique inputPropoRep accompagné de 1, 2, 3 ou 4... qui correspond au compteur
         inputSuggestion1.id="inputPropoRep"+compteurInputReponse;
-        //Alors la 
+        //Alors la valeur de mon input correspond à la description dans la table réponse, de mon exercice en cours
         inputSuggestion1.value=myExercices.Exercice[indexExoEnCours]._REPONSES[j]._DESCRIPTION;
+        //J'agremente mon compteurInputReponse de 1 en 1
         compteurInputReponse++;
     }
 
     //Creation d'une ligne contenant les boutons update et delete dans deux colonnes
     let rowButtonUD=ultimateHTMLGenerator("div","",["row"],myContainer); 
+    //J'attribu un id à mon bouton
     rowButtonUD.id="rowButtonUD";
 
     //1ere colonne
@@ -542,8 +572,7 @@ function updateExercice(id,nom,consigne,reponseattendu,niveau,lien,theme){
     xhr.onreadystatechange = function() {
         //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            if(xhr.responseText){
-                   
+            if(xhr.responseText){ 
             }
         }
     }
@@ -560,31 +589,40 @@ function updateExercice(id,nom,consigne,reponseattendu,niveau,lien,theme){
     +"&lien="+lien
     +"&id_theme="+theme
     +"&valide="+0);
-    //Creation d'une boucle for qui nous permet de parcourrir l'ensemble des input de propositions de reponses,
-    //de récupérer leur valeur et leur id afin de créer de nouvelles propositions de grace au web service (en + de celles déjà enregistrées)
-    for(let i=1; i<compteurInputReponse_Create; i++ ){
+    //Creation d'une boucle for qui nous permet de parcourrir l'ensemble des input de propositions de reponses à créer,
+    //de récupérer leur valeur et leur id afin de créer de nouvelles propositions de grace au web service update_exercice (en + de celles déjà enregistrées)
+    for(let i=1; i<compteurInputReponse_Create; i++){
+        //A chaque fois j'appel la fonction createReponse en lui passant la valeur l'id de la proposition de réponse + i et l'id de l'exercice
         createReponse(document.getElementById("inputPropoRep_Create"+i).value,id);
     }
-    //Creation d'une boucle for qui nous permet de parcourrir l'ensemble des input de proposition de reponse
-    //et de récupérer leur valeur et leur id.
+    //Creation d'une boucle for qui nous permet de parcourrir l'ensemble des input de propositions de reponses,
+    //et de récupérer leur valeur et leur id afin de les mettre à jour grace au web service update_exercice
     for(let i=1; i<compteurInputReponse; i++ ){
+        //A chaque fois je créer mon idReponse qui est ......................
         let idReponse=myExercices.Exercice[indexExoEnCours]._REPONSES[i-1]._ID;
+        //Et j'appel la fonction updateReponse à laquelle je passe l'idReponse, la valeur de l'id inputPropoRep (input de proposition de reponse)
+        //+i et l'id de l'exercice
         updateReponse(idReponse,document.getElementById("inputPropoRep"+i).value,id);
     }
 }
 
+//Cette fonction sert à mettre à jour la réponse à laquelle je passe 3 paramettre (idReponse, description, idExercice)
 function updateReponse(idReponse,description,idExercice){
+    //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
+        //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             if(xhr.responseText){
                    
             }
         }
     }
+    //Ici  je fais un POST de l'adresse url du web service ws_update_exercice.php
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_update_reponse.php', true);
+    //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // on ajoute au champ
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous envoyon tous ce qui est passé en parametre de la fonction updateReponse)
     xhr.send("id="+idReponse
     +"&description="+description
     +"&id_exercice="+idExercice
