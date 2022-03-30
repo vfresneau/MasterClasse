@@ -368,7 +368,14 @@ function connexion(){
             console.log(xhr.responseText)
             if (xhr.responseText!= 0){
                 setCookie("jwt",xhr.responseText,1);
-                window.location.href = "../html/espace_stagiaire.html";
+                //resulat décodé du payload du jwt
+                console.log(parseJwt(xhr.responseText));
+                let admin = parseJwt(xhr.responseText).admin;
+                if (admin == 1){
+                    window.location.href = "../html/espace_createur.html";
+                }else{
+                    window.location.href = "../html/espace_stagiaire.html";
+                }
             }else{alert("mauvais login mot de pass")}
         }
     }
@@ -413,3 +420,13 @@ function getCookie(name) {
 function eraseCookie(name) {   
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
+
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};

@@ -78,9 +78,10 @@ Class Individu {
 			$stmt->bindParam(':MAIL', $this->_EMAIL);
 			$stmt->bindParam(':MDP', $this->_MDP);
 			$stmt->execute();
-			// pour chaque ligne trouvé--> y en à qu'un ici
+			// pour chaque ligne trouvé--> Lie les données
 			while ($row = $stmt->fetch()) {
 				$this->_ID=$row["id"];
+				$this->_ADMIN=$row["admin"];
 			}
 			//ferme la connexion à la base
 			$dbh = null;
