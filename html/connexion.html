@@ -25,22 +25,22 @@
                      <div class="text-center">
                         <h3 class="text-primary">S'identifier</h3>
                      </div>
-                     <form action="">
+                     <form>
                         <div class="p-4">
                            <div class="input-group mb-3">
                               <span class="input-group-text bg-primary">
                                  <i class="bi bi-person-plus-fill text-white"></i>
                               </span>
-                              <input type="text" class="form-control" placeholder="nom utilisateur">
+                              <input type="text" id="email" class="form-control" placeholder="email">
                            </div>
                            <div class="input-group mb-3">
                               <span class="input-group-text bg-primary">
                                  <i class="bi bi-key-fill text-white"></i>
                               </span>
-                              <input type="password" class="form-control" placeholder="mot de passe">
+                              <input type="password" id="mdp" class="form-control" placeholder="mot de passe">
                            </div>
                         </div>
-                           <button class="btn btn-primary text-center mt-2" type="submit">
+                           <button class="btn btn-primary text-center mt-2" onclick="connexion()" type="button">
                               Se connecter
                            </button>
                            <p class="text-center mt-5">Vous n'avez pas de compte?

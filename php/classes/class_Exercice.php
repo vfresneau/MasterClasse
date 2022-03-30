@@ -1,4 +1,6 @@
 <?php
+
+
 require_once ("class_reponse.php");
 
 Class Exercice {
@@ -244,7 +246,7 @@ public static function readAllExercice(){
         }
 	}
 
-	//Fcontion delete //
+	//Fonction delete //
 	public function deleteExercice(){
      
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)

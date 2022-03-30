@@ -111,7 +111,11 @@ function load_Exercice() {
     xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+     //je definie que j'attend du json en retour de la requet http
+     xhr.setRequestHeader('Accept', 'application/json');
+     //je definie le token d'authorisation de la requet http
+     xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
 
@@ -132,6 +136,11 @@ function load_Theme() {
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+     //je definie que j'attend du json en retour de la requet http
+     xhr.setRequestHeader('Accept', 'application/json');
+     //je definie le token d'authorisation de la requet http
+     xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
 
@@ -177,7 +186,12 @@ function ReadExerciceStagiaire(id) {
     xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+    //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+    console.log(getCookie('jwt'));
     xhr.send();
 }
 
@@ -197,6 +211,11 @@ function ReadTheme(functioncallback) {
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+     //je definie que j'attend du json en retour de la requet http
+     xhr.setRequestHeader('Accept', 'application/json');
+     //je definie le token d'authorisation de la requet http
+     xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
 
@@ -340,4 +359,57 @@ function verificator (checkboxId,LabelId){
     //Sinon affiche la REPONSE ATTENDU //
     else(document.getElementById("ID_ParaCorrection").style.visibility ="visible");
     document.getElementById("ColumButton").style.visibility ="visible";
+}
+
+function connexion(){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==XMLHttpRequest.DONE){
+            console.log(xhr.responseText)
+            if (xhr.responseText!= 0){
+                setCookie("jwt",xhr.responseText,1);
+                window.location.href = "../html/espace_stagiaire.html";
+            }else{alert("mauvais login mot de pass")}
+        }
+    }
+    xhr.open("POST","http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_connexion.php",true);
+    
+    /*l'entete de htpp j'envoi les donnés a l'url*/
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+    xhr.send("mail="+document.getElementById("email").value+"&mdp="+document.getElementById("mdp").value);
+}
+
+
+//COOKIE
+//_________________________________________________________________________
+// Fonction permettant de remplir un cookie, 
+// source https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+//_________________________________________________________________________
+// Fonction permettant de récupérer un cookie par son nom
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+//_________________________________________________________________________
+// Fonction permettant de supprimer un cookie
+function eraseCookie(name) {   
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
