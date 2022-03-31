@@ -112,9 +112,9 @@ function load_Exercice() {
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
      //je definie que j'attend du json en retour de la requet http
-     xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader('Accept', 'application/json');
      //je definie le token d'authorisation de la requet http
-     xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
      // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
@@ -137,9 +137,9 @@ function load_Theme() {
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
      //je definie que j'attend du json en retour de la requet http
-     xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader('Accept', 'application/json');
      //je definie le token d'authorisation de la requet http
-     xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
      // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
@@ -215,9 +215,9 @@ function ReadTheme(functioncallback) {
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
      //je definie que j'attend du json en retour de la requet http
-     xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader('Accept', 'application/json');
      //je definie le token d'authorisation de la requet http
-     xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
      // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
@@ -345,7 +345,7 @@ function verificator (checkboxId,LabelId){
     checkboxes = document.getElementsByName('checkboxId');
     // pour chaque element trouvé, on disabled (désactive) la checkbox
     for(var i=0, n=checkboxes.length;i<n;i++) {
-      checkboxes[i].disabled = true;
+    checkboxes[i].disabled = true;
     }
 
     //si cette ligne est cochée //
@@ -430,26 +430,20 @@ function parseJwt (token) {
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-
     return JSON.parse(jsonPayload);
 };
-
 
 //fonction qui permet de mettre un ordre aléatoire pour les reponses dans son tableau answer
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
-
     // While there remain elements to shuffle...
     while (currentIndex != 0) {
-
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-
-      // And swap it with the current element.
+    // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+    array[randomIndex], array[currentIndex]];
     }
-
     return array;
 }
