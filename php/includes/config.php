@@ -1,6 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");// 
 ini_set('display_errors', 1); // affiche toutes les erreurs
+
 error_reporting(E_ALL); // affiche toutes les erreurs
 //password and login required for each webservice
 const LOGIN="charley";

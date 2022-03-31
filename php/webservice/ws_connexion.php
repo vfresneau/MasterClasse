@@ -1,9 +1,8 @@
 <?php
 
 require_once("../includes/config.php");
-require_once("../classes/class_individu.php");
 
-//instance d'u individu
+//instance d'un individu
 
 $monIndividu = new Individu(0,"","",$_POST["mail"],$_POST["mdp"],0);
 $monIndividu->connexion();
