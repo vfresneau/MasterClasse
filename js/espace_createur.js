@@ -144,7 +144,7 @@ function findTheme(id) {
 //Fonction qui me permet d'afficher des champs vide afin de créer un exercice
 function ReadTheme() {
     //On vide le container qui contient les boutons (EXERCICES, COURS et  EXAMEN)
-    //pour y placer ce qui est contenu dans la fonction create_Exercice
+    //pour y placer ce qui est contenu dans la fonction displayCreation
     document.getElementById("myContainerCreateExercice").innerHTML = "";
 
     //On fait un xmlHttprequest -> envoie une demande à un webservice
@@ -156,8 +156,8 @@ function ReadTheme() {
             myThemes= JSON.parse(xhr.responseText);
             //Je fais un consol.log afin de vérifier que tout passe et fonctionne
             console.log(myThemes);
-            //Enfin j'appel ma fonction create_Exercice
-            create_Exercice();
+            //Enfin j'appel ma fonction displayCreation
+         displayCreation();
         }
     }
     //Ici  je fais un POST de l'adresse url du web service ws_read_exercice.php
@@ -173,8 +173,8 @@ function ReadTheme() {
     xhr.send();
 }
 
-//Cette fonction permet d'afficher tous les champs à remplir, seecteur et bouton.
-function create_Exercice(){ 
+//Cette fonction permet d'afficher tous les champs à remplir, seecteur et bouton. Lié au bouton bleu CREER
+function displayCreation(){ 
 
     //Creation de la ligne qui va contenir les input, select et label
     let rowSelect=ultimateHTMLGenerator("div","",["row"],myContainer);
@@ -291,14 +291,14 @@ function creationExercice(nom,consigne,reponseattendu,niveau,lien,theme){
                     //On recupère la valeur des inputs tapé par l'utilisateur 
                     let descri = document.getElementById("REPONSE"+"_DESCRIPTION"+i).value;
                     //Et on passe en paramettre la variable descri + l'id de l'exercice 
-                    //(ici le xhrresponseText renvois vers le web service create_exercice et donc récupère l'id de l'exercicé créer)
+                    //(ici le xhrresponseText renvois vers le web service displayCreation et donc récupère l'id de l'exercicé créer)
                     createReponse(descri, xhr.responseText);
                 }
             }
         }
     }
-    //Ici  je fais un POST de l'adresse url du web service ws_create_exercice.php
-    xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_create_exercice.php', true);
+    //Ici  je fais un POST de l'adresse url du web service ws displayCreation.php
+    xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws displayCreation.php', true);
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici on envois tout ce qui est passé en parametre de la fonction)
@@ -345,7 +345,7 @@ function createReponse(descri, id_exo){
 //Cette fonction à pour paramettre un id
 function ReadExerciceCreateur(id) {
     //Le container qui a pour id myContainerCreateExercice se vide et laisse place au champs et selecteur replis
-    //ceux-ci s'affichant grâce à la fonction displayFields qui est appelé dans cette la fonction.
+    //ceux-ci s'affichant grâce à la fonction displayCreationFields qui est appelé dans cette la fonction.
     document.getElementById("myContainerCreateExercice").innerHTML = "";
     //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
@@ -364,7 +364,7 @@ function ReadExerciceCreateur(id) {
                 Retrieve_Id_Themes(myIdTheme);
             });
             //Appelle de la fonction displeyFields
-            displayFields();
+            displayCreationFields();
         }
     }
     //Ici  je fais un POST de l'adresse url du web service ws_read_exercice.php
@@ -445,7 +445,7 @@ function Retrieve_Id_Themes(myIdTheme){
 }
 
 //Cette fonction va permettre d'afficher les champs lors du click pour consulter un exercice
-function displayFields(){
+function displayCreationFields(){
 
     //Creation de ma ligne qui va contenir les input, select et label
     let rowSelect=ultimateHTMLGenerator("div","",["row"],myContainer);
@@ -561,10 +561,10 @@ function displayFields(){
     //Bouton update
     let buttonUpdate= ultimateHTMLGenerator("button","Modifier",["btn","btn-warning"],column1ButtonUD);
     buttonUpdate.id="buttonUpdate";
-    //Au click sur le bouton update, la fonction displayButtons est appelé
+    //Au click sur le bouton update, la fonction displayCreationButtons est appelé
     buttonUpdate.onclick = function(){
         addButton.classList.remove("d-none");
-        displayButtons(myExercices.Exercice[indexExoEnCours]._ID);
+        displayCreationButtons(myExercices.Exercice[indexExoEnCours]._ID);
     }
 
     //2eme colonne
@@ -577,7 +577,7 @@ function displayFields(){
 }
 
 //Cette fonction vide la ligne ou se trouve les boutons Update Delete et laisse apparaitre le bouton Valider
-function displayButtons(idExercice){
+function displayCreationButtons(idExercice){
 
     //Vide de la ligne pour laisser apparaitre le bouton Valider
     document.getElementById("rowButtonUD").innerHTML = ""; 
@@ -664,7 +664,7 @@ function updateReponse(idReponse,description,idExercice){
       //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
       //je definie le token d'authorisation de la requet http
-    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    xhr.setRequestHeader('Authorization','Bearer '+getCookie('jwt'));
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("id="+idReponse
     +"&description="+description
@@ -714,10 +714,8 @@ function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationEl
 let myLinkContact=document.getElementById("link_contact");
 myLinkContact.onclick = function() { alert("Téléphone : 02.47.39.24.01"+"\n"+"Mail : formation.dev@mail.fr"); };
 
-
 //COOKIE
-//_________________________________________________________________________
-// Fonction permettant de remplir un cookie, 
+//_________________________________________________________________________________________________________________
 function setCookie(name,value,days) {
     var expires = "";
     if (days) {
@@ -728,7 +726,7 @@ function setCookie(name,value,days) {
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
 
-//_________________________________________________________________________
+//______________________________________________________________________________________________________________
 // Fonction permettant de récupérer un cookie par son nom
 function getCookie(name) {
     var nameEQ = name + "=";
@@ -741,7 +739,7 @@ function getCookie(name) {
     return null;
 }
 
-//_________________________________________________________________________
+//______________________________________________________________________________________________________________________
 // Fonction permettant de supprimer un cookie
 function eraseCookie(name) {   
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
