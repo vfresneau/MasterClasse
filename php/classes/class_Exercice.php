@@ -13,7 +13,7 @@ Class Exercice {
 	private $_NIVEAU;
 	private $_LIEN;
 	private $_ID_THEME;
-
+	//permet d'avoir acces aux reponses dans le json de l'exercice
 	private $_REPONSES =[];
 
 	//S'appelle automatiquement à la création d'instance
@@ -128,6 +128,7 @@ Class Exercice {
         
 	}
 
+	//fonction qui permet de récupérer toutes les reponses en fonction de l'id de l'exercice
 public function getAllReponses(){
 	// 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
 	try {
