@@ -13,5 +13,5 @@ $JWT-> testTokenExitValide();
     $maReponse->set_ID($_POST["id"]);
     //créer une ligne dans la table réponse
     $maReponse->updateReponse();
-  
+
 ?>

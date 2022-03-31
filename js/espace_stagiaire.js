@@ -367,9 +367,11 @@ function connexion(){
         if(xhr.readyState==XMLHttpRequest.DONE){
             console.log(xhr.responseText)
             if (xhr.responseText!= 0){
+                //génere un cookie avec un nom, la reponse du Ws qui permet de generer un jwt, et un nombre de jours (1)
                 setCookie("jwt",xhr.responseText,1);
                 //resulat décodé du payload du jwt
                 console.log(parseJwt(xhr.responseText));
+                //resulat décodé du payload ou jwt suivi du 0 ou 1 qui permet de savoir si admin ou pas
                 let admin = parseJwt(xhr.responseText).admin;
                 if (admin == 1){
                     window.location.href = "../html/espace_createur.html";
@@ -391,7 +393,6 @@ function connexion(){
 //COOKIE
 //_________________________________________________________________________
 // Fonction permettant de remplir un cookie, 
-// source https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
 function setCookie(name,value,days) {
     var expires = "";
     if (days) {
@@ -421,7 +422,7 @@ function eraseCookie(name) {
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-//
+//pour décoder le token sous quel forme ?
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

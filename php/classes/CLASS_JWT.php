@@ -1,4 +1,5 @@
 <?php
+// (Jason Web Token) 
 class JWT
 {
     public function testTokenExitValide(){

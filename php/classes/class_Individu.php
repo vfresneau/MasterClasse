@@ -113,34 +113,6 @@ Class Individu {
         }
 	}
 
-	// 	//Permet de récupérer toutes les noms et mot de pass de la table //
-	// function retreive_Individu(){
-    //     $liste_Individu = array(); // on déclare une liste d'individu
-
-	// 	// 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
-	// 	try {
-	// 		// connexion à la base de donnée PHPMYADMIN
-	// 		$dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
-	// 		// envoie d'une requete à la base de données --> on récup le la personne correspondant à l'id
-	// 		$stmt = $dbh->prepare("SELECT * FROM `Personne` WHERE Password=:Pass and Username=:Name");
-    //         $stmt->bindParam(':Pass', $this->_PASSWORD);
-    //         $stmt->bindParam(':Name', $this->_USERNAME);
-	// 		$stmt->execute();
-	// 		// pour chaque ligne trouvé
-	// 		while ($row = $stmt->fetch()) {
-	// 		$this->_NOM=$row["nom"];
-	// 		$this->_MDP=$row["mdp"];
-			
-    //           //remplir les champs un par un
-	// 		}
-    //         //ferme la connexion à la base
-	// 		$dbh = null;
-	// 	} catch (PDOException $e) {
-	// 		print "Erreur !: " . $e->getMessage() . "<br/>";
-	// 		die();
-	// 	}
-    // }
-
 
 	public function readIndividu(){
     
