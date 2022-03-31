@@ -144,17 +144,20 @@ function load_Theme() {
     xhr.send();
 }
 
-//fonction globale pour fabriquer un element html,lui appliquer du css et l'afficher //
-function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinationElement) {
-    var ultimateElement = document.createElement(typeElement);
-    ultimateElement.textContent = contenu;
-    for (var i = 0; i < tableauClassCss.length; i++) {
-        ultimateElement.classList.add(tableauClassCss[i]);
+//_____________________________________HTML Element Generator generic function_______________________________________
+
+function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationElement){  //on créer un élement html donné en paramètre (1er paramètre)                      
+    
+    let ultimateElement = document.createElement(typeElement); //on attribut du contenu (paramètre 2) à l'element html précedement fabriqué                                                   
+    ultimateElement.textContent = contenu;                    //on souhaite ajouter plusieurs class CSS à l'element html précedement créé
+    
+    for(let i = 0;i<tableauClassCss.length;i++){             //on ajoute la class css contenu dans le tableau de class css (3ème paramètre)
+        ultimateElement.classList.add(tableauClassCss[i]);  //on ajoute une classList à la variable ultimateElement
     }
-    // on fait apparaitre l'element dans celui passé en 4ème paramètre
-    destinationElement.appendChild(ultimateElement);
+    destinationElement.appendChild(ultimateElement);      //on fait apparaitre l'élement dans celui passé en 4ème paramètre
     return ultimateElement;
 }
+
 
 
 //___________________________________________WEBSERVICE POUR LIRE LES EXERCICES_______________________________
@@ -243,10 +246,8 @@ function retrieveExercice(idExercice) {
 
     //Envoie dans le tableau myAnswer le tableau de reponse //
     myAnswer.push(correctAnswers);
-    //chnage rl'ordre d'apparition des bonnes reponses //
-    const array1= myAnswer
-    const reversed = array1.reverse();
-    console.log(reversed);
+    //changer l'ordre d'apparition des bonnes reponses //
+    shuffle(myAnswer);
 
 }
 
@@ -432,3 +433,23 @@ function parseJwt (token) {
 
     return JSON.parse(jsonPayload);
 };
+
+
+//fonction qui permet de mettre un ordre aléatoire pour les reponses dans son tableau answer
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+      // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
