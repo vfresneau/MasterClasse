@@ -20,7 +20,7 @@ let myContainer=document.getElementById("myContainerCreateExercice");
 // Au click (coté HTML) la fonction load_Exercice est executé
 //Cette fonction créer un bouton et permet de recupérer grâce à la requete AJAX les exercices (ws_read_exercice.php)
 function load_Exercice() {
-   
+
     //Le container qui a pour id myContainerCreateExercice se vide et laisse place au bouton Créer et au tableau d'exercices
     //celui-ci s'affichant grâce à la fonction tableau_exercice_stagiaire qui est appelé dans la fonction load_Theme.
     document.getElementById("myContainerCreateExercice").innerHTML = "";
@@ -47,6 +47,10 @@ function load_Exercice() {
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_exercice.php', true);
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send();
 }
@@ -70,6 +74,11 @@ function load_Theme() {
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_theme.php', true);
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send();
 }
@@ -155,6 +164,11 @@ function ReadTheme() {
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_theme.php', true);
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send();
 }
@@ -267,7 +281,7 @@ function creationExercice(nom,consigne,reponseattendu,niveau,lien,theme){
         if (xhr.readyState == XMLHttpRequest.DONE) {
             //Si la réponse n'est pas un nombre 
             //si jamais la requette à planté et quelle renvoi erreur404 c'est pas un nombre mais une chaine de caractere
-            if(isNaN(è)){
+            if(isNaN(xrh.responseText)){
                 // Alors si ce n'est pas un nombre on ne fait rien
             }
             //Si non si c'est un nompbre 
@@ -288,6 +302,11 @@ function creationExercice(nom,consigne,reponseattendu,niveau,lien,theme){
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici on envois tout ce qui est passé en parametre de la fonction)
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("nom="+nom
     +"&consigne="+consigne
     +"&reponseAttendu="+reponseattendu
@@ -312,6 +331,11 @@ function createReponse(descri, id_exo){
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici on envois tout ce qui est passé en parametre de la fonction)
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("description="+descri
     +"&id_exercice="+id_exo);
 }
@@ -346,7 +370,12 @@ function ReadExerciceCreateur(id) {
     //Ici  je fais un POST de l'adresse url du web service ws_read_exercice.php
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_exercice.php', true);
     //Ici il se passe toujours la même chose
-   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send();
 }
@@ -358,12 +387,17 @@ function readTheme() {
     xhr.onreadystatechange = function() {
         //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-       }
+    }
     }
     //Ici  je fais un POST de l'adresse url du web service ws_read_exercice.php
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_theme.php', true);
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send();
 }
@@ -581,6 +615,11 @@ function updateExercice(id,nom,consigne,reponseattendu,niveau,lien,theme){
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous envoyon tous ce qui est passé en parametre de la fonction updateExercice)
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("id="+id
     +"&nom="+nom
     +"&consigne="+consigne
@@ -614,7 +653,6 @@ function updateReponse(idReponse,description,idExercice){
         //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             if(xhr.responseText){
-                   
             }
         }
     }
@@ -623,6 +661,11 @@ function updateReponse(idReponse,description,idExercice){
     //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous envoyon tous ce qui est passé en parametre de la fonction updateReponse)
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("id="+idReponse
     +"&description="+description
     +"&id_exercice="+idExercice
@@ -643,6 +686,11 @@ function deleteExercice(idExercice){
     }
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_delete_exercice.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      //je definie que j'attend du json en retour de la requet http
+    xhr.setRequestHeader('Accept', 'application/json');
+      //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("idExercice="+idExercice);
 }
 
@@ -665,3 +713,47 @@ function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationEl
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact=document.getElementById("link_contact");
 myLinkContact.onclick = function() { alert("Téléphone : 02.47.39.24.01"+"\n"+"Mail : formation.dev@mail.fr"); };
+
+
+//COOKIE
+//_________________________________________________________________________
+// Fonction permettant de remplir un cookie, 
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+//_________________________________________________________________________
+// Fonction permettant de récupérer un cookie par son nom
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+//_________________________________________________________________________
+// Fonction permettant de supprimer un cookie
+function eraseCookie(name) {   
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+//pour décoder le token sous quel forme ?
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
