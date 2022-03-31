@@ -35,7 +35,7 @@ function load_Exercice() {
     xhr.onreadystatechange = function() {
         //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //On parse notre JSON (analyse d'une chaîne de caractères JSON et construction de la valeur JavaScript ou l'objet décrit par cette chaîne)
+            //On parse notre JSON (converti JSON en chaine de caractère)
             myExercices = JSON.parse(xhr.responseText);
             //Je fais un consol.log afin de vérifier que tout passe et fonctionne
             console.log(myExercices);
@@ -58,7 +58,7 @@ function load_Theme() {
     xhr.onreadystatechange = function() {
         //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //On parse notre JSON (analyse d'une chaîne de caractères JSON et construction de la valeur JavaScript ou l'objet décrit par cette chaîne)
+            //On parse notre JSON (converti JSON en chaine de caractère)
             myThemes = JSON.parse(xhr.responseText);
             //Je fais un consol.log afin de vérifier que tout passe et fonctionne
             console.log(myThemes);
@@ -104,8 +104,8 @@ function tableau_exercice_stagiaire() {
         rowTable.addEventListener("click", function() {
             // Je stocke l'index qui est en cours d'affichage
             indexExoEnCours = i;
-            //J'appel la fonction ReadExerciceStagiaire et on lui passe en parametre l'id à fabriquer
-            ReadExerciceStagiaire(myExercices.Exercice[i]._ID);
+            //J'appel la fonction ReadExerciceCreateur et on lui passe en parametre l'id à fabriquer
+            ReadExerciceCreateur(myExercices.Exercice[i]._ID);
         })
 
         //Creation d'un element html "td" dans la variable th_row et affichage des noms des exercices 
@@ -143,7 +143,7 @@ function ReadTheme() {
     xhr.onreadystatechange = function() {
         //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //On parse notre JSON (analyse d'une chaîne de caractères JSON et construction de la valeur JavaScript ou l'objet décrit par cette chaîne)
+            //On parse notre JSON (converti JSON en chaine de caractère)
             myThemes= JSON.parse(xhr.responseText);
             //Je fais un consol.log afin de vérifier que tout passe et fonctionne
             console.log(myThemes);
@@ -316,11 +316,10 @@ function createReponse(descri, id_exo){
     +"&id_exercice="+id_exo);
 }
 
-
 //______________________________FONCTION PERMETTANT L'AFFICHAGE DES CHAMPS REMPLI POUR UPDATE DELETE___________________________
 
 //Cette fonction à pour paramettre un id
-function ReadExerciceStagiaire(id) {
+function ReadExerciceCreateur(id) {
     //Le container qui a pour id myContainerCreateExercice se vide et laisse place au champs et selecteur replis
     //ceux-ci s'affichant grâce à la fonction displayFields qui est appelé dans cette la fonction.
     document.getElementById("myContainerCreateExercice").innerHTML = "";
@@ -329,14 +328,13 @@ function ReadExerciceStagiaire(id) {
     xhr.onreadystatechange = function() {
         //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //On parse notre JSON (analyse d'une chaîne de caractères JSON et construction de la valeur JavaScript ou l'objet décrit par cette chaîne)
+            //On parse notre JSON (converti JSON en chaine de caractère)
             myExercice = JSON.parse(xhr.responseText);
             //On appel de fonction retrieveExercice en lui passant id (d'exercice) en paramettre puisque l'on veut récupérer l'exercice
             retrieveExercice(id);
-            //PAS TOUT BIEN COMPRIS 
             //Ensuite on appel la fonction readTheme et on lui passe une fonction
             readTheme(function() {
-                //Cette fonction va parser notre JSON (analyse d'une chaîne de caractères JSON et construction de la valeur JavaScript ou l'objet décrit par cette chaîne)
+                //Cette fonction va parser notre JSON (converti JSON en chaine de caractère)
                 myThemes = JSON.parse(myXHR.responseText);
                 //Et ensuite appeller la fonction Retrieve_Id_Themes a laquelle on a passé myIdTheme (id du theme)
                 Retrieve_Id_Themes(myIdTheme);
@@ -370,7 +368,7 @@ function readTheme() {
     xhr.send();
 }
 
-//Cette fonction permet de retrouver l'Id de l'exercice correspondant, passer en parametre dans la fonction ReadExerciceStagiaire//
+//Cette fonction permet de retrouver l'Id de l'exercice correspondant, passer en parametre dans la fonction ReadExerciceCreateur
 function retrieveExercice(idExercice) {
     //Varible déclaré précédement
     myAnswer = [];
@@ -388,24 +386,25 @@ function retrieveExercice(idExercice) {
             myLink= myExercice.Exercice[y]._LIEN;
         }
     }
-    //PAS TOUT BIEN COMPRIS
-    //Pour tous les elements du tableau REPONSES, je selectionne toutes les descriptions
+    //Permet de jumeller bonnes et mauvaises reponses avec myAnswer et tableAnserws
+    //Pour tous les elements du tableau REPONSES
     for (let x = 0; x < tableAnswers.length; x++) {
+        //J'envois ma description en cours dans mon tableau de réponse
         myAnswer.push(tableAnswers[x]._DESCRIPTION);
     }
-    //PAS TOUT BIEN COMPRIS 
+    
     //Envoie dans le tableau myAnswer le tableau de réponses
     myAnswer.push(correctAnswers);
 }
 
-//C'EST BIEN CA ?
 //Cette fonction permet de retrouver les themes en fonction de l'exercice en cours
-function Retrieve_Id_Themes(myIdTheme) {
+function Retrieve_Id_Themes(myIdTheme){
     for (let i = 0; i < myThemes.theme.length; i++) {
-        //Si l'idExercice transmis est identique à celui d'un exercice du tableau EXERCICE
+        //Si l'id du theme en cours transmis est identique à celui d'un exercice du tableau myTheme
         if (myThemes.theme[i]._ID == myIdTheme) {
-            //Alors je créer une variable pour mettre les elements dont j'ai besoin 
+            //Alors je met le nom du theme en cours dan sma variable 
             myThemeString = myThemes.theme[i]._NOM;
+            //Permet d'arrêt la boucle
             break;
         }
     }
@@ -514,7 +513,7 @@ function displayFields(){
         inputSuggestion1.id="inputPropoRep"+compteurInputReponse;
         //Alors la valeur de mon input correspond à la description dans la table réponse, de mon exercice en cours
         inputSuggestion1.value=myExercices.Exercice[indexExoEnCours]._REPONSES[j]._DESCRIPTION;
-        //J'agremente mon compteurInputReponse de 1 en 1
+        //J'agremente mon compteurInputReponse de 1 en 1 pour avoir un id unique pour chaque input
         compteurInputReponse++;
     }
 
@@ -531,7 +530,8 @@ function displayFields(){
     //Au click sur le bouton update, la fonction displayButtons est appelé
     buttonUpdate.onclick = function(){
         addButton.classList.remove("d-none");
-        displayButtons(myExercices.Exercice[indexExoEnCours]._ID)}
+        displayButtons(myExercices.Exercice[indexExoEnCours]._ID);
+    }
 
     //2eme colonne
     let column2ButtonUD=ultimateHTMLGenerator("div","",["col-6"],rowButtonUD);
