@@ -7,7 +7,7 @@ let myIdTheme;
 let Pics;
 let myThemeString;
 let ColumButton;
-let indexExoEnCours=0;
+let indexExoEnCours = 0;
 
 // container c'est la div qui contient l'exercice
 let container = document.createElement("div");
@@ -25,7 +25,7 @@ document.body.appendChild(cont);
 
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
-myLinkContact.onclick = function() {
+myLinkContact.onclick = function () {
     alert("Téléphone : 02.47.39.24.01" + "\n" + "Mail : formation.dev@mail.fr");
 };
 
@@ -61,7 +61,7 @@ function tableau_exercice_stagiaire() {
 
         //creation d'un element html "tr" dans la variable tableau // 
         let rowTable = ultimateHTMLGenerator("tr", "", [], bodyTable);
-        rowTable.addEventListener("click", function() {
+        rowTable.addEventListener("click", function () {
             // je stocke quel index est en cours d'affichage y // TODO COMPRENDRE
             indexExoEnCours = i;
             // on appel la fonction read exercice qui va charger l'exercice sur la page --> on lui passe l'id à fabriquer
@@ -81,7 +81,6 @@ function tableau_exercice_stagiaire() {
     }
 }
 
-
 //fonction pour récupérer le nom du themes selon l'ID de l'exercice qui correspond à un theme //
 function findTheme(id) {
     for (let y = 0; y < myThemes.theme.length; y++) {
@@ -99,7 +98,7 @@ function load_Exercice() {
     document.getElementById("container_Espace_stagiaire").innerHTML = "";
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             myExercices = JSON.parse(xhr.responseText);
@@ -111,11 +110,11 @@ function load_Exercice() {
     xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-     //je definie que j'attend du json en retour de la requet http
+    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-     //je definie le token d'authorisation de la requet http
-    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
-     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+    //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
+    // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
 
@@ -123,7 +122,7 @@ function load_Exercice() {
 function load_Theme() {
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             myThemes = JSON.parse(xhr.responseText);
@@ -136,22 +135,22 @@ function load_Theme() {
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
-     //je definie que j'attend du json en retour de la requet http
+    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-     //je definie le token d'authorisation de la requet http
-    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
-     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+    //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
+    // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
 
 //_____________________________________HTML Element Generator generic function_______________________________________
 
-function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationElement){  //on créer un élement html donné en paramètre (1er paramètre)                      
-    
+function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinationElement) {  //on créer un élement html donné en paramètre (1er paramètre)                      
+
     let ultimateElement = document.createElement(typeElement); //on attribut du contenu (paramètre 2) à l'element html précedement fabriqué                                                   
     ultimateElement.textContent = contenu;                    //on souhaite ajouter plusieurs class CSS à l'element html précedement créé
-    
-    for(let i = 0;i<tableauClassCss.length;i++){             //on ajoute la class css contenu dans le tableau de class css (3ème paramètre)
+
+    for (let i = 0; i < tableauClassCss.length; i++) {             //on ajoute la class css contenu dans le tableau de class css (3ème paramètre)
         ultimateElement.classList.add(tableauClassCss[i]);  //on ajoute une classList à la variable ultimateElement
     }
     destinationElement.appendChild(ultimateElement);      //on fait apparaitre l'élement dans celui passé en 4ème paramètre
@@ -159,15 +158,14 @@ function ultimateHTMLGenerator(typeElement,contenu,tableauClassCss,destinationEl
 }
 
 
-
 //___________________________________________WEBSERVICE POUR LIRE LES EXERCICES_______________________________
 function ReadExerciceStagiaire(id) {
-     // on vide la liste des exercice et l'exercice
+    // on vide la liste des exercice et l'exercice
     container.innerHTML = "";
     cont.innerHTML = "";
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             myExercice = JSON.parse(xhr.responseText);
@@ -176,7 +174,7 @@ function ReadExerciceStagiaire(id) {
             //appelle la fonction "retrieveExercice" et lui passe la variable id//
             retrieveExercice(id);
             //appelle la fonction 
-            ReadTheme(function(myXHR) {
+            ReadTheme(function (myXHR) {
                 myThemes = JSON.parse(myXHR.responseText);
                 //verification si je reçois bien mon webService //
                 console.log(myThemes);
@@ -192,7 +190,7 @@ function ReadExerciceStagiaire(id) {
     //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
     //je definie le token d'authorisation de la requet http
-    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
+    xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     console.log(getCookie('jwt'));
     xhr.send();
@@ -202,7 +200,7 @@ function ReadExerciceStagiaire(id) {
 function ReadTheme(functioncallback) {
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             functioncallback(xhr);
@@ -214,11 +212,11 @@ function ReadTheme(functioncallback) {
     // toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
-     //je definie que j'attend du json en retour de la requet http
+    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-     //je definie le token d'authorisation de la requet http
-    xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
-     // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
+    //je definie le token d'authorisation de la requet http
+    xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
+    // on oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du json
     xhr.send();
 }
 
@@ -251,7 +249,6 @@ function retrieveExercice(idExercice) {
 
 }
 
-
 //retrouve le theme en fonction de l'exercice en cours //
 function Retrieve_Id_Themes(myIdTheme) {
     for (let i = 0; i < myThemes.theme.length; i++) {
@@ -265,39 +262,38 @@ function Retrieve_Id_Themes(myIdTheme) {
 }
 
 
-
 //J'utilise une fonction pour afficher mon block contenant l'exercice.
-function myBlock(){
+function myBlock() {
     container.innerHTML = "";
     //Je créer une ligne qui contiendra tout mon exercice
-    let whiteBlock = ultimateHTMLGenerator("div","",["row","bg-light"],container);
-    whiteBlock.id="blockBlanc";
+    let whiteBlock = ultimateHTMLGenerator("div", "", ["row", "bg-light"], container);
+    whiteBlock.id = "blockBlanc";
     //Mon block exercice est composé d'un titre de niveau 4
-    let TitleExercice = ultimateHTMLGenerator("h4",myTitle,[],whiteBlock);
-    TitleExercice.id="TitleExercice";
+    let TitleExercice = ultimateHTMLGenerator("h4", myTitle, [], whiteBlock);
+    TitleExercice.id = "TitleExercice";
     //Des colonnes et lignes pour y mettre mes contenus (paragraphe, theme, consigne)//
-    let columExercice=ultimateHTMLGenerator("div","",["col-12"],whiteBlock);
-    let LineInstructions =ultimateHTMLGenerator("div","",["row"],columExercice);
-    LineInstructions.id="LineInstructions";
+    let columExercice = ultimateHTMLGenerator("div", "", ["col-12"], whiteBlock);
+    let LineInstructions = ultimateHTMLGenerator("div", "", ["row"], columExercice);
+    LineInstructions.id = "LineInstructions";
     //creation de paragraphe pour mettre le theme et le niveau de l'exercice //
-    let paragraph1_theme_level =ultimateHTMLGenerator("p","THEME : " +myThemeString+"\n"+"NIVEAU : "+ myLevel,["text-light","d-flex","justify-content-center"],LineInstructions);
-    let paragrap2_instructions =ultimateHTMLGenerator("p",instructions,["text-light"],LineInstructions);
+    let paragraph1_theme_level = ultimateHTMLGenerator("p", "THEME : " + myThemeString + "\n" + "NIVEAU : " + myLevel, ["text-light", "d-flex", "justify-content-center"], LineInstructions);
+    let paragrap2_instructions = ultimateHTMLGenerator("p", instructions, ["text-light"], LineInstructions);
 
-    let ColumExercice=ultimateHTMLGenerator("div","",["col-12"],whiteBlock);
-    ColumExercice.id="ColumExercice";
+    let ColumExercice = ultimateHTMLGenerator("div", "", ["col-12"], whiteBlock);
+    ColumExercice.id = "ColumExercice";
 
     //Culum of button //
-    ColumButton=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
-    ColumButton.id="ColumButton";
+    ColumButton = ultimateHTMLGenerator("div", "", ["col-6"], whiteBlock);
+    ColumButton.id = "ColumButton";
     //I create a button for go to the next exercice //
-    let NextButton=ultimateHTMLGenerator("button","Exercice suivant",["btn"],ColumButton);
-    NextButton.id="NextButton1";
-    NextButton.onclick = function() {
- // TODO COMPRENDRE
-        retrieveExercice(myExercice.Exercice[indexExoEnCours+1]._ID);
+    let NextButton = ultimateHTMLGenerator("button", "Exercice suivant", ["btn"], ColumButton);
+    NextButton.id = "NextButton1";
+    NextButton.onclick = function () {
+        // TODO COMPRENDRE
+        retrieveExercice(myExercice.Exercice[indexExoEnCours + 1]._ID);
         indexExoEnCours++;
         //--> affiche l'exercice
-        ReadTheme(function(myXHR) {
+        ReadTheme(function (myXHR) {
             myThemes = JSON.parse(myXHR.responseText);
             //verification si je reçois bien mon webService //
             Retrieve_Id_Themes(myIdTheme);
@@ -306,102 +302,102 @@ function myBlock(){
     }
 
     //Colum of Congratulation //
-    let ColumCongratulation=ultimateHTMLGenerator("div","",["col-6"],whiteBlock);
+    let ColumCongratulation = ultimateHTMLGenerator("div", "", ["col-6"], whiteBlock);
     //Create a picture for good answer ! //
-    Pics=ultimateHTMLGenerator("img","",[],ColumCongratulation);
-    Pics.src="../image/goodjob.jfif";
-    Pics.id="Picsgoodjob";
+    Pics = ultimateHTMLGenerator("img", "", [], ColumCongratulation);
+    Pics.src = "../image/goodjob.jfif";
+    Pics.id = "Picsgoodjob";
 
     //create a paragraph for the correction //
-    let ParaCorrection=ultimateHTMLGenerator("p","La réponse attendue était :"+"\n"+correctAnswers,[],whiteBlock);
-    ParaCorrection.id="ID_ParaCorrection";
+    let ParaCorrection = ultimateHTMLGenerator("p", "La réponse attendue était :" + "\n" + correctAnswers, [], whiteBlock);
+    ParaCorrection.id = "ID_ParaCorrection";
 
- //J'utilise une boucle for pour y faire apparaitre les proposition de réponse
-    for(j=0; j<myAnswer.length;j++){
-    //create a inputGroup 
-    let inputGroup =ultimateHTMLGenerator("div","",["form-check"],ColumExercice);
+    //J'utilise une boucle for pour y faire apparaitre les proposition de réponse
+    for (j = 0; j < myAnswer.length; j++) {
+        //create a inputGroup 
+        let inputGroup = ultimateHTMLGenerator("div", "", ["form-check"], ColumExercice);
 
-    //Create a input type checkbox //
-    let InputCheckbox =ultimateHTMLGenerator("input","",["form-check-input", "mt-0"],inputGroup);
-    InputCheckbox.type = "checkbox";
+        //Create a input type checkbox //
+        let InputCheckbox = ultimateHTMLGenerator("input", "", ["form-check-input", "mt-0"], inputGroup);
+        InputCheckbox.type = "checkbox";
 
-    //create a id for the checkbox //
-    InputCheckbox.id = j+"checkboxId";
-    // on ajoute le même nom pour chaque balise input --> pour toutes les récups plus tard
-    InputCheckbox.name = "checkboxId";
-    InputCheckbox.addEventListener("click", function(){verificator(InputCheckbox.id,LabelCheckbox.id)});
+        //create a id for the checkbox //
+        InputCheckbox.id = j + "checkboxId";
+        // on ajoute le même nom pour chaque balise input --> pour toutes les récups plus tard
+        InputCheckbox.name = "checkboxId";
+        InputCheckbox.addEventListener("click", function () { verificator(InputCheckbox.id, LabelCheckbox.id) });
 
-    //create a id for the Label //
-    let LabelCheckbox =ultimateHTMLGenerator("label",myAnswer[j],["form-check-label"],inputGroup);
-    LabelCheckbox.id = j+"LabelId";
+        //create a id for the Label //
+        let LabelCheckbox = ultimateHTMLGenerator("label", myAnswer[j], ["form-check-label"], inputGroup);
+        LabelCheckbox.id = j + "LabelId";
     }
 }
 
 
 //fonction qui verifie si l'on as la bonne réponse ou non // 
-function verificator (checkboxId,LabelId){
+function verificator(checkboxId, LabelId) {
     // on selectionne toutes balises avec le name "checkboxId"
     // https://stackoverflow.com/questions/386281/how-to-implement-select-all-check-box-in-html
     checkboxes = document.getElementsByName('checkboxId');
     // pour chaque element trouvé, on disabled (désactive) la checkbox
-    for(var i=0, n=checkboxes.length;i<n;i++) {
-    checkboxes[i].disabled = true;
+    for (var i = 0, n = checkboxes.length; i < n; i++) {
+        checkboxes[i].disabled = true;
     }
 
     //si cette ligne est cochée //
-    if (document.getElementById(checkboxId).checked === true && document.getElementById(LabelId).textContent == correctAnswers)  {
-    //verification dans la console de la recuperation que ce sont bien les memes id //
-    console.log(checkboxId,LabelId);
-   //afficher good-job // 
-    document.getElementById("Picsgoodjob").style.visibility ="visible";
-    document.getElementById("ColumButton").style.visibility ="visible";
+    if (document.getElementById(checkboxId).checked === true && document.getElementById(LabelId).textContent == correctAnswers) {
+        //verification dans la console de la recuperation que ce sont bien les memes id //
+        console.log(checkboxId, LabelId);
+        //afficher good-job // 
+        document.getElementById("Picsgoodjob").style.visibility = "visible";
+        document.getElementById("ColumButton").style.visibility = "visible";
 
-}
+    }
     //Sinon affiche la REPONSE ATTENDU //
-    else(document.getElementById("ID_ParaCorrection").style.visibility ="visible");
-    document.getElementById("ColumButton").style.visibility ="visible";
+    else (document.getElementById("ID_ParaCorrection").style.visibility = "visible");
+    document.getElementById("ColumButton").style.visibility = "visible";
 }
 
-function connexion(){
+function connexion() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange=function(){
-        if(xhr.readyState==XMLHttpRequest.DONE){
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log(xhr.responseText)
-            if (xhr.responseText!= 0){
+            if (xhr.responseText != 0) {
                 //génere un cookie avec un nom, la reponse du Ws qui permet de generer un jwt, et un nombre de jours (1)
-                setCookie("jwt",xhr.responseText,1);
+                setCookie("jwt", xhr.responseText, 1);
                 //resulat décodé du payload du jwt
                 console.log(parseJwt(xhr.responseText));
                 //resulat décodé du payload ou jwt suivi du 0 ou 1 qui permet de savoir si admin ou pas
                 let admin = parseJwt(xhr.responseText).admin;
-                if (admin == 1){
+                if (admin == 1) {
                     window.location.href = "../html/espace_createur.html";
-                }else{
+                } else {
                     window.location.href = "../html/espace_stagiaire.html";
                 }
-            }else{alert("mauvais login mot de pass")}
+            } else { alert("mauvais login mot de pass") }
         }
     }
-    xhr.open("POST","http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_connexion.php",true);
-    
-    /*l'entete de htpp j'envoi les donnés a l'url*/
-    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.open("POST", "http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_connexion.php", true);
 
-    xhr.send("mail="+document.getElementById("email").value+"&mdp="+document.getElementById("mdp").value);
+    /*l'entete de htpp j'envoi les donnés a l'url*/
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.send("mail=" + document.getElementById("email").value + "&mdp=" + document.getElementById("mdp").value);
 }
 
 
 //COOKIE
 //_________________________________________________________________________
 // Fonction permettant de remplir un cookie, 
-function setCookie(name,value,days) {
+function setCookie(name, value, days) {
     var expires = "";
     if (days) {
         var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
 //_________________________________________________________________________
@@ -409,25 +405,25 @@ function setCookie(name,value,days) {
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
 }
 
 //_________________________________________________________________________
 // Fonction permettant de supprimer un cookie
-function eraseCookie(name) {   
-    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+function eraseCookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 //pour décoder le token sous quel forme ?
-function parseJwt (token) {
+function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
     return JSON.parse(jsonPayload);
@@ -435,15 +431,15 @@ function parseJwt (token) {
 
 //fonction qui permet de mettre un ordre aléatoire pour les reponses dans son tableau answer
 function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
+    let currentIndex = array.length, randomIndex;
     // While there remain elements to shuffle...
     while (currentIndex != 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-    array[randomIndex], array[currentIndex]];
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
     }
     return array;
 }
