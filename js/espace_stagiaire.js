@@ -96,7 +96,7 @@ function load_Exercice() {
     //
     cont.innerHTML = "";
     // container alpha c'est la div qui contiens les vignette exercice/cours/examen (viens du html)
-    document.getElementById("container_ALPHA").innerHTML = "";
+    document.getElementById("container_Espace_stagiaire").innerHTML = "";
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
