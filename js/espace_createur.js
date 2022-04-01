@@ -573,7 +573,7 @@ function displayCreationFields(){
     let buttonDelete= ultimateHTMLGenerator("button","Supprimer",["btn","btn-danger"],column2ButtonUD);
     buttonDelete.id="buttonDelete";
     //Au click sur le bouton delete intervient la partie du CRUD Delete
-    buttonDelete.onclick = function(){deleteExercice(idExercice)}
+    buttonDelete.onclick = function(){deleteExercice(myExercices.Exercice[indexExoEnCours]._ID)}
 }
 
 //Cette fonction vide la ligne ou se trouve les boutons Update Delete et laisse apparaitre le bouton Valider
@@ -599,7 +599,6 @@ function displayCreationButtons(idExercice){
 //_______________________________________________METRE A JOUR_______________________________________________
 //Cette fonction va servir à faire la mise à jour de l'exercice et de ses propositions de réponse
 function updateExercice(id,nom,consigne,reponseattendu,niveau,lien,theme){
-   
     console.log(consigne);
     //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
@@ -674,14 +673,11 @@ function updateReponse(idReponse,description,idExercice){
 
 //_______________________________________SUPPRIMER________________________________________________________
 //RESTE A FAIRE CETTE FONCTION QUI FERA LE DELETE ATTENTION EN TRAVAUX
-function deleteExercice(idExercice){
-    console.log(idExercice);
+function deleteExercice(IdExoEnCours){
+    console.log(IdExoEnCours);
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            if(xhr.responseText==0){
-                alert("Impossible de supprimer.");
-            }
         }
     }
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_delete_exercice.php', true);
@@ -691,7 +687,7 @@ function deleteExercice(idExercice){
       //je definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization','Bearer ' +getCookie('jwt'));
     //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
-    xhr.send("idExercice="+idExercice);
+    xhr.send("id="+IdExoEnCours);
 }
 
 //_____________________________________HTML Element Generator generic function_______________________________________

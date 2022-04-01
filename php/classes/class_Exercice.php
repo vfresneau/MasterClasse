@@ -224,7 +224,7 @@ public static function readAllExercice(){
 
 
 	public function updateExercice(){
-     
+
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
         try {
             // connexion à la base de donnée
@@ -249,19 +249,22 @@ public static function readAllExercice(){
 
 	//Fonction delete //
 	public function deleteExercice(){
-     
+
         // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
             // connexion à la base de donnée
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
+
+			$stmt = $dbh->prepare('DELETE FROM reponse WHERE id_exercice = :id_exercice');
+			//liaison entre :id exercice et la valeur : id
+			$stmt->bindParam(':id_exercice', $this->_ID);
+			$stmt->execute();
+
+
 			$stmt = $dbh->prepare('DELETE FROM Exercice WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();//ferme la connexion à la base
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
+
 	}
 
 	// permet de créer un json contenant les objets des objets
