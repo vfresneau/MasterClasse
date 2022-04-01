@@ -353,9 +353,11 @@
 
 /*________________________________________PAGE CREATION EXERCICE____________________________________*/
 
+/*Bouton valider pour créer un exercice*/
 #buttonValidate{
     margin: auto;
 }
+/*Champs qui permet de mettre bcp de texte (consigne propo reponse)*/
 .textarea{
     background-color: black;
     color: #FFFFFF;
@@ -365,4 +367,23 @@
 .input{
     border-radius: 5px;
     margin-left: 10px;
+}
+
+/*Bouton bleu créer au dessus du tableau coté createur*/
+#buttonCreate{
+    width: 70px;
+    background: #62C9F5;
+    color: white;
+
+}
+
+/*Ligne qui contient le bouton bouton Créer*/
+#rowButtonCreate{
+    padding: 20px;
+}
+
+/*Haut du tableau d'exercice*/
+#columHead1,#columHead2,#columHead3{
+    background-color: #A44EB2;
+    color: white;
 }

@@ -26,7 +26,8 @@ function load_Exercice() {
     document.getElementById("myContainerCreateExercice").innerHTML = "";
     //Je créer un bouton lié à la fonction ReadTheme.
     let rowButtonCreate = ultimateHTMLGenerator("div", "", ["row"], myContainer);
-    let buttonCreate = ultimateHTMLGenerator("button", "Créer", ["col", "btn", "btn-success"], rowButtonCreate);
+    rowButtonCreate.id="rowButtonCreate";
+    let buttonCreate = ultimateHTMLGenerator("button", "Créer", ["btn"], rowButtonCreate);
     buttonCreate.id = "buttonCreate";
     buttonCreate.onclick = function () {
         document.getElementById("myContainerCreateExercice").innerHTML = "";
@@ -69,13 +70,16 @@ function tableau_exercice_stagiaire() {
     let headRow = ultimateHTMLGenerator("tr", "", [], headTable);
     //Creation d'un element html "th" dans la variable TrThead  
     let columHead1 = ultimateHTMLGenerator("th", "EXERCICES", ["col-3"], headRow);
+    columHead1.id="columHead1";
     //Scope portion de code dans laquelle une variable peut exister et maintenir une valeur qui lui aura été préalablement affectée
     columHead1.scope = "col";
     //Creation d'un element html "th" dans la variable TrThead 
     let columHead2 = ultimateHTMLGenerator("th", "NIVEAU", ["col-3"], headRow);
+    columHead2.id="columHead2";
     columHead2.scope = "col";
     //Creation d'un element html "th" dans la variable TrThead 
     let columHead3 = ultimateHTMLGenerator("th", "THEMES", ["col-3"], headRow);
+    columHead3.id="columHead3";
     columHead3.scope = "col";
     //Creation d'un element html "tbody" dans la variable Tableau 
     let bodyTable = ultimateHTMLGenerator("tbody", "", [], TableExercice);
@@ -593,13 +597,15 @@ function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinatio
     return ultimateElement;
 }
 
+
+
 //______________________________________________LIEN VERS CONTACT (FOOTER)_________________________________
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
 myLinkContact.onclick = function () { alert("Téléphone : 02.47.39.24.01" + "\n" + "Mail : formation.dev@mail.fr"); };
 
-//COOKIE
-//_________________________________________________________________________________________________________________
+
+//_____________________________________________________COOKIE____________________________________________________________
 function setCookie(name, value, days) {
     var expires = "";
     if (days) {
