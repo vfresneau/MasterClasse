@@ -2,9 +2,6 @@
 /*___________________________________________TITRE AVANT HEADER___________________________________________*/
 #titreAvantHeader{
     height: 116px;
-    left: 0px;
-    top: 9px;
-    border-radius: 0px;
     background-color: #62C9F5;
 }
 
@@ -175,8 +172,9 @@ body{
     background-image: url("../image/Background1920.png");
     background-size: cover;
     background-repeat: no-repeat;
-    height:100%;
-    width:auto;
+    margin:0;
+    /* height:100%; */
+    /* width:auto; */
 }
 /*________________________________________________ACCUEIL____________________________________________*/
 
@@ -272,8 +270,9 @@ body{
 footer{
     background:#62C9F5;
     box-shadow: 1px 1px 10px 1px black;
-    width: 100%; height: 50px;
+    width: 100%; height: 10%;
     bottom: 0; left: 0; right: 0;
+    margin-top: 1%;
 }
 
 #link_contact{
