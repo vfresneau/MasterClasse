@@ -44,12 +44,15 @@ function tableau_exercice_stagiaire() {
     let headRow = ultimateHTMLGenerator("tr", "", [], headTable);
     //creation d'un element html "th" dans la variable TrThead // 
     let columHead1 = ultimateHTMLGenerator("th", "EXERCICES", ["col-3"], headRow);
+    columHead1.id="columHead1";
     columHead1.scope = "col";
     //creation d'un element html "th" dans la variable TrThead // 
     let columHead2 = ultimateHTMLGenerator("th", "NIVEAU", ["col-3"], headRow);
+    columHead2.id="columHead2";
     columHead2.scope = "col";
     //creation d'un element html "th" dans la variable TrThead // 
     let columHead3 = ultimateHTMLGenerator("th", "THEMES", ["col-3"], headRow);
+    columHead3.id="columHead3";
     columHead3.scope = "col";
     //creation d'un element html "tbody" dans la variable Tableau // 
     let bodyTable = ultimateHTMLGenerator("tbody", "", [], TableExercice);
@@ -443,3 +446,5 @@ function shuffle(array) {
     }
     return array;
 }
+
+
