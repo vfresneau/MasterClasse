@@ -1,0 +1,56 @@
+/*________________________________________________RESPONSIVE____________________________*/
+/*Règles CSS pour les mobiles ici */
+
+@media all and (max-device-width: 680px)
+{
+    #logo-SQL,#logo-JS,#logo-HTML,#logo-CSS{
+        margin-top: 20px;
+        box-sizing: border-box;
+        height: 70px;
+        width: 70px;
+    }
+    #logo-PHP{
+        height: 100px;
+        width: 100px;
+    }
+}
+
+footer{
+    visibility:hidden;
+}
+
+
+/*___________________________________________TITRE AVANT HEADER___________________________________________*/
+#titreAvantHeader{
+    height: 50px;
+    background-color: #62C9F5;
+}
+
+#titre_masterclasse{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: rgb(250, 250, 250);
+}
+
+/* MASTER logo */
+#logo{
+    position: absolute;
+    width: 55px;
+    height: 60px;
+    left: 6.18%;
+    right: 84.42%;
+    top: 0%;
+    bottom: 23.31%;
+}
+
+/*_______________________________________________HEADER______________________________________________*/
+/*couleur et marge navbar*/
+.navbar{
+    margin-bottom: 5px;
+    height: 50px;
+}

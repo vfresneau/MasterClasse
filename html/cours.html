@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Custom CSS -->
+    <!--CSS Partie Stagiaire-->
     <link rel="stylesheet" href="../css/style.css">
+    <!--CSS Partie Createur-->
     <link rel="stylesheet" href="../css/css_chloe.css">
+    <!--feuille de style qui s'appliquera Pour ceux qui ont une résolution inférieure à 480px-->
+    <link rel="stylesheet" media="screen and (max-width: 480px)" href="../css/petite_resolution.css" />
 </head>
 <!-- Ici se trouve mon body qui contien le container où se trouve le contenu de ma page-->
 
@@ -51,27 +54,26 @@
     </header>
     <!--J'ai créée un container fluid qui contien deux lignes-->
     <div class="container-fluid">
-        <article>
-            <div class="row justify-content-around text-center">
-                <div class="col-4 md-4">
+            <div class="row justify-content-around text-center my-5">
+                <div class="col-4">
                     <img src="../image/html_5.png" id="logo-HTML" alt="logo-HTML">
                 </div>
-                <div class="col-4 md-3">
+                <div class="col-4">
                     <img src="../image/css.png" id="logo-CSS" alt="logo-CSS">
                 </div>
-                <div class="col-4 md-3">
+                <div class="col-4">
                     <img src="../image/js.png" id="logo-JS"  alt="logo-JS">
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-4">
+                <div class="col-6 justify-content-end">
                     <img src="../image/php_logo_20743.png" alt="logo-PHP" id="logo-PHP">
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <img src="../image/sql.PNG" alt="logo-SQL" id="logo-SQL">
                 </div>
             </div>
-                
+    </div> 
 
 
 
@@ -95,8 +97,6 @@
                         id="link_mention">MENTIONS LEGALES</a>
                 </div>
             </footer>
-        </article>
-    </div>
     <!-- BootStrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

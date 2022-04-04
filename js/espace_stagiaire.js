@@ -10,18 +10,11 @@ let ColumButton;
 let indexExoEnCours = 0;
 
 // container c'est la div qui contient l'exercice
-let container = document.createElement("div");
-container.classList.add("container-fluid");
-document.body.appendChild(container);
+let container = document.getElementById("container_espace_stagiaire");
 
 //DECLARATION DES VARIABLES OBJETS//
 let myExercices = {};
 let myThemes = {};
-
-// cont c'est la div qui contient la liste des exercices
-let cont = document.createElement("div");
-cont.classList.add("container-fluid");
-document.body.appendChild(cont);
 
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
@@ -32,12 +25,12 @@ myLinkContact.onclick = function () {
 function tableau_exercice_stagiaire() {
 
     //on efface l'exercice
-    cont.innerHTML = "";
+    container.innerHTML = "";
 
     //creation d'un tableau boostraps ! //
 
     //creation d'un element html table dans le container//
-    let TableExercice = ultimateHTMLGenerator("table", "", ["table", "table-hover", "autorisation", "my-auto", "text-center", "mx-auto", "table-responsive-md"], cont);
+    let TableExercice = ultimateHTMLGenerator("table", "", ["table", "table-hover", "autorisation", "my-auto", "text-center", "mx-auto", "table-responsive-md"], container);
     //creation de l'element thead dans la variable tableau //
     let headTable = ultimateHTMLGenerator("thead", "", [], TableExercice);
     //creation d'un element html "tr" dans la variable TheadTableau // 
@@ -96,9 +89,8 @@ function findTheme(id) {
 //fonction qui récupère les exercices et qui passe les autres fonctions de la page //
 function load_Exercice() {
     //
-    cont.innerHTML = "";
-    // container alpha c'est la div qui contiens les vignette exercice/cours/examen (viens du html)
-    document.getElementById("container_Espace_stagiaire").innerHTML = "";
+    container.innerHTML = "";
+
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -165,7 +157,6 @@ function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinatio
 function ReadExerciceStagiaire(id) {
     // on vide la liste des exercice et l'exercice
     container.innerHTML = "";
-    cont.innerHTML = "";
     // on fait un xml httprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
