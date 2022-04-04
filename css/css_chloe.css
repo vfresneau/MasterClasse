@@ -298,6 +298,7 @@
 /*bouton pour examen cours exercice*/
 #bouton{
     margin-top: 200px;
+    margin-left: 150px;
     width: 208px;
     height: 106px;
     background: #FFFFFF;
