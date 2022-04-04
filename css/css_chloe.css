@@ -190,7 +190,7 @@
 
 /*Colonne bleu d ela page formation*/
 #colonne_bleu_formation{
-   margin: auto;
+    margin: auto;
     background: #62C9F5;
     border-radius: 5px;
 
@@ -198,8 +198,8 @@
 
 /*Colonne de la page formation*/
 #colonne_violette_formation{
-    margin-top: 100px;
-    margin: auto;
+    width: 600px;
+    margin-top: 15px;
     background: #A44EB3;
     border-radius: 5px;
 
