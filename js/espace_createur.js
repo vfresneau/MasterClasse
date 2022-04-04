@@ -285,11 +285,15 @@ function displayCreationFields(modeCreation) {
 
     //Creation de ma ligne qui va contenir les input, select et label
     let rowSelect = ultimateHTMLGenerator("div", "", ["row"], myContainer);
+    rowSelect.id="rowSelect";
+
+    let columnLabelTitle=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    let columnInputTtitle=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le titre de l'exerccice
-    let labelTitle = ultimateHTMLGenerator("label", "NOM EXERCICE", [], rowSelect);
+    let labelTitle = ultimateHTMLGenerator("label", "NOM EXERCICE", ["text-justify","font-weight-bold"],columnLabelTitle);
     //Creation d'un input en rapport avec le label du titre de l'exercice
-    let inputTitle = ultimateHTMLGenerator("input", "", [], rowSelect);
+    let inputTitle = ultimateHTMLGenerator("input", "", [], columnInputTtitle);
     //L'input est de type text
     inputTitle.type = "text";
     //La valeur contenu dans l'input est myTtitle
@@ -297,10 +301,13 @@ function displayCreationFields(modeCreation) {
     //Le créer un id à mon input
     inputTitle.id = "EXERCICE" + "_NOM";
 
+    let columnLabelTheme=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    let columnInputTheme=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+
     //Creation d'un label pour le theme de l'exercice
-    let labelTheme = ultimateHTMLGenerator("label", "THEME", [], rowSelect);
+    let labelTheme = ultimateHTMLGenerator("label", "THEME", ["text-justify","font-weight-bold"], columnLabelTheme);
     //Creation de mon selecteur de theme pour afficher le theme en cours de l'exercice selectionné
-    let selectTheme = ultimateHTMLGenerator("select", "", [], rowSelect);
+    let selectTheme = ultimateHTMLGenerator("select", "", [], columnInputTheme);
     //Pour cela j'utilise une boucle for pour parcourir mes themes
     for (c = 0; c < myThemes.theme.length; c++) {
         //Cela créer le bon nombre d'option avec l'id theme pour pouvoir choisir un theme dans le selecteur
@@ -314,10 +321,14 @@ function displayCreationFields(modeCreation) {
         //J'attribu un id à mon selcteur 
         selectTheme.id = "selectTheme";
     }
+
+    let columnLabelLevel=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    let columnInputLevel=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+
     //Creation d'un label pour le niveau de l'exercice
-    let labelLevel = ultimateHTMLGenerator("label", "NIVEAU", [], rowSelect);
+    let labelLevel = ultimateHTMLGenerator("label", "NIVEAU", ["text-justify","font-weight-bold"], columnLabelLevel);
     //Creation d'un input en rapport avec le label du niveau de l'exercice
-    let inputLevel = ultimateHTMLGenerator("input", "", [], rowSelect);
+    let inputLevel = ultimateHTMLGenerator("input", "", [], columnInputLevel);
     //Linput est de type number
     inputLevel.type = "number";
     //La valeur à l'interieur de mon input est myLevel
@@ -325,10 +336,13 @@ function displayCreationFields(modeCreation) {
     //J'attribu un id à mon input 
     inputLevel.id = "EXERCICE" + "_NIVEAU";
 
+    let columnLabelLink=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    let columnInputLink=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+
     //Creation d'un label pour le lien de mon exercice
-    let labelLink = ultimateHTMLGenerator("label", "LIEN", [], rowSelect);
+    let labelLink = ultimateHTMLGenerator("label", "LIEN", ["text-justify","font-weight-bold"], columnLabelLink);
     //Creation de l'input en rapport avec le label lien de l'exercice
-    let inputLink = ultimateHTMLGenerator("input", "", [], rowSelect);
+    let inputLink = ultimateHTMLGenerator("input", "", [], columnInputLink);
     //L'input est de type url (adresse)
     inputLink.type = "url";
     //La valeur à l'interieur de mon input est myLink
@@ -338,20 +352,22 @@ function displayCreationFields(modeCreation) {
 
     //Creation d'une ligne contenant 3 colonnes
     let rowLabel = ultimateHTMLGenerator("div", "", ["row"], myContainer);
+    rowLabel.id="rowLabel";
     //Colonne dans la ligne contenant le label de consigne de l'exercice
     let columnLabel1 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelOrder = ultimateHTMLGenerator("label", "ENONCE EXERCICE", [], columnLabel1);
+    let labelOrder = ultimateHTMLGenerator("label", "ENONCE EXERCICE", ["text-justify","font-weight-bold"], columnLabel1);
 
     //Colonne dans la ligne contenant le label de la réponse attendu
     let columnLabel2 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelExpectedResponse = ultimateHTMLGenerator("label", "REPONSE ATTENDU", [], columnLabel2);
+    let labelExpectedResponse = ultimateHTMLGenerator("label", "REPONSE ATTENDU", ["text-justify","font-weight-bold"], columnLabel2);
 
     //Colonne dans la ligne contenant le label de proposition de réponse
     let columnLabel3 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelSuggestion = ultimateHTMLGenerator("label", "PROPOSITIONS REPONSES", [], columnLabel3);
+    let labelSuggestion = ultimateHTMLGenerator("label", "PROPOSITIONS REPONSES", ["text-justify","font-weight-bold"], columnLabel3);
 
     //Creation d'une ligne qui va contenir les champs (input/textarea)
     let rowInputFields = ultimateHTMLGenerator("div", "", ["row"], myContainer);
+    rowInputFields.id="rowInputFields";
 
     //Colonne contenant l'input de la consigne
     let columnInput1 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
@@ -444,11 +460,15 @@ function displayCreationFields(modeCreation) {
         let buttonDelete = ultimateHTMLGenerator("button", "Supprimer", ["btn", "btn-danger"], column2ButtonUD);
         buttonDelete.id = "buttonDelete";
         //Au click sur le bouton delete intervient la partie du CRUD Delete
-        buttonDelete.onclick = function () { deleteExercice(myExercices.Exercice[indexExoEnCours]._ID) }
+        buttonDelete.onclick = function () { 
+            deleteExercice(myExercices.Exercice[indexExoEnCours]._ID); 
+            /*document.getElementById("myContainerCreateExercice").innerHTML = "";
+            tableau_exercice_stagiaire();*/
+        }
     } else {
         //Creation d'une ligne contenant le bouton Valider
         let rowButtonV = ultimateHTMLGenerator("div", "", ["row"], myContainer);
-        let buttonValidate = ultimateHTMLGenerator("button", "Valider", ["col", "btn", "btn-success"], rowButtonV);
+        let buttonValidate = ultimateHTMLGenerator("button", "Valider", ["btn", "btn-success"], rowButtonV);
         //Creation d'un id pour le bouton
         buttonValidate.id = "buttonValidate";
         //Liaison du bouton à l'evenement onclick qui appel la fonction creationExercice
@@ -462,6 +482,9 @@ function displayCreationFields(modeCreation) {
                 document.getElementById("EXERCICE" + "_LIEN").value,
                 selectTheme.value
             );
+            /*document.getElementById("myContainerCreateExercice").innerHTML = "";
+            tableau_exercice_stagiaire();*/
+
         };
     }
 
@@ -472,7 +495,7 @@ function displayCreationButtons(idExercice) {
 
     //Vide de la ligne pour laisser apparaitre le bouton Valider
     document.getElementById("rowButtonUD").innerHTML = "";
-    let buttonValidate = ultimateHTMLGenerator("button", "Valider", ["col", "btn", "btn-success"], rowButtonUD);
+    let buttonValidate = ultimateHTMLGenerator("button", "Valider", ["btn", "btn-success"], rowButtonUD);
     buttonValidate.id = "buttonValidate";
 
     //Au click sur le bouton  Valider intervient la partie du CRUD Update
@@ -486,6 +509,9 @@ function displayCreationButtons(idExercice) {
             document.getElementById("EXERCICE" + "_NIVEAU").value,
             document.getElementById("EXERCICE" + "_LIEN").value,
             document.getElementById("selectTheme").value);
+            /*document.getElementById("myContainerCreateExercice").innerHTML = "";
+            tableau_exercice_stagiaire();*/
+
     };
 }
 //_______________________________________________METRE A JOUR_______________________________________________
