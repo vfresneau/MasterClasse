@@ -287,11 +287,11 @@ function displayCreationFields(modeCreation) {
     let rowSelect = ultimateHTMLGenerator("div", "", ["row"], myContainer);
     rowSelect.id="rowSelect";
 
-    let columnLabelTitle=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    let columnLabelTitle=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
     let columnInputTtitle=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le titre de l'exerccice
-    let labelTitle = ultimateHTMLGenerator("label", "NOM EXERCICE", ["text-justify","fw-bold"],columnLabelTitle);
+    let labelTitle = ultimateHTMLGenerator("label", "NOM EXERCICE :", ["text-end","fw-bold","fs-6","bg-secondary"],columnLabelTitle);
     //Creation d'un input en rapport avec le label du titre de l'exercice
     let inputTitle = ultimateHTMLGenerator("input", "", [], columnInputTtitle);
     //L'input est de type text
@@ -301,11 +301,11 @@ function displayCreationFields(modeCreation) {
     //Le créer un id à mon input
     inputTitle.id = "EXERCICE" + "_NOM";
 
-    let columnLabelTheme=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    let columnLabelTheme=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
     let columnInputTheme=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le theme de l'exercice
-    let labelTheme = ultimateHTMLGenerator("label", "THEME", ["text-justify","fw-bold"], columnLabelTheme);
+    let labelTheme = ultimateHTMLGenerator("label", "THEME :", ["fw-bold","fs-6","bg-secondary"], columnLabelTheme);
     //Creation de mon selecteur de theme pour afficher le theme en cours de l'exercice selectionné
     let selectTheme = ultimateHTMLGenerator("select", "", [], columnInputTheme);
     //Pour cela j'utilise une boucle for pour parcourir mes themes
@@ -322,11 +322,11 @@ function displayCreationFields(modeCreation) {
         selectTheme.id = "selectTheme";
     }
 
-    let columnLabelLevel=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    let columnLabelLevel=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
     let columnInputLevel=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le niveau de l'exercice
-    let labelLevel = ultimateHTMLGenerator("label", "NIVEAU", ["text-justify","fw-bold"], columnLabelLevel);
+    let labelLevel = ultimateHTMLGenerator("label", "NIVEAU :", ["fw-bold","fs-6","bg-secondary"], columnLabelLevel);
     //Creation d'un input en rapport avec le label du niveau de l'exercice
     let inputLevel = ultimateHTMLGenerator("input", "", [], columnInputLevel);
     //Linput est de type number
@@ -336,11 +336,11 @@ function displayCreationFields(modeCreation) {
     //J'attribu un id à mon input 
     inputLevel.id = "EXERCICE" + "_NIVEAU";
 
-    let columnLabelLink=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    let columnLabelLink=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
     let columnInputLink=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le lien de mon exercice
-    let labelLink = ultimateHTMLGenerator("label", "LIEN", ["text-justify","fw-bold"], columnLabelLink);
+    let labelLink = ultimateHTMLGenerator("label", "LIEN :", ["fw-bold","fs-6","bg-secondary"], columnLabelLink);
     //Creation de l'input en rapport avec le label lien de l'exercice
     let inputLink = ultimateHTMLGenerator("input", "", [], columnInputLink);
     //L'input est de type url (adresse)
@@ -354,16 +354,16 @@ function displayCreationFields(modeCreation) {
     let rowLabel = ultimateHTMLGenerator("div", "", ["row"], myContainer);
     rowLabel.id="rowLabel";
     //Colonne dans la ligne contenant le label de consigne de l'exercice
-    let columnLabel1 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelOrder = ultimateHTMLGenerator("label", "ENONCE EXERCICE", ["text-justify","fw-bold"], columnLabel1);
+    let columnLabel1 = ultimateHTMLGenerator("div", "", ["col-4","text-left"], rowLabel);
+    let labelOrder = ultimateHTMLGenerator("label", "ENONCE EXERCICE :", ["fs-6","fw-bold","bg-secondary"], columnLabel1);
 
     //Colonne dans la ligne contenant le label de la réponse attendu
-    let columnLabel2 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelExpectedResponse = ultimateHTMLGenerator("label", "REPONSE ATTENDU", ["text-justify","fw-bold"], columnLabel2);
+    let columnLabel2 = ultimateHTMLGenerator("div", "", ["col-4","text-left"], rowLabel);
+    let labelExpectedResponse = ultimateHTMLGenerator("label", "REPONSE ATTENDU :", ["fs-6","fw-bold","bg-secondary"], columnLabel2);
 
     //Colonne dans la ligne contenant le label de proposition de réponse
-    let columnLabel3 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelSuggestion = ultimateHTMLGenerator("label", "PROPOSITIONS REPONSES", ["text-justify","fw-bold"], columnLabel3);
+    let columnLabel3 = ultimateHTMLGenerator("div", "", ["col-4","text-left"], rowLabel);
+    let labelSuggestion = ultimateHTMLGenerator("label", "PROPOSITIONS REPONSES :", ["fs-6","fw-bold","bg-secondary"], columnLabel3);
 
     //Creation d'une ligne qui va contenir les champs (input/textarea)
     let rowInputFields = ultimateHTMLGenerator("div", "", ["row"], myContainer);
