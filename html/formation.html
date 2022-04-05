@@ -14,40 +14,39 @@
     <!--feuille de style qui s'appliquera Pour ceux qui ont une résolution inférieure à 680px-->
     <link rel="stylesheet" media="screen and (max-width: 680px)" href="../css/petite_resolution.css" />
   </head>
-  <!-- Ici se trouve le titre MASTER CLASS avant le header-->
-  <div class="container-fluid">
-    <div class="row" id="titreAvantHeader">
-      <div class="col-2"> 
-        <img id="logo"
-          src="../image/logoGif.gif"
-          alt="logoGif">
-      </div> 
-      <div class="col-8 my-auto" id="colTitre">
-        <h1 id="titre_masterclasse">MASTER CLASSE</h1>
-      </div>
-      <div class="col-2"> </div>
-  </div>
-  </div>
-  <!--Ici se trouve le header avec la nav avec l'accueil, qui sommes nous, formation, aperçu, connexion,inscription-->
-  <header> 
-    <nav class="navbar navbar-expand navbar-dark">
-      <div class="container-fluid">
-        <ul class="navbar-nav mx-auto">
-          <a class="nav-link px-5" href="./accueil.html">Accueil</a>
-          <a class="nav-link px-5" href="./qui_sommes_nous.html">Qui sommes nous ?</a>
-          <a class="nav-link px-5" href="formation.html">Formation</a>
-          <a class="nav-link px-5" href="apercu.html">Aperçu</a>
-        </ul>
-        <div class="navbar-nav">
-          <a class="nav-link" href="./connexion.html">Connexion</a>
-        <a class="nav-link px-5" href="./inscription.html">Inscription</a>
-        </div>
-      </div>
-    </nav>
-  </header>
   
   <!--Ici se trouve le corps de ma page-->
   <body>
+    <!-- Ici se trouve le titre MASTER CLASS avant le header-->
+    <div class="container-fluid">
+      <div class="row" id="titreAvantHeader">
+        <div class="col-2"> 
+          <img id="logo" src="../image/logoGif.gif" alt="logoGif">
+        </div> 
+        <div class="col-8 my-auto" id="colTitre">
+          <h1 id="titre_masterclasse">MASTER CLASSE</h1>
+        </div>
+        <div class="col-2"> </div>
+      </div>
+    </div>
+    <!--Ici se trouve le header avec la nav avec l'accueil, qui sommes nous, formation, aperçu, connexion,inscription-->
+    <header> 
+      <nav class="navbar navbar-expand navbar-dark">
+        <div class="container-fluid">
+          <ul class="navbar-nav mx-auto">
+            <a class="nav-link px-5" href="./accueil.html">Accueil</a>
+            <a class="nav-link px-5" href="./qui_sommes_nous.html">Qui sommes nous ?</a>
+            <a class="nav-link px-5" href="formation.html">Formation</a>
+            <a class="nav-link px-5" href="apercu.html">Aperçu</a>
+          </ul>
+          <div class="navbar-nav">
+            <a class="nav-link" href="./connexion.html">Connexion</a>
+          <a class="nav-link px-5" href="./inscription.html">Inscription</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <div class="container-fluid">
       <article>
         <div class="row my-2">
@@ -56,7 +55,7 @@
               <h4 id="titre_liste_formation">Liste des centres de formation :</h4>
               <!--Centre de La  Riche-->
               <div class="col-6">
-                <p id="adresse">
+                <p id="adresseLR">
                   45 rue de la parmentière
                   <br>
                   37520 La Riche
@@ -65,11 +64,11 @@
                 </p>
               </div>
               <div class="col-6">
-                <img id="img_campus" src="../image/qsn-1.jfif" alt="campus1">
+                <img id="img_campusLR" src="../image/qsn-1.jfif" alt="campus1">
               </div>
               <!--Centre de La Ville aux Dames-->
               <div class="col-6">
-                <p id="adresse">
+                <p id="adresseLVD">
                   Zone industrielle
                   <br>
                   Bois de Plante
@@ -82,11 +81,11 @@
                 </p>
               </div>
               <div class="col-6">
-              <img id="img_campus" src="../image/qsn-2.jfif" alt="campus2">
+              <img id="img_campusLVD" src="../image/qsn-2.jfif" alt="campus2">
               </div>
               <!--Centre de  Amboise-->
               <div class="col-6">
-                <p id="adresse">
+                <p id="adresseA">
                   Zone industrielle
                   <br>
                   La Filadelle
@@ -99,11 +98,11 @@
                 </p>
               </div>
               <div class="col-6">
-              <img id="img_campus" src="../image/qsn-3.jfif" alt="campus3">
+              <img id="img_campusA" src="../image/qsn-3.jfif" alt="campus3">
               </div>
               <!--Centre de Tours-->
               <div class="col-6">
-                <p id="adresse">
+                <p id="adresseT">
                   Zone industrielle
                   <br>
                   Les Saisons
@@ -126,7 +125,7 @@
                 </p>
               </div>
               <div class="col-6">
-                <img id="img_campus" src="../image/qsn-4.jfif" alt="campus4">
+                <img id="img_campusT" src="../image/qsn-4.jfif" alt="campus4">
               </div>
             </div>
           </div>

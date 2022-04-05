@@ -54,7 +54,6 @@
 }
 
 /*_________________________________________________PAGE APERCU______________________________________________*/
-
 /*Titre h4 Cours en libre acces*/
 #titre_cours_libre{
     margin-top: 40px;
@@ -67,13 +66,62 @@
     color:white;
 }
 
+/*Ligne qui contient l'aperçu du cours*/
+#ligne_apercu_coursHTML{
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 1147px;
+    margin-top: 20px;
+}
+
 /*Paragraphes apercu cours*/
-#p_cours{
+#p_coursTHTML{
+    color: #A44EB3;
+}
+/*Paragraphes apercu cours*/
+#p_coursHTML{
     color: #A44EB3;
 }
 
 /*Image qui accompagne l'aperçu du cours*/
-#img_apercu{
+#img_apercuHTML{
+    margin-top: 20px;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 120px;
+    width: 125px;
+}
+
+/*Développement-Cours*/
+#h5_titre_coursHTML{
+    color: #A44EB3;
+    font-weight: bold;
+}
+/*______________________________________________JS____________________________________________________________*/
+/*Ligne qui contient l'aperçu du cours*/
+#ligne_apercu_coursJS{
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 1147px;
+    margin-top: 20px;
+}
+
+/*Paragraphes apercu cours*/
+#p_coursTJS{
+    color: #A44EB3;
+}
+/*Paragraphes apercu cours*/
+#p_coursJS{
+    color: #A44EB3;
+}
+
+/*Image qui accompagne l'aperçu du cours*/
+#img_apercuJS{
     margin-top: 20px;
     border: 3px solid #A44EB3;
     box-sizing: border-box;
@@ -83,7 +131,7 @@
 }
 
 /*Ligne qui contient l'aperçu du cours*/
-#ligne_apercu_cours{
+#ligne_apercu_coursJS{
     background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
     border: 3px solid #A44EB3;
     box-sizing: border-box;
@@ -93,7 +141,99 @@
 }
 
 /*Développement-Cours*/
-#h5_titre_cours{
+#h5_titre_coursJS{
+    color: #A44EB3;
+    font-weight: bold;
+}
+
+/*______________________________________________CSS____________________________________________________________*/
+/*Ligne qui contient l'aperçu du cours*/
+#ligne_apercu_coursCSS{
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 1147px;
+    margin-top: 20px;
+}
+
+/*Paragraphes apercu cours*/
+#p_coursTCSS{
+    color: #A44EB3;
+}
+/*Paragraphes apercu cours*/
+#p_coursCSS{
+    color: #A44EB3;
+}
+
+/*Image qui accompagne l'aperçu du cours*/
+#img_apercuCSS{
+    margin-top: 20px;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 120px;
+    width: 125px;
+}
+
+/*Ligne qui contient l'aperçu du cours*/
+#ligne_apercu_coursCSS{
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 1147px;
+    margin-top: 20px;
+}
+
+/*Développement-Cours*/
+#h5_titre_coursCSS{
+    color: #A44EB3;
+    font-weight: bold;
+}
+
+/*______________________________________________PHP____________________________________________________________*/
+/*Ligne qui contient l'aperçu du cours*/
+#ligne_apercu_coursPHP{
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 1147px;
+    margin-top: 20px;
+}
+
+/*Paragraphes apercu cours*/
+#p_coursTPHP{
+    color: #A44EB3;
+}
+/*Paragraphes apercu cours*/
+#p_coursPHP{
+    color: #A44EB3;
+}
+
+/*Image qui accompagne l'aperçu du cours*/
+#img_apercuPHP{
+    margin-top: 20px;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 120px;
+    width: 125px;
+}
+
+/*Ligne qui contient l'aperçu du cours*/
+#ligne_apercu_coursPHP{
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 1147px;
+    margin-top: 20px;
+}
+
+/*Développement-Cours*/
+#h5_titre_coursPHP{
     color: #A44EB3;
     font-weight: bold;
 }
@@ -107,7 +247,41 @@
 /*_________________________________________________PAGE FORMATION______________________________________________*/
 
 /*Adresses des centres*/
-#adresse{
+#adresseLR{
+    margin-top: 20px;
+    padding-left: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+
+/*Adresses des centres*/
+#adresseLVD{
+    margin-top: 20px;
+    padding-left: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+/*Adresses des centres*/
+#adresseA{
+    margin-top: 20px;
+    padding-left: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+/*Adresses des centres*/
+#adresseT{
     margin-top: 20px;
     padding-left: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -169,11 +343,32 @@
 }
 
 /*Image qui va avec l'adresse du centre*/
-#img_campus{
+#img_campusLR{
     margin-top: 10px;
     width: 180px;
     height: 90px;
 }
+/*Image qui va avec l'adresse du centre*/
+#img_campusLVD{
+    margin-top: 10px;
+    width: 180px;
+    height: 90px;
+}
+
+/*Image qui va avec l'adresse du centre*/
+#img_campusA{
+    margin-top: 10px;
+    width: 180px;
+    height: 90px;
+}
+
+/*Image qui va avec l'adresse du centre*/
+#img_campusT{
+    margin-top: 10px;
+    width: 180px;
+    height: 90px;
+}
+
 
 /*Colonne bleu d ela page formation*/
 #colonne_bleu_formation{
