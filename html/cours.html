@@ -18,7 +18,6 @@
     <link rel="stylesheet" media="screen and (max-width: 680px)" href="../css/petite_resolution.css" />
 </head>
 <!-- Ici se trouve mon body qui contien le container où se trouve le contenu de ma page-->
-
 <body>
     <!-- Ici se trouve le titre MASTER CLASS avant le header-->
     <div class="container-fluid">
@@ -34,7 +33,6 @@
         <div class="col-2"> </div>
     </div>
     </div>
-
     <!--Ici se trouve le header avec la nav avec l'accueil, qui sommes nous, formation, aperçu, connexion, inscription-->
     <header> 
         <nav class="navbar navbar-expand navbar-dark">
@@ -56,37 +54,39 @@
     <div class="container-fluid">
             <div class="row justify-content-around text-center my-5">
                 <div class="col-4">
-                    <img src="../image/html_5.png" id="logo-HTML" alt="logo-HTML">
+                    <a href="#">
+                        <img src="../image/html_5.png" id="logo-HTML" alt="logo-HTML" onclick="loadHtml()">
+                    </a>
                 </div>
                 <div class="col-4">
-                    <img src="../image/css.png" id="logo-CSS" alt="logo-CSS">
+                    <a href="#">
+                        <img src="../image/css.png" id="logo-CSS" alt="logo-CSS" onclick="loadCss()">
+                    </a>
                 </div>
                 <div class="col-4">
-                    <img src="../image/js.png" id="logo-JS"  alt="logo-JS">
+                    <a href="#">
+                        <img src="../image/js.png" id="logo-JS"  alt="logo-JS" onclick="loadJs()">
+                    </a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-5 text-end">
-                    <img src="../image/php_logo_20743.png" alt="logo-PHP" id="logo-PHP">
+                    <a href="#">
+                        <img src="../image/php_logo_20743.png" alt="logo-PHP" id="logo-PHP" onclick="loadPhp()">
+                    </a>
                 </div>
                 <div class="col-6 text-center">
-                    <img src="../image/sql.PNG" alt="logo-SQL" id="logo-SQL">
+                    <a href="#">
+                        <img src="../image/sql.PNG" alt="logo-SQL" id="logo-SQL" onclick="loadSql()">
+                    </a>
                 </div>
                 <div class="col"></div>
             </div>
     </div> 
-
-
-
-
-
-
-
-
-
             <!--Ici se trouve le footer-->
             <footer class="footer d-flex bottom">
                 <div class="col-4">
+                    <!--renvoie sur sur une alert-->
                     <a href="" class="nav-link text-white" id="link_contact">CONTACT</a>
                 </div>
                 <div class="col-4">
@@ -103,6 +103,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <!-- Custom JS -->
+    <script src="../js/espace_stagiaire.js" async defer></script>
 </body>
 
 </html>

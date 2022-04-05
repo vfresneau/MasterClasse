@@ -16,11 +16,39 @@ let container = document.getElementById("container_espace_stagiaire");
 let myExercices = {};
 let myThemes = {};
 
+//________________________________________________LIENS______________________________________________________________________________________//
+
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
 myLinkContact.onclick = function () {
     alert("Téléphone : 02.47.39.24.01" + "\n" + "Mail : formation.dev@mail.fr");
 };
+
+function loadExamens(){
+    window.location.href="https://apcpedagogie.com/examen-4-en-html-css-et-js/";
+}
+//Lors de la fonction onclick j'affiche les cours de HTML
+function loadHtml(){
+    window.location.href = 'https://www.w3schools.com/html/default.asp';
+}
+//Lors de la fonction onclick j'affiche les cours de CSS
+function loadCss(){
+    window.location.href = 'https://www.w3schools.com/css/default.asp';
+}
+//Lors de la fonction onclick j'affiche les cours de JS
+function loadJs(){
+    window.location.href = 'https://www.w3schools.com/js/default.asp';
+}
+//Lors de la fonction onclick j'affiche les cours SQL
+function loadSql(){
+    window.location.href = 'https://www.w3schools.com/sql/default.asp';
+}
+//Lors de la fonction onclick j'affiche les cours de PHP
+function loadPhp(){
+    window.location.href = 'https://www.w3schools.com/php/default.asp';
+}
+
+//____________________________________________________________FONCTION PRINCIPAL________________________________________________________________________________//
 
 function tableau_exercice_stagiaire() {
 
