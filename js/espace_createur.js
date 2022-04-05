@@ -291,7 +291,7 @@ function displayCreationFields(modeCreation) {
     let columnInputTtitle=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le titre de l'exerccice
-    let labelTitle = ultimateHTMLGenerator("label", "NOM EXERCICE", ["text-justify","font-weight-bold"],columnLabelTitle);
+    let labelTitle = ultimateHTMLGenerator("label", "NOM EXERCICE", ["text-justify","fw-bold"],columnLabelTitle);
     //Creation d'un input en rapport avec le label du titre de l'exercice
     let inputTitle = ultimateHTMLGenerator("input", "", [], columnInputTtitle);
     //L'input est de type text
@@ -305,7 +305,7 @@ function displayCreationFields(modeCreation) {
     let columnInputTheme=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le theme de l'exercice
-    let labelTheme = ultimateHTMLGenerator("label", "THEME", ["text-justify","font-weight-bold"], columnLabelTheme);
+    let labelTheme = ultimateHTMLGenerator("label", "THEME", ["text-justify","fw-bold"], columnLabelTheme);
     //Creation de mon selecteur de theme pour afficher le theme en cours de l'exercice selectionné
     let selectTheme = ultimateHTMLGenerator("select", "", [], columnInputTheme);
     //Pour cela j'utilise une boucle for pour parcourir mes themes
@@ -326,7 +326,7 @@ function displayCreationFields(modeCreation) {
     let columnInputLevel=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le niveau de l'exercice
-    let labelLevel = ultimateHTMLGenerator("label", "NIVEAU", ["text-justify","font-weight-bold"], columnLabelLevel);
+    let labelLevel = ultimateHTMLGenerator("label", "NIVEAU", ["text-justify","fw-bold"], columnLabelLevel);
     //Creation d'un input en rapport avec le label du niveau de l'exercice
     let inputLevel = ultimateHTMLGenerator("input", "", [], columnInputLevel);
     //Linput est de type number
@@ -340,7 +340,7 @@ function displayCreationFields(modeCreation) {
     let columnInputLink=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
 
     //Creation d'un label pour le lien de mon exercice
-    let labelLink = ultimateHTMLGenerator("label", "LIEN", ["text-justify","font-weight-bold"], columnLabelLink);
+    let labelLink = ultimateHTMLGenerator("label", "LIEN", ["text-justify","fw-bold"], columnLabelLink);
     //Creation de l'input en rapport avec le label lien de l'exercice
     let inputLink = ultimateHTMLGenerator("input", "", [], columnInputLink);
     //L'input est de type url (adresse)

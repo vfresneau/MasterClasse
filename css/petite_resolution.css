@@ -1,8 +1,8 @@
 /*________________________________________________RESPONSIVE____________________________*/
 /*Règles CSS pour les mobiles ici */
 
-@media all and (max-device-width: 680px)
-{
+
+
     #logo-SQL,#logo-JS,#logo-HTML,#logo-CSS{
         margin-top: 20px;
         box-sizing: border-box;
@@ -13,12 +13,11 @@
         height: 100px;
         width: 100px;
     }
-}
+
 
 footer{
     visibility:hidden;
 }
-
 
 /*___________________________________________TITRE AVANT HEADER___________________________________________*/
 #titreAvantHeader{
