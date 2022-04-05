@@ -247,7 +247,41 @@
 /*_________________________________________________PAGE FORMATION______________________________________________*/
 
 /*Adresses des centres*/
-#adresse{
+#adresseLR{
+    margin-top: 20px;
+    padding-left: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+
+/*Adresses des centres*/
+#adresseLVD{
+    margin-top: 20px;
+    padding-left: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+/*Adresses des centres*/
+#adresseA{
+    margin-top: 20px;
+    padding-left: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+/*Adresses des centres*/
+#adresseT{
     margin-top: 20px;
     padding-left: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -309,11 +343,32 @@
 }
 
 /*Image qui va avec l'adresse du centre*/
-#img_campus{
+#img_campusLR{
     margin-top: 10px;
     width: 180px;
     height: 90px;
 }
+/*Image qui va avec l'adresse du centre*/
+#img_campusLVD{
+    margin-top: 10px;
+    width: 180px;
+    height: 90px;
+}
+
+/*Image qui va avec l'adresse du centre*/
+#img_campusA{
+    margin-top: 10px;
+    width: 180px;
+    height: 90px;
+}
+
+/*Image qui va avec l'adresse du centre*/
+#img_campusT{
+    margin-top: 10px;
+    width: 180px;
+    height: 90px;
+}
+
 
 /*Colonne bleu d ela page formation*/
 #colonne_bleu_formation{
