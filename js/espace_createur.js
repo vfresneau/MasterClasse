@@ -355,15 +355,15 @@ function displayCreationFields(modeCreation) {
     rowLabel.id="rowLabel";
     //Colonne dans la ligne contenant le label de consigne de l'exercice
     let columnLabel1 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelOrder = ultimateHTMLGenerator("label", "ENONCE EXERCICE", ["text-justify","font-weight-bold"], columnLabel1);
+    let labelOrder = ultimateHTMLGenerator("label", "ENONCE EXERCICE", ["text-justify","fw-bold"], columnLabel1);
 
     //Colonne dans la ligne contenant le label de la réponse attendu
     let columnLabel2 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelExpectedResponse = ultimateHTMLGenerator("label", "REPONSE ATTENDU", ["text-justify","font-weight-bold"], columnLabel2);
+    let labelExpectedResponse = ultimateHTMLGenerator("label", "REPONSE ATTENDU", ["text-justify","fw-bold"], columnLabel2);
 
     //Colonne dans la ligne contenant le label de proposition de réponse
     let columnLabel3 = ultimateHTMLGenerator("div", "", ["col-4"], rowLabel);
-    let labelSuggestion = ultimateHTMLGenerator("label", "PROPOSITIONS REPONSES", ["text-justify","font-weight-bold"], columnLabel3);
+    let labelSuggestion = ultimateHTMLGenerator("label", "PROPOSITIONS REPONSES", ["text-justify","fw-bold"], columnLabel3);
 
     //Creation d'une ligne qui va contenir les champs (input/textarea)
     let rowInputFields = ultimateHTMLGenerator("div", "", ["row"], myContainer);
