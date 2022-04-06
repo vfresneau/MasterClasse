@@ -468,7 +468,7 @@
 /*_______________________________________________ESPACE CREATEUR________________________________________*/
 
 /*Bouton pour examen cours exercice*/
-#bouton{
+#boutonCours{
     margin-top: 200px;
     margin-left: 150px;
     width: 208px;
@@ -480,6 +480,35 @@
     color: #A44EB2;
     font-weight: bold;
 }
+
+/*Bouton pour examen cours exercice*/
+#boutonExercice{
+    margin-top: 200px;
+    margin-left: 150px;
+    width: 208px;
+    height: 106px;
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 255px;
+    color: #A44EB2;
+    font-weight: bold;
+}
+
+/*Bouton pour examen cours exercice*/
+#boutonExamen{
+    margin-top: 200px;
+    margin-left: 150px;
+    width: 208px;
+    height: 106px;
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 255px;
+    color: #A44EB2;
+    font-weight: bold;
+}
+
 /*______________________________________PAGE AFFICHAGE EXERCICE STAGIAIRE_______________________________*/
 /*Bouton pour aller a l'exercice suivant*/
 #NextButton1{

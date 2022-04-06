@@ -40,7 +40,7 @@
           <!--Ici je créer le lien dans la barre de navigation pour me deconnecter-->
           <div class="navbar-nav">
             <a href="./accueil.html">
-              <img id="logo_deconnecter" src="..\image\deconnecter.png" alt="">
+              <img id="logo_deconnecter" src="../image/deconnecter.png" alt="">
             </a>
           </div>
         </div>
@@ -48,21 +48,19 @@
     </header>
     <!--Je créer un container fluid qui contien 3 lignes avec leur libellés-->
     <div class="container-fluid" id="myContainerCreateExercice">
-      <article>
         <div class="row">
             <div class="col-4">
               <!--Au onclick j'appel la fonction ReadTheme de mon JavaScript qui va vider
               le contenu de ce container et le remplacer par le contenu de la fonction create_Exercice-->
-              <button class="btn" onclick="load_Exercice()" id="bouton">EXERCICE</button>
+              <button class="btn" onclick="load_Exercice()" id="boutonExercice">EXERCICE</button>
             </div>
             <div class="col-4">
-              <button class="btn" onclick="loadCours()" id="bouton">COURS</button>
+              <button class="btn" onclick="loadCours()" id="boutonCours">COURS</button>
             </div>
             <div class="col-4">
-              <button class="btn" onclick="loadExamens()" id="bouton">EXAMEN</button>
+              <button class="btn" onclick="loadExamens()" id="boutonExamen">EXAMEN</button>
             </div>
         </div>
-      </article>
     </div>
     <!--Ici se trouve le footer-->
     <footer class="footer d-flex bottom">
