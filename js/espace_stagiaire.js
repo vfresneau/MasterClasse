@@ -51,7 +51,6 @@ function loadPhp(){
 //____________________________________________________________FONCTION PRINCIPAL________________________________________________________________________________//
 
 function tableau_exercice_stagiaire() {
-
     //on efface l'exercice
     container.innerHTML = "";
 
@@ -226,7 +225,6 @@ function ReadTheme(functioncallback) {
         // quand on reçois une réponse "fini" du notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             functioncallback(xhr);
-
         }
     }
     //ici  l'adresse url du web service
