@@ -414,6 +414,19 @@
     font-weight: bold;
 }
 
+/*Ligne qui correspond à ma vignette cours*/
+#examens{
+    margin-top: 80px;
+    width: 204px;
+    height: 135px;
+    background: #FFFFFF;
+    border: 3px solid #A44EB3;
+    box-sizing: border-box;
+    border-radius: 25px;
+    color: #A44EB3;
+    font-weight: bold;
+}
+
 /*Ligne qui correspond à ma vignette examen*/
 #examen{
     margin-top: 80px;
