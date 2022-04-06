@@ -1,23 +1,30 @@
+<!-- Instruction au navigateur web sur la version du langage (HTML 5) de balisage dont la page est écrite -->
 <!DOCTYPE html>
+<!--Langue de la page-->
 <html lang="fr">
-
+  <!--En-têtes du document ou se trouve toutes les méta-données-->
 <head>
+  <!--Les balises "META" servent pour le referencement de nos pages-->
+  
+  <!--Encodage qui prend en compte les caractères spéciaux-->
   <meta charset="utf-8">
+  <!--conserver la compatibilité avec les anciens navigateurs-->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--Titre de la page -->
   <title>APERCU</title>
+<!--balise de méta-données qui donne une description de la page-->
   <meta name="description" content="">
+  <!--Optimisé pour les mobiles-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap CSS -->
+  <!-- Frameworks CSS : Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <!-- Custom CSS -->
+  <!--Liens qui renvoie au fichier CSS -->
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/css_chloe.css">
-  <!--feuille de style qui s'appliquera Pour ceux qui ont une résolution inférieure à 680px-->
-  <link rel="stylesheet" media="screen and (max-width: 680px)" href="../css/petite_resolution.css" />
+  <link rel="stylesheet" href="../css/css_chloe.css">  <!--feuille de style qui s'appliquera Pour ceux qui ont une résolution inférieure à 680px-->
+  <link rel="stylesheet" media="screen and (max-width: 680px)" href="../css/petite_resolution.css"/>
 </head>
-<!--Ici se trouve le corps de ma page-->
-
+<!-- Balise qui contient le corps de ma page-->
 <body>
   <!-- Ici se trouve le titre MASTER CLASS avant le header-->
   <div class="container-fluid">
@@ -31,7 +38,6 @@
       <div class="col-2"> </div>
     </div>
   </div>
-
   <!--Ici se trouve le header avec la nav avec l'accueil, qui sommes nous, formation, aperçu, connexion, inscription-->
   <header>
     <nav class="navbar navbar-expand navbar-dark">
@@ -49,96 +55,115 @@
       </div>
     </nav>
   </header>
-  <!--J'ouvre ma balise article dans laquelle je met le contenu de ma page d'aperçu des cours lorsque je ne suis pas logué-->
-  <article>
-    <h4 id="titre_cours_libre">Cours en libre acces : </h4>
-    <div class="col-12" id="colonne_cours">
-      <!--Premier block cours HTML-->
-      <div class="row" id="ligne_apercu_coursHTML">
-        <!--Chaque block d'aperçu de cours contien une image en rapport avec le cours-->
-        <div class="col-3">
-          <img id="img_apercuHTML" src="../image/html_5.png" alt="">
+  <!--Titre -->
+  <h4 id="titre_cours_libre">Cours en libre acces :
+  </h4>
+  <!--container qui regroupe 4 articles-->
+  <div class="container-fluid" id="colonne_cours">
+    <article>
+        <!--1er article qui contient une image, un titre et 2 paragraphes pour le HTML-->
+        <div class="row" id="ligne_apercu_coursHTML">
+          <div class="col-3">
+            <img id="img_apercuHTML" src="../image/html_5.png" alt="logo-HTML">
+          </div>
+          <div class="col">
+            <h5 id="h5_titre_coursHTML">Développpement - Cours</h5>
+            <p id="p_coursTHTML">Apprenez à créer votre site web, avec HTML5.</p>
+            <p id="p_coursHTML">Vous souhaitez créer vos propres sites web ? Vous êtes au bon endroit !
+              Dans ce cours, vous apprendrez comment utiliser HTML5 , le langage de programmation à la base de tous les
+              sites web.
+            </p>
+          </div>
         </div>
-        <!--J'utilise du responsive design pour que sur un support plus petit, le contenu s'affiche en dessous-->
-        <div class="col-sm-6">
-          <!--Chaque block d'aperçu de cours contien un titre de type h5-->
-          <h5 id="h5_titre_coursHTML">Développpement - Cours</h5>
-          <!--Deux paragraphes pour expliquer ce que contien le cours-->
-          <p id="p_coursTHTML">Apprenez à créer votre site web, avec HTML5.</p>
-          <p id="p_coursHTML">Vous souhaitez créer vos propres sites web ? Vous êtes au bon endroit !
-            Dans ce cours, vous apprendrez comment utiliser HTML5 , le langage de programmation à la base de tous les
-            sites web.
-          </p>
-        </div>
-      </div>
+    </article>
 
-      <!--Deuxième block cours JS-->
-      <div class="row" id="ligne_apercu_coursJS">
-        <div class="col-3">
-          <img id="img_apercuJS" src="../image/js.png" alt="">
-        </div>
-        <div class="col-sm-6">
-          <h5 id="h5_titre_coursJS">Développpement - Cours</h5>
-          <p id="p_coursTJS">Apprenez à créer votre site web, avec JavaScript.</p>
-          <p id="p_coursJS">Pour créer des programmes d'ordinateur ou bâtir l'application de vos rêves, vous devez savoir
-            comment coder dans un langage de programmation. Les applications s'appuient sur des données et une logique
-            pour accomplir leur magie,
-            et cela exige qu'un programmeur – vous – indique à l'ordinateur ce qu'il faut faire et comment.
-          </p>
-        </div>
-      </div>
+        <article>
+          <!--1er article qui contient une image, un titre et 2 paragraphe pour le JS-->
+          <div class="row" id="ligne_apercu_coursJS">
+            <div class="col-3">
+              <img id="img_apercuJS" src="../image/js.png" alt="logo-JS">
+            </div>
+            <div class="col-sm-6">
+              <h5 id="h5_titre_coursJS">Développpement - Cours</h5>
+              <p id="p_coursTJS">Apprenez à créer votre site web, avec JavaScript.</p>
+              <p id="p_coursJS">Pour créer des programmes d'ordinateur ou bâtir l'application de vos rêves, vous devez savoir
+                comment coder dans un langage de programmation. Les applications s'appuient sur des données et une logique
+                pour accomplir leur magie,
+                et cela exige qu'un programmeur – vous – indique à l'ordinateur ce qu'il faut faire et comment.
+              </p>
+            </div>
+          </div>
+        </article>
 
-      <!--Troisième block cours CSS-->
-      <div class="row" id="ligne_apercu_coursCSS">
-        <div class="col-3">
-          <img id="img_apercuCSS" src="../image/css.png" alt="">
+        <article>
+          <!--1er article qui contient une image, un titre et 2 paragraphe pour le CSS-->
+        <div class="row" id="ligne_apercu_coursCSS">
+          <div class="col-3">
+            <img id="img_apercuCSS" src="../image/css.png" alt="logo-CSS">
+          </div>
+          <div class="col-sm-6">
+            <h5 id="h5_titre_coursCSS">Développpement - Cours</h5>
+            <p id="p_coursTCSS">Apprenez à créer votre site web, avec CSS.</p>
+            <p id="p_coursCSS">Vous souhaitez créer vos propres sites web ? Vous êtes au bon endroit ! Dans ce cours,
+              vous apprendrez comment utiliser CSS3, le langage de programmation à la base de tous les sites web.
+            </p>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <h5 id="h5_titre_coursCSS">Développpement - Cours</h5>
-          <p id="p_coursTCSS">Apprenez à créer votre site web, avec CSS.</p>
-          <p id="p_coursCSS">Vous souhaitez créer vos propres sites web ? Vous êtes au bon endroit ! Dans ce cours,
-            vous apprendrez comment utiliser CSS3, le langage de programmation à la base de tous les sites web.
-          </p>
-        </div>
-      </div>
+        </article>
 
-      <!--Quatrième block cours PHP-->
-      <div class="row my-4" id="ligne_apercu_coursPHP">
-        <div class="col-3">
-          <img id="img_apercuPHP" src="../image/php_logo_20743.png" alt="">
+        <article>
+          <!--1er article qui contient une image, un titre et 2 paragraphe pour le PHP -->
+        <div class="row my-4" id="ligne_apercu_coursPHP">
+          <div class="col-3">
+            <img id="img_apercuPHP" src="../image/php_logo_20743.png" alt="logo-PHP">
+          </div>
+          <div class="col-sm-6">
+            <h5 id="h5_titre_coursPHP">Développpement - Cours</h5>
+            <p id="p_coursTPHP">Apprenez à créer votre site web, avec PHP.</p>
+            <p id="p_coursPHP">Dans ce cours, nous utiliserons PHP dans sa version 8 pour apprendre la programmation orientée
+              objet.
+              Au travers de plusieurs exemples et d'un cas concret, découvrons les classes, les objets, l’héritage, et
+              comment mieux structurer votre code avec la POO !
+            </p>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <h5 id="h5_titre_coursPHP">Développpement - Cours</h5>
-          <p id="p_coursTPHP">Apprenez à créer votre site web, avec PHP.</p>
-          <p id="p_coursPHP">Dans ce cours, nous utiliserons PHP dans sa version 8 pour apprendre la programmation orientée
-            objet.
-            Au travers de plusieurs exemples et d'un cas concret, découvrons les classes, les objets, l’héritage, et
-            comment mieux structurer votre code avec la POO !
-          </p>
-        </div>
-      </div>
-    </div>
-  </article>
-  <!--J'utilise la balise footer pour créer mon pied de  page-->
-  <footer class="footer d-flex bottom mx-auto">
+      </article>
+
+  </div>
+  <!--Ici se trouve le footer-->
+  <footer class="footer d-flex bottom">
+    <!--ouverture d'une balise colonne qui va occuper l’espace de 4 colonnes selon boostraps-->
     <div class="col-4">
-      <a href="" class="nav-link text-white" id="link_contact">CONTACT</a>
+      <!--creation d'un lien avec un nom unique-->
+      <a href="" class="nav-link text-white" id="link_contact">CONTACT
+        <!--fermeture de la balise lien-->
+      </a>
+      <!--fermeture de la balise colonne-4-->
     </div>
+    <!--ouverture d'une balise colonne qui va occuper l’espace de 4 colonnes selon boostraps-->
     <div class="col-4">
+      <!--creation d'un lien avec un nom unique-->
       <a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees#:~:text=R%C3%A8glement%20(UE)%202016%2F679,sur%20la%20protection%20des%20donn%C3%A9es)."
-        class="nav-link text-white" id="link_politique">POLITIQUE DES DONNEES</a>
+        class="nav-link text-white" id="link_politique">POLITIQUE DES DONNEES
+        <!--fermeture de la balise lien-->
+      </a>
+<!--fermeture de la balise colonne-4-->
     </div>
+    <!--ouverture d'une balise colonne qui va occuper l’espace de 4 colonnes selon boostraps-->
     <div class="col-4">
-      <a href="https://www.economie.gouv.fr/mentions-legales" class="nav-link text-white" id="link_mention">MENTIONS
-        LEGALES</a>
+      <!--creation d'un lien avec un nom unique-->
+      <a href="https://www.economie.gouv.fr/mentions-legales" class="nav-link text-white" id="link_mention">MENTIONS LEGALES
+      <!--fermeture de la balise lien-->
+      </a>
+      <!--fermeture de la balise colonne-4-->
     </div>
+    <!--fermeture de la balise footer-->
   </footer>
-  <!-- BootStrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-  <!-- Custom JS -->
+  <!--creation d'une balise script afin d'intégrer le pack bootstraps -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <!-- Liens qui renvoie au fichiers Javascript -->
   <script src="../js/espace_stagiaire.js" async defer></script>
-</body>
-
+  <!--fermeture de la balise body-->
+  </body>
+  <!--fermeture de la balise html-->
 </html>

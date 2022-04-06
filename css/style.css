@@ -1,10 +1,12 @@
 
 /*___________________________________________TITRE AVANT HEADER___________________________________________*/
+
+/*Largeur et couleur de la ligne contenant le titre avant header*/
 #titreAvantHeader{
     height: 116px;
     background-color: #62C9F5;
 }
-
+/*TITRE AVANT HEADER*/
 #titre_masterclasse{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 64px;
@@ -16,7 +18,7 @@
     color: rgb(250, 250, 250);
 }
 
-/* MASTER logo */
+/*Logo du titre de la page*/
 #logo{
     position: absolute;
     width: 125px;
@@ -146,10 +148,6 @@
     max-height: 718px;
     border :10px solid rgba(164, 78, 178, 1)
 }
-
-.ligne_connexion{
-    height: 639px;
-}
 /*_______________________________________________HEADER______________________________________________*/
 /*couleur titre nav au survol*/
 .nav-link:hover {
@@ -172,14 +170,7 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     margin:0;
-    /*display: grid; /*Transforme la balise body en contenur grid*/
-    /*grid-template-rows: auto 1fr auto; /*défini la hauteur que les lignes 
-de la grille doivent occuper. Auto correspond à la hauteur par défaut de 
-la ligne (en fonction de ce qu'il y a dedans donc). Fr (fraction) permet 
-d'occuper l'espace restant*/
-
-    /*height: 100vh; /*vh (pour viewport height) permet de s'assurer que le 
-body fera bien toute la hauteur de la surface d'affichage du navigateur*/
+    padding:0;
 }
 /*________________________________________________ACCUEIL____________________________________________*/
 
@@ -279,19 +270,21 @@ footer{
     bottom: 0; left: 0; right: 0;
     margin-top: 18%;
 }
-
+/*Liens contact*/
 #link_contact{
     text-align: right;
 }
+/*Liens politique*/
 #link_politique{
     text-align: center;
 }
+/*Liens mention*/
 #link_mention{
     text-align: left;
 }
 
 /*________________________________________________Page Exercice stagiaire____________________________*/
-/*Id "Pic" */
+/*Id de l'image good-job */
 #Picsgoodjob{
     width: 150px;
     height: 143px;
@@ -306,17 +299,20 @@ footer{
     color: white;
     visibility: collapse;
 }
-
+/*id de la colum du button*/
 #ColumButton{
     visibility: collapse;
 }
 /*________________________________________________Page COURS____________________________*/
+
+/*Les ID de tous les logos ci-dessous*/
 #logo-SQL,#logo-JS,#logo-HTML,#logo-CSS{
     margin-top: 20px;
     box-sizing: border-box;
     height: 150px;
     width: 150px;
 }
+/*id du logo php*/
 #logo-PHP{
     height: 200px;
     width: 200px;
