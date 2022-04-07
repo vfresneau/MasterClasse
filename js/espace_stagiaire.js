@@ -9,7 +9,7 @@ let myThemeString;
 let ColumButton;
 let indexExoEnCours = 0;
 
-// container c'est la div qui contient l'exercice
+// container c'est la div qui contient le tableau d'exercice
 let container = document.getElementById("container_espace_stagiaire");
 
 //DECLARATION DES VARIABLES OBJETS//
