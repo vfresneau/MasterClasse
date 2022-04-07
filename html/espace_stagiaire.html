@@ -1,97 +1,136 @@
+<!-- Instruction au navigateur web sur la version du langage (HTML 5) de balisage dont la page est écrite -->
 <!DOCTYPE html>
+<!--Langue de la page-->
 <html lang="fr">
+  <!--En-têtes du document ou se trouve toutes les méta-données-->
   <head>
+    <!--Les balises "META" servent pour le referencement de nos pages-->
+    
+    <!--Les balises "META" servent pour le referencement de nos pages-->
     <meta charset="utf-8">
+    <!--conserver la compatibilité avec les anciens navigateurs-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Titre de la page -->
     <title>ESPACE STAGIAIRE</title>
+    <!--balise de méta-données qui donne une description de la page-->
     <meta name="description" content="">
+    <!--Optimisé pour les mobiles-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Bootstrap CSS -->
+    <!-- Frameworks CSS : Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- Custom CSS -->
+    <!--Liens qui renvoie aux fichiers CSS -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/css_chloe.css">
     <!--feuille de style qui s'appliquera Pour ceux qui ont une résolution inférieure à 680px-->
     <link rel="stylesheet" media="screen and (max-width: 680px)" href="../css/petite_resolution.css" />
   </head>
-<body>
-    <!-- Ici se trouve le titre MASTER CLASS avant le header-->
+
+  <!-- Balise qui contient le corps de ma page-->
+  <body>
+    <!--Ouverture d'une balise conteneur fluide-->
     <div class="container-fluid">
+      <!--Création d'une ligne avec un nom unique-->
       <div class="row" id="titreAvantHeader">
+        <!--Creation d'une colonne qui va occuper l’espace de deux colonnes selon boostraps -->
         <div class="col-2"> 
-          <img id="logo"
-            src="../image/logoGif.gif"
-            alt="logoGif">
+          <!--Insertion d'une image dans notre colonne avec un nom unique logo-->
+          <img id="logo" src="../image/logoGif.gif" alt="logoGif">
         </div> 
+        <!--Creation d'une colonne qui va occuper l’espace de huit colonnes selon boostraps avec un nom unique colTitre-->
         <div class="col-8 my-auto" id="colTitre">
+          <!--Création d'un titre de niveau 1, avec un nom unique-->
           <h1 id="titre_masterclasse">MASTER CLASSE</h1>
         </div>
+        <!--Creation d'une autre colonne afin de centrer le titre-->
         <div class="col-2"> </div>
+      </div>
     </div>
-    </div>
-  <!--Ici se trouve le header avec la nav avec l'accueil, qui sommes nous, formation, aperçu, connexion,inscription-->
-  <header> 
-    <nav class="navbar navbar-expand navbar-dark">
-      <div class="container-fluid">
-        <ul class="navbar-nav mx-auto">
-          <!--Lors du click sur Menu stagiaire celui ci renvoi au 3 bouton (EXERCICES, COURS, EXAMENS)-->
-          <a class="nav-link px-5" href="./espace_stagiaire.html">Menu stagiaire</a>
-        </ul>
-        <div class="navbar-nav">
+
+    <!--Ouverture de l'en-tête de la page-->
+    <header> 
+      <!--Ouverture d'une balise de navigation-->
+      <nav class="navbar navbar-expand navbar-dark">
+        <!--Ouverture d'un container-fluid qui contient-->
+        <div class="container-fluid">
+          <!--Ouverture d'une balise liste contenant 4 liens-->
+          <ul class="navbar-nav mx-auto">
+            <!--Liens qui renvoie sur la page espace_stagiaire-->
+            <a class="nav-link px-5" href="./espace_stagiaire.html">Menu stagiaire</a>
+          </ul>
+          <!--Ouverture d'une balise de navigation contenant 2 liens-->
+          <div class="navbar-nav">
+            <!--Liens qui renvoie sur la page accueil-->
             <a href="./accueil.html">
-            <img id="logo_deconnecter" src="../image/deconnecter.png" alt="logo_deconnecter">
+              <!--Creation d'une balise image dans notre lien avec un nom unique-->
+              <img id="logo_deconnecter" src="../image/deconnecter.png" alt="logo_deconnecter">
             </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!--Creation d'un container qui contient une ligne avec 3 colonnes -->
+    <div class="container-fluid" id="container_espace_stagiaire">
+      <!--Ligne contenant mes boutons et images-->
+      <div class="row">
+        <!--Ligne contenant mes colonnes avec mes boutons-->
+        <div class="row text-center d-flex">
+          <div class="col-4">
+            <!--Creation d'un bouton avec un nom unique qui au click renvois à la fonction load_Exercice en JavaScript-->
+            <button type="button" id="exercice" onclick="load_Exercice()" class="btn btn-light btn-lg btn-block">EXERCICES</button>
+          </div>
+            
+          <div class="col-4"> 
+            <!--Creation d'un bouton avec un nom unique qui au click renvois à la page cours-->
+            <button type="button" id="cours" onclick="javascript:location.href='../html/cours.html'" class="btn btn-light btn-lg btn-block" >COURS</button>
+          </div>
+
+          <div class="col-4">
+            <!--EN TRAVAUX : PENSER A METTRE LE BON COMMENTAIRE-->
+            <button type="button" id="examens" onclick="loadExamens()" class="btn btn-light btn-lg btn-block">EXAMENS</button>
+          </div>
+        </div>
+        <!--Creation d'une ligne contenant 3 colonnes, qui chacune contiennent une image respectives à un bouton-->
+        <div class="row">
+
+          <div class="col-4">
+            <img  id="logo_stylo" src="../image/stylo.png" alt="logo_stylo">
+          </div>
+
+          <div class="col-4">
+            <img  id="logo_cours" src="../image/livre_ouvert.png" alt="logo_cours">
+          </div>
+
+          <div class="col-4">
+            <img  id="logo_certificat" src="../image/diplome.png" alt="logo_certificat">
+          </div>
+
         </div>
       </div>
-    </nav>
-  </header>
-    <!--Je créer le container qui contient mes lignes avec mes libellés en paragraphe et mes images respectives-->
-    <div class="container-fluid" id="container_espace_stagiaire">
-        <div class="row">
-          <!--colonne 1 : boutton EXERCICE-->
-          <div class="row text-center d-flex">
-            <div class="col-4">
-              <button type="button" id="exercice" onclick="load_Exercice()" class="btn btn-light btn-lg btn-block">EXERCICES</button>
-            </div>
-            <!--colonne 2 : boutton COURS-->
-            <div class="col-4"> <!--Button on click do go to the HTML page-->
-              <button type="button" id="cours" onclick="javascript:location.href='../html/cours.html'" class="btn btn-light btn-lg btn-block" >COURS</button>
-            </div>
+    </div>
 
-            <!--colonne 3 : boutton EXAMENS-->
-            <div class="col-4"><!--EN TRAVAUX-->
-              <button type="button" id="examens" onclick="loadExamens()" class="btn btn-light btn-lg btn-block">EXAMENS</button>
-            </div>
-          </div>
-          <!--elements a repositionner !!!!-->
-          <div class="row">
-            <div class="col-4">
-              <img  id="logo_stylo" src="../image/stylo.png" alt="logo_stylo">
-            </div>
-            <div class="col-4">
-              <img  id="logo_cours" src="../image/livre_ouvert.png" alt="logo_cours">
-            </div>
-            <div class="col-4">
-              <img  id="logo_certificat" src="../image/diplome.png" alt="logo_certificat">
-            </div>
-          </div>
-        </div>
-        </div>
-        <!--Ici se trouve le footer-->
-        <footer class="footer d-flex bottom sm-none">
-          <div class="col-4">
-            <a href="" class="nav-link text-white" id="link_contact">CONTACT</a>
-          </div>
-          <div class="col-4">
-            <a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees#:~:text=R%C3%A8glement%20(UE)%202016%2F679,sur%20la%20protection%20des%20donn%C3%A9es)." class="nav-link text-white" id="link_politique">POLITIQUE DES DONNEES</a>
-          </div>
-          <div class="col-4">
-            <a href="https://www.economie.gouv.fr/mentions-legales" class="nav-link text-white" id="link_mention">MENTIONS LEGALES</a>
-          </div>
-        </footer>
-    <!-- BootStrap JS -->
+    <!--Ici se trouve le footer-->
+    <footer class="footer d-flex bottom sm-none">
+      <!--ouverture d'une balise colonne qui va occuper l’espace de 4 colonnes selon boostraps-->
+      <div class="col-4">
+        <!--creation d'un lien avec un nom unique-->
+        <a href="" class="nav-link text-white" id="link_contact">CONTACT</a>
+      </div>
+      <!--ouverture d'une balise colonne qui va occuper l’espace de 4 colonnes selon boostraps-->
+      <div class="col-4">
+        <!--creation d'un lien avec un nom unique-->
+        <a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees#:~:text=R%C3%A8glement%20(UE)%202016%2F679,sur%20la%20protection%20des%20donn%C3%A9es)." class="nav-link text-white" id="link_politique">POLITIQUE DES DONNEES</a>
+      </div>
+      <!--ouverture d'une balise colonne qui va occuper l’espace de 4 colonnes selon boostraps-->
+      <div class="col-4">
+        <!--creation d'un lien avec un nom unique-->
+        <a href="https://www.economie.gouv.fr/mentions-legales" class="nav-link text-white" id="link_mention">MENTIONS LEGALES</a>
+      </div>
+    </footer>
+
+    <!--creation d'une balise script afin d'intégrer le pack bootstraps -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!-- Custom JS --> 
+    <!-- Liens qui renvoie au fichiers Javascript -->
     <script src="../js/espace_stagiaire.js" async defer></script>
   </body>
 </html>
