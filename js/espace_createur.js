@@ -133,9 +133,8 @@ function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // Si la réponse n'est pas un nombre on ne fait rien
-            if (isNaN(xrh.responseText)) {
+            if (isNaN(xhr.responseText)) {
                 //Si jamais la requette à planté et qu'elle renvoi "erreur404" ce n'est pas un nombre mais une chaine de caractere
-
             }
             //Si non si c'est un nombre 
             else {
