@@ -28,7 +28,7 @@
   <!-- Balise qui contient le corps de ma page-->
   <body>
     <!--Ouverture d'une balise conteneur fluide-->
-    <div class="container-fluid">
+    <header class="container-fluid">
       <!--Création d'une ligne avec un nom unique-->
       <div class="row" id="titreAvantHeader">
         <!--Creation d'une colonne qui va occuper l’espace de deux colonnes selon boostraps -->
@@ -44,104 +44,104 @@
         <!--Creation d'une autre colonne afin de centrer le titre-->
         <div class="col-2"> </div>
       </div>
-    </div>
-    <!--Ouverture de l'en-tête de la page-->
-    <header> 
-      <!--Ouverture d'une balise de navigation-->
-      <nav class="navbar navbar-expand navbar-dark">
-        <!--Ouverture d'un container-fluid qui contient-->
-        <div class="container-fluid">
-          <!--Ouverture d'une balise liste contenant 4 liens-->
-          <ul class="navbar-nav mx-auto">
-            <!--Liens qui renvoie sur la page accueil-->
-            <a class="nav-link px-5" href="./index.html">Accueil</a>
-            <!--Liens qui renvoie sur la page qui_sommes_nous-->
-            <a class="nav-link px-5" href="./qui_sommes_nous.html">Qui sommes nous ?</a>
-            <!--Liens qui renvoie sur la page formation-->
-            <a class="nav-link px-5" href="formation.html">Formation</a>
-            <!--Liens qui renvoie sur la page apercu-->
-            <a class="nav-link px-5" href="apercu.html">Aperçu</a>
-          </ul>
-
-          <div class="navbar-nav">
-            <a class="nav-link" href="./connexion.html">Connexion</a>
-          <a class="nav-link px-5" href="./inscription.html">Inscription</a>
-          </div>
-        </div>
-      </nav>
     </header>
-    <!--Creation d'une container-fluid qui contient une ligne partagé en deux colonnes-->
-    <div class="container-fluid">
-        <div class="row my-2">
-          <!--Creation d'une colonne (à gauche) contentant une ligne avec un titre-->
-          <div class="col-6">
-            <div class="row my-3" id="colonne_bleu_formation">
-              <h4 id="titre_liste_formation">Liste des centres de formation :</h4>
-              
-              <!--Creation d'une colonne contenant un paragraphe pour l'adresse du centre de formation-->
-              <div class="col-6">
-                <p id="adresseLR">
-                  45 rue de la parmentière<br>37520 La Riche<br>Tél. : 02 47 46 47 46
-                </p>
-              </div>
-              <!--Creation d'une colonne contenant l'image allant avec l'adresse du centre -->
-              <div class="col-6">
-                <img id="img_campusLR" src="../image/qsn-1.jfif" alt="campus1">
-              </div>
+   
+    <!--Ouverture d'une balise de navigation-->
+    <nav class="navbar navbar-expand navbar-dark">
+      <!--Ouverture d'un container-fluid qui contient-->
+      <div class="container-fluid">
+        <!--Ouverture d'une balise liste contenant 4 liens-->
+        <ul class="navbar-nav mx-auto">
+          <!--Liens qui renvoie sur la page accueil-->
+          <a class="nav-link px-5" href="./index.html">Accueil</a>
+          <!--Liens qui renvoie sur la page qui_sommes_nous-->
+          <a class="nav-link px-5" href="./qui_sommes_nous.html">Qui sommes nous ?</a>
+          <!--Liens qui renvoie sur la page formation-->
+          <a class="nav-link px-5" href="formation.html">Formation</a>
+          <!--Liens qui renvoie sur la page apercu-->
+          <a class="nav-link px-5" href="apercu.html">Aperçu</a>
+        </ul>
 
-              <!--Creation d'une colonne contenant un paragraphe pour d'adresse du centre de formation-->
-              <div class="col-6">
-                <p id="adresseLVD">
-                  Zone industrielle<br>Bois de Plante<br>Rue Amélia Earhart<br>37700 La Ville-aux-Dames<br>Tél. : 02 47 46 89 17
-                </p>
-              </div>
-              <!--Creation d'une colonne contenant l'image allant avec l'adresse du centre -->
-              <div class="col-6">
-              <img id="img_campusLVD" src="../image/qsn-2.jfif" alt="campus2">
-              </div>
-              
-              <!--Creation d'une colonne contenant un paragraphe pour d'adresse du centre de formation-->
-              <div class="col-6">
-                <p id="adresseA">
-                  Zone industrielle<br>La Filadelle<br>Rue Henry Chatelet<br>37400 Amboise<br>Tél. : 02 47 56 27 12
-                </p>
-              </div>
-              <!--Creation d'une colonne contenant l'image allant avec l'adresse du centre -->
-              <div class="col-6">
-              <img id="img_campusA" src="../image/qsn-3.jfif" alt="campus3">
-              </div>
-
-              <!--Creation d'une colonne contenant un paragraphe pour d'adresse du centre de formation-->
-              <div class="col-6">
-                <p id="adresseT">
-                  Zone industrielle<br>Les Saisons<br>Avenue Henry Martin<br>37400 Tours<br>Tél. : 02 47 78 26 86
-                </p>
-                <!--Creation d'un paragraphe indiquant les horaires et jours d'ouverture-->
-                <p id="p_horaires">
-                  NOS HORAIRES :<br>Du lundi au vendredi<br>8h00 à 12h00<br>14h00 à 18h00
-                </p>
-              </div>
-              <!--Creation d'une colonne contenant l'image allant avec l'adresse du centre -->
-              <div class="col-6">
-                <img id="img_campusT" src="../image/qsn-4.jfif" alt="campus4">
-              </div>
-            </div>
-          </div>
-
-          <!--Creation d'une deuxième colonne (à droite)contenant un titre de niveau 4 et un paragraphe explicatif-->
-          <div class="col-6">
-            <div class="row" id="colonne_violette_formation">
-              <h4 id="titre_distanciel">Optez pour la formation en distanciel :</h4>
-              <div class="col">
-                  <p id="p_distanciel">
-                    Nous proposons également nos formations à distance. Pour cela veuillez contacter le centre de formation le plus proche de chez vous.<br>Un conseiller vous orientra vers les démarches à réaliser afin que vous soyez affilié à une formation.<br>
-                    Le distanciel est une méthode optimal pour s’instruire. Plus communément appelé le e-learning, c’est une façon d’apprendre avec la meilleur concentration possible. Optimisez vos chance de reussir en choisissant le distanciel.<br>Apprenez à domicile !
-                  </p>
-              </div>
-            </div>
-          </div>
+        <div class="navbar-nav">
+          <a class="nav-link" href="./connexion.html">Connexion</a>
+          <a class="nav-link px-5" href="./inscription.html">Inscription</a>
         </div>
-       <!--Ici se trouve le footer-->
+      </div>
+    </nav>
+  
+    <!--Creation d'une container-fluid qui contient une ligne partagé en deux colonnes-->
+    <section class="container-fluid">
+      <div class="row my-2">
+        <!--Creation d'une colonne (à gauche) contentant une ligne avec un titre-->
+        <div class="col-6">
+          <article class="row my-3" id="colonne_bleu_formation">
+            <h4 id="titre_liste_formation">Liste des centres de formation :</h4>
+              
+            <!--Creation d'une colonne contenant un paragraphe pour l'adresse du centre de formation-->
+            <div class="col-6">
+              <p id="adresseLR">
+                45 rue de la parmentière<br>37520 La Riche<br>Tél. : 02 47 46 47 46
+              </p>
+            </div>
+            <!--Creation d'une colonne contenant l'image allant avec l'adresse du centre -->
+            <div class="col-6">
+              <img id="img_campusLR" src="../image/qsn-1.jfif" alt="campus1">
+            </div>
+
+            <!--Creation d'une colonne contenant un paragraphe pour d'adresse du centre de formation-->
+            <div class="col-6">
+              <p id="adresseLVD">
+                 Zone industrielle<br>Bois de Plante<br>Rue Amélia Earhart<br>37700 La Ville-aux-Dames<br>Tél. : 02 47 46 89 17
+              </p>
+            </div>
+            <!--Creation d'une colonne contenant l'image allant avec l'adresse du centre -->
+            <div class="col-6">
+              <img id="img_campusLVD" src="../image/qsn-2.jfif" alt="campus2">
+            </div>
+              
+            <!--Creation d'une colonne contenant un paragraphe pour d'adresse du centre de formation-->
+            <div class="col-6">
+              <p id="adresseA">
+               Zone industrielle<br>La Filadelle<br>Rue Henry Chatelet<br>37400 Amboise<br>Tél. : 02 47 56 27 12
+              </p>
+            </div>
+            <!--Creation d'une colonne contenant l'image allant avec l'adresse du centre -->
+            <div class="col-6">
+              <img id="img_campusA" src="../image/qsn-3.jfif" alt="campus3">
+            </div>
+
+            <!--Creation d'une colonne contenant un paragraphe pour d'adresse du centre de formation-->
+            <div class="col-6">
+              <p id="adresseT">
+                Zone industrielle<br>Les Saisons<br>Avenue Henry Martin<br>37400 Tours<br>Tél. : 02 47 78 26 86
+              </p>
+              <!--Creation d'un paragraphe indiquant les horaires et jours d'ouverture-->
+              <p id="p_horaires">
+               NOS HORAIRES :<br>Du lundi au vendredi<br>8h00 à 12h00<br>14h00 à 18h00
+              </p>
+            </div>
+            <!--Creation d'une colonne contenant l'image allant avec l'adresse du centre -->
+            <div class="col-6">
+              <img id="img_campusT" src="../image/qsn-4.jfif" alt="campus4">
+            </div>
+          </article>
+        </div>
+
+        <!--Creation d'une deuxième colonne (à droite)contenant un titre de niveau 4 et un paragraphe explicatif-->
+        <div class="col-6">
+          <article class="row" id="colonne_violette_formation">
+            <h4 id="titre_distanciel">Optez pour la formation en distanciel :</h4>
+            <div class="col">
+              <p id="p_distanciel">
+                Nous proposons également nos formations à distance. Pour cela veuillez contacter le centre de formation le plus proche de chez vous.<br>Un conseiller vous orientra vers les démarches à réaliser afin que vous soyez affilié à une formation.<br>
+                Le distanciel est une méthode optimal pour s’instruire. Plus communément appelé le e-learning, c’est une façon d’apprendre avec la meilleur concentration possible. Optimisez vos chance de reussir en choisissant le distanciel.<br>Apprenez à domicile !
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+      <!--Ici se trouve le footer-->
       <footer class="footer d-flex bottom">
         <!--ouverture d'une balise colonne qui va occuper l’espace de 4 colonnes selon boostraps-->
         <div class="col-4">
@@ -159,7 +159,6 @@
           <a href="https://www.economie.gouv.fr/mentions-legales" class="nav-link text-white" id="link_mention">MENTIONS LEGALES</a>
         </div>
       </footer>
-    </div>
 
     <!--creation d'une balise script afin d'intégrer le pack bootstraps -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

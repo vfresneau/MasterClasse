@@ -28,7 +28,7 @@
   <!-- Balise qui contient le corps de ma page-->
   <body>
     <!--Ouverture d'une balise conteneur fluide-->
-    <div class="container-fluid">
+    <header class="container-fluid">
       <!--Création d'une ligne avec un nom unique-->
       <div class="row" id="titreAvantHeader">
         <!--Creation d'une colonne qui va occuper l’espace de deux colonnes selon boostraps -->
@@ -44,50 +44,47 @@
         <!--Creation d'une autre colonne afin de centrer le titre-->
         <div class="col-2"> </div>
       </div>
-    </div>
-  
-    <!--Ouverture de l'en-tête de la page-->
-    <header> 
-      <!--Ouverture d'une balise de navigation-->
-      <nav class="navbar navbar-expand navbar-dark">
-        <!--Ouverture d'un container-fluid qui contient-->
-        <div class="container-fluid">
-          <!--Ouverture d'une balise liste contenant 4 liens-->
-          <ul class="navbar-nav mx-auto">
-            <!--Liens qui renvoie sur la page accueil-->
-            <a class="nav-link px-5" href="./index.html">Accueil</a>
-            <!--Liens qui renvoie sur la page qui_sommes_nous-->
-            <a class="nav-link px-5" href="./qui_sommes_nous.html">Qui sommes nous ?</a>
-            <!--Liens qui renvoie sur la page formation-->
-            <a class="nav-link px-5" href="formation.html">Formation</a>
-            <!--Liens qui renvoie sur la page apercu-->
-            <a class="nav-link px-5" href="apercu.html">Aperçu</a>
-          </ul>
-          <!--Ouverture d'une balise de navigation contenant 2 liens-->
-          <div class="navbar-nav">
-            <!--Liens qui renvoie sur la page connexion-->
-            <a class="nav-link" href="./connexion.html">Connexion</a>
-            <!--Liens qui renvoie sur la page inscription-->
-            <a class="nav-link px-5" href="./inscription.html">Inscription</a>
-          </div>
-        </div>
-      </nav>
     </header>
+  
+    <!--Ouverture d'une balise de navigation-->
+    <nav class="navbar navbar-expand navbar-dark">
+      <!--Ouverture d'un container-fluid qui contient-->
+      <div class="container-fluid">
+        <!--Ouverture d'une balise liste contenant 4 liens-->
+        <ul class="navbar-nav mx-auto">
+          <!--Liens qui renvoie sur la page accueil-->
+          <a class="nav-link px-5" href="./index.html">Accueil</a>
+          <!--Liens qui renvoie sur la page qui_sommes_nous-->
+          <a class="nav-link px-5" href="./qui_sommes_nous.html">Qui sommes nous ?</a>
+          <!--Liens qui renvoie sur la page formation-->
+          <a class="nav-link px-5" href="formation.html">Formation</a>
+          <!--Liens qui renvoie sur la page apercu-->
+          <a class="nav-link px-5" href="apercu.html">Aperçu</a>
+        </ul>
+        <!--Ouverture d'une balise de navigation contenant 2 liens-->
+        <div class="navbar-nav">
+          <!--Liens qui renvoie sur la page connexion-->
+          <a class="nav-link" href="./connexion.html">Connexion</a>
+          <!--Liens qui renvoie sur la page inscription-->
+          <a class="nav-link px-5" href="./inscription.html">Inscription</a>
+        </div>
+      </div>
+    </nav>
 
     <!--Creation d'un container fluid qui contient une ligne contenant deux colonnes-->
-    <div class="container-fluid" id="fond_container">
+    <section class="container-fluid" id="fond_container">
       <!--Creation d'une ligne contenant deux colonnes-->
       <div class="row">
         <!--Creation d'une premiere colonne qui contient notre image-->
-        <div class="col-6">
+        <article class="col-6">
           <img id="imageQSN" src="../image/Photo_qsn_groupe.jpg" alt="imageQSN">
-        </div>
+        </article>
         <!--Creation d'une deuxieme colonne qui contient notre titre et paragraphe explicatif de Qui sommes-nous ?-->
         <div class="col-6">
           <div class="row" id="ligne_blanc_QSN">
              <h2 id="qui_sommes_nous">QUI SOMMES-NOUS ?</h2>
           </div>
-          <div class="row" id="cadre_bleu_contenu_QSN">
+          <article class="row" id="cadre_bleu_contenu_QSN">
             <p id="paragraphe_qsn">
               Depuis 2022, nous proposons un contenu éducatif pour s'exercer, apprendre et vous evaluer. Nous proposons des formation en centre mais également à distance. Deux formats complétement différents mais qui s'adapte à votre apprentissage.
               Nous avons donc créé cette platforme afin de contribuer à votre apprentissage des différents langages de codage. <br><br>Grâce à nos exercices vous pourez évoluer et atteindre vos objectifs. Nos cours vous accompagneront dans l'apprentissage. Et nos examens vous permetterons de mesurer vos acquis et compétences.
@@ -95,10 +92,11 @@
               Chez Master Classe, notre but est de permettre aux développeurs d'améliorer leurs compétences en continu en s'exerçant sur des exercices les plus motivants et en échangeant avec nos accompagants, afin d'optimiser vos chances dans la recherche d'un emploi.<br><br>
               Devenez un meilleur programmeur !
             </p>   
-          </div>
+          </article>
         </div>
       </div>
-    </div>
+    </section>
+
     <!--Ici se trouve le footer-->
     <footer class="footer d-flex bottom">
       <!--ouverture d'une balise colonne qui va occuper l’espace de 4 colonnes selon boostraps-->
