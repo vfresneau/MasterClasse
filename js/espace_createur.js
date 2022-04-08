@@ -11,7 +11,7 @@ let myIdTheme;
 let myThemeString;
 let indexExoEnCours = 0;
 
-//Element HTML qui récupère la balise <div class="container-fluid" id="myContainerCreateExercice">
+//Element HTML qui récupère la balise <div class="container-fluid" id="myContainerCreateExercice"> de la page_espace_stagiaire
 let myContainer = document.getElementById("myContainerCreateExercice");
 
 //_____________________________________FONCTIONS POUR L'AFFICHAGE DU TABLEAU D'EXERCICE____________________________
@@ -20,13 +20,13 @@ let myContainer = document.getElementById("myContainerCreateExercice");
 //Cette fonction vide le contenu de la page, elle laisse apparaître un bouton CREER,
 //et grâce à la requete AJAX nous affichons le tableau d'exercice.
 function load_Exercice() {
-    document.getElementById("myContainerCreateExercice").innerHTML = "";
+    myContainer.innerHTML = "";
     let rowButtonCreate = ultimateHTMLGenerator("div", "", ["row"], myContainer);
     rowButtonCreate.id="rowButtonCreate";
     let buttonCreate = ultimateHTMLGenerator("button", "Créer", ["btn"], rowButtonCreate);
     buttonCreate.id = "buttonCreate";
     buttonCreate.onclick = function () {
-        document.getElementById("myContainerCreateExercice").innerHTML = "";
+        myContainer.innerHTML = "";
         displayCreationFields(false);
     };
     //Fabrication d'une nouvelle instance de Class et d'une requete Http à envoyer
@@ -183,7 +183,7 @@ function createReponse(descri, id_exo) {
 function ReadExerciceCreateur(id) {
     //Le container qui a pour id myContainerCreateExercice se vide et laisse place au champs et selecteur replis
     //ceux-ci s'affichant grâce à la fonction displayCreationFields qui est appelé dans cette la fonction.
-    document.getElementById("myContainerCreateExercice").innerHTML = "";
+    myContainer.innerHTML = "";
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -236,7 +236,6 @@ function retrieveExercice(idExercice) {
 //En mode creation les champs sont vide afin de pouvoir les remplir
 //Et pour modifier/supprimer les champs sont remplis avec les informations de l'exercice selectionné
 function displayCreationFields(modeDeleteUpdate) {
-
     //Ligne contenant deux colonnes
     //L'une contient les labels (nom exercice, theme, niveau lien) 
     //L'autre les inputs, select et textarea allant avec chaque input)
@@ -352,7 +351,6 @@ function displayCreationFields(modeDeleteUpdate) {
         //Creation d'un id unique qui va pouvoir permettre de recuperer la valeur tapé par l'utilisateur dans l'input
         inputSuggestion1.id = "REPONSE" + "_DESCRIPTION" + 1;
     }
-
     //En mode modifier/supprimer au click sur le bouton d'ajout
     //Il est possible d'ajouter des inputs de proposition de réponse en plus de ceux deja existant
     if (modeDeleteUpdate) {
@@ -372,7 +370,6 @@ function displayCreationFields(modeDeleteUpdate) {
             inputSuggestion1.id = "REPONSE" + "_DESCRIPTION" + compteurInput;
         }
     }
-
     //En mode supprimer modifier on créer une boucle for
     //elle va parcourrir l'ensemble du tableau de répponse
     //et afficher autant d'input que de propositions de réponse que contient l'exercice
@@ -385,7 +382,6 @@ function displayCreationFields(modeDeleteUpdate) {
             inputSuggestion1.value = myExercices.Exercice[indexExoEnCours]._REPONSES[j]._DESCRIPTION;
             compteurInputReponse++;
         }
-
         //Creation d'une ligne avec un nom unique, contenant deux colonnnes
         let rowButtonUD = ultimateHTMLGenerator("div", "", ["row"], myContainer);
         rowButtonUD.id = "rowButtonUD";
@@ -400,7 +396,6 @@ function displayCreationFields(modeDeleteUpdate) {
             addButton.classList.remove("d-none");
             displayCreationButtons(myExercices.Exercice[indexExoEnCours]._ID);
         }
-
         //La deuxième colonnne contient un bouton supprimer
         //qui au click appel la fonction deleteExercice() (qui permet de supprimer definitivement l'exercice)
         //et fait un retour sur la page d'affichage du tableau
@@ -409,8 +404,8 @@ function displayCreationFields(modeDeleteUpdate) {
         buttonDelete.id = "buttonDelete";
         buttonDelete.onclick = function () { 
             deleteExercice(myExercices.Exercice[indexExoEnCours]._ID); 
-            /*document.getElementById("myContainerCreateExercice").innerHTML = "";
-            tableau_exercice_stagiaire();*/
+            // myContainer .innerHTML = "";
+            // load_Exercice();
         }
         //En mode creation on créer une ligne contenant un bouton VALIDER 
         //qui au click appel la fonction creationExercice() (qui prend en compte la valeur de tous les champs
@@ -428,10 +423,9 @@ function displayCreationFields(modeDeleteUpdate) {
                 document.getElementById("EXERCICE" + "_LIEN").value,
                 selectTheme.value
             );
-            /*document.getElementById("myContainerCreateExercice").innerHTML = "";
-            tableau_exercice_stagiaire();*/
-
-        };
+        //     myContainer .innerHTML = "";
+        //     load_Exercice();
+            };
     }
 
 }
@@ -454,9 +448,8 @@ function displayCreationButtons(idExercice) {
             document.getElementById("EXERCICE" + "_NIVEAU").value,
             document.getElementById("EXERCICE" + "_LIEN").value,
             document.getElementById("selectTheme").value);
-            /*document.getElementById("myContainerCreateExercice").innerHTML = "";
-            tableau_exercice_stagiaire();*/
-
+            // myContainer .innerHTML = "";
+            // load_Exercice();
     };
 }
 //_______________________________________________METRE A JOUR_______________________________________________
