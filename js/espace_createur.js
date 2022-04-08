@@ -1,4 +1,4 @@
-//__________________________________________DECLARATION DE VARIABLES_______________________________
+//_______________________________________DECLARATION DES VARIABLE DONT NOUS AURONT BESOIN ______________________________________________
 let myExercices = {};
 let myThemes;
 let compteurInput = 1;
@@ -11,20 +11,16 @@ let myIdTheme;
 let myThemeString;
 let indexExoEnCours = 0;
 
-//myContainer est egale à l'id du container présent en HTML qui au onclick est remplacé
-//par le contenu de la fonction load_Exercice
+//Element HTML qui récupère la balise <div class="container-fluid" id="myContainerCreateExercice">
 let myContainer = document.getElementById("myContainerCreateExercice");
 
-//_____________________________________FONCTIONS POUR AFFICHER LE TABLEAU D'EXERCICE____________________________
+//_____________________________________FONCTIONS POUR L'AFFICHAGE DU TABLEAU D'EXERCICE____________________________
 
-// Au click (coté HTML) la fonction load_Exercice est executé
-//Cette fonction créer un bouton et permet de recupérer grâce à la requete AJAX les exercices (ws_read_exercice.php)
+//Au click sur le bouton EXERCICE la fonction load_Exercice est executé.
+//Cette fonction vide le contenu de la page, elle laisse apparaître un bouton CREER,
+//et grâce à la requete AJAX nous affichons le tableau d'exercice.
 function load_Exercice() {
-
-    //Le container qui a pour id myContainerCreateExercice se vide et laisse place au bouton Créer et au tableau d'exercices
-    //celui-ci s'affichant grâce à la fonction tableau_exercice_stagiaire qui est appelé dans la fonction load_Theme.
     document.getElementById("myContainerCreateExercice").innerHTML = "";
-    //Je créer un bouton lié à la fonction ReadTheme.
     let rowButtonCreate = ultimateHTMLGenerator("div", "", ["row"], myContainer);
     rowButtonCreate.id="rowButtonCreate";
     let buttonCreate = ultimateHTMLGenerator("button", "Créer", ["btn"], rowButtonCreate);
@@ -34,60 +30,55 @@ function load_Exercice() {
         displayCreationFields(false);
     };
 
-    //On fait un xmlHttprequest -> envoie une demande à un webservice
+    //Fabrication d'une nouvelle instance de Class et d'une requete Http à envoyer
     var xhr = new XMLHttpRequest();
+    //Lancement de la fonction anonyme à chaque changement d'état de la requete http
     xhr.onreadystatechange = function () {
-        //Quand on reçois une réponse "fini" de notre requete
+        //Seulement quand l'état de la requete est DONE 
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //On parse notre JSON (converti JSON en chaine de caractère)
+            //Ici on parse (transformation de la response envoyé par le serveur en JSON)
             myExercices = JSON.parse(xhr.responseText);
-            //Je fais un consol.log afin de vérifier que tout passe et fonctionne
+            //Verification grâce à un consol.log()
             console.log(myExercices);
-            //La fonction ReadTheme est appelé
+            //Appel de la fonction ReadTheme à laquelle on passe la fonction tableau_exercice_stagiaire
             ReadTheme(tableau_exercice_stagiaire);
         }
     }
-    //Ici  je fais un POST de l'adresse url du web service ws_read_exercice.php
+    //POST= methode utilisée par le protocole http, adresse du web service utilisé, ma requete est asynchrone
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_exercice.php', true);
-    //Ici il se passe toujours la même chose
+    //ecrire dans l'entete de la requete http, la facon dont vont etre envoyés les parametres de la requete
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //je definie que j'attend du json en retour de la requet http
+    //On attend du JSON en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
+    //On definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
+    //Envois des paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send();
 }
 
 //Cette fonction va nous permettre d'afficher notre tableau d'exercices
 function tableau_exercice_stagiaire() {
 
-    //Creation d'un element html table dans le container//
     let TableExercice = ultimateHTMLGenerator("table", "", ["table", "table-hover", "autorisation", "my-auto", "text-center", "mx-auto", "table-responsive-md"], myContainer);
-    //Creation de l'element thead dans la variable tableau //
     let headTable = ultimateHTMLGenerator("thead", "", [], TableExercice);
-    //Creation d'un element html "tr" dans la variable TheadTableau 
     let headRow = ultimateHTMLGenerator("tr", "", [], headTable);
-    //Creation d'un element html "th" dans la variable TrThead  
+
     let columHead1 = ultimateHTMLGenerator("th", "EXERCICES", ["col-3"], headRow);
     columHead1.id="columHead1";
-    //Scope portion de code dans laquelle une variable peut exister et maintenir une valeur qui lui aura été préalablement affectée
     columHead1.scope = "col";
-    //Creation d'un element html "th" dans la variable TrThead 
+
     let columHead2 = ultimateHTMLGenerator("th", "NIVEAU", ["col-3"], headRow);
     columHead2.id="columHead2";
     columHead2.scope = "col";
-    //Creation d'un element html "th" dans la variable TrThead 
+
     let columHead3 = ultimateHTMLGenerator("th", "THEMES", ["col-3"], headRow);
     columHead3.id="columHead3";
     columHead3.scope = "col";
-    //Creation d'un element html "tbody" dans la variable Tableau 
+
     let bodyTable = ultimateHTMLGenerator("tbody", "", [], TableExercice);
     bodyTable.scope = "row";
 
-    //Pour tous les exercices je créer une ligne (ici en bootstrap "tr") dans le tableau 
     for (let i = 0; i < myExercices.Exercice.length; i++) {
-        //Creation d'un element html "tr" dans la variable tableau 
         let rowTable = ultimateHTMLGenerator("tr", "", [], bodyTable);
         rowTable.addEventListener("click", function () {
             // Je stocke l'index qui est en cours d'affichage
@@ -96,20 +87,17 @@ function tableau_exercice_stagiaire() {
             ReadExerciceCreateur(myExercices.Exercice[i]._ID);
         })
 
-        //Creation d'un element html "td" dans la variable th_row et affichage des noms des exercices 
         let valueColum1 = ultimateHTMLGenerator("td", myExercices.Exercice[i]._NOM, [], rowTable);
         valueColum1.classList = "table-secondary";
-        //Creation d'un element html "td" dans la variable th_row et affichage des niveau
         let valueColum2 = ultimateHTMLGenerator("td", myExercices.Exercice[i]._NIVEAU, [], rowTable);
         valueColum2.classList = "table-dark";
-        //Creation d'un element html "td" dans la variable th_row et affichage des themes
         let myThemes = findTheme(myExercices.Exercice[i]._ID_THEME);
         let valueColum3 = ultimateHTMLGenerator("td", myThemes, [], rowTable);
         valueColum3.classList = "table-secondary";
     }
 }
 
-//Cette fonction récupère le nom du thème selon l'ID de l'exercice qui correspond à un thème //
+//Cette fonction récupère le nom du thème selon l'ID de l'exercice qui correspond à un thème
 function findTheme(id) {
     for (let y = 0; y < myThemes.theme.length; y++) {
         if (myThemes.theme[y]._ID == id) {
@@ -120,70 +108,51 @@ function findTheme(id) {
 
 //_____________________________________FONCTIONS PERMETTANT L'AFFICHAGE DES CHAMPS ET LA CREATION D'EXERCICES_______________________________________________________
 
-//Fonction qui me permet d'afficher des champs vide afin de créer un exercice
+//Fonction qui me permet d'afficher des champs vide afin de créer un exercice 
 function ReadTheme(maFonctionAAppeler) {
-    //On fait un xmlHttprequest -> envoie une demande à un webservice
+    
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //On parse notre JSON (converti JSON en chaine de caractère)
             myThemes = JSON.parse(xhr.responseText);
-            //Je fais un consol.log afin de vérifier que tout passe et fonctionne
             console.log(myThemes);
-            //Enfin j'appel ma fonction displayCreation
             maFonctionAAppeler();
         }
     }
-    //Ici  je fais un POST de l'adresse url du web service ws_read_theme.php
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_theme.php', true);
-    //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
-    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send();
 }
 
-//Cette fonction va créer l'exercice 
+//Cette fonction va créer l'exercice: 
+//on lui passe tous les parametres que l'on veux envoyer à notre web service ws_create_exercice.
 function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
-
-    //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //Si la réponse n'est pas un nombre 
-            //si jamais la requette à planté et quelle renvoi erreur404 c'est pas un nombre mais une chaine de caractere
+            // Si la réponse n'est pas un nombre on ne fait rien
             if (isNaN(xrh.responseText)) {
-                // Alors si ce n'est pas un nombre on ne fait rien
+                //Si jamais la requette à planté et qu'elle renvoi "erreur404" ce n'est pas un nombre mais une chaine de caractere
+
             }
-            //Si non si c'est un nompbre 
+            //Si non si c'est un nombre 
             else {
-                //On parcours la boucle for
                 for (let i = 1; i <= compteurInput; i++) {
                     //On recupère la valeur des inputs tapé par l'utilisateur 
                     let descri = document.getElementById("REPONSE" + "_DESCRIPTION" + i).value;
-                    //Et on passe en paramettre la variable descri + l'id de l'exercice 
+                    //Et on passe en paramettre de la fonction createReponse(), la variable descri + l'id de l'exercice 
                     //(ici le xhrresponseText renvois vers le web service displayCreation et donc récupère l'id de l'exercicé créer)
                     createReponse(descri, xhr.responseText);
                 }
             }
         }
     }
-    //Ici  je fais un POST de l'adresse url du web service ws displayCreation.php
-    xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws displayCreation.php', true);
-    //Ici il se passe toujours la même chose
+    xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_create_exercice.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici on envois tout ce qui est passé en parametre de la fonction)
-    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("nom=" + nom
         + "&consigne=" + consigne
         + "&reponseAttendu=" + reponseattendu
@@ -193,72 +162,57 @@ function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
         + "&valide=" + 0);
 }
 
-//Cette fonction est une requete AJAX pour créer les propositions de réponses lié à l'id d'un exercice
+//Cette fonction est une requete AJAX, elle créer et envoi les nouvelles propositions de réponses lié à l'id d'un exercice
 //Elle à pour paramettre la description de la proposition de réponse et l'id correspondant à l'exercice
 function createReponse(descri, id_exo) {
-    //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
         }
     }
-    //Ici  je fais un POST de l'adresse url du web service ws_create_reponse.php
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_create_reponse.php', true);
-    //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici on envois tout ce qui est passé en parametre de la fonction)
-    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("description=" + descri
-        + "&id_exercice=" + id_exo);
+    + "&id_exercice=" + id_exo);
 }
 
-//______________________________FONCTION PERMETTANT L'AFFICHAGE DES CHAMPS REMPLI POUR UPDATE DELETE___________________________
+//______________________________FONCTION PERMETTANT L'AFFICHAGE DES CHAMPS REMPLIS POUR UPDATE DELETE___________________________
 
-//Cette fonction à pour paramettre un id
+//Cette fonction va vider notre container et laisser place aux champs remplis
+// avec les information (nom, consigne, reponse attendu, theme, niveau, lien, propositions de réponse)
 function ReadExerciceCreateur(id) {
     //Le container qui a pour id myContainerCreateExercice se vide et laisse place au champs et selecteur replis
     //ceux-ci s'affichant grâce à la fonction displayCreationFields qui est appelé dans cette la fonction.
     document.getElementById("myContainerCreateExercice").innerHTML = "";
-    //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //On parse notre JSON (converti JSON en chaine de caractère)
             myExercice = JSON.parse(xhr.responseText);
-            //On appel de fonction retrieveExercice en lui passant id (d'exercice) en paramettre puisque l'on veut récupérer l'exercice
+            //Appel de la fonction retrieveExercice() en lui passant id (d'exercice) 
+            //en paramettre puisque l'on veut récupérer l'id de l'exercice selectionné (id en cours)
             retrieveExercice(id);
-            //Appelle de la fonction displeyFields
+            //Appelle de la fonction displeyFields() à laquelle on passe la paramettre true
             displayCreationFields(true);
         }
     }
-    //Ici  je fais un POST de l'adresse url du web service ws_read_exercice.php
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_exercice.php', true);
-    //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
-    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send();
 }
 
 //Cette fonction permet de retrouver l'Id de l'exercice correspondant, passer en parametre dans la fonction ReadExerciceCreateur
+//et de remplir les champs avec les informations correspondants à l'id de l'exercice en cours (exercice selectionné)
 function retrieveExercice(idExercice) {
-    //Varible déclaré précédement
+    
     myAnswer = [];
-    //Je fais une boucle for pour parcourir la longeur de mon tableau EXERCICE
     for (let y = 0; y < myExercice.Exercice.length; y++) {
-        //Si l'idExercice transmis est identique à celui d'un exercice du tableau EXERCICE
+        //Si l'idExercice transmis (parametre) est identique à l'id d'un exercice du tableau EXERCICE
         if (myExercice.Exercice[y]._ID == idExercice) {
-            //Alors je créer une variable pour mettre les éléments dont j'ai besoin
+            //Alors je créer une variable pour mettre les informations dont j'ai besoin
             myTitle = myExercice.Exercice[y]._NOM;
             myIdTheme = myExercice.Exercice[y]._ID_THEME;
             instructions = myExercice.Exercice[y]._CONSIGNE;
@@ -268,7 +222,6 @@ function retrieveExercice(idExercice) {
             myLink = myExercice.Exercice[y]._LIEN;
         }
     }
-    //Permet de jumeller bonnes et mauvaises reponses avec myAnswer et tableAnserws
     //Pour tous les elements du tableau REPONSES
     for (let x = 0; x < tableAnswers.length; x++) {
         //J'envois ma description en cours dans mon tableau de réponse
@@ -280,7 +233,10 @@ function retrieveExercice(idExercice) {
 }
 
 
-//Cette fonction va permettre d'afficher les champs lors du click pour consulter un exercice
+//Cette fonction à deux modes (d'ou le esle et le if)
+//Elle utilise la même structure pour les deux modes, seul la valeur des champs changent selon le mode
+//En mode creation les champs sont vide afin de pouvoir les remplir
+//Et pour modifier/supprimer les champs sont remplis avec les informations de l'exercice selectionné
 function displayCreationFields(modeCreation) {
 
     //Creation de ma ligne qui va contenir les input, select et label
@@ -491,14 +447,13 @@ function displayCreationFields(modeCreation) {
 }
 
 //Cette fonction vide la ligne ou se trouve les boutons Update Delete et laisse apparaitre le bouton Valider
+//Au click sur Valider la fonction updateExercice() est appelé.
 function displayCreationButtons(idExercice) {
-
-    //Vide de la ligne pour laisser apparaitre le bouton Valider
     document.getElementById("rowButtonUD").innerHTML = "";
     let buttonValidate = ultimateHTMLGenerator("button", "Valider", ["btn", "btn-success"], rowButtonUD);
     buttonValidate.id = "buttonValidate";
 
-    //Au click sur le bouton  Valider intervient la partie du CRUD Update
+    //Au click sur le bouton Valider intervient la partie du CRUD Update
     //Je passe en paramettre de la fonction toutes les valeurs dont je vais avoir besoin  
     buttonValidate.onclick = function () {
         updateExercice(
@@ -515,28 +470,20 @@ function displayCreationButtons(idExercice) {
     };
 }
 //_______________________________________________METRE A JOUR_______________________________________________
-//Cette fonction va servir à faire la mise à jour de l'exercice et de ses propositions de réponse
+//Cette fonction va mettre à jour l'exercice, les propositions de réponse et en ajouter si c'est ce qui a été fait
 function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) {
     console.log(consigne);
-    //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             if (xhr.responseText) {
             }
         }
     }
-    //Ici  je fais un POST de l'adresse url du web service ws_update_exercice.php
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_update_exercice.php', true);
-    //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous envoyon tous ce qui est passé en parametre de la fonction updateExercice)
-    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("id=" + id
         + "&nom=" + nom
         + "&consigne=" + consigne
@@ -545,24 +492,30 @@ function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) 
         + "&lien=" + lien
         + "&id_theme=" + theme
         + "&valide=" + 0);
+
     //Creation d'une boucle for qui nous permet de parcourrir l'ensemble des input de propositions de reponses à créer,
-    //de récupérer leur valeur et leur id afin de créer de nouvelles propositions de grace au web service update_exercice (en + de celles déjà enregistrées)
+    //de récupérer leur valeur et l'id de l'exercice correspondant 
+    //afin de créer de nouvelles propositions de grace au web service update_reponse (en + de celles déjà enregistrées)
     for (let i = 1; i < compteurInputReponse_Create; i++) {
-        //A chaque fois j'appel la fonction createReponse en lui passant la valeur l'id de la proposition de réponse + i et l'id de l'exercice
+        //A chaque fois j'appel la fonction createReponse() en lui passant
+        //la valeur de l'id de la proposition de réponse + i et l'id de l'exercice
         createReponse(document.getElementById("inputPropoRep_Create" + i).value, id);
     }
     //Creation d'une boucle for qui nous permet de parcourrir l'ensemble des input de propositions de reponses,
-    //et de récupérer leur valeur et leur id afin de les mettre à jour grace au web service update_exercice
+    //et de récupérer leur valeur et l'id de l'exercice correspondant
+    //afin de les mettre à jour grace au web service update_reponse
+    //et de créer les propositions précédement créer
     for (let i = 1; i < compteurInputReponse; i++) {
-        //A chaque fois je créer mon idReponse qui est ......................
+        //A chaque fois je créer un nouvel id de réponse pour les nouvelles propositions
         let idReponse = myExercices.Exercice[indexExoEnCours]._REPONSES[i - 1]._ID;
-        //Et j'appel la fonction updateReponse à laquelle je passe l'idReponse, la valeur de l'id inputPropoRep (input de proposition de reponse)
-        //+i et l'id de l'exercice
+        //Et j'appel la fonction updateReponse à laquelle je passe l'idReponse, 
+        //la valeur de l'id inputPropoRep (input de proposition de reponse) +i et l'id de l'exercice
         updateReponse(idReponse, document.getElementById("inputPropoRep" + i).value, id);
     }
 }
-
-//Cette fonction sert à mettre à jour la réponse à laquelle je passe 3 paramettre (idReponse, description, idExercice)
+//_____________________________________________________MISE A JOUR REPONSE
+//Cette fonction met à jour les réponses grâce au webservice ws_update_reponse, 
+//je lui passe 3 paramettre (idReponse, description, idExercice)
 function updateReponse(idReponse, description, idExercice) {
     //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
@@ -573,24 +526,19 @@ function updateReponse(idReponse, description, idExercice) {
             }
         }
     }
-    //Ici  je fais un POST de l'adresse url du web service ws_update_exercice.php
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_update_reponse.php', true);
-    //Ici il se passe toujours la même chose
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous envoyon tous ce qui est passé en parametre de la fonction updateReponse)
-    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("id=" + idReponse
         + "&description=" + description
         + "&id_exercice=" + idExercice
     );
 }
 
-//_______________________________________SUPPRIMER________________________________________________________
-//RESTE A FAIRE CETTE FONCTION QUI FERA LE DELETE ATTENTION EN TRAVAUX
+//_____________________________________________________________SUPPRIMER______________________________________________________
+//Cette fonction permet de supprimer l'id de notre exercice selectionné (id en cours)
+//et donc de supprimer tout le contenu de l'exercice
 function deleteExercice(IdExoEnCours) {
     console.log(IdExoEnCours);
     var xhr = new XMLHttpRequest();
@@ -600,16 +548,14 @@ function deleteExercice(IdExoEnCours) {
     }
     xhr.open('POST', 'http://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_delete_exercice.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //On oublie pas d'envoyer les paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
     xhr.send("id=" + IdExoEnCours);
 }
 
-//_____________________________________HTML Element Generator generic function_______________________________________
+//__________________________________________________HTML Element Generator generic function_______________________________________
 
+//FAIRE UN COPIER COLLER DE CE QUE L'ON A INSCRIT DANS L'AUTRE FONCTION EN ESPACE STAGIAIRE
 function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinationElement) {  //on créer un élement html donné en paramètre (1er paramètre)                      
 
     let ultimateElement = document.createElement(typeElement); //on attribut du contenu (paramètre 2) à l'element html précedement fabriqué                                                   
@@ -643,7 +589,7 @@ function setCookie(name, value, days) {
 }
 
 //______________________________________________________________________________________________________________
-// Fonction permettant de récupérer un cookie par son nom
+//
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -656,7 +602,7 @@ function getCookie(name) {
 }
 
 //______________________________________________________________________________________________________________________
-// Fonction permettant de supprimer un cookie
+//
 function eraseCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
