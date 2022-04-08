@@ -236,198 +236,190 @@ function retrieveExercice(idExercice) {
 //Elle utilise la même structure pour les deux modes, seul la valeur des champs changent selon le mode
 //En mode creation les champs sont vide afin de pouvoir les remplir
 //Et pour modifier/supprimer les champs sont remplis avec les informations de l'exercice selectionné
-function displayCreationFields(modeCreation) {
+function displayCreationFields(modeDeleteUpdate) {
 
-    //Creation de ma ligne qui va contenir les input, select et label
+    //Ligne contenant deux colonnes
+    //L'une contient les labels (nom exercice, theme, niveau lien) 
+    //L'autre les inputs, select et textarea allant avec chaque input)
     let rowSelect = ultimateHTMLGenerator("div", "", ["row"], myContainer);
     rowSelect.id="rowSelect";
-
+    
     let columnLabelTitle=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
-    let columnInputTtitle=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
-
-    //Creation d'un label pour le titre de l'exerccice
     let labelTitle = ultimateHTMLGenerator("label", "NOM EXERCICE :", ["text-end","fw-bold","fs-6","bg-secondary"],columnLabelTitle);
-    //Creation d'un input en rapport avec le label du titre de l'exercice
+
+    let columnInputTtitle=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
     let inputTitle = ultimateHTMLGenerator("input", "", [], columnInputTtitle);
-    //L'input est de type text
     inputTitle.type = "text";
     //La valeur contenu dans l'input est myTtitle
-    if (modeCreation) { inputTitle.value = myTitle };
-    //Le créer un id à mon input
+    if (modeDeleteUpdate) { inputTitle.value = myTitle };
     inputTitle.id = "EXERCICE" + "_NOM";
 
     let columnLabelTheme=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
-    let columnInputTheme=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
-
-    //Creation d'un label pour le theme de l'exercice
     let labelTheme = ultimateHTMLGenerator("label", "THEME :", ["fw-bold","fs-6","bg-secondary"], columnLabelTheme);
-    //Creation de mon selecteur de theme pour afficher le theme en cours de l'exercice selectionné
+    
+    //Creation d'un selecteur qui contient autant de propositions de réponse que de theme
+    let columnInputTheme=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
     let selectTheme = ultimateHTMLGenerator("select", "", [], columnInputTheme);
-    //Pour cela j'utilise une boucle for pour parcourir mes themes
+    //J'utilise une boucle for pour parcourir mes themes
     for (c = 0; c < myThemes.theme.length; c++) {
-        //Cela créer le bon nombre d'option avec l'id theme pour pouvoir choisir un theme dans le selecteur
+        //Autant d'options que de themes sont créer
         let optionsTheme = ultimateHTMLGenerator("option", myThemes.theme[c]._NOM, [], selectTheme);
+        //Le bon id est attribué à l'option
         optionsTheme.value = myThemes.theme[c]._ID;
 
     }
-    if (modeCreation) {
-        //Ici dans le selecteur s'affiche le theme correspondant à l'exercice selectionné dans le tableau
+    //Ici dans le mode supprimer/modifier, le selecteur affiche le theme correspondant à l'exercice selectionné dans le tableau
+    if (modeDeleteUpdate) {
         selectTheme.value = myIdTheme;
-        //J'attribu un id à mon selcteur 
         selectTheme.id = "selectTheme";
     }
 
     let columnLabelLevel=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
-    let columnInputLevel=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
-
-    //Creation d'un label pour le niveau de l'exercice
     let labelLevel = ultimateHTMLGenerator("label", "NIVEAU :", ["fw-bold","fs-6","bg-secondary"], columnLabelLevel);
-    //Creation d'un input en rapport avec le label du niveau de l'exercice
+    
+    let columnInputLevel=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
     let inputLevel = ultimateHTMLGenerator("input", "", [], columnInputLevel);
-    //Linput est de type number
     inputLevel.type = "number";
-    //La valeur à l'interieur de mon input est myLevel
-    if (modeCreation) { inputLevel.value = myLevel; }
-    //J'attribu un id à mon input 
     inputLevel.id = "EXERCICE" + "_NIVEAU";
 
-    let columnLabelLink=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
-    let columnInputLink=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
+    //Dans le mode supprimer/modifier, la valeur à l'interieur de mon input est myLevel
+    //Qui correspond au niveau attribué à l'exercice selectionné (exercice en cours)
+    if (modeDeleteUpdate) { inputLevel.value = myLevel; }
 
-    //Creation d'un label pour le lien de mon exercice
+    let columnLabelLink=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
     let labelLink = ultimateHTMLGenerator("label", "LIEN :", ["fw-bold","fs-6","bg-secondary"], columnLabelLink);
-    //Creation de l'input en rapport avec le label lien de l'exercice
+    
+    let columnInputLink=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
     let inputLink = ultimateHTMLGenerator("input", "", [], columnInputLink);
-    //L'input est de type url (adresse)
     inputLink.type = "url";
-    //La valeur à l'interieur de mon input est myLink
-    if (modeCreation) { inputLink.value = myLink; }
-    //J'attribu un id à mon input
     inputLink.id = "EXERCICE" + "_LIEN";
 
-    //Creation d'une ligne contenant 3 colonnes
+    //Dans le mode supprimer/modifier, la valeur à l'interieur de mon input est myLink
+    //Qui correspond au lien attribué à l'exercice selectionné (exercice en cours)
+    if (modeDeleteUpdate) { inputLink.value = myLink; }
+
+    //Creation d'une ligne contenant 3 colonnes contenant chacune les labels
     let rowLabel = ultimateHTMLGenerator("div", "", ["row"], myContainer);
     rowLabel.id="rowLabel";
-    //Colonne dans la ligne contenant le label de consigne de l'exercice
+
     let columnLabel1 = ultimateHTMLGenerator("div", "", ["col-4","text-left"], rowLabel);
     let labelOrder = ultimateHTMLGenerator("label", "ENONCE EXERCICE :", ["fs-6","fw-bold","bg-secondary"], columnLabel1);
 
-    //Colonne dans la ligne contenant le label de la réponse attendu
     let columnLabel2 = ultimateHTMLGenerator("div", "", ["col-4","text-left"], rowLabel);
     let labelExpectedResponse = ultimateHTMLGenerator("label", "REPONSE ATTENDU :", ["fs-6","fw-bold","bg-secondary"], columnLabel2);
 
-    //Colonne dans la ligne contenant le label de proposition de réponse
     let columnLabel3 = ultimateHTMLGenerator("div", "", ["col-4","text-left"], rowLabel);
     let labelSuggestion = ultimateHTMLGenerator("label", "PROPOSITIONS REPONSES :", ["fs-6","fw-bold","bg-secondary"], columnLabel3);
 
-    //Creation d'une ligne qui va contenir les champs (input/textarea)
+    //Creation d'une ligne contenant 3 colonnes contenant chacune les input/textarea correspondant à chaque labels
     let rowInputFields = ultimateHTMLGenerator("div", "", ["row"], myContainer);
     rowInputFields.id="rowInputFields";
 
-    //Colonne contenant l'input de la consigne
     let columnInput1 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let inputOrder;
-    if (modeCreation) {
+
+    //En mode supprimer/modifier le contenu du textarea est instruction
+    //instruction correspond à la consigne de l'exercice selectionné (exercice en cours)
+    if (modeDeleteUpdate) {
         inputOrder = ultimateHTMLGenerator("textarea", instructions, [], columnInput1);
 
+      //En mode creation le textarea est vide afin de la remplir avec la valeur souhaité  
     } else {
         inputOrder = ultimateHTMLGenerator("textarea", "", [], columnInput1);
-
     }
-    //J'attribu un id à mon input de consigne
     inputOrder.id = "EXERCICE" + "_CONSIGNE";
 
-    //Colonne contenant l'input de la reponse attendu
     let columnInput2 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let inputExpectedResponse;
-    if (modeCreation) {
+    //En mode supprimer/modifier le contenu du textarea est correctAnswers
+    //correctAnswer correspond à la reponse attendu de l'exercice selectionné (exercice en cours)
+    if (modeDeleteUpdate) {
         inputExpectedResponse = ultimateHTMLGenerator("textarea", correctAnswers, [], columnInput2);
-
+        //En mode creation le textarea est vide afin de pouvoir y rentrer la valeur souhaitée
     } else {
         inputExpectedResponse = ultimateHTMLGenerator("textarea", "", [], columnInput2);
     }
-    //J'attribu un id à mon input de reponse attendu
     inputExpectedResponse.id = "EXERCICE" + "_REPONSEATTENDU";
 
-    //Colonne contenant le bouton d'ajout et l'input de propositions de réponses
     let columnInput3 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let addButton;
-    if (modeCreation) {
+    //En mode modifier/supprimer le bouton d'ajout d'input n'apparait pas
+    if (modeDeleteUpdate) {
         addButton = ultimateHTMLGenerator("button", "+", ["btn", "btn-success", "d-none"], columnInput3);
-
+    //En mode creation le bouton d'ajout d'input est apparant ainsi qu'un input
     } else {
         addButton = ultimateHTMLGenerator("button", "+", ["col", "btn", "btn-success"], columnInput3);
         let inputSuggestion1 = ultimateHTMLGenerator("input", "", [], columnInput3);
-        //Creation de l'id qui va pouvoir permettre de recuperer la valeur tapé par l'utilisateur
+        //Creation d'un id unique qui va pouvoir permettre de recuperer la valeur tapé par l'utilisateur dans l'input
         inputSuggestion1.id = "REPONSE" + "_DESCRIPTION" + 1;
     }
 
-    if (modeCreation) {
+    //En mode modifier/supprimer au click sur le bouton d'ajout
+    //Il est possible d'ajouter des inputs de proposition de réponse en plus de ceux deja existant
+    if (modeDeleteUpdate) {
         addButton.onclick = function () {
             let inputSuggestion1 = ultimateHTMLGenerator("input", "", [], columnInput3);
-            //J'attribu un id à mon input de proposition
+            //J'attribu un id unique à mon nouvel input de proposition
             inputSuggestion1.id = "inputPropoRep_Create" + compteurInputReponse_Create;
             //J'agremente mon compteurInputReponse_Create de 1 en 1
             compteurInputReponse_Create++;
         };
+        //En mode creation au click sur le bouton d'ajout je créer de nouveaux input
+        //Et un id unique leur est attribué
     } else {
-        //Ajout d'un evenement onclick au bouton 
         addButton.onclick = function () {
-            //Variable déclaré précédement qui sert à créer un id unique lors de chaque creation d'input
             compteurInput++;
             let inputSuggestion1 = ultimateHTMLGenerator("input", "", [], columnInput3);
             inputSuggestion1.id = "REPONSE" + "_DESCRIPTION" + compteurInput;
         }
     }
 
-    if (modeCreation) {
+    //En mode supprimer modifier on créer une boucle for
+    //elle va parcourrir l'ensemble du tableau de répponse
+    //et afficher autant d'input que de propositions de réponse que contient l'exercice
+    if (modeDeleteUpdate) {
         //Creation d'une boucle for pour parcourir le longeur de mon tableau de réponse de l'exercice en cours
         for (j = 0; j < myExercices.Exercice[indexExoEnCours]._REPONSES.length; j++) {
-            //Un input se créer
             let inputSuggestion1 = ultimateHTMLGenerator("input", "", [], columnInput3);
-            //Il a pour id unique inputPropoRep accompagné de 1, 2, 3 ou 4... qui correspond au compteur
             inputSuggestion1.id = "inputPropoRep" + compteurInputReponse;
-            //Alors la valeur de mon input correspond à la description dans la table réponse, de mon exercice en cours
+            //La valeur de mon input correspond à la description dans la table réponse, de mon exercice en cours
             inputSuggestion1.value = myExercices.Exercice[indexExoEnCours]._REPONSES[j]._DESCRIPTION;
-            //J'agremente mon compteurInputReponse de 1 en 1 pour avoir un id unique pour chaque input
             compteurInputReponse++;
         }
 
-        //Creation d'une ligne contenant les boutons update et delete dans deux colonnes
+        //Creation d'une ligne avec un nom unique, contenant deux colonnnes
         let rowButtonUD = ultimateHTMLGenerator("div", "", ["row"], myContainer);
-        //J'attribu un id à mon bouton
         rowButtonUD.id = "rowButtonUD";
 
-        //1ere colonne
+        //La première colonne contient un bouton MODIFIER 
+        //qui au click permet de faire re apparaitre le bouton d'ajout (qui permet d'ajouter des input d epropositions de réponses)
+        //et appel la fonction displayCreationButtons() (qui permettra de mettre à jour l'exercice)
         let column1ButtonUD = ultimateHTMLGenerator("div", "", ["col-6"], rowButtonUD);
-        //Bouton update
         let buttonUpdate = ultimateHTMLGenerator("button", "Modifier", ["btn", "btn-warning"], column1ButtonUD);
         buttonUpdate.id = "buttonUpdate";
-        //Au click sur le bouton update, la fonction displayCreationButtons est appelé
         buttonUpdate.onclick = function () {
             addButton.classList.remove("d-none");
             displayCreationButtons(myExercices.Exercice[indexExoEnCours]._ID);
         }
 
-        //2eme colonne
+        //La deuxième colonnne contient un bouton supprimer
+        //qui au click appel la fonction deleteExercice() (qui permet de supprimer definitivement l'exercice)
+        //et fait un retour sur la page d'affichage du tableau
         let column2ButtonUD = ultimateHTMLGenerator("div", "", ["col-6"], rowButtonUD);
-        //Bouton delete
         let buttonDelete = ultimateHTMLGenerator("button", "Supprimer", ["btn", "btn-danger"], column2ButtonUD);
         buttonDelete.id = "buttonDelete";
-        //Au click sur le bouton delete intervient la partie du CRUD Delete
         buttonDelete.onclick = function () { 
             deleteExercice(myExercices.Exercice[indexExoEnCours]._ID); 
             /*document.getElementById("myContainerCreateExercice").innerHTML = "";
             tableau_exercice_stagiaire();*/
         }
+        //En mode creation on créer une ligne contenant un bouton VALIDER 
+        //qui au click appel la fonction creationExercice() (qui prend en compte la valeur de tous les champs
+        //et créer un nouvel exercice et ses propositions de réponse)
     } else {
-        //Creation d'une ligne contenant le bouton Valider
         let rowButtonV = ultimateHTMLGenerator("div", "", ["row"], myContainer);
         let buttonValidate = ultimateHTMLGenerator("button", "Valider", ["btn", "btn-success"], rowButtonV);
-        //Creation d'un id pour le bouton
         buttonValidate.id = "buttonValidate";
-        //Liaison du bouton à l'evenement onclick qui appel la fonction creationExercice
-        // on lui passe en paramettre la valeur des id de chaque input ainsi que la valeur du selecteur
         buttonValidate.onclick = function () {
             creationExercice(
                 document.getElementById("EXERCICE" + "_NOM").value,
