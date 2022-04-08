@@ -27,8 +27,8 @@
 
   <!-- Balise qui contient le corps de ma page-->
   <body>
-    <!--Ouverture d'une balise conteneur fluide-->
-    <div class="container-fluid">
+    <!--Ouverture d'un conteneur fluide-->
+    <header class="container-fluid">
       <!--Création d'une ligne avec un nom unique-->
       <div class="row" id="titreAvantHeader">
         <!--Creation d'une colonne qui va occuper l’espace de deux colonnes selon boostraps -->
@@ -44,70 +44,68 @@
         <!--Creation d'une autre colonne afin de centrer le titre-->
         <div class="col-2"> </div>
       </div>
-    </div>
-
-    <!--Ouverture de l'en-tête de la page-->
-    <header> 
-      <!--Ouverture d'une balise de navigation-->
-      <nav class="navbar navbar-expand navbar-dark">
-        <!--Ouverture d'un container-fluid qui contient-->
-        <div class="container-fluid">
-          <!--Ouverture d'une balise liste contenant 4 liens-->
-          <ul class="navbar-nav mx-auto">
-            <!--Liens qui renvoie sur la page espace_stagiaire-->
-            <a class="nav-link px-5" href="./espace_stagiaire.html">Menu stagiaire</a>
-          </ul>
-          <!--Ouverture d'une balise de navigation contenant 2 liens-->
-          <div class="navbar-nav">
-            <!--Liens qui renvoie sur la page accueil-->
-            <a href="./index.html">
-              <!--Creation d'une balise image dans notre lien avec un nom unique-->
-              <img id="logo_deconnecter" src="../image/deconnecter.png" alt="logo_deconnecter">
-            </a>
-          </div>
-        </div>
-      </nav>
     </header>
 
+    <!--Ouverture d'une balise de navigation-->
+    <nav class="navbar navbar-expand navbar-dark">
+      <!--Ouverture d'un container-fluid qui contient-->
+      <div class="container-fluid">
+        <!--Ouverture d'une balise liste contenant 4 liens-->
+        <ul class="navbar-nav mx-auto">
+          <!--Liens qui renvoie sur la page espace_stagiaire-->
+          <a class="nav-link px-5" href="./espace_stagiaire.html">Menu stagiaire</a>
+        </ul>
+        <!--Ouverture d'une balise de navigation contenant 2 liens-->
+        <div class="navbar-nav">
+          <!--Liens qui renvoie sur la page accueil-->
+          <a href="./index.html">
+            <!--Creation d'une balise image dans notre lien avec un nom unique-->
+            <img id="logo_deconnecter" src="../image/deconnecter.png" alt="logo_deconnecter">
+          </a>
+        </div>
+      </div>
+    </nav>
+
     <!--Creation d'un container qui contient une ligne avec 3 colonnes -->
-    <div class="container-fluid" id="container_espace_stagiaire">
+    <section class="container-fluid" id="container_espace_stagiaire">
       <!--Ligne contenant mes boutons et images-->
       <div class="row">
         <!--Ligne contenant mes colonnes avec mes boutons-->
         <div class="row text-center d-flex">
-          <div class="col-4">
+          <article class="col-4">
             <!--Creation d'un bouton avec un nom unique qui au click renvois à la fonction load_Exercice en JavaScript-->
             <button type="button" id="exercice" onclick="load_Exercice()" class="btn btn-light btn-lg btn-block">EXERCICES</button>
-          </div>
+          </article>
             
-          <div class="col-4"> 
+          <article class="col-4"> 
             <!--Creation d'un bouton avec un nom unique qui au click renvois à la page cours-->
             <button type="button" id="cours" onclick="javascript:location.href='../html/cours.html'" class="btn btn-light btn-lg btn-block" >COURS</button>
-          </div>
+          </article>
 
-          <div class="col-4">
+          <article class="col-4">
             <!--EN TRAVAUX : PENSER A METTRE LE BON COMMENTAIRE-->
             <button type="button" id="examens" onclick="loadExamens()" class="btn btn-light btn-lg btn-block">EXAMENS</button>
-          </div>
+          </article>
         </div>
+
         <!--Creation d'une ligne contenant 3 colonnes, qui chacune contiennent une image respectives à un bouton-->
         <div class="row">
 
-          <div class="col-4">
+          <article class="col-4">
             <img  id="logo_stylo" src="../image/stylo.png" alt="logo_stylo">
-          </div>
+          </article>
 
-          <div class="col-4">
+          <article class="col-4">
             <img  id="logo_cours" src="../image/livre_ouvert.png" alt="logo_cours">
-          </div>
+          </article>
 
-          <div class="col-4">
+          <article class="col-4">
             <img  id="logo_certificat" src="../image/diplome.png" alt="logo_certificat">
-          </div>
+          </article>
 
         </div>
       </div>
-    </div>
+    </section>
 
     <!--Ici se trouve le footer-->
     <footer class="footer d-flex bottom sm-none">
