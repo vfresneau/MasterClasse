@@ -144,6 +144,11 @@ function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
                     //(ici le xhrresponseText renvois vers le web service displayCreation et donc récupère l'id de l'exercicé créer)
                     createReponse(descri, xhr.responseText);
                 }
+                //A la fin des 4 secondes la page se vide et la fonction load_Exercice se lance
+                setTimeout(function(){
+                    myContainer.innerHTML = "";
+                    load_Exercice();
+                }, 4000);
             }
         }
     }
@@ -404,8 +409,8 @@ function displayCreationFields(modeDeleteUpdate) {
         buttonDelete.id = "buttonDelete";
         buttonDelete.onclick = function () { 
             deleteExercice(myExercices.Exercice[indexExoEnCours]._ID); 
-            // myContainer .innerHTML = "";
-            // load_Exercice();
+            myContainer .innerHTML = "";
+            load_Exercice();
         }
         //En mode creation on créer une ligne contenant un bouton VALIDER 
         //qui au click appel la fonction creationExercice() (qui prend en compte la valeur de tous les champs
@@ -423,9 +428,7 @@ function displayCreationFields(modeDeleteUpdate) {
                 document.getElementById("EXERCICE" + "_LIEN").value,
                 selectTheme.value
             );
-        //     myContainer .innerHTML = "";
-        //     load_Exercice();
-            };
+        };
     }
 
 }
@@ -448,8 +451,6 @@ function displayCreationButtons(idExercice) {
             document.getElementById("EXERCICE" + "_NIVEAU").value,
             document.getElementById("EXERCICE" + "_LIEN").value,
             document.getElementById("selectTheme").value);
-            // myContainer .innerHTML = "";
-            // load_Exercice();
     };
 }
 //_______________________________________________METRE A JOUR_______________________________________________
@@ -495,6 +496,11 @@ function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) 
         //la valeur de l'id inputPropoRep (input de proposition de reponse) +i et l'id de l'exercice
         updateReponse(idReponse, document.getElementById("inputPropoRep" + i).value, id);
     }
+    //A la fin des 4 secondes la page se vide et la fonction load_Exercice se lance
+    setTimeout(function(){
+        myContainer.innerHTML = "";
+        load_Exercice();
+    }, 4000);
 }
 //_____________________________________________________MISE A JOUR REPONSE
 //Cette fonction met à jour les réponses grâce au webservice ws_update_reponse, 
