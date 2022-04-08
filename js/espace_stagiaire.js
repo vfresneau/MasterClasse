@@ -202,6 +202,21 @@ function retrieveExercice(idExercice) {
     shuffle(myAnswer);
 }
 
+//fonction qui permet de mettre un ordre aléatoire pour les reponses dans son tableau answer
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+    // Tant qu'il reste des éléments à brasser...
+    while (currentIndex != 0) {
+        // Choisissez un élément restant
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        // Et échangez-le avec l'élément actuel.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+    return array;
+}
+
 //retrouve le NOM du theme en fonction de l'exercice en cours //
 function Retrieve_Id_Themes(myIdTheme) {
     for (let i = 0; i < myThemes.theme.length; i++) {
@@ -420,7 +435,7 @@ function eraseCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-//Recupèer la charhe utile du token
+//Recupèer la charge utile du token
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -429,20 +444,3 @@ function parseJwt(token) {
     }).join(''));
     return JSON.parse(jsonPayload);
 };
-
-//fonction qui permet de mettre un ordre aléatoire pour les reponses dans son tableau answer
-function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
-    // Tant qu'il reste des éléments à brasser...
-    while (currentIndex != 0) {
-        // Choisissez un élément restant
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        // Et échangez-le avec l'élément actuel.
-        [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-        }
-    return array;
-}
-
-//_____________________________________________________________________________________________________________________________________________________________________//
