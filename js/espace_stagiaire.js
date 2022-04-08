@@ -300,7 +300,7 @@ function verificator(checkboxId, LabelId) {
     for (var i = 0, n = checkboxes.length; i < n; i++) {
         checkboxes[i].disabled = true;
     }
-    //si cette ligne est cochée //
+    //si cette ligne est cochée et que c'est de la bonne//
     if (document.getElementById(checkboxId).checked === true && document.getElementById(LabelId).textContent == correctAnswers) {
         //verification dans la console de la recuperation que ce sont bien les memes id //
         console.log(checkboxId, LabelId);

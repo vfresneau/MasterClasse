@@ -29,7 +29,6 @@ function load_Exercice() {
         document.getElementById("myContainerCreateExercice").innerHTML = "";
         displayCreationFields(false);
     };
-
     //Fabrication d'une nouvelle instance de Class et d'une requete Http à envoyer
     var xhr = new XMLHttpRequest();
     //Lancement de la fonction anonyme à chaque changement d'état de la requete http
