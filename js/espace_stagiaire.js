@@ -39,18 +39,25 @@ function tableau_exercice_stagiaire() {
     let bodyTable = ultimateHTMLGenerator("tbody", "", [], TableExercice);
     bodyTable.scope = "row";
 
-    //on parcours notre tableau d'objects
+    //on parcours notre tableau d'objects Exercice //
     for (let i = 0; i < myExercices.Exercice.length; i++) {
         let rowTable = ultimateHTMLGenerator("tr", "", [], bodyTable);
+        //Lors d'un click sur une ligne du tableau on selectionne l'exercice et on l'affiche dans une autre page
         rowTable.addEventListener("click", function () {
+            //on stocke "i" dans une variable //
             indexExoEnCours = i;
             //on passe en parametre dans la fonction, l'ID de l'exercice selectionné
             ReadExerciceStagiaire(myExercices.Exercice[i]._ID);
         })
+        //on affiche le "nom" de l'exercice dans la ligne du tableau
         let valueColum1 = ultimateHTMLGenerator("td", myExercices.Exercice[i]._NOM, [], rowTable);
         valueColum1.classList = "table-secondary";
+
+        //on affiche le "niveau" de l'exercice dans la ligne du tableau
         let valueColum2 = ultimateHTMLGenerator("td", myExercices.Exercice[i]._NIVEAU, [], rowTable);
         valueColum2.classList = "table-dark";
+
+        //on affiche le "themes" de l'exercice dans la ligne du tableau
         let myThemes = findTheme(myExercices.Exercice[i]._ID_THEME);
         let valueColum3 = ultimateHTMLGenerator("td", myThemes, [], rowTable);
         valueColum3.classList = "table-secondary";
@@ -88,7 +95,7 @@ function load_Exercice() {
     }
     // methode utilisée par le protocole http, à l'aquelle on envoie 3 paramètres :adresse du web service utilisé, ma requete est asynchrone
     xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
-    // La méthode setRequestHeader() de l'objet XMLHttpRequest permet d'éditer le header d'une requête HTTP. 
+    //type de contenu utile pour l'envoie de parametre dans send
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
@@ -105,6 +112,7 @@ function load_Theme() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             myThemes = JSON.parse(xhr.responseText);
             console.log(myThemes);
+            //Affiche la page avec toutes ces données incluant les themes//
             tableau_exercice_stagiaire();
         }
     }
@@ -117,9 +125,9 @@ function load_Theme() {
 
 //___________________________________________WEBSERVICE POUR LIRE LES EXERCICES_______________________________
 
-//Fonction qui attend en parametre l'Id de l'exercice selectionné dans le tableau afin d'afficher celui-ci
+//Fonction qui attend en parametre l'Id de l'exercice selectionné dans le tableau ,et affiche celui-ci
 function ReadExerciceStagiaire(id) {
-    // on vide la liste des exercice et l'exercice
+    // on vide la liste des exercice et l'exercice 
     container.innerHTML = "";
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -128,13 +136,13 @@ function ReadExerciceStagiaire(id) {
             console.log(myExercice);
             //On retrouve l'exercice correspondant grace à l'id //
             retrieveExercice(id);
-            //apelle de la fonction pour lire les themes à la reponse du serveur en utilisant callback ?
+            //apelle de la fonction pour lire les themes
             ReadTheme();
         }
     }
     // methode utilisée par le protocole http, à l'aquelle on envoie 3 paramètres :adresse du web service utilisé, ma requete est asynchrone
     xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
-    //
+    //type de contenu utile pour l'envoie de parametre dans send
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //je definie que j'attend du json en retour de la requette http
     xhr.setRequestHeader('Accept', 'application/json');
@@ -148,7 +156,7 @@ function ReadExerciceStagiaire(id) {
 
 
 
-//fonction appelé a la reponse du serveur ...
+//fonction qui lit les themes //
 function ReadTheme() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -156,6 +164,7 @@ function ReadTheme() {
             myThemes = JSON.parse(xhr.responseText);
             //verification si je reçois bien mon webService //
             Retrieve_Id_Themes(myIdTheme);
+            //et j'affiche le resulat dans le resulat dans la page
             myBlock();
         }
     }
@@ -207,12 +216,16 @@ function Retrieve_Id_Themes(myIdTheme) {
 }
 //_____________________________________________________________________________________________________________________________________________________________________//
 
-//Fonction pour afficher mon block contenant l'exercice à débuter pour le stagiaire.
+//Fonction pour afficher mon block contenant "l'exercice à débuter" , pour le stagiaire.
 function myBlock() {
+    //Efface le conteneur avant l'affichage de la page
     container.innerHTML = "";
+
+    //creation d'un block blanc de presentation
     let whiteBlock = ultimateHTMLGenerator("div", "", ["row", "bg-light"], container);
     whiteBlock.id = "blockBlanc";
 
+    //creation d'un titre H4
     let TitleExercice = ultimateHTMLGenerator("h4", myTitle, [], whiteBlock);
     TitleExercice.id = "TitleExercice";
 
@@ -237,15 +250,17 @@ function myBlock() {
     // j'attribu un id unique au bouton exercice suivant
     NextButton.id = "NextButton1";
     NextButton.onclick = function () {
-        // TODO COMPRENDRE
-        retrieveExercice(myExercice.Exercice[indexExoEnCours + 1]._ID);
+        //On incrémente  de +1 à "indexExoEnCours" (variable qui stocke l'emplacement de l'exercice)
         indexExoEnCours++;
-        //--> affiche l'exercice
+        //Lors du click je charge l'exercice suivant 
+        retrieveExercice(myExercice.Exercice[indexExoEnCours]._ID);
+        //--> affiche les themes //
         ReadTheme();
     }
 
     //Colum of Congratulation //
     let ColumCongratulation = ultimateHTMLGenerator("div", "", ["col-6"], whiteBlock);
+
     //Create a picture for good answer ! //
     Pics = ultimateHTMLGenerator("img", "", [], ColumCongratulation);
     Pics.src = "../image/goodjob.jfif";
@@ -298,6 +313,8 @@ function verificator(checkboxId, LabelId) {
     document.getElementById("ColumButton").style.visibility = "visible";
 }
 
+
+//Fonction qui permet se logguer en mode securisé au profil stagiaire ou celui de Createur, et qui crer un cookie afin de passer d'une page à l'autre en estant connecté
 function connexion() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -308,7 +325,6 @@ function connexion() {
                 setCookie("jwt", xhr.responseText, 1);
                 //resulat décodé du payload du jwt
                 console.log(parseJwt(xhr.responseText));
-
                 //resulat décodé du payload ou jwt suivi du 0 ou 1 qui permet de savoir si admin ou pas
                 let admin = parseJwt(xhr.responseText).admin;
                 if (admin == 1) {
@@ -350,7 +366,7 @@ function loadPhp(){
     window.location.href = 'https://www.w3schools.com/php/default.asp';
 }
 
-//________________________________________________LIENS FOOTER______________________________________________________________________________________//
+//________________________________________________LIEN FOOTER______________________________________________________________________________________//
 
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
@@ -404,7 +420,7 @@ function eraseCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-//pour décoder le token sous quel forme ?
+//Recupèer la charhe utile du token
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
