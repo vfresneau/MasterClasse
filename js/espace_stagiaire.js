@@ -14,6 +14,15 @@ let indexExoEnCours = 0;
 //Récupère et lie l'element html de la page "espace stagaire" pour afficher le contenu de cette page
 let container = document.getElementById("container_espace_stagiaire");
 
+//________________________________________________LIEN FOOTER______________________________________________________________________________________//
+if (window.location.href.indexOf("connexion")==-1){
+    //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
+let myLinkContact = document.getElementById("link_contact");
+myLinkContact.onclick = function () {
+    alert("Téléphone : 02.47.39.24.01" + "\n" + "Mail : formation.dev@mail.fr");
+};}
+
+
 
 //____________________________________________________________FONCTION PRINCIPAL________________________________________________________________________________//
 
@@ -381,13 +390,6 @@ function loadPhp(){
     window.location.href = 'https://www.w3schools.com/php/default.asp';
 }
 
-//________________________________________________LIEN FOOTER______________________________________________________________________________________//
-
-//Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
-let myLinkContact = document.getElementById("link_contact");
-myLinkContact.onclick = function () {
-    alert("Téléphone : 02.47.39.24.01" + "\n" + "Mail : formation.dev@mail.fr");
-};
 
 
 //_____________________________________HTML Element Generator generic function_______________________________________
