@@ -52,6 +52,7 @@ class JWT
      * @param int $validity Durée de validité (en secondes)
      * @return string Token
      */
+
     public function generate(array $header, array $payload, string $secret, int $validity = 86400): string
     {
         if($validity > 0){
@@ -73,14 +74,11 @@ class JWT
         // On génère la signature
         $secret = base64_encode($secret);
         $signature = hash_hmac('sha256', $base64Header . '.' . $base64Payload, $secret, true);
-
         $base64Signature = base64_encode($signature);
-
         $signature = str_replace(['+', '/', '='], ['-', '_', ''], $base64Signature);
 
         // On crée le token
         $jwt = $base64Header . '.' . $base64Payload . '.' . $signature;
-
         return $jwt;
     }
 
@@ -144,7 +142,7 @@ class JWT
         $payload = $this->getPayload($token);
 
         $now = new DateTime();
-
+        //
         return $payload['exp'] < $now->getTimestamp();
     }
 

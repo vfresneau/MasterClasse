@@ -16,7 +16,9 @@ Class Exercice {
 	//permet d'avoir acces aux reponses dans le json de l'exercice
 	private $_REPONSES =[];
 
-	//S'appelle automatiquement à la création d'instance
+  // le méthode construct s'appelle automatiquement lorsque 
+    // l'on fait une instance de cette class
+	//Il hydrate ou remplie les attributs de l'instance de la classe exercice_examen
     function __construct($ID, $NOM, $CORRECTION, $CONSIGNE, $REPONSEATTENDU, $VALIDE, $NIVEAU, $LIEN, $ID_THEME){
 		$this->_ID = $ID;
 		$this->_NOM = $NOM;

@@ -15,6 +15,8 @@ let indexExoEnCours = 0;
 let container = document.getElementById("container_espace_stagiaire");
 
 //________________________________________________LIEN FOOTER______________________________________________________________________________________//
+
+//Si ce n'est pas la page connexion, j'applique le onclick (car pas footer sur cette page)
 if (window.location.href.indexOf("connexion")==-1){
     //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");

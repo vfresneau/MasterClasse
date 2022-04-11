@@ -1,16 +1,26 @@
-<?php
+<?php ////balise de debut
 
 Class exercice_examen {
 	private $_ID;
 	private $_ID_EXERCICE;
 	private $_ID_EXAMEN;
 
-	//S'appelle automatiquement à la création d'instance
+	
+    // le constructeur (méthode __construct), s'appelle automatiquement lorsque 
+    // l'on fait une instance de cette class
+    // Dans notre cas on demande les valeurs de l'intégralité de nos attributs
+	//Il hydrate ou remplie les attributs de l'instance de la classe exercice_examen
+
     function __construct($ID, $ID_EXERCICE, $ID_EXAMEN){
 		$this->_ID = $ID;
 		$this->_ID_EXERCICE = $ID_EXERCICE;
 		$this->_ID_EXAMEN = $ID_EXAMEN;
 	}
+
+    //les accesseurs li la valeur
+	//Les getters nous permet d’acceder au contenu des propriétés privé de la Classe.
+	//change la valeur de l'attribue
+	//Les setters nous permettent de modifier les contenus des propriétés privés de la Classe.
 
 	public function get_ID(){
 		return $this->_ID;
@@ -121,4 +131,5 @@ Class exercice_examen {
     }
 
 }
+//balise fin
 ?>

@@ -18,7 +18,7 @@ let myContainer = document.getElementById("myContainerCreateExercice");
 
 //Au click sur le bouton EXERCICE la fonction load_Exercice est executé.
 //Cette fonction vide le contenu de la page, elle laisse apparaître un bouton CREER,
-//et grâce à la requete AJAX nous affichons le tableau d'exercice.
+//à la requete AJAX nous affichons le tableau d'exercice.
 function load_Exercice() {
     myContainer.innerHTML = "";
     let rowButtonCreate = ultimateHTMLGenerator("div", "", ["row"], myContainer);
