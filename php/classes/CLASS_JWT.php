@@ -1,7 +1,10 @@
 <?php
+
+////Les Class servent structurer les informations et apporte des méthodes
 // (Jason Web Token) 
 class JWT
 {
+    //Fonction pour verifierla validité du token
     public function testTokenExitValide(){
         // On vérifie si on reçoit un token --> différentes méthode en fonction du type de server (windows, apache ...)
         if(isset($_SERVER['Authorization'])){
@@ -14,13 +17,11 @@ class JWT
                 $token = trim($requestHeaders['Authorization']);
             }
         }
-
         // On vérifie si la chaine commence par "Bearer "
         if(!isset($token) || !preg_match('/Bearer\s(\S+)/', $token, $matches)){
             http_response_code(404);
             exit;
         }
-
         // On extrait le token
         $token = str_replace('Bearer ', '', $token);
 
@@ -29,23 +30,19 @@ class JWT
             http_response_code(400);
             exit;
         }
-
         // On vérifie la signature
         if(!$this->check($token, SECRET)){
             http_response_code(403);
             exit;
         }
-
         // On vérifie l'expiration
         if($this->isExpired($token)){
             http_response_code(403);
             exit;
         }
     }
-
-
     /**
-     * Génération JWT
+     * Génération d'un JWT (Jason Web Token)
      * @param array $header Header du token
      * @param array $payload Payload du Token
      * @param string $secret Clé secrète
@@ -115,7 +112,6 @@ class JWT
 
         return $header;
     }
-
     /**
      * Retourne le payload
      * @param string $token Token
@@ -131,7 +127,6 @@ class JWT
 
         return $payload;
     }
-
     /**
      * Vérification de l'expiration
      * @param string $token Token à vérifier
@@ -145,7 +140,6 @@ class JWT
         //
         return $payload['exp'] < $now->getTimestamp();
     }
-
     /**
      * Vérification de la validité du token
      * @param string $token Token à vérifier

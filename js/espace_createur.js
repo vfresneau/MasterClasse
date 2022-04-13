@@ -17,7 +17,7 @@ let myContainer = document.getElementById("myContainerCreateExercice");
 //_____________________________________FONCTIONS POUR L'AFFICHAGE DU TABLEAU D'EXERCICE____________________________
 
 //Au click sur le bouton EXERCICE la fonction load_Exercice est executé.
-//Cette fonction vide le contenu de la page, elle laisse apparaître un bouton CREER,
+//Cette fonction vide le contenu de la page espace_stagiaire, et laisse apparaître un bouton CREER,
 //à la requete AJAX nous affichons le tableau d'exercice.
 function load_Exercice() {
     myContainer.innerHTML = "";
@@ -27,6 +27,7 @@ function load_Exercice() {
     buttonCreate.id = "buttonCreate";
     buttonCreate.onclick = function () {
         myContainer.innerHTML = "";
+        //fonction choisit l'affichage de creation des données
         displayCreationFields(false);
     };
     //Fabrication d'une nouvelle instance de Class et d'une requete Http à envoyer
@@ -35,12 +36,12 @@ function load_Exercice() {
     xhr.onreadystatechange = function () {
         //Seulement quand l'état de la requete est DONE 
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            //Ici on parse (transformation de la response envoyé par le serveur en JSON)
+            //on convertis le xhr.reponseText(la reponse du serveur) au format texte, en objet JSON
             myExercices = JSON.parse(xhr.responseText);
             //Verification grâce à un consol.log()
             console.log(myExercices);
-            //Appel de la fonction ReadTheme à laquelle on passe la fonction tableau_exercice_stagiaire
-            ReadTheme(tableau_exercice_stagiaire);
+            //Appel de la fonction ReadTheme à laquelle on passe la fonction tableauExerciceStagiaire
+            ReadTheme(tableauExerciceStagiaire);
         }
     }
     //POST= methode utilisée par le protocole http, adresse du web service utilisé, ma requete est asynchrone
@@ -51,12 +52,14 @@ function load_Exercice() {
     xhr.setRequestHeader('Accept', 'application/json');
     //On definie le token d'authorisation de la requet http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-    //Envois des paramètres sous forme de chaine de caractères et non du JSON (ici nous n'envoyons rien)
+    //On envoie la requete
     xhr.send();
 }
 
-//Cette fonction va nous permettre d'afficher notre tableau d'exercices
-function tableau_exercice_stagiaire() {
+//Cette fonction va nous permettre d'afficher notre "tableau d'exercices", lorsque qu'au Menu createur, on choisira de clicker sur 'EXERCICE'
+function tableauExerciceStagiaire() {
+
+    //creation des elements du tableau :
 
     let TableExercice = ultimateHTMLGenerator("table", "", ["table", "table-hover", "autorisation", "my-auto", "text-center", "mx-auto", "table-responsive-md"], myContainer);
     let headTable = ultimateHTMLGenerator("thead", "", [], TableExercice);
@@ -80,11 +83,13 @@ function tableau_exercice_stagiaire() {
     for (let i = 0; i < myExercices.Exercice.length; i++) {
         let rowTable = ultimateHTMLGenerator("tr", "", [], bodyTable);
         rowTable.addEventListener("click", function () {
-            // Je stocke l'index qui est en cours d'affichage
+            // Je stocke l'index qui est selectionné par l'utilisateur (selection d'une ligne)
             indexExoEnCours = i;
-            //J'appel la fonction ReadExerciceCreateur et on lui passe en parametre l'id à fabriquer
+            //J'appel la fonction "ReadExerciceCreateur" en lui passant en parametre l'id selectionné
             ReadExerciceCreateur(myExercices.Exercice[i]._ID);
         })
+
+        //j'hydrate mon tableau avec les données de cet exercice
 
         let valueColum1 = ultimateHTMLGenerator("td", myExercices.Exercice[i]._NOM, [], rowTable);
         valueColum1.classList = "table-secondary";
@@ -96,7 +101,7 @@ function tableau_exercice_stagiaire() {
     }
 }
 
-//Cette fonction récupère le nom du thème selon l'ID de l'exercice qui correspond à un thème
+//Cette fonction récupère le nom du thème selon l'ID de l'exercice qui lui est lié
 function findTheme(id) {
     for (let y = 0; y < myThemes.theme.length; y++) {
         if (myThemes.theme[y]._ID == id) {
@@ -108,6 +113,7 @@ function findTheme(id) {
 //_____________________________________FONCTIONS PERMETTANT L'AFFICHAGE DES CHAMPS ET LA CREATION D'EXERCICES_______________________________________________________
 
 //Fonction qui me permet d'afficher des champs vide afin de créer un exercice 
+//
 function ReadTheme(maFonctionAAppeler) {
     
     var xhr = new XMLHttpRequest();
@@ -145,6 +151,7 @@ function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
                     createReponse(descri, xhr.responseText);
                 }
                 //A la fin des 4 secondes la page se vide et la fonction load_Exercice se lance
+                //Fonction qui affiche le tableau exercice et le rafraichis
                 setTimeout(function(){
                     myContainer.innerHTML = "";
                     load_Exercice();
@@ -167,6 +174,8 @@ function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
 
 //Cette fonction est une requete AJAX, elle créer et envoi les nouvelles propositions de réponses lié à l'id d'un exercice
 //Elle à pour paramettre la description de la proposition de réponse et l'id correspondant à l'exercice
+
+//Fonction pour créer de nouvelles proposition de réponses, en passant en parametres la description,et l'id de l'exercice
 function createReponse(descri, id_exo) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -181,12 +190,12 @@ function createReponse(descri, id_exo) {
     + "&id_exercice=" + id_exo);
 }
 
-//______________________________FONCTION PERMETTANT L'AFFICHAGE DES CHAMPS REMPLIS POUR UPDATE DELETE___________________________
+//______________________________FONCTION PERMETTANT L'AFFICHAGE DES CHAMPS REMPLIS POUR UPDATE___________________________
 
 //Cette fonction va vider notre container et laisser place aux champs remplis
-// avec les information (nom, consigne, reponse attendu, theme, niveau, lien, propositions de réponse)
+// (avec les informations : nom, consigne, reponse attendu, theme, niveau, lien, propositions de réponse)
 function ReadExerciceCreateur(id) {
-    //Le container qui a pour id myContainerCreateExercice se vide et laisse place au champs et selecteur replis
+    //Le container se vide et laisse place au champs et selecteur remplis
     //ceux-ci s'affichant grâce à la fonction displayCreationFields qui est appelé dans cette la fonction.
     myContainer.innerHTML = "";
     var xhr = new XMLHttpRequest();
@@ -196,7 +205,7 @@ function ReadExerciceCreateur(id) {
             //Appel de la fonction retrieveExercice() en lui passant id (d'exercice) 
             //en paramettre puisque l'on veut récupérer l'id de l'exercice selectionné (id en cours)
             retrieveExercice(id);
-            //Appelle de la fonction displeyFields() à laquelle on passe la paramettre true
+            //Appelle de la fonction displeyFields() à laquelle on passe la paramettre true pour choisir le mode UPDATE(affichage des champs remplies)
             displayCreationFields(true);
         }
     }
@@ -240,7 +249,10 @@ function retrieveExercice(idExercice) {
 //Elle utilise la même structure pour les deux modes, seul la valeur des champs changent selon le mode
 //En mode creation les champs sont vide afin de pouvoir les remplir
 //Et pour modifier/supprimer les champs sont remplis avec les informations de l'exercice selectionné
-function displayCreationFields(modeDeleteUpdate) {
+
+//Fonction qui attend un Booléen en parametre, pour dire si c'est en mode "UPDATE"(boolean TRUE) cela affichera les données pré-enregistrés de l'exercice selectionné ou
+// en mode "NOT UPDATE" ou "CREATION" (boolean FALSE) qui affichera Les inputs vide afin de pouvoir les remplir.
+function displayCreationFields(isUpdate) {
     //Ligne contenant deux colonnes
     //L'une contient les labels (nom exercice, theme, niveau lien) 
     //L'autre les inputs, select et textarea allant avec chaque input)
@@ -253,8 +265,8 @@ function displayCreationFields(modeDeleteUpdate) {
     let columnInputTtitle=ultimateHTMLGenerator("div", "", ["col"], rowSelect);
     let inputTitle = ultimateHTMLGenerator("input", "", [], columnInputTtitle);
     inputTitle.type = "text";
-    //La valeur contenu dans l'input est myTtitle
-    if (modeDeleteUpdate) { inputTitle.value = myTitle };
+    //Si La valeur contenu dans l'input est myTitle
+    if (isUpdate) { inputTitle.value = myTitle };
     inputTitle.id = "EXERCICE" + "_NOM";
 
     let columnLabelTheme=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
@@ -269,10 +281,9 @@ function displayCreationFields(modeDeleteUpdate) {
         let optionsTheme = ultimateHTMLGenerator("option", myThemes.theme[c]._NOM, [], selectTheme);
         //Le bon id est attribué à l'option
         optionsTheme.value = myThemes.theme[c]._ID;
-
     }
-    //Ici dans le mode supprimer/modifier, le selecteur affiche le theme correspondant à l'exercice selectionné dans le tableau
-    if (modeDeleteUpdate) {
+    //Ici dans le mode Update, le selecteur affiche le theme correspondant à l'exercice selectionné dans le tableau
+    if (isUpdate) {
         selectTheme.value = myIdTheme;
         selectTheme.id = "selectTheme";
     }
@@ -285,9 +296,9 @@ function displayCreationFields(modeDeleteUpdate) {
     inputLevel.type = "number";
     inputLevel.id = "EXERCICE" + "_NIVEAU";
 
-    //Dans le mode supprimer/modifier, la valeur à l'interieur de mon input est myLevel
+    //Dans le mode Update, la valeur à l'interieur de mon input est myLevel
     //Qui correspond au niveau attribué à l'exercice selectionné (exercice en cours)
-    if (modeDeleteUpdate) { inputLevel.value = myLevel; }
+    if (isUpdate) { inputLevel.value = myLevel; }
 
     let columnLabelLink=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
     let labelLink = ultimateHTMLGenerator("label", "LIEN :", ["fw-bold","fs-6","bg-secondary"], columnLabelLink);
@@ -297,9 +308,9 @@ function displayCreationFields(modeDeleteUpdate) {
     inputLink.type = "url";
     inputLink.id = "EXERCICE" + "_LIEN";
 
-    //Dans le mode supprimer/modifier, la valeur à l'interieur de mon input est myLink
+    //Dans le mode Update, la valeur à l'interieur de mon input est myLink
     //Qui correspond au lien attribué à l'exercice selectionné (exercice en cours)
-    if (modeDeleteUpdate) { inputLink.value = myLink; }
+    if (isUpdate) { inputLink.value = myLink; }
 
     //Creation d'une ligne contenant 3 colonnes contenant chacune les labels
     let rowLabel = ultimateHTMLGenerator("div", "", ["row"], myContainer);
@@ -321,12 +332,12 @@ function displayCreationFields(modeDeleteUpdate) {
     let columnInput1 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let inputOrder;
 
-    //En mode supprimer/modifier le contenu du textarea est instruction
-    //instruction correspond à la consigne de l'exercice selectionné (exercice en cours)
-    if (modeDeleteUpdate) {
+    //En mode Update le contenu du textarea est instruction
+    //instruction correspond à la "consigne de l'exercice" selectionné (exercice en cours)
+    if (isUpdate) {
         inputOrder = ultimateHTMLGenerator("textarea", instructions, [], columnInput1);
 
-      //En mode creation le textarea est vide afin de la remplir avec la valeur souhaité  
+      //En mode creation le textarea est vide afin de le remplir avec la valeur souhaité  
     } else {
         inputOrder = ultimateHTMLGenerator("textarea", "", [], columnInput1);
     }
@@ -334,9 +345,9 @@ function displayCreationFields(modeDeleteUpdate) {
 
     let columnInput2 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let inputExpectedResponse;
-    //En mode supprimer/modifier le contenu du textarea est correctAnswers
+    //En mode Update le contenu du textarea est correctAnswers
     //correctAnswer correspond à la reponse attendu de l'exercice selectionné (exercice en cours)
-    if (modeDeleteUpdate) {
+    if (isUpdate) {
         inputExpectedResponse = ultimateHTMLGenerator("textarea", correctAnswers, [], columnInput2);
         //En mode creation le textarea est vide afin de pouvoir y rentrer la valeur souhaitée
     } else {
@@ -346,8 +357,8 @@ function displayCreationFields(modeDeleteUpdate) {
 
     let columnInput3 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let addButton;
-    //En mode modifier/supprimer le bouton d'ajout d'input n'apparait pas
-    if (modeDeleteUpdate) {
+    //En mode Update le bouton d'ajout d'input n'apparait pas
+    if (isUpdate) {
         addButton = ultimateHTMLGenerator("button", "+", ["btn", "btn-success", "d-none"], columnInput3);
     //En mode creation le bouton d'ajout d'input est apparant ainsi qu'un input
     } else {
@@ -356,9 +367,9 @@ function displayCreationFields(modeDeleteUpdate) {
         //Creation d'un id unique qui va pouvoir permettre de recuperer la valeur tapé par l'utilisateur dans l'input
         inputSuggestion1.id = "REPONSE" + "_DESCRIPTION" + 1;
     }
-    //En mode modifier/supprimer au click sur le bouton d'ajout
+    //En mode Update, au click sur le bouton d'ajout,
     //Il est possible d'ajouter des inputs de proposition de réponse en plus de ceux deja existant
-    if (modeDeleteUpdate) {
+    if (isUpdate) {
         addButton.onclick = function () {
             let inputSuggestion1 = ultimateHTMLGenerator("input", "", [], columnInput3);
             //J'attribu un id unique à mon nouvel input de proposition
@@ -375,10 +386,10 @@ function displayCreationFields(modeDeleteUpdate) {
             inputSuggestion1.id = "REPONSE" + "_DESCRIPTION" + compteurInput;
         }
     }
-    //En mode supprimer modifier on créer une boucle for
+    //En mode "update" on créer une boucle for
     //elle va parcourrir l'ensemble du tableau de répponse
     //et afficher autant d'input que de propositions de réponse que contient l'exercice
-    if (modeDeleteUpdate) {
+    if (isUpdate) {
         //Creation d'une boucle for pour parcourir le longeur de mon tableau de réponse de l'exercice en cours
         for (j = 0; j < myExercices.Exercice[indexExoEnCours]._REPONSES.length; j++) {
             let inputSuggestion1 = ultimateHTMLGenerator("input", "", [], columnInput3);
@@ -392,7 +403,7 @@ function displayCreationFields(modeDeleteUpdate) {
         rowButtonUD.id = "rowButtonUD";
 
         //La première colonne contient un bouton MODIFIER 
-        //qui au click permet de faire re apparaitre le bouton d'ajout (qui permet d'ajouter des input d epropositions de réponses)
+        //qui au click permet de faire apparaitre le bouton d'ajout (qui permet d'ajouter des input des propositions de réponses)
         //et appel la fonction displayCreationButtons() (qui permettra de mettre à jour l'exercice)
         let column1ButtonUD = ultimateHTMLGenerator("div", "", ["col-6"], rowButtonUD);
         let buttonUpdate = ultimateHTMLGenerator("button", "Modifier", ["btn", "btn-warning"], column1ButtonUD);
@@ -433,7 +444,7 @@ function displayCreationFields(modeDeleteUpdate) {
 
 }
 
-//Cette fonction vide la ligne ou se trouve les boutons Update Delete et laisse apparaitre le bouton Valider
+//Cette fonction vide la ligne ou se trouve les boutons modifier supprimer et laisse apparaitre le bouton Valider
 //Au click sur Valider la fonction updateExercice() est appelé.
 function displayCreationButtons(idExercice) {
     document.getElementById("rowButtonUD").innerHTML = "";
@@ -441,7 +452,7 @@ function displayCreationButtons(idExercice) {
     buttonValidate.id = "buttonValidate";
 
     //Au click sur le bouton Valider intervient la partie du CRUD Update
-    //Je passe en paramettre de la fonction toutes les valeurs dont je vais avoir besoin  
+    //Je passe en paramettre de la fonction : toutes les valeurs dont je vais avoir besoin 
     buttonValidate.onclick = function () {
         updateExercice(
             idExercice,
@@ -454,7 +465,8 @@ function displayCreationButtons(idExercice) {
     };
 }
 //_______________________________________________METRE A JOUR_______________________________________________
-//Cette fonction va mettre à jour l'exercice, les propositions de réponse et en ajouter si c'est ce qui a été fait
+
+//Cette fonction va mettre à jour l'exercice, les propositions de réponse et en ajouter si besoin
 function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) {
     console.log(consigne);
     var xhr = new XMLHttpRequest();
@@ -477,18 +489,18 @@ function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) 
         + "&id_theme=" + theme
         + "&valide=" + 0);
 
-    //Creation d'une boucle for qui nous permet de parcourrir l'ensemble des input de propositions de reponses à créer,
-    //de récupérer leur valeur et l'id de l'exercice correspondant 
-    //afin de créer de nouvelles propositions de grace au web service update_reponse (en + de celles déjà enregistrées)
+    //je parcoure l'ensemble des input de propositions de reponses à créer,
+    //je récupére leur valeur et l'id de l'exercice correspondant 
+    //afin de créer de nouvelles propositions, grace au web service update_reponse (en + de celles déjà enregistrées)
     for (let i = 1; i < compteurInputReponse_Create; i++) {
         //A chaque fois j'appel la fonction createReponse() en lui passant
         //la valeur de l'id de la proposition de réponse + i et l'id de l'exercice
         createReponse(document.getElementById("inputPropoRep_Create" + i).value, id);
     }
-    //Creation d'une boucle for qui nous permet de parcourrir l'ensemble des input de propositions de reponses,
-    //et de récupérer leur valeur et l'id de l'exercice correspondant
+    //parcourre l'ensemble des input de propositions de reponses,
+    //et récupére leur valeur et l'id de l'exercice correspondant
     //afin de les mettre à jour grace au web service update_reponse
-    //et de créer les propositions précédement créer
+    //et de créer les propositions précédement créer.
     for (let i = 1; i < compteurInputReponse; i++) {
         //A chaque fois je créer un nouvel id de réponse pour les nouvelles propositions
         let idReponse = myExercices.Exercice[indexExoEnCours]._REPONSES[i - 1]._ID;
@@ -503,13 +515,12 @@ function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) 
     }, 4000);
 }
 //_____________________________________________________MISE A JOUR REPONSE
-//Cette fonction met à jour les réponses grâce au webservice ws_update_reponse, 
-//je lui passe 3 paramettre (idReponse, description, idExercice)
+
+//
+//Fonction mise a jour qui passe en paramettre (idReponse, description, idExercice)
 function updateReponse(idReponse, description, idExercice) {
-    //On fait un xmlHttprequest -> envoie une demande à un webservice
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        //Quand on reçois une réponse "fini" de notre requete
         if (xhr.readyState == XMLHttpRequest.DONE) {
             if (xhr.responseText) {
             }
@@ -526,6 +537,7 @@ function updateReponse(idReponse, description, idExercice) {
 }
 
 //_____________________________________________________________SUPPRIMER______________________________________________________
+
 //Cette fonction permet de supprimer l'id de notre exercice selectionné (id en cours)
 //et donc de supprimer tout le contenu de l'exercice
 function deleteExercice(IdExoEnCours) {
@@ -542,43 +554,50 @@ function deleteExercice(IdExoEnCours) {
     xhr.send("id=" + IdExoEnCours);
 }
 
-//__________________________________________________HTML Element Generator generic function_______________________________________
+//__________________________________________________Fonction HTML Element Generator_______________________________________
 
-//FAIRE UN COPIER COLLER DE CE QUE L'ON A INSCRIT DANS L'AUTRE FONCTION EN ESPACE STAGIAIRE
 function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinationElement) {  //on créer un élement html donné en paramètre (1er paramètre)                      
-
+    
     let ultimateElement = document.createElement(typeElement); //on attribut du contenu (paramètre 2) à l'element html précedement fabriqué                                                   
     ultimateElement.textContent = contenu;                    //on souhaite ajouter plusieurs class CSS à l'element html précedement créé
 
-    for (let i = 0; i < tableauClassCss.length; i++) {             //on ajoute la class css contenu dans le tableau de class css (3ème paramètre)
+    for (let i = 0; i < tableauClassCss.length; i++) {       //on ajoute la class css contenu dans le tableau de class css (3ème paramètre)
         ultimateElement.classList.add(tableauClassCss[i]);  //on ajoute une classList à la variable ultimateElement
     }
-
     destinationElement.appendChild(ultimateElement);      //on fait apparaitre l'élement dans celui passé en 4ème paramètre
-    return ultimateElement;
+    return ultimateElement;                               //Force la sortie de la boucle FOR
 }
 
 
 
 //______________________________________________LIEN VERS CONTACT (FOOTER)_________________________________
+
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
 myLinkContact.onclick = function () { alert("Téléphone : 02.47.39.24.01" + "\n" + "Mail : formation.dev@mail.fr"); };
 
 
-//_____________________________________________________COOKIE____________________________________________________________
+//_____________________________________________________Fonctions COOKIE____________________________________________________________
+
+//Fonction creation d'un cookie en passant en paremetre un nom, une valeur,le nmbre de jour
 function setCookie(name, value, days) {
     var expires = "";
+    //si les jours ont bien été définis
     if (days) {
+        //on creer un object date stockant la date actuelle
         var date = new Date();
+        //on definit la date d'expiration du cookie
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        //on met la date au bon format pour un cookie
         expires = "; expires=" + date.toUTCString();
     }
+    //creation du cookie
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
 //______________________________________________________________________________________________________________
-//
+
+//fonction qui renvoie la valeur d'un cookie ??
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -591,12 +610,15 @@ function getCookie(name) {
 }
 
 //______________________________________________________________________________________________________________________
-//
+
+//Fonction qui définis un nouveau cookie ??
 function eraseCookie(name) {
+    //creation d'un cookie d'expiration qui appatient à une page 
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-//pour décoder le token sous quel forme ?
+
+//pour décoder le token
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

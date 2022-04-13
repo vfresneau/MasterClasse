@@ -104,7 +104,7 @@ function load_Exercice() {
             load_Theme();
         }
     }
-    // methode utilisée par le protocole http, à l'aquelle on envoie 3 paramètres :adresse du web service utilisé, ma requete est asynchrone
+    // methode utilisée par le protocole http, à l'aquelle on envoie 3 paramètres :methode POST,adresse du web service utilisé, ma requete est asynchrone
     xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
     //type de contenu utile pour l'envoie de parametre dans send
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -394,7 +394,7 @@ function loadPhp(){
 
 
 
-//_____________________________________HTML Element Generator generic function_______________________________________
+//_____________________________________Fonction HTML Element Generator_______________________________________
 
 function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinationElement) {  //on créer un élement html donné en paramètre (1er paramètre)                      
     
@@ -410,14 +410,19 @@ function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinatio
 
 //____________________________________________________________//FONCTIONS POUR LE JWT//_________________________________________________________________________//
 
-// Fonction permettant de remplir un cookie, 
+//Fonction creation d'un cookie en passant en paremetre un nom, une valeur,le nmbre de jour
 function setCookie(name, value, days) {
     var expires = "";
+    //si les jours ont bien été définis
     if (days) {
+        //on creer un object date stockant la date actuelle
         var date = new Date();
+        //on definit la date d'expiration du cookie
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        //on met la date au bon format pour un cookie
         expires = "; expires=" + date.toUTCString();
     }
+    //creation du cookie
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 

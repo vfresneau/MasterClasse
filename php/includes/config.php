@@ -20,5 +20,4 @@ require_once("../classes/class_theme.php");
 require_once("../classes/class_reponse.php");
 require_once("../classes/CLASS_JWT.php");
 
-
 ?>

@@ -1,5 +1,6 @@
 <?php
 
+//Les Class servent structurer les informations et apporte des méthodes
 Class Suivi {
 	private $_ID;
 	private $_REUSSI;
@@ -8,7 +9,18 @@ Class Suivi {
 	private $_TEMPS;
 	private $_NOMBRE_ESSAI;
 
-	//S'appelle automatiquement à la création d'instance
+/**
+* la méthode construct s'appelle automatiquement lorsque 
+* l'on fait une instance de cette class
+* elle hydrate ou remplie les attributs de l'instance de la classe Suivi
+ *
+ * @param [type] $ID
+ * @param [type] $REUSSI
+ * @param [type] $ID_INDIVIDU
+ * @param [type] $ID_EXERCICE
+ * @param [type] $TEMPS
+ * @param [type] $NOMBRE_ESSAI
+ */
     function __construct($ID, $REUSSI, $ID_INDIVIDU, $ID_EXERCICE, $TEMPS, $NOMBRE_ESSAI){
 		$this->_ID = $ID;
 		$this->_REUSSI = $REUSSI;
@@ -17,6 +29,8 @@ Class Suivi {
 		$this->_TEMPS = $TEMPS;
 		$this->_NOMBRE_ESSAI = $NOMBRE_ESSAI;
 	}
+//les guetteurs :méthode pour obtenir la valeur d'un attribut
+//Les Setters : méthode pour dénifie un attribut
 
 	public function get_ID(){
 		return $this->_ID;
@@ -67,51 +81,42 @@ Class Suivi {
 	}
 
 	public function createSuivi(){
-    
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
-            // connexion à la base de donnée
+// 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
+
+//La connexion est établie en créant une instance de la classe de base de PDO.
+//Le constructeur accepte des paramètres pour spécifier la source de la base de données (mysql: Systeme de Base de Donéées (SGBD) ,dbname: nom de la base dans le SGBD, login, mdp)
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
+			// prépare une requete avec 5 parametres
 			$stmt = $dbh->prepare('INSERT INTO Suivi (reussi, id_individu, id_exercice, temps, nombre_essai) VALUES (:reussi, :id_individu, :id_exercice, :temps, :nombre_essai)');
 			$stmt->bindParam(':reussi', $this->_REUSSI);
 			$stmt->bindParam(':id_individu', $this->_ID_INDIVIDU);
 			$stmt->bindParam(':id_exercice', $this->_ID_EXERCICE);
 			$stmt->bindParam(':temps', $this->_TEMPS);
 			$stmt->bindParam(':nombre_essai', $this->_NOMBRE_ESSAI);
-			$stmt->execute();//ferme la connexion à la base
+			$stmt->execute();
+			//ferme la connexion à la base
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
 	}
 
+	//fonction qui permet de récupérer toutes les Suivi en fonction de l'id
 	public function readSuivi(){
-  
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
-            // connexion à la base de donnée
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('SELECT * FROM Suivi WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
+			//retourne un tableau associatif contenant une ligne de la recherche tant qu'il reste des lignes dans la recherche
             $row = $stmt->fetch();
+			//pour chaque resultat je fabrique un Suivi de la classe Suivi
             $singleSuivi = new Suivi($row['id'],$row['reussi'], $row['id_individu'], $row['id_exercice'], $row['temps'], $row['nombre_essai']);//ferme la connexion à la base
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
+		//transforme en tableau d'object json ??
 		$monjSon = '{$singleSuivi:'.json_encode(array($singleSuivi->toArray($singleSuivi))).'}';
         // Je l'affiche
         return $monjSon;
 		}
 
+	//fonction public pour update un suivi //
 	public function updateSuivi(){
-    
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
-            // connexion à la base de donnée
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('UPDATE Suivi SET reussi = :reussi, id_individu = :id_individu, id_exercice = :id_exercice, temps = :temps, nombre_essai = :nombre_essai WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
@@ -120,28 +125,17 @@ Class Suivi {
 			$stmt->bindParam(':id_exercice', $this->_ID_EXERCICE);
 			$stmt->bindParam(':temps', $this->_TEMPS);
 			$stmt->bindParam(':nombre_essai', $this->_NOMBRE_ESSAI);
-			$stmt->execute();//ferme la connexion à la base
+			$stmt->execute();
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
 	}
 
+//fonction public pour delete un Suivi //
 	public function deleteSuivi(){
-      
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
-            // connexion à la base de donnée
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('DELETE FROM Suivi WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
-			$stmt->execute();//ferme la connexion à la base
+			$stmt->execute();
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
 	}
 
 	// permet de créer un json contenant les objets des objets
@@ -155,6 +149,5 @@ Class Suivi {
         });
         return $array;
     }
-
 }
 ?>

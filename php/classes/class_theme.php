@@ -1,14 +1,24 @@
 <?php
 
+//Les Class servent structurer les informations et apporte des méthodes
 Class theme {
 	private $_ID;
 	private $_NOM;
 
-	//S'appelle automatiquement à la création d'instance
+/**
+* la méthode construct s'appelle automatiquement lorsque 
+* l'on fait une instance de cette class
+* elle hydrate ou remplie les attributs de l'instance de la classe Individu
+ *
+ * @param [type] $ID
+ * @param [type] $NOM
+ */
     function __construct($ID, $NOM){
 		$this->_ID = $ID;
 		$this->_NOM = $NOM;
 	}
+//les guetteurs :méthode pour obtenir la valeur d'un attribut
+//Les Setters : méthode pour dénifie un attribut
 
 	public function get_ID(){
 		return $this->_ID;
@@ -27,117 +37,83 @@ Class theme {
 	}
 
 	public function createtheme(){
+// 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
 
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
-            // connexion à la base de donnée
+//La connexion est établie en créant une instance de la classe de base de PDO.
+//Le constructeur accepte des paramètres pour spécifier la source de la base de données (mysql: Systeme de Base de Donéées (SGBD) ,dbname: nom de la base dans le SGBD, login, mdp)
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
-			$stmt = $dbh->prepare('INSERT INTO theme (nom) VALUES (:nom)');
-			$stmt->bindParam(':nom', $this->_NOM);
-			$stmt->execute();//ferme la connexion à la base
+            $stmt = $dbh->prepare('INSERT INTO theme (nom) VALUES (:nom)');
+			//Lie une variable PHP à un marqueur nommé correspondant dans la requête SQL utilisée, pour préparer la requête.
+            $stmt->bindParam(':nom', $this->_NOM);
+			$stmt->execute();
+            //ferme la connexion à la base
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
 	}
 
-	// -->Méthode static pour l'utiliser dans le webservice, pour appeller tous les themes//
+//méthode statique permet d'y accéder sans avoir besoin d'instancier la classe. Ceci peuvent être accédé statiquement depuis une instance d'objet.
+// -->Méthode static utiliser afin d'être appeller dans le webservice Exercice//
     public static function readAllTheme(){
-       
-        $liste_theme = array(); //tableau vide
-    
-        // 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
-        try {
-            // connexion à la base de donnée
+        //declaration d'un tableau vide
+        $liste_theme = array(); 
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
-            // envoie d'une requete à la base de données --> on récup l'exercice correspondant à l'id
             $stmt = $dbh->prepare("SELECT * FROM theme");
             $stmt->execute();
-            // pour chaque ligne trouvé--> 
+			//retourne un tableau associatif contenant une ligne de la recherche tant qu'il reste des lignes dans la recherche
             while ($row = $stmt->fetch()) {
-               //pour chaque resultat je fabrique un exercice de la classe EXERCICE 
+               //pour chaque resultat je fabrique un theme de la classe theme
                 $monTheme = new theme ($row['id'],$row['nom']);
-                //j'ajoute à mon tableau d'exercice' mon exercice en cours
+                //j'ajoute à mon tableau de theme' mon theme en cours
                 array_push($liste_theme, $monTheme);
                 }
             //ferme la connexion à la base
             $dbh = null;
-    
-        } catch (PDOException $e) {
-            print "Erreur !: " . $e->getMessage() . "<br/>";
-            die();
-        }
-    
+        //declaration d'un tableau vide
         $monTab = array();
         $i = 0;
-    
         // on transforme l'objet en tableau (récursif sur les objets)
         foreach($liste_theme as $theme) {
             $array = $theme->toArray($theme);
             $monTab[$i] = $array;
             $i+=1;
         }
-    
+        //transforme en tableau d'object json ??
         $monJson = '{"theme":'.json_encode($monTab)."}";
+        //je verifie le contenu de sma variable
         echo $monJson;
     }
 
-
-
-
 	public function readtheme(){
-       
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
-            // connexion à la base de donnée
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('SELECT * FROM theme WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->execute();
             $row = $stmt->fetch();
-            $singletheme = new theme($row['id'],$row['nom']);//ferme la connexion à la base
+            //pour chaque resultat je fabrique un theme de la classe theme
+            $singletheme = new theme($row['id'],$row['nom']);
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
+        //transforme en tableau d'object json ??
 		$monjSon = '{$singletheme:'.json_encode(array($singletheme->toArray($singletheme))).'}';
         // Je l'affiche
         return $monjSon;
 		}
 
+//fonction public pour update un theme//
 	public function updatetheme(){
-     
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
-            // connexion à la base de donnée
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('UPDATE theme SET nom = :nom WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
 			$stmt->bindParam(':nom', $this->_NOM);
-			$stmt->execute();//ferme la connexion à la base
+			$stmt->execute();
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
 	}
 
+    //fonction public pour delete un exercice //
 	public function deletetheme(){
-        
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-        try {
-            // connexion à la base de donnée
             $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			$stmt = $dbh->prepare('DELETE FROM theme WHERE id = :id');
 			$stmt->bindParam(':id', $this->_ID);
-			$stmt->execute();//ferme la connexion à la base
+			$stmt->execute();
             $dbh = null;
-        } catch (PDOException $e) {
-            print 'Erreur !: ' . $e->getMessage() . '<br/>';
-            die();
-        }
 	}
 
 	// permet de créer un json contenant les objets des objets
@@ -151,6 +127,5 @@ Class theme {
         });
         return $array;
     }
-
 }
 ?>
