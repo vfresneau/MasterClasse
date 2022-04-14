@@ -165,8 +165,6 @@ function ReadExerciceStagiaire(id) {
     xhr.send();
 }
 
-
-
 //fonction qui lit les themes //
 function ReadTheme() {
     var xhr = new XMLHttpRequest();
@@ -185,7 +183,6 @@ function ReadTheme() {
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
     xhr.send();
 }
-
 
 //fonction qui récupère les données de l'exercice en cours correspondant //
 function retrieveExercice(idExercice) {
@@ -240,7 +237,6 @@ function Retrieve_Id_Themes(myIdTheme) {
         }
     }
 }
-//_____________________________________________________________________________________________________________________________________________________________________//
 
 //Fonction pour afficher mon block contenant "l'exercice à débuter" , pour le stagiaire.
 function myBlock() {
@@ -283,7 +279,6 @@ function myBlock() {
         //--> affiche les themes //
         ReadTheme();
     }
-
     //Colum of Congratulation //
     let ColumCongratulation = ultimateHTMLGenerator("div", "", ["col-6"], whiteBlock);
 
@@ -317,7 +312,6 @@ function myBlock() {
     }
 }
 
-
 //fonction qui verifie si l'on as la bonne réponse ou non // 
 function verificator(checkboxId, LabelId) {
     // on selectionne toutes balises avec le name "checkboxId"
@@ -339,8 +333,7 @@ function verificator(checkboxId, LabelId) {
     document.getElementById("ColumButton").style.visibility = "visible";
 }
 
-
-//Fonction qui permet se logguer en mode securisé au profil stagiaire ou celui de Createur, et qui crer un cookie afin de passer d'une page à l'autre en estant connecté
+//Fonction qui permet se logguer en mode securisé au profil stagiaire ou celui de Createur, et qui crer un cookie afin de passer d'une page à l'autre en étant connecté
 function connexion() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {

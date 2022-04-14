@@ -27,7 +27,7 @@ function load_Exercice() {
     buttonCreate.id = "buttonCreate";
     buttonCreate.onclick = function () {
         myContainer.innerHTML = "";
-        //fonction choisit l'affichage de creation des données
+        //fonction qui choisit l'affichage de creation des données
         displayCreationFields(false);
     };
     //Fabrication d'une nouvelle instance de Class et d'une requete Http à envoyer
@@ -567,7 +567,31 @@ function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinatio
     destinationElement.appendChild(ultimateElement);      //on fait apparaitre l'élement dans celui passé en 4ème paramètre
     return ultimateElement;                               //Force la sortie de la boucle FOR
 }
+//____________________________________________________________LIENS DES BOUTTONS COURS ET EXAMENS________________________________________________________________________________//
 
+function loadExamens(){
+    window.location.href="https://apcpedagogie.com/examen-4-en-html-css-et-js/";
+}
+//Lors de la fonction onclick j'affiche les cours de HTML
+function loadHtml(){
+    window.location.href = 'https://www.w3schools.com/html/default.asp';
+}
+//Lors de la fonction onclick j'affiche les cours de CSS
+function loadCss(){
+    window.location.href = 'https://www.w3schools.com/css/default.asp';
+}
+//Lors de la fonction onclick j'affiche les cours de JS
+function loadJs(){
+    window.location.href = 'https://www.w3schools.com/js/default.asp';
+}
+//Lors de la fonction onclick j'affiche les cours SQL
+function loadSql(){
+    window.location.href = 'https://www.w3schools.com/sql/default.asp';
+}
+//Lors de la fonction onclick j'affiche les cours de PHP
+function loadPhp(){
+    window.location.href = 'https://www.w3schools.com/php/default.asp';
+}
 
 
 //______________________________________________LIEN VERS CONTACT (FOOTER)_________________________________

@@ -522,6 +522,10 @@
     font-weight: bold;
 }
 
+/*rendu visible lors du menu createur*/
+.lienCreateurVisible{
+display: d-block;
+}
 /*______________________________________PAGE AFFICHAGE EXERCICE STAGIAIRE_______________________________*/
 /*Bouton pour aller a l'exercice suivant*/
 #NextButton1{
