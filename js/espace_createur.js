@@ -190,7 +190,7 @@ function createReponse(descri, id_exo) {
     + "&id_exercice=" + id_exo);
 }
 
-//______________________________FONCTION PERMETTANT L'AFFICHAGE DES CHAMPS REMPLIS POUR UPDATE___________________________
+//______________________________FONCTION PERMETTANT L'AFFICHAGE DES CHAMPS REMPLIS POUR modeDeleteUpdate___________________________
 
 //Cette fonction va vider notre container et laisser place aux champs remplis
 // (avec les informations : nom, consigne, reponse attendu, theme, niveau, lien, propositions de réponse)
@@ -205,7 +205,7 @@ function ReadExerciceCreateur(id) {
             //Appel de la fonction retrieveExercice() en lui passant id (d'exercice) 
             //en paramettre puisque l'on veut récupérer l'id de l'exercice selectionné (id en cours)
             retrieveExercice(id);
-            //Appelle de la fonction displeyFields() à laquelle on passe la paramettre true pour choisir le mode UPDATE(affichage des champs remplies)
+            //Appelle de la fonction displeyFields() à laquelle on passe la paramettre true pour choisir le mode modeDeleteUpdate(affichage des champs remplies)
             displayCreationFields(true);
         }
     }
@@ -250,9 +250,9 @@ function retrieveExercice(idExercice) {
 //En mode creation les champs sont vide afin de pouvoir les remplir
 //Et pour modifier/supprimer les champs sont remplis avec les informations de l'exercice selectionné
 
-//Fonction qui attend un Booléen en parametre, pour dire si c'est en mode "UPDATE"(boolean TRUE) cela affichera les données pré-enregistrés de l'exercice selectionné ou
-// en mode "NOT UPDATE" ou "CREATION" (boolean FALSE) qui affichera Les inputs vide afin de pouvoir les remplir.
-function displayCreationFields(isUpdate) {
+//Fonction qui attend un Booléen en parametre, pour dire si c'est en mode "modeDeleteUpdate"(boolean TRUE) cela affichera les données pré-enregistrés de l'exercice selectionné ou
+// en mode "NOT modeDeleteUpdate" ou "CREATION" (boolean FALSE) qui affichera Les inputs vide afin de pouvoir les remplir.
+function displayCreationFields(modeDeleteUpdate) {
     //Ligne contenant deux colonnes
     //L'une contient les labels (nom exercice, theme, niveau lien) 
     //L'autre les inputs, select et textarea allant avec chaque input)
@@ -266,7 +266,7 @@ function displayCreationFields(isUpdate) {
     let inputTitle = ultimateHTMLGenerator("input", "", [], columnInputTtitle);
     inputTitle.type = "text";
     //Si La valeur contenu dans l'input est myTitle
-    if (isUpdate) { inputTitle.value = myTitle };
+    if (modeDeleteUpdate) { inputTitle.value = myTitle };
     inputTitle.id = "EXERCICE" + "_NOM";
 
     let columnLabelTheme=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
@@ -282,8 +282,8 @@ function displayCreationFields(isUpdate) {
         //Le bon id est attribué à l'option
         optionsTheme.value = myThemes.theme[c]._ID;
     }
-    //Ici dans le mode Update, le selecteur affiche le theme correspondant à l'exercice selectionné dans le tableau
-    if (isUpdate) {
+    //Ici dans le modeDeleteUpdate", le selecteur affiche le theme correspondant à l'exercice selectionné dans le tableau
+    if (modeDeleteUpdate) {
         selectTheme.value = myIdTheme;
         selectTheme.id = "selectTheme";
     }
@@ -296,9 +296,9 @@ function displayCreationFields(isUpdate) {
     inputLevel.type = "number";
     inputLevel.id = "EXERCICE" + "_NIVEAU";
 
-    //Dans le mode Update, la valeur à l'interieur de mon input est myLevel
+    //Dans le modeDeleteUpdate", la valeur à l'interieur de mon input est myLevel
     //Qui correspond au niveau attribué à l'exercice selectionné (exercice en cours)
-    if (isUpdate) { inputLevel.value = myLevel; }
+    if (modeDeleteUpdate) { inputLevel.value = myLevel; }
 
     let columnLabelLink=ultimateHTMLGenerator("div", "", ["col","text-end"], rowSelect);
     let labelLink = ultimateHTMLGenerator("label", "LIEN :", ["fw-bold","fs-6","bg-secondary"], columnLabelLink);
@@ -308,9 +308,9 @@ function displayCreationFields(isUpdate) {
     inputLink.type = "url";
     inputLink.id = "EXERCICE" + "_LIEN";
 
-    //Dans le mode Update, la valeur à l'interieur de mon input est myLink
+    //Dans le modeDeleteUpdate", la valeur à l'interieur de mon input est myLink
     //Qui correspond au lien attribué à l'exercice selectionné (exercice en cours)
-    if (isUpdate) { inputLink.value = myLink; }
+    if (modeDeleteUpdate) { inputLink.value = myLink; }
 
     //Creation d'une ligne contenant 3 colonnes contenant chacune les labels
     let rowLabel = ultimateHTMLGenerator("div", "", ["row"], myContainer);
@@ -332,9 +332,9 @@ function displayCreationFields(isUpdate) {
     let columnInput1 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let inputOrder;
 
-    //En mode Update le contenu du textarea est instruction
+    //En modeDeleteUpdate" le contenu du textarea est instruction
     //instruction correspond à la "consigne de l'exercice" selectionné (exercice en cours)
-    if (isUpdate) {
+    if (modeDeleteUpdate) {
         inputOrder = ultimateHTMLGenerator("textarea", instructions, [], columnInput1);
 
       //En mode creation le textarea est vide afin de le remplir avec la valeur souhaité  
@@ -345,9 +345,9 @@ function displayCreationFields(isUpdate) {
 
     let columnInput2 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let inputExpectedResponse;
-    //En mode Update le contenu du textarea est correctAnswers
+    //En modeDeleteUpdate" le contenu du textarea est correctAnswers
     //correctAnswer correspond à la reponse attendu de l'exercice selectionné (exercice en cours)
-    if (isUpdate) {
+    if (modeDeleteUpdate) {
         inputExpectedResponse = ultimateHTMLGenerator("textarea", correctAnswers, [], columnInput2);
         //En mode creation le textarea est vide afin de pouvoir y rentrer la valeur souhaitée
     } else {
@@ -357,8 +357,8 @@ function displayCreationFields(isUpdate) {
 
     let columnInput3 = ultimateHTMLGenerator("div", "", ["col-4"], rowInputFields);
     let addButton;
-    //En mode Update le bouton d'ajout d'input n'apparait pas
-    if (isUpdate) {
+    //En modeDeleteUpdate" le bouton d'ajout d'input n'apparait pas
+    if (modeDeleteUpdate) {
         addButton = ultimateHTMLGenerator("button", "+", ["btn", "btn-success", "d-none"], columnInput3);
     //En mode creation le bouton d'ajout d'input est apparant ainsi qu'un input
     } else {
@@ -367,9 +367,9 @@ function displayCreationFields(isUpdate) {
         //Creation d'un id unique qui va pouvoir permettre de recuperer la valeur tapé par l'utilisateur dans l'input
         inputSuggestion1.id = "REPONSE" + "_DESCRIPTION" + 1;
     }
-    //En mode Update, au click sur le bouton d'ajout,
+    //En modeDeleteUpdate", au click sur le bouton d'ajout,
     //Il est possible d'ajouter des inputs de proposition de réponse en plus de ceux deja existant
-    if (isUpdate) {
+    if (modeDeleteUpdate) {
         addButton.onclick = function () {
             let inputSuggestion1 = ultimateHTMLGenerator("input", "", [], columnInput3);
             //J'attribu un id unique à mon nouvel input de proposition
@@ -389,7 +389,7 @@ function displayCreationFields(isUpdate) {
     //En mode "update" on créer une boucle for
     //elle va parcourrir l'ensemble du tableau de répponse
     //et afficher autant d'input que de propositions de réponse que contient l'exercice
-    if (isUpdate) {
+    if (modeDeleteUpdate) {
         //Creation d'une boucle for pour parcourir le longeur de mon tableau de réponse de l'exercice en cours
         for (j = 0; j < myExercices.Exercice[indexExoEnCours]._REPONSES.length; j++) {
             let inputSuggestion1 = ultimateHTMLGenerator("input", "", [], columnInput3);
