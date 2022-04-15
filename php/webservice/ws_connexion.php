@@ -6,8 +6,9 @@ require_once("../includes/config.php");
 
 //On instancie la Class individu et on remplie ces attributs 
 $monIndividu = new Individu(0,"","",$_POST["mail"],$_POST["mdp"],0);
+//verification du mail et mot de passe grace a la fonction public dans la class Individu
 $monIndividu->connexion();
-//si l'ID est différent de 0 connexion réussi ??
+//si l'ID est différent de 0
 if ($monIndividu->get_ID()!= 0){
     //declaration de l'algorythm and token type
     $header = [
@@ -23,7 +24,7 @@ if ($monIndividu->get_ID()!= 0){
     ];
     //on instancie la classe JWT 
     $jwt = new JWT();
-    //afin de generer un token avec son header,son payload, et son mot secret ??
+    //afin de generer un token avec son header,son payload, et son mot de pass secret (dans fichier config)
     $token = $jwt->generate($header,$payload,SECRET);
     //verification de la generation du token
     echo $token;

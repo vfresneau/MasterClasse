@@ -52,6 +52,16 @@ class Exercice
     }
     //les guetteurs :méthode pour obtenir la valeur d'un attribut
     //Les Setters : méthode pour dénifie un attribut
+    public function get_REPONSES()
+    {
+        return $this->_REPONSES;
+    }
+
+    public function set_REPONSES($_REPONSES)
+    {
+        $this->_REPONSES = $_REPONSES;
+    }
+
     public function get_ID()
     {
         return $this->_ID;
@@ -151,7 +161,7 @@ class Exercice
         $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
         // prépare une requete avec 8 parametres
         $stmt = $dbh->prepare('INSERT INTO Exercice (nom, correction, consigne, reponseAttendu, valide, niveau, lien, id_theme) VALUES (:nom, :correction, :consigne, :reponseAttendu, :valide, :niveau, :lien, :id_theme)');
-        //Lie une variable PHP à un marqueur nommé  correspondant dans la requête SQL utilisée, pour préparer la requête.
+        //Lie une variable PHP à un marqueur nommé correspondant dans la requête SQL utilisée, pour préparer la requête.
         $stmt->bindParam(':nom', $this->_NOM);
         $stmt->bindParam(':correction', $this->_CORRECTION);
         $stmt->bindParam(':consigne', $this->_CONSIGNE);
@@ -218,17 +228,18 @@ class Exercice
             //ferme la connexion à la base
             $dbh = null;
         }
+
         //declaration d'un tableau
-        $monTab = array();
+    $monTab = array();
         $i = 0;
-        // on transforme l'objet en tableau (récursif sur les objets)
+        //On transforme l'objet en tableau (récursif sur les objets)
         foreach ($liste_exercice as $Exercice)
         {
             $array = $Exercice->toArray($Exercice);
             $monTab[$i] = $array;
             $i += 1;
         }
-        //transforme en tableau d'object json ??
+        //transforme en tableau d'object json
         $monJson = '{"Exercice":' . json_encode($monTab) . "}";
         echo $monJson;
     }

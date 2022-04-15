@@ -67,35 +67,27 @@ Class theme {
                 }
             //ferme la connexion à la base
             $dbh = null;
-        //declaration d'un tableau vide
-        $monTab = array();
-        $i = 0;
-        // on transforme l'objet en tableau (récursif sur les objets)
-        foreach($liste_theme as $theme) {
-            $array = $theme->toArray($theme);
-            $monTab[$i] = $array;
-            $i+=1;
-        }
-        //transforme en tableau d'object json ??
-        $monJson = '{"theme":'.json_encode($monTab)."}";
-        //je verifie le contenu de sma variable
-        echo $monJson;
+            
+     //on transforme mon tableau d'object en json
+        //strval() transforme un entier en chaine de caractere
+        //htmlspecialchars() remplace les carcteres speciaux en entité html compréhensible par le navigateur
+        // https://www.w3schools.com/html/html_entities.asp
+        $monJson = '{"theme":[';
+            //pacours ma liste d'exercice pour ajouter mes exercices un à un, à mon json
+            for($i=0 ; $i<count($liste_theme);$i++){
+                $monJson .= '{"_ID":"'.strval($liste_theme[$i]->get_ID()).'",';
+                $monJson .= '"_NOM":"'.htmlspecialchars(($liste_theme[$i]->get_NOM())).'"';
+                //fermeture le tableau de reponse et mon object ($exercice[$i])
+                $monJson .= '}';
+                //je sépare chaque object theme par une virgule sauf le dernier
+                if($i!=count($liste_theme)-1){
+                    $monJson.=',';
+                }
+            }
+            //je ferme mon tableau d'exercice et le json
+            $monJson =$monJson."]}";
+            echo $monJson;
     }
-
-	public function readtheme(){
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
-			$stmt = $dbh->prepare('SELECT * FROM theme WHERE id = :id');
-			$stmt->bindParam(':id', $this->_ID);
-			$stmt->execute();
-            $row = $stmt->fetch();
-            //pour chaque resultat je fabrique un theme de la classe theme
-            $singletheme = new theme($row['id'],$row['nom']);
-            $dbh = null;
-        //transforme en tableau d'object json ??
-		$monjSon = '{$singletheme:'.json_encode(array($singletheme->toArray($singletheme))).'}';
-        // Je l'affiche
-        return $monjSon;
-		}
 
 //fonction public pour update un theme//
 	public function updatetheme(){
@@ -116,16 +108,5 @@ Class theme {
             $dbh = null;
 	}
 
-	// permet de créer un json contenant les objets des objets
-    public function toArray(){
-        $array = get_object_vars($this);
-        unset($array['_parent'], $array['_index']);
-        array_walk_recursive($array, function (&$property) {
-            if (is_object($property) && method_exists($property, 'toArray')) {
-                $property = $property->toArray();
-            }
-        });
-        return $array;
-    }
 }
 ?>

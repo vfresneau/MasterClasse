@@ -130,29 +130,6 @@ Class Individu {
 	}
 
 
-	public function readIndividu(){
-    
-        // 127.0.0.1 est l'adresse ip locale du serveur (le fichier php étant exécuté sur le serveur, l'adresse du serveur est donc l'adresse locale)
-
-            //La connexion est établie en créant une instance de la classe de base de PDO.
-			//Le constructeur accepte des paramètres pour spécifier la source de la base de données (source de la Bd, login, mdp)
-            $dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
-			// prépare une requete avec un parametre
-			$stmt = $dbh->prepare('SELECT * FROM Individu WHERE id = :id');
-			//Lie une variable PHP à un marqueur nommé  correspondant dans la requête SQL utilisée, pour préparer la requête.
-			$stmt->bindParam(':id', $this->_ID);
-			$stmt->execute();
-			//retourne un tableau associatif contenant une ligne de la recherche tant qu'il reste des lignes dans la recherche 
-            $row = $stmt->fetch();
-			//pour chaque resultat je fabrique un Individu de la classe Individu 
-            $singleIndividu = new Individu($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['mdp'], $row['admin']);//ferme la connexion à la base
-            //ferme la connexion à la base
-			$dbh = null;
-		//transforme en tableau d'object json ??
-		$monjSon = '{$singleIndividu:'.json_encode(array($singleIndividu->toArray($singleIndividu))).'}';
-        // Je l'affiche
-        return $monjSon;
-		}
 
 	public function updateIndividu(){
     

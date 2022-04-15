@@ -4,7 +4,7 @@
 // (Jason Web Token) 
 class JWT
 {
-    //Fonction pour verifierla validité du token
+    //Fonction pour verifier la validité du token
     public function testTokenExitValide(){
         // On vérifie si on reçoit un token --> différentes méthode en fonction du type de server (windows, apache ...)
         if(isset($_SERVER['Authorization'])){
