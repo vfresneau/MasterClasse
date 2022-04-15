@@ -136,18 +136,16 @@ function ReadTheme(maFonctionAAppeler) {
 function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
+        //Seulement quand l'état de la requete est DONE 
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // Si la réponse n'est pas un nombre on ne fait rien
-            if (isNaN(xhr.responseText)) {
-                //Si jamais la requette à planté et qu'elle renvoi "erreur404" ce n'est pas un nombre mais une chaine de caractere
-            }
-            //Si non si c'est un nombre 
-            else {
+            if (parseInt(xhr.responseText)>0) {
+                //Si jamais la requette à planté et qu'elle renvoi "erreur404" ce n'est pas un nombre mais une chaine de caractere     
                 for (let i = 1; i <= compteurInput; i++) {
                     //On recupère la valeur des inputs tapé par l'utilisateur 
                     let descri = document.getElementById("REPONSE" + "_DESCRIPTION" + i).value;
                     //Et on passe en paramettre de la fonction createReponse(), la variable descri + l'id de l'exercice 
-                    //(ici le xhrresponseText renvois vers le web service displayCreation et donc récupère l'id de l'exercicé créer)
+                    //(ici le xhrresponseText renvois vers le web service displayCreation?? et donc récupère l'id de l'exercicé créer)
                     createReponse(descri, xhr.responseText);
                 }
                 //A la fin des 4 secondes la page se vide et la fonction load_Exercice se lance
@@ -451,7 +449,7 @@ function displayCreationButtons(idExercice) {
     let buttonValidate = ultimateHTMLGenerator("button", "Valider", ["btn", "btn-success"], rowButtonUD);
     buttonValidate.id = "buttonValidate";
 
-    //Au click sur le bouton Valider intervient la partie du CRUD Update
+    //Au click sur le bouton Valider intervient la partie du CRUD 
     //Je passe en paramettre de la fonction : toutes les valeurs dont je vais avoir besoin 
     buttonValidate.onclick = function () {
         updateExercice(
@@ -514,7 +512,7 @@ function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) 
         load_Exercice();
     }, 4000);
 }
-//_____________________________________________________MISE A JOUR REPONSE
+//_____________________________________________________MISE A JOUR REPONSE_________________________________________________
 
 //
 //Fonction mise a jour qui passe en paramettre (idReponse, description, idExercice)
@@ -593,7 +591,6 @@ function loadPhp(){
     window.location.href = 'https://www.w3schools.com/php/default.asp';
 }
 
-
 //______________________________________________LIEN VERS CONTACT (FOOTER)_________________________________
 
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
@@ -618,7 +615,6 @@ function setCookie(name, value, days) {
     //creation du cookie
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
-
 //______________________________________________________________________________________________________________
 
 //fonction qui renvoie la valeur d'un cookie ??
@@ -633,14 +629,12 @@ function getCookie(name) {
     return null;
 }
 
-//______________________________________________________________________________________________________________________
-
 //Fonction qui définis un nouveau cookie ??
 function eraseCookie(name) {
     //creation d'un cookie d'expiration qui appatient à une page 
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
-
+//______________________________________________________________________________________________________________________
 
 //pour décoder le token
 function parseJwt(token) {
