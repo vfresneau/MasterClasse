@@ -1,5 +1,4 @@
 //________________________________________DECLARATION VARIABLES_______________________________________________________
-let myExercice = {};
 let myExercices = {};
 let myThemes = {};
 let whiteBlockTitle;
@@ -10,6 +9,7 @@ let Pics;
 let myThemeString;
 let ColumButton;
 let indexExoEnCours = 0;
+let admin;
 
 //Récupère et lie l'element html de la page "espace stagaire" pour afficher le contenu de cette page
 let container = document.getElementById("container_espace_stagiaire");
@@ -18,13 +18,19 @@ let container = document.getElementById("container_espace_stagiaire");
 
 //Si ce n'est pas la page connexion, j'applique le onclick (car pas footer sur cette page)
 if (window.location.href.indexOf("connexion")==-1){
-    //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
+//Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
 myLinkContact.onclick = function () {
     alert("Téléphone : 02.47.39.24.01" + "\n" + "Mail : formation.dev@mail.fr");
 };}
 
+//________________________________________________LIEN DECONNECTION______________________________________________________________________________________//
 
+//fonction qui lors du clic sur le logo deconnecter, efface les cookies de l'utilisateur et renvoi à l'accueil.
+function clearAndRedirect(link) {
+    eraseCookie();
+    document.location = link;
+}
 
 //____________________________________________________________FONCTION PRINCIPAL________________________________________________________________________________//
 
@@ -58,7 +64,7 @@ function tableau_exercice_stagiaire() {
             //on stocke "i" dans une variable //
             indexExoEnCours = i;
             //on passe en parametre dans la fonction, l'ID de l'exercice selectionné
-            ReadExerciceStagiaire(myExercices.Exercice[i]._ID);
+            retrieveExercice(myExercices.Exercice[i]._ID);
         })
         //on affiche le "nom" de l'exercice dans la ligne du tableau
         let valueColum1 = ultimateHTMLGenerator("td", myExercices.Exercice[i]._NOM, [], rowTable);
@@ -83,10 +89,10 @@ function findTheme(id) {
         }
     }
 }
-//______________________________________________________________________WEBSERVICES___________________________________________________________________________________//
+//______________________________________________________________________WEBSERVICE POUR AFFICHER LE TABLEAU D'EXERCICE___________________________________________________________________________________//
 
 //Au click sur le bouton EXERCICE la fonction load_Exercice est executé.
-//Cette fonction vide le contenu de la page, grâce à la requete AJAX nous affichons le tableau d'exercice.
+//Cette fonction vide le contenu de la page, et grâce à la requete AJAX nous affichons le tableau d'exercice.
 function load_Exercice() {
     //efface le container avant d'afficher la page
     container.innerHTML = "";
@@ -110,11 +116,13 @@ function load_Exercice() {
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //je definie que j'attend du json en retour de la requet http
     xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
+    //je definie le token d'authorisation de la requette http
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
     //on envoie la requette
     xhr.send();
 }
+
+//___________________________________________WEBSERVICE POUR AFFICHER LES THEMES_______________________________
 
 //fonction pour afficher les themes //
 function load_Theme() {
@@ -134,39 +142,10 @@ function load_Theme() {
     xhr.send();
 }
 
-//___________________________________________WEBSERVICE POUR LIRE LES EXERCICES_______________________________
-
-//Fonction qui attend en parametre l'Id de l'exercice selectionné dans le tableau ,et affiche celui-ci
-function ReadExerciceStagiaire(id) {
-    // on vide la liste des exercice et l'exercice 
-    container.innerHTML = "";
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            myExercice = JSON.parse(xhr.responseText);
-            console.log(myExercice);
-            //On retrouve l'exercice correspondant grace à l'id //
-            retrieveExercice(id);
-            //apelle de la fonction pour lire les themes
-            ReadTheme();
-        }
-    }
-    // methode utilisée par le protocole http, à l'aquelle on envoie 3 paramètres :adresse du web service utilisé, ma requete est asynchrone
-    xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
-    //type de contenu utile pour l'envoie de parametre dans send
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //je definie que j'attend du json en retour de la requette http
-    xhr.setRequestHeader('Accept', 'application/json');
-    //je definie le token d'authorisation de la requet http
-    xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
-     //verification si je reçois bien mes données //
-    console.log(getCookie('jwt'));
-    //on envoie la requette
-    xhr.send();
-}
+//___________________________________________WEBSERVICE POUR LIRE LES THEMES_______________________________
 
 //fonction qui lit les themes //
-function ReadTheme() {
+function readTheme() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -184,23 +163,24 @@ function ReadTheme() {
     xhr.send();
 }
 
-//fonction qui récupère les données de l'exercice en cours correspondant //
+//Cette fonction permet de remplir les champs avec les informations correspondants à l'exercice selectionné,
+//l'id étant passé en paramètre lors du clic.
 function retrieveExercice(idExercice) {
     // on vide la liste de réponse, pour permettre d'avoir les nouvelles réponses
     myAnswer = [];
-    for (let y = 0; y < myExercice.Exercice.length; y++) {
+    for (let y = 0; y < myExercices.Exercice.length; y++) {
         //Si l'idExercice transmis est identique à celui d'un exercice du tableau Exercice : //
-        if (myExercice.Exercice[y]._ID == idExercice) {
+        if (myExercices.Exercice[y]._ID == idExercice) {
             //alors je créer une variable pour mettre les elements dont j'ai besoin //
-            myTitle = myExercice.Exercice[y]._NOM;
-            myIdTheme = myExercice.Exercice[y]._ID_THEME;
-            instructions = myExercice.Exercice[y]._CONSIGNE;
-            myLevel = myExercice.Exercice[y]._NIVEAU;
-            tableAnswers = myExercice.Exercice[y]._REPONSES;
-            correctAnswers = myExercice.Exercice[y]._REPONSEATTENDU;
+            myTitle = myExercices.Exercice[y]._NOM;
+            myIdTheme = myExercices.Exercice[y]._ID_THEME;
+            instructions = myExercices.Exercice[y]._CONSIGNE;
+            myLevel = myExercices.Exercice[y]._NIVEAU;
+            tableAnswers = myExercices.Exercice[y]._REPONSES;
+            correctAnswers = myExercices.Exercice[y]._REPONSEATTENDU;
         }
     }
-    //pour tous les elements du tableau REPONSES, je selectionne toutes les descriptions //
+    //pour tous les elements du tableau REPONSES, j'ajoute au tableau des reponses "tableAnswer" toutes les descriptions //
     for (let x = 0; x < tableAnswers.length; x++) {
         myAnswer.push(tableAnswers[x]._DESCRIPTION);
     }
@@ -208,6 +188,7 @@ function retrieveExercice(idExercice) {
     myAnswer.push(correctAnswers);
     //changer l'ordre d'apparition des bonnes reponses //
     shuffle(myAnswer);
+    readTheme();
 }
 
 //fonction qui permet de mettre un ordre aléatoire pour les reponses dans son tableau answer
@@ -251,9 +232,9 @@ function myBlock() {
     let TitleExercice = ultimateHTMLGenerator("h4", myTitle, [], whiteBlock);
     TitleExercice.id = "TitleExercice";
 
-    //Des colonnes et lignes pour y mettre mes contenus (paragraphe, theme, consigne)//
-    let columExercice = ultimateHTMLGenerator("div", "", ["col-12"], whiteBlock);
-    let LineInstructions = ultimateHTMLGenerator("div", "", ["row"], columExercice);
+    //Des colonnes et lignes pour y mettre mes insctructions (paragraphe, theme, consigne)//
+    let columInstructions = ultimateHTMLGenerator("div", "", ["col-12"], whiteBlock);
+    let LineInstructions = ultimateHTMLGenerator("div", "", ["row"], columInstructions);
     LineInstructions.id = "LineInstructions";
 
     //creation de paragraphe pour mettre le theme et le niveau de l'exercice //
@@ -274,10 +255,10 @@ function myBlock() {
     NextButton.onclick = function () {
         //On incrémente  de +1 à "indexExoEnCours" (variable qui stocke l'emplacement de l'exercice)
         indexExoEnCours++;
-        //Lors du click je charge l'exercice suivant 
-        retrieveExercice(myExercice.Exercice[indexExoEnCours]._ID);
+        //Lors du click je charge l'exercice suivant
+        retrieveExercice(myExercices.Exercice[indexExoEnCours]._ID);
         //--> affiche les themes //
-        ReadTheme();
+        readTheme();
     }
     //Colum of Congratulation //
     let ColumCongratulation = ultimateHTMLGenerator("div", "", ["col-6"], whiteBlock);
@@ -340,12 +321,12 @@ function connexion() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log(xhr.responseText)
             if (xhr.responseText != 0) {
-                //génere un cookie avec un nom, la reponse du Ws qui permet de generer un jwt, et un nombre de jours (1)
+                //Grace a la fonction setCookie() on génère un cookie avec un nom, la reponse du Ws qui permet de generer un jwt, et un nombre de jours de validité (1)
                 setCookie("jwt", xhr.responseText, 1);
-                //resulat décodé du payload du jwt
+                //resulat décodé du payload du jwt (récupère la charge utile du jwt)
                 console.log(parseJwt(xhr.responseText));
                 //resulat décodé du payload ou jwt suivi du 0 ou 1 qui permet de savoir si admin ou pas
-                let admin = parseJwt(xhr.responseText).admin;
+                admin = parseJwt(xhr.responseText).admin;
                 if (admin == 1) {
                     window.location.href = "../html/espace_createur.html";
                 } else {
@@ -361,8 +342,9 @@ function connexion() {
 
 //____________________________________________________________LIENS DES BOUTTONS COURS ET EXAMENS________________________________________________________________________________//
 
+//Lors de la fonction onclick j'affiche les examens 
 function loadExamens(){
-    window.location.href="https://apcpedagogie.com/examen-4-en-html-css-et-js/";
+    window.location.href="https://apcpedagogie.com/examen-en-html-css-javascript-php-et-mysql-01/";
 }
 //Lors de la fonction onclick j'affiche les cours de HTML
 function loadHtml(){
@@ -389,19 +371,23 @@ function loadPhp(){
 
 //_____________________________________Fonction HTML Element Generator_______________________________________
 
-function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinationElement) {  //on créer un élement html donné en paramètre (1er paramètre)                      
-    
-    let ultimateElement = document.createElement(typeElement); //on attribut du contenu (paramètre 2) à l'element html précedement fabriqué                                                   
+function ultimateHTMLGenerator(typeElement, contenu, tableauClassCss, destinationElement) {                       
+    //on créer un élement html donné en paramètre (1er paramètre) 
+    let ultimateElement = document.createElement(typeElement);
+    //on attribut du contenu (paramètre 2) à l'element html précedemment fabriqué                                                   
     ultimateElement.textContent = contenu;                    //on souhaite ajouter plusieurs class CSS à l'element html précedement créé
-
-    for (let i = 0; i < tableauClassCss.length; i++) {       //on ajoute la class css contenu dans le tableau de class css (3ème paramètre)
-        ultimateElement.classList.add(tableauClassCss[i]);  //on ajoute une classList à la variable ultimateElement
+    //on ajoute une classList à la variable ultimateElement
+    //et on ajoute la class css contenu dans le tableau de class css (3ème paramètre)
+    for (let i = 0; i < tableauClassCss.length; i++) {       
+        ultimateElement.classList.add(tableauClassCss[i]);  
     }
-    destinationElement.appendChild(ultimateElement);      //on fait apparaitre l'élement dans celui passé en 4ème paramètre
-    return ultimateElement;                               //Force la sortie de la boucle FOR
+    //on fait apparaitre l'élement dans celui passé en 4ème paramètre
+    destinationElement.appendChild(ultimateElement);  
+    //Force la sortie de la boucle FOR
+    return ultimateElement;                              
 }
 
-//____________________________________________________________//FONCTIONS POUR LE JWT//_________________________________________________________________________//
+//____________________________________________________________//FONCTIONS POUR LES COOKIES//_________________________________________________________________________//
 
 //Fonction creation d'un cookie en passant en paremetre un nom, une valeur,le nmbre de jour
 function setCookie(name, value, days) {
@@ -437,7 +423,10 @@ function eraseCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-//Recupèer la charge utile du token
+//____________________________________________________________//FONCTIONS LE JWT//_________________________________________________________________________//
+
+
+//Recupère la charge utile (notre payload) du token
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

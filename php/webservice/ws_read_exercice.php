@@ -8,7 +8,7 @@ $JWT= new JWT();
 $JWT-> testTokenExitValide();
 
 //Les propriétés statiques sont accédées en utilisant l'opérateur de résolution de portée ::
-//On accède aux propriétés statiques: readAllExercice de l'objet Exercice
+//On accède aux propriétés statiques: readAllExercice () de l'objet Exercice
 Exercice::readAllExercice();
 
 ?>

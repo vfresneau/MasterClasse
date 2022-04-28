@@ -91,7 +91,7 @@ Class Individu {
 			$dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			// prépare une requete avec 2 parametres
 			$stmt = $dbh->prepare("SELECT * FROM Individu where email =:MAIL and mdp=:MDP");
-			//Lie une variable PHP à un marqueur nommé  correspondant dans la requête SQL utilisée, pour préparer la requête.
+			//Lie une variable PHP à un marqueur nommé correspondant dans la requête SQL utilisée, pour préparer la requête.
 			$stmt->bindParam(':MAIL', $this->_EMAIL);
 			$stmt->bindParam(':MDP', $this->_MDP);
 			$stmt->execute();

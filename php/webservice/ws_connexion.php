@@ -6,7 +6,7 @@ require_once("../includes/config.php");
 
 //On instancie la Class individu et on remplie ces attributs 
 $monIndividu = new Individu(0,"","",$_POST["mail"],$_POST["mdp"],0);
-//verification du mail et mot de passe grace a la fonction public dans la class Individu
+//verification du mail et mot de passe grace a la méthode connexion() de la class Individu
 $monIndividu->connexion();
 //si l'ID est différent de 0
 if ($monIndividu->get_ID()!= 0){

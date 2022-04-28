@@ -57,11 +57,8 @@
         </ul>
         <!--Ouverture d'une balise de navigation contenant 2 liens-->
         <div class="navbar-nav">
-          <!--Liens qui renvoie sur la page accueil-->
-          <a href="./index.html">
-            <!--Creation d'une balise image dans notre lien avec un nom unique-->
-            <img id="logo_deconnecter" src="../image/deconnecter.png" alt="logo_deconnecter">
-          </a>
+          <!--Lien qui renvoie sur la fonction clearAndRedirect()-->
+          <a href="javascript:clearAndRedirect('index.html')"><img id="logo_deconnecter" src="../assets/deconnecter.png"></a>
         </div>
       </div>
     </nav>
@@ -74,17 +71,17 @@
         <div class="row text-center d-flex">
           <article class="col-4">
             <!--Creation d'un bouton avec un nom unique qui au click renvois à la fonction load_Exercice en JavaScript-->
-            <button type="button" id="exercice" onclick="load_Exercice()" class="btn btn-light btn-lg btn-block">EXERCICES</button>
+            <button type="button" id="exercice" onclick="load_Exercice()" title="Exercices d'entrainement" class="btn btn-light btn-lg btn-block">EXERCICES</button>
           </article>
             
           <article class="col-4"> 
             <!--Creation d'un bouton avec un nom unique qui au click renvois à la page cours-->
-            <button type="button" id="cours" onclick="javascript:location.href='../html/cours.html'" class="btn btn-light btn-lg btn-block" >COURS</button>
+            <button type="button" id="cours" onclick="javascript:location.href='../html/cours.html'" title="Cours sur différents languages de dévellopement" class="btn btn-light btn-lg btn-block">COURS</button>
           </article>
 
           <article class="col-4">
-            <!--EN TRAVAUX : PENSER A METTRE LE BON COMMENTAIRE-->
-            <button type="button" id="examens" onclick="loadExamens()" class="btn btn-light btn-lg btn-block">EXAMENS</button>
+            <!--Creation d'un bouton avec un nom unique qui au click renvois un lien vers un site d'examen-->
+            <button type="button" id="examens" onclick="loadExamens()" title="Vous voulez vérifiez votre niveau ?" class="btn btn-light btn-lg btn-block">EXAMENS</button>
           </article>
         </div>
 
@@ -92,15 +89,15 @@
         <div class="row">
 
           <article class="col-4">
-            <img  id="logo_stylo" src="../image/stylo.png" alt="logo_stylo">
+            <img  id="logo_stylo" src="../assets/stylo.png" alt="logo_stylo">
           </article>
 
           <article class="col-4">
-            <img  id="logo_cours" src="../image/livre_ouvert.png" alt="logo_cours">
+            <img  id="logo_cours" src="../assets/livre_ouvert.png" alt="logo_cours">
           </article>
 
           <article class="col-4">
-            <img  id="logo_certificat" src="../image/diplome.png" alt="logo_certificat">
+            <img  id="logo_certificat" src="../assets/diplome.png" alt="logo_certificat">
           </article>
 
         </div>

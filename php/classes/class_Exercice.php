@@ -50,8 +50,9 @@ class Exercice
             $this->getAllReponses();
         }
     }
+    //_____________________________________________________________LES ACCESSEURS____________________________________________________________________________________________________________________________________________________________________
     //les guetteurs :méthode pour obtenir la valeur d'un attribut
-    //Les Setters : méthode pour dénifie un attribut
+    //Les Setters : méthode pour dénifir un attribut
     public function get_REPONSES()
     {
         return $this->_REPONSES;
@@ -205,8 +206,8 @@ class Exercice
         //ferme la connexion à la base
         $dbh = null;
     }
-    //méthode statique permet d'y accéder sans avoir besoin d'instancier la classe. Ceci peuvent être accédé statiquement depuis une instance d'objet.
-    // -->Méthode static utiliser afin d'être appeller dans le webservice Exercice//
+    //méthode statique permet d'y accéder sans avoir besoin d'instancier la classe. 
+    //Ceci peuvent être accédé statiquement depuis une instance d'objet.
     public static function readAllExercice()
     {
         //tableau vide
@@ -221,7 +222,7 @@ class Exercice
         //retourne un tableau associatif contenant une ligne de la recherche tant qu'il reste des lignes dans la recherche
         while ($row = $stmt->fetch())
         {
-            //pour chaque resultat je fabrique un exercice de la classe EXERCICE
+            //pour chaque resultat je fabrique un exercice de la classe Exercice
             $monExercice = new Exercice($row['id'], $row['nom'], $row['correction'], $row['consigne'], $row['reponseAttendu'], $row['valide'], $row['niveau'], $row['lien'], $row['id_theme']);
             //j'ajoute à mon tableau d'exercice' mon exercice en cours
             array_push($liste_exercice, $monExercice);
@@ -234,9 +235,11 @@ class Exercice
         $i = 0;
         //On transforme l'objet en tableau (récursif sur les objets)
         foreach ($liste_exercice as $Exercice)
-        {
+        {   //On créer un json avec les objets des objets que l’on met dans un tableau.
             $array = $Exercice->toArray($Exercice);
+            
             $monTab[$i] = $array;
+            //On incrémente de 1 chaque tableau d’objet (afin de les structurés)
             $i += 1;
         }
         //transforme en tableau d'object json

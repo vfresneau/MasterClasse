@@ -1,4 +1,4 @@
-//_______________________________________DECLARATION DES VARIABLE DONT NOUS AURONT BESOIN ______________________________________________
+//_______________________________________DECLARATION DES VARIABLE DONT NOUS AURONT BESOIN EN DEHORS DES FONCTIONS ______________________________________________
 let myExercices = {};
 let myThemes;
 let compteurInput = 1;
