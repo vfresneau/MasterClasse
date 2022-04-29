@@ -51,7 +51,7 @@ Class theme {
 	}
 
 //méthode statique permet d'y accéder sans avoir besoin d'instancier la classe. Ceci peuvent être accédé statiquement depuis une instance d'objet.
-// -->Méthode static utiliser afin d'être appeller dans le webservice Exercice//
+// -->Méthode static utiliser afin d'être appeller dans le webservice theme//
     public static function readAllTheme(){
         //declaration d'un tableau vide
         $liste_theme = array(); 

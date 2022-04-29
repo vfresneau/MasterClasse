@@ -17,6 +17,7 @@ let container = document.getElementById("container_espace_stagiaire");
 //________________________________________________LIEN FOOTER______________________________________________________________________________________//
 
 //Si ce n'est pas la page connexion, j'applique le onclick (car pas footer sur cette page)
+//évite un erreur dan sla console //
 if (window.location.href.indexOf("connexion")==-1){
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
@@ -27,6 +28,7 @@ myLinkContact.onclick = function () {
 //________________________________________________LIEN DECONNECTION______________________________________________________________________________________//
 
 //fonction qui lors du clic sur le logo deconnecter, efface les cookies de l'utilisateur et renvoi à l'accueil.
+//le lien est attribué sur la page espace_stagiaire
 function clearAndRedirect(link) {
     eraseCookie();
     document.location = link;
@@ -144,7 +146,7 @@ function load_Theme() {
 
 //___________________________________________WEBSERVICE POUR LIRE LES THEMES_______________________________
 
-//fonction qui lit les themes //
+//fonction qui retrouve le theme et le lit //
 function readTheme() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {

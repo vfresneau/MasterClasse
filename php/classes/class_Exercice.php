@@ -229,7 +229,6 @@ class Exercice
             //ferme la connexion à la base
             $dbh = null;
         }
-
         //declaration d'un tableau
     $monTab = array();
         $i = 0;
