@@ -166,7 +166,7 @@
 }
 /*______________________________________________CORPS PAGES_______________________________________*/
 body{
-    background-image: url("../image/Background1920.png");
+    background-image: url("../assets/Background1920.png");
     background-size: cover;
     background-repeat: no-repeat;
     margin:0;
