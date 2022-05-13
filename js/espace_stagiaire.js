@@ -17,7 +17,7 @@ let container = document.getElementById("container_espace_stagiaire");
 //________________________________________________LIEN FOOTER______________________________________________________________________________________//
 
 //Si ce n'est pas la page connexion, j'applique le onclick (car pas footer sur cette page)
-//évite un erreur dan sla console //
+//évite un erreur dans la console //
 if (window.location.href.indexOf("connexion")==-1){
 //Recupération de l'id du lien de contact pour y ajouter la fonction onclick afin d'afficher l'alerte de contact
 let myLinkContact = document.getElementById("link_contact");
@@ -113,7 +113,7 @@ function load_Exercice() {
         }
     }
     // methode utilisée par le protocole http, à l'aquelle on envoie 3 paramètres :methode POST,adresse du web service utilisé, ma requete est asynchrone
-    xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
     //type de contenu utile pour l'envoie de parametre dans send
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //je definie que j'attend du json en retour de la requet http
@@ -137,7 +137,7 @@ function load_Theme() {
             tableau_exercice_stagiaire();
         }
     }
-    xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_theme.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_theme.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
@@ -152,21 +152,21 @@ function readTheme() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             myThemes = JSON.parse(xhr.responseText);
-            //verification si je reçois bien mon webService //
+            //retrouve le NOM du theme en fonction de l'exercice en cours //
             Retrieve_Id_Themes(myIdTheme);
             //et j'affiche le resulat dans le resulat dans la page
             myBlock();
         }
     }
-    xhr.open('POST', 'http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_theme.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_theme.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
     xhr.send();
 }
 
-//Cette fonction permet de remplir les champs avec les informations correspondants à l'exercice selectionné,
-//l'id étant passé en paramètre lors du clic.
+//Cette fonction permet de  retrouver l'exercice correspond et de remplir les champs avec les informations correspondants à l'exercice selectionné,
+//l'id étant passé en paramètre lors du clic avec la fonction myblock, puis mélange les bonnes et mauvaises réponses.
 function retrieveExercice(idExercice) {
     // on vide la liste de réponse, pour permettre d'avoir les nouvelles réponses
     myAnswer = [];
@@ -337,7 +337,7 @@ function connexion() {
             } else { alert("mauvais login mot de pass") }
         }
     }
-    xhr.open("POST", "http://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_connexion.php", true);
+    xhr.open("POST", "https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_connexion.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("mail=" + document.getElementById("email").value + "&mdp=" + document.getElementById("mdp").value);
 }

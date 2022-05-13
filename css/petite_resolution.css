@@ -1,7 +1,5 @@
-/*________________________________________________RESPONSIVE____________________________*/
+/*________________________________________________Page cours____________________________*/
 /*Règles CSS pour les mobiles ici */
-
-/*verifier si toutes les lignes de code des class css servenet pour le responsive*/
 
     #logo-SQL,#logo-JS,#logo-HTML,#logo-CSS{
         margin-top: 20px;
@@ -14,7 +12,7 @@
         width: 100px;
     }
 
-
+/*____________________________________________________________________________*/
 footer{
     visibility:hidden;
 }
@@ -52,4 +50,19 @@ footer{
 .navbar{
     margin-bottom: 5px;
     height: 50px;
+}
+/*_______________________________________________ACCEUIL______________________________________________*/
+
+#bloc_violet1_accueil,#bloc_bleu2_accueil,#bloc_violet3_accueil{
+    visibility:hidden;
+}
+/*_______________________________________________QSN______________________________________________*/
+
+#imageQSN{
+    visibility:hidden;
+}
+/*_______________________________________________Formation______________________________________________*/
+
+#img_campusLR,#img_campusLVD,#img_campusA,#img_campusT{
+    visibility:hidden;
 }

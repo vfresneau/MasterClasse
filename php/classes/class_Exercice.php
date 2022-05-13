@@ -43,7 +43,7 @@ class Exercice
         $this->_NIVEAU = $NIVEAU;
         $this->_LIEN = $LIEN;
         $this->_ID_THEME = $ID_THEME;
-        // quand je fait une instance de exercice
+        // quand je fait une instance d'un exercice
         // si on ma passé un id --> je vais récupérer toutes les réponses de l'exercice
         if ($this->_ID != 0)
         {
@@ -172,7 +172,7 @@ class Exercice
         $stmt->bindParam(':lien', $this->_LIEN);
         $stmt->bindParam(':id_theme', $this->_ID_THEME);
         $stmt->execute();
-        //recupere l'id automatique qui a été fabriqué
+        //on attribue à la variable $dbh : l'id automatique qui a été fabriqué
         $this->_ID = $dbh->lastInsertId();
         //ferme la connexion à la base
         $dbh = null;
@@ -235,6 +235,7 @@ class Exercice
         //On transforme l'objet en tableau (récursif sur les objets)
         foreach ($liste_exercice as $Exercice)
         {   //On créer un json avec les objets des objets que l’on met dans un tableau.
+            //cette fonction permet de structurer des objects dans des objects
             $array = $Exercice->toArray($Exercice);
             
             $monTab[$i] = $array;
@@ -264,7 +265,7 @@ class Exercice
         $singleExercice = new Exercice($row['id'], $row['nom'], $row['correction'], $row['consigne'], $row['reponseAttendu'], $row['valide'], $row['niveau'], $row['lien'], $row['id_theme']); //ferme la connexion à la base
         //ferme la connexion à la base
         $dbh = null;
-        //transforme en tableau d'object json ??
+        //transforme en tableau d'object json
         $monjSon = '{$singleExercice:' . json_encode(array($singleExercice->toArray($singleExercice))) . '}';
         // Je l'affiche
         return $monjSon;

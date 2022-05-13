@@ -69,15 +69,16 @@ Class theme {
             $dbh = null;
             
      //on transforme mon tableau d'object en json
+    
         //strval() transforme un entier en chaine de caractere
-        //htmlspecialchars() remplace les carcteres speciaux en entité html compréhensible par le navigateur
+        //htmlspecialchars() remplace les caracteres speciaux en entité html compréhensible par le navigateur
         // https://www.w3schools.com/html/html_entities.asp
         $monJson = '{"theme":[';
-            //pacours ma liste d'exercice pour ajouter mes exercices un à un, à mon json
+            //pacours ma liste de theme pour ajouter mes themes un à un, à mon json
             for($i=0 ; $i<count($liste_theme);$i++){
                 $monJson .= '{"_ID":"'.strval($liste_theme[$i]->get_ID()).'",';
                 $monJson .= '"_NOM":"'.htmlspecialchars(($liste_theme[$i]->get_NOM())).'"';
-                //fermeture le tableau de reponse et mon object ($exercice[$i])
+                //fermeture du tableau de theme et mon object ($liste_theme[$i])
                 $monJson .= '}';
                 //je sépare chaque object theme par une virgule sauf le dernier
                 if($i!=count($liste_theme)-1){

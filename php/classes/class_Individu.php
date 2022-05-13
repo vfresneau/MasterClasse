@@ -87,7 +87,7 @@ Class Individu {
 		// 127.0.0.1 est l'adresse ip local du serveur (le fichier php étant executer sur le serveur, l'adresse du serveur est donc l'adresse local)
 
 			//La connexion est établie en créant une instance de la classe de base de PDO.
-			//Le constructeur accepte des paramètres pour spécifier la source de la base de données (mysql: Systeme de Base de Donéées (SGBD) ,dbname: nom de la base dans le SGBD, login, mdp)
+			//Le constructeur accepte des paramètres pour spécifier la source de la base de données (mysql: Systeme de Base de Données (SGBD) ,dbname: nom de la base dans le SGBD, login, mdp)
 			$dbh = new PDO('mysql:host=127.0.0.1;dbname=MASTER_CLASSE', LOGIN, MDP);
 			// prépare une requete avec 2 parametres
 			$stmt = $dbh->prepare("SELECT * FROM Individu where email =:MAIL and mdp=:MDP");

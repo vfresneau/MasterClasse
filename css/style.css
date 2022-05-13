@@ -176,7 +176,7 @@ body{
 
 /*Block principal blanc*/
 #bloc_blanc_accueuil{
-    margin: 40px 100px 10px;
+    margin: 40px 110px 10px;
     width: 532px;
     height: 656px;
     background: #FFFFFF;
@@ -191,7 +191,7 @@ body{
 
 /*Block violet n°1*/
 #bloc_violet1_accueil{
-    margin: 40px 100px 10px;
+    margin: 40px 110px 10px;
     width: 339px;
     height: 175px;
     background: #A44EB3;
@@ -209,7 +209,7 @@ body{
 
 /*Block violet n°3*/
 #bloc_violet3_accueil{
-    margin: 40px 100px 10px;
+    margin: 40px 112px 10px;
     width: 339px;
     height: 175px;
     background: #A44EB3;

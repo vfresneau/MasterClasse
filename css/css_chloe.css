@@ -455,12 +455,12 @@
 #logo_stylo{
     width: 80px;
     height: 80px;
-    margin: 10px 170px 20px;
+    margin: 10px 195px 20px;
 }
 
 /*Logo examen pour libellé cours*/
 #logo_cours{
-    margin: 10px 170px 20px;
+    margin: 10px 195px 20px;
     width: 80px;
     height: 80px;
 }
@@ -469,7 +469,7 @@
 #logo_certificat{
     width: 80px;
     height: 80px;
-    margin: 10px 170px 20px;
+    margin: 10px 195px 20px;
 }
 
 /*Image logo deconnection qui est aussi en page espace createur*/
