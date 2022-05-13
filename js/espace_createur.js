@@ -19,7 +19,7 @@ let myContainer = document.getElementById("myContainerCreateExercice");
 //Au click sur le bouton EXERCICE la fonction load_Exercice est executé.
 //Cette fonction vide le contenu de la page espace_stagiaire, et laisse apparaître un bouton CREER,
 //à la requete AJAX nous affichons le tableau d'exercice.
-function load_Exercice() {
+function loadExercice() {
     myContainer.innerHTML = "";
     let rowButtonCreate = ultimateHTMLGenerator("div", "", ["row"], myContainer);
     rowButtonCreate.id="rowButtonCreate";
@@ -41,7 +41,7 @@ function load_Exercice() {
             //Verification grâce à un consol.log()
             console.log(myExercices);
             //Appel de la fonction ReadTheme à laquelle on passe la fonction tableauExerciceStagiaire
-            ReadTheme(tableauExerciceStagiaire);
+            readTheme(boardExerciceStagiaire);
         }
     }
     //POST= methode utilisée par le protocole http, adresse du web service utilisé, ma requete est asynchrone
@@ -57,7 +57,7 @@ function load_Exercice() {
 }
 
 //Cette fonction va nous permettre d'afficher notre "tableau d'exercices", lorsque qu'au Menu createur, on choisira de clicker sur 'EXERCICE'
-function tableauExerciceStagiaire() {
+function boardExerciceStagiaire() {
 
     //creation des elements du tableau :
 
@@ -86,7 +86,7 @@ function tableauExerciceStagiaire() {
             // Je stocke l'index qui est selectionné par l'utilisateur (selection d'une ligne)
             indexExoEnCours = i;
             //J'appel la fonction "ReadExerciceCreateur" en lui passant en parametre l'id selectionné
-            ReadExerciceCreateur(myExercices.Exercice[i]._ID);
+            readExerciceCreateur(myExercices.Exercice[i]._ID);
         })
 
         //j'hydrate mon tableau avec les données de cet exercice
@@ -114,14 +114,14 @@ function findTheme(id) {
 
 //Fonction qui me permet d'afficher des champs vide afin de créer un exercice 
 //
-function ReadTheme(maFonctionAAppeler) {
+function readTheme(functionToCall) {
     
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             myThemes = JSON.parse(xhr.responseText);
             console.log(myThemes);
-            maFonctionAAppeler();
+            functionToCall();
         }
     }
     xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_theme.php', true);
@@ -152,7 +152,7 @@ function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
                 //Fonction qui affiche le tableau exercice et le rafraichis
                 setTimeout(function(){
                     myContainer.innerHTML = "";
-                    load_Exercice();
+                    loadExercice();
                 }, 4000);
             }
         }
@@ -192,7 +192,7 @@ function createReponse(descri, id_exo) {
 
 //Cette fonction va vider notre container et laisser place aux champs remplis
 // (avec les informations : nom, consigne, reponse attendu, theme, niveau, lien, propositions de réponse)
-function ReadExerciceCreateur(id) {
+function readExerciceCreateur(id) {
     //Le container se vide et laisse place au champs et selecteur remplis
     //ceux-ci s'affichant grâce à la fonction displayCreationFields qui est appelé dans cette la fonction.
     myContainer.innerHTML = "";
@@ -419,7 +419,7 @@ function displayCreationFields(modeDeleteUpdate) {
         buttonDelete.onclick = function () { 
             deleteExercice(myExercices.Exercice[indexExoEnCours]._ID); 
             myContainer .innerHTML = "";
-            load_Exercice();
+            loadExercice();
         }
         //En mode creation on créer une ligne contenant un bouton VALIDER 
         //qui au click appel la fonction creationExercice() (qui prend en compte la valeur de tous les champs
@@ -509,7 +509,7 @@ function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) 
     //A la fin des 4 secondes la page se vide et la fonction load_Exercice se lance
     setTimeout(function(){
         myContainer.innerHTML = "";
-        load_Exercice();
+        loadExercice();
     }, 4000);
 }
 //_____________________________________________________MISE A JOUR REPONSE_________________________________________________
