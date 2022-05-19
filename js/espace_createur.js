@@ -45,7 +45,7 @@ function loadExercice() {
         }
     }
     //POST= methode utilisée par le protocole http, adresse du web service utilisé, ma requete est asynchrone
-    xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_exercice.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
     //ecrire dans l'entete de la requete http, la facon dont vont etre envoyés les parametres de la requete
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //On attend du JSON en retour de la requet http
@@ -124,7 +124,7 @@ function readTheme(functionToCall) {
             functionToCall();
         }
     }
-    xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_theme.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_theme.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
@@ -157,7 +157,7 @@ function creationExercice(nom, consigne, reponseattendu, niveau, lien, theme) {
             }
         }
     }
-    xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_create_exercice.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_create_exercice.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
@@ -180,7 +180,7 @@ function createReponse(descri, id_exo) {
         if (xhr.readyState == XMLHttpRequest.DONE) {
         }
     }
-    xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_create_reponse.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_create_reponse.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
@@ -207,7 +207,7 @@ function readExerciceCreateur(id) {
             displayCreationFields(true);
         }
     }
-    xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_read_exercice.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_read_exercice.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
@@ -474,7 +474,7 @@ function updateExercice(id, nom, consigne, reponseattendu, niveau, lien, theme) 
             }
         }
     }
-    xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_update_exercice.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_update_exercice.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
@@ -524,7 +524,7 @@ function updateReponse(idReponse, description, idExercice) {
             }
         }
     }
-    xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_update_reponse.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_update_reponse.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));
@@ -545,7 +545,7 @@ function deleteExercice(IdExoEnCours) {
         if (xhr.readyState == XMLHttpRequest.DONE) {
         }
     }
-    xhr.open('POST', 'https://141.94.223.96/Chloe/MasterClasse/php/webservice/ws_delete_exercice.php', true);
+    xhr.open('POST', 'https://141.94.223.96/Vincent/MasterClasse/php/webservice/ws_delete_exercice.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie('jwt'));

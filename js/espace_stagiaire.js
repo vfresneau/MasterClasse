@@ -63,9 +63,9 @@ function tableau_exercice_stagiaire() {
         let rowTable = ultimateHTMLGenerator("tr", "", [], bodyTable);
         //Lors d'un click sur une ligne du tableau on selectionne l'exercice et on l'affiche dans une autre page
         rowTable.addEventListener("click", function () {
-            //on stocke "i" dans une variable //
+            //on stocke "i" (identifiant unique de l'exercice selectionné) dans une variable //
             indexExoEnCours = i;
-            //on passe en parametre dans la fonction, l'ID de l'exercice selectionné
+            //on passe en parametre dans la fonction l'exercice selectionné dans le tableau
             retrieveExercice(myExercices.Exercice[i]._ID);
         })
         //on affiche le "nom" de l'exercice dans la ligne du tableau
@@ -243,6 +243,7 @@ function myBlock() {
     let paragraph1_theme_level = ultimateHTMLGenerator("p", "THEME : " + myThemeString + "\n" + "NIVEAU : " + myLevel, ["text-light", "d-flex", "justify-content-center"], LineInstructions);
     let paragrap2_instructions = ultimateHTMLGenerator("p", instructions, ["text-light"], LineInstructions);
 
+    //colum of exercices
     let ColumExercice = ultimateHTMLGenerator("div", "", ["col-12"], whiteBlock);
     ColumExercice.id = "ColumExercice";
 
